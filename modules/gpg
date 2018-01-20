@@ -1,0 +1,44 @@
+modules-$(CONFIG_GPG) += gpg
+
+# we install gpgv 1.4, which is an older version that has fewer
+# dependencies.  This may need to be revisted later.
+gpg_version := 1.4.21
+gpg_dir := gnupg-$(gpg_version)
+gpg_tar := gnupg-$(gpg_version).tar.bz2
+gpg_url := https://www.gnupg.org/ftp/gcrypt/gnupg/$(gpg_tar)
+gpg_hash := 6b47a3100c857dcab3c60e6152e56a997f2c7862c1b8b2b25adf3884a1ae2276
+
+# For reproducibility reasons we have to override the exec_prefix
+# and datarootdir on the configure line so that the Makefiles will
+# be generated with the correct paths, but then re-write them when
+# we use the install target so that they will be copied to the correct
+# location.
+gpg_configure := ./configure \
+	$(CROSS_TOOLS) \
+	--host i386-elf-linux \
+	--with-libusb="$(INSTALL)" \
+	--prefix "/" \
+	--enable-card-support \
+	--disable-bzip2 \
+	--disable-asm \
+	--disable-exec \
+	--disable-photo-viewers \
+	--disable-keyserver-helpers \
+	--disable-ldap \
+	--disable-hkp \
+	--disable-finger \
+	--disable-dns-srv \
+	--disable-dns-cert \
+	--disable-regex \
+
+# Run one build to generate the executables with the pre-defined
+# exec_prefix and datarootdir, then a second make to install the binaries
+# into our actual target location
+gpg_target := $(MAKE_JOBS) \
+	&& $(MAKE) -C $(build)/$(gpg_dir) \
+		DESTDIR="$(INSTALL)" \
+		install
+
+gpg_output := g10/gpg
+
+gpg_depends := libusb-compat $(musl_dep)

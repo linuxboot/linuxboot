@@ -1,0 +1,54 @@
+modules-$(CONFIG_LVM2) += lvm2
+
+lvm2_version := 2.02.168
+lvm2_dir := LVM2.$(lvm2_version)
+lvm2_tar := LVM2.$(lvm2_version).tgz
+lvm2_url := http://mirrors.kernel.org/sourceware/lvm2/$(lvm2_tar)
+lvm2_hash := 23a3d1cddd41b3ef51812ebf83e9fa491f502fe74130d4263be327a91914660d
+
+# cross compiling test assumes malloc/realloc aren't glibc compat
+# so we force it via the configure cache.
+lvm2_configure := \
+	$(CROSS_TOOLS) \
+	PKG_CONFIG=/bin/false \
+	MODPROBE_CMD=/bin/false \
+	ac_cv_func_malloc_0_nonnull=yes \
+	ac_cv_func_realloc_0_nonnull=yes \
+	./configure \
+	--host i386-elf-linux \
+	--prefix "/" \
+	--enable-devmapper \
+	--disable-selinux \
+	--disable-udev-systemd-background-jobs \
+	--disable-realtime \
+	--disable-dmeventd \
+	--disable-lvmetad \
+	--disable-lvmpolld \
+	--disable-use-lvmlockd \
+	--disable-use-lvmetad \
+	--disable-use-lvmpolld \
+	--disable-blkid_wiping \
+	--disable-cmirrord \
+	--with-cluster=none \
+
+# not sure why LIB_SUFFIX is not defined in the cross build
+lvm2_target := \
+	$(MAKE_JOBS) \
+	$(CROSS_TOOLS) \
+	DESTDIR="$(INSTALL)" \
+	all \
+	&& \
+	$(MAKE) \
+	-C "$(build)/$(lvm2_dir)" \
+	$(MAKE_JOBS) \
+	$(CROSS_TOOLS) \
+	DESTDIR="$(INSTALL)" \
+	install_device-mapper \
+
+lvm2_libraries := libdm/libdevmapper.so.1.02
+
+lvm2_output := \
+	tools/dmsetup \
+	tools/lvm \
+
+lvm2_depends := util-linux $(musl_dep)

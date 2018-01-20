@@ -1,0 +1,25 @@
+modules-$(CONFIG_QRENCODE) += qrencode
+
+qrencode_version := 3.4.4
+qrencode_dir := qrencode-$(qrencode_version)
+qrencode_tar := qrencode-$(qrencode_version).tar.gz
+qrencode_url := https://fukuchi.org/works/qrencode/$(qrencode_tar)
+qrencode_hash := e794e26a96019013c0e3665cb06b18992668f352c5553d0a553f5d144f7f2a72
+
+qrencode_libraries := .libs/libqrencode.so.3
+
+qrencode_configure := ./configure \
+	$(CROSS_TOOLS) \
+	--prefix "/" \
+	--without-tools \
+	--host i386-elf-linux \
+
+qrencode_target := \
+	$(MAKE_JOBS) \
+	$(CROSS_TOOLS) \
+	&& $(MAKE) \
+		-C "$(build)/$(qrencode_dir)" \
+		DESTDIR="$(INSTALL)" \
+		install
+
+qrencode_depends := $(musl_dep)
