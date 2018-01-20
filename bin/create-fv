@@ -44,7 +44,7 @@ my $block_size = 0x2000; # force alignment of files to this spacing
 GetOptions(
 	"o|output=s"	=> \$output,
 	"g|guid=s"	=> \$guid_str,
-	"s|size=i"	=> \$size,
+	"s|size=o"	=> \$size,
 	#"z|compress+"	=> \$compress,
 	"f|force+"	=> \$force,
 	"v|verboes+"	=> \$verbose,
