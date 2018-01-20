@@ -1,3 +1,17 @@
+diff --git a/CorebootPayloadPkg/CorebootPayloadPkgIa32X64.dsc b/CorebootPayloadPkg/CorebootPayloadPkgIa32X64.dsc
+index 2492142..5c123d8 100644
+--- a/CorebootPayloadPkg/CorebootPayloadPkgIa32X64.dsc
++++ b/CorebootPayloadPkg/CorebootPayloadPkgIa32X64.dsc
+@@ -205,7 +205,8 @@
+   FileExplorerLib|MdeModulePkg/Library/FileExplorerLib/FileExplorerLib.inf
+ 
+ [LibraryClasses.IA32.SEC]
+-  DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
++  #DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
++  DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+   HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
+   MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
 diff --git a/MdeModulePkg/Core/Dxe/Dispatcher/Dependency.c b/MdeModulePkg/Core/Dxe/Dispatcher/Dependency.c
 index 1d8a57b..29bd38a 100644
 --- a/MdeModulePkg/Core/Dxe/Dispatcher/Dependency.c
@@ -115,7 +129,7 @@ index 1d8a57b..29bd38a 100644
        Status = PushBool (TRUE);
        if (EFI_ERROR (Status)) {
 diff --git a/MdeModulePkg/Core/Dxe/Dispatcher/Dispatcher.c b/MdeModulePkg/Core/Dxe/Dispatcher/Dispatcher.c
-index 5eee71b..0bf24c6 100644
+index 088cd81..1231392 100644
 --- a/MdeModulePkg/Core/Dxe/Dispatcher/Dispatcher.c
 +++ b/MdeModulePkg/Core/Dxe/Dispatcher/Dispatcher.c
 @@ -392,6 +392,9 @@ CoreTrust (
@@ -128,7 +142,7 @@ index 5eee71b..0bf24c6 100644
  /**
    This is the main Dispatcher for DXE and it exits when there are no more
    drivers to run. Drain the mScheduledQueue and load and start a PE
-@@ -460,7 +469,8 @@ CoreDispatcher (
+@@ -460,7 +463,8 @@ CoreDispatcher (
        // skip the LoadImage
        //
        if (DriverEntry->ImageHandle == NULL && !DriverEntry->IsFvImage) {
@@ -138,24 +152,36 @@ index 5eee71b..0bf24c6 100644
          Status = CoreLoadImage (
                          FALSE,
                          gDxeCoreImageHandle,
-@@ -884,6 +909,7 @@ CoreAddToDriverList (
-     DriverEntry->IsFvImage = TRUE;
-   }
- 
-+//DEBUG((DEBUG_INFO, "CoreAddToDriverList %g\n", DriverName));
-   DriverEntry->Signature        = EFI_CORE_DRIVER_ENTRY_SIGNATURE;
-   CopyGuid (&DriverEntry->FileName, DriverName);
-   DriverEntry->FvHandle         = FvHandle;
-@@ -1375,10 +1416,15 @@ CoreDisplayDiscoveredNotDispatched (
+@@ -1411,8 +1415,8 @@ CoreFwVolEventProtocolNotify (
+           DriverEntry->Scheduled = TRUE;
+           InsertTailList (&mScheduledQueue, &DriverEntry->ScheduledLink);
+           CoreReleaseDispatcherLock ();
+-          DEBUG ((DEBUG_DISPATCH, "Evaluate DXE DEPEX for FFS(%g)\n", &DriverEntry->FileName));
+-          DEBUG ((DEBUG_DISPATCH, "  RESULT = TRUE (Apriori)\n"));
++          //DEBUG ((DEBUG_DISPATCH, "Evaluate DXE DEPEX for FFS(%g)\n", &DriverEntry->FileName));
++          //DEBUG ((DEBUG_DISPATCH, "  RESULT = TRUE (Apriori)\n"));
+           break;
+         }
+       }
+@@ -1463,10 +1467,23 @@ CoreDisplayDiscoveredNotDispatched (
    LIST_ENTRY                    *Link;
    EFI_CORE_DRIVER_ENTRY         *DriverEntry;
  
 +extern BOOLEAN mDebugDepex;
-+//mDebugDepex = 1;
++mDebugDepex = 1;
    for (Link = mDiscoveredList.ForwardLink;Link !=&mDiscoveredList; Link = Link->ForwardLink) {
      DriverEntry = CR(Link, EFI_CORE_DRIVER_ENTRY, Link, EFI_CORE_DRIVER_ENTRY_SIGNATURE);
      if (DriverEntry->Dependent) {
-       DEBUG ((DEBUG_LOAD, "Driver %g was discovered but not loaded!!\n", &DriverEntry->FileName));
+-      DEBUG ((DEBUG_LOAD, "Driver %g was discovered but not loaded!!\n", &DriverEntry->FileName));
++struct {
++  UINTN               Signature;
++  BOOLEAN             FreeBuffer;
++  VOID                *Source;
++  UINTN               SourceSize;
++} * handle = DriverEntry->ImageHandle;
++const char * filename = handle ?  PeCoffLoaderGetPdbPointer(handle->Source) : "no-handle";
++
++      DEBUG ((DEBUG_LOAD, "Driver %g was discovered but not loaded!! %a\n", &DriverEntry->FileName, filename));
 +	CoreIsSchedulable(DriverEntry);
      }
    }
@@ -163,19 +189,19 @@ index 5eee71b..0bf24c6 100644
 +
  }
 diff --git a/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c b/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
-index 91e94a7..3ab72c0 100644
+index 62a597e..008e647 100644
 --- a/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
 +++ b/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
-@@ -266,6 +300,8 @@ DxeMain (
+@@ -266,6 +266,8 @@ DxeMain (
    //
    InitializeDebugAgent (DEBUG_AGENT_INIT_DXE_CORE, HobStart, NULL);
  
-+  DEBUG ((DEBUG_INFO, "DxeMain %a %d\n", __FILE__, __LINE__));
++  DEBUG ((DEBUG_INFO, "LinuxBoot DxeMain\r\n"));
 +
    //
    // Initialize Memory Services
    //
-@@ -283,7 +319,12 @@ DxeMain (
+@@ -283,7 +285,12 @@ DxeMain (
    gDxeCoreRT = AllocateRuntimeCopyPool (sizeof (EFI_RUNTIME_SERVICES), &mEfiRuntimeServicesTableTemplate);
    ASSERT (gDxeCoreRT != NULL);
  
@@ -183,12 +209,12 @@ index 91e94a7..3ab72c0 100644
 +  // Set our vendor string and make sure there is at least a few pages
 +  // available in low memory for the SMP trampoline.
    gDxeCoreST->RuntimeServices = gDxeCoreRT;
-+  gDxeCoreST->FirmwareVendor = L"Heads/NERF";
++  gDxeCoreST->FirmwareVendor = L"LinuxBoot";
 +  gDxeCoreST->FirmwareRevision = 1337;
  
    //
    // Start the Image Services.
-@@ -373,10 +414,11 @@ DxeMain (
+@@ -373,10 +380,11 @@ DxeMain (
  
      for (Hob.Raw = HobStart; !END_OF_HOB_LIST(Hob); Hob.Raw = GET_NEXT_HOB(Hob)) {
        if (GET_HOB_TYPE (Hob) == EFI_HOB_TYPE_MEMORY_ALLOCATION) {
@@ -202,14 +228,14 @@ index 91e94a7..3ab72c0 100644
        }
      }
      for (Hob.Raw = HobStart; !END_OF_HOB_LIST(Hob); Hob.Raw = GET_NEXT_HOB(Hob)) {
-@@ -454,15 +507,53 @@ DxeMain (
+@@ -487,15 +495,53 @@ DxeMain (
    Status = FwVolBlockDriverInit (gDxeCoreImageHandle, gDxeCoreST);
    ASSERT_EFI_ERROR (Status);
  
 +  // NERF hack for s2600wf to include the second firmware volume,
 +  // which has the Linux kernel and initrd.  Depending on
 +  // how we're booting we have either 4 or 7 MB avialable
-+#if 0
++#if 1
 +  DEBUG((DEBUG_INFO, "Adding LinuxBoot FV at 0xFF200000\n"));
 +  ProduceFVBProtocolOnBuffer (0xFF200000, 0x700000, NULL, 0, NULL);
 +#else
@@ -256,7 +282,16 @@ index 91e94a7..3ab72c0 100644
    //
    // Initialize the DXE Dispatcher
    //
-@@ -518,6 +609,8 @@ DxeMain (
+@@ -538,7 +584,7 @@ DxeMain (
+       (EFI_SOFTWARE_DXE_CORE | EFI_SW_DXE_CORE_EC_NO_ARCH)
+       );    
+   }
+-  ASSERT_EFI_ERROR (Status);
++  //ASSERT_EFI_ERROR (Status);
+ 
+   //
+   // Report Status code before transfer control to BDS
+@@ -551,6 +597,8 @@ DxeMain (
    //
    // Transfer control to the BDS Architectural Protocol
    //
@@ -265,7 +300,7 @@ index 91e94a7..3ab72c0 100644
    gBds->Entry (gBds);
  
    //
-@@ -740,9 +833,12 @@ CoreExitBootServices (
+@@ -773,9 +821,12 @@ CoreExitBootServices (
  {
    EFI_STATUS                Status;
  
@@ -278,7 +313,7 @@ index 91e94a7..3ab72c0 100644
    gTimer->SetTimerPeriod (gTimer, 0);
  
    //
-@@ -780,6 +876,7 @@ CoreExitBootServices (
+@@ -813,6 +864,7 @@ CoreExitBootServices (
    //
    // Disable CPU Interrupts
    //
@@ -286,54 +321,137 @@ index 91e94a7..3ab72c0 100644
    gCpu->DisableInterrupt (gCpu);
  
    MemoryProtectionExitBootServicesCallback();
-diff --git a/MdeModulePkg/Core/Dxe/FwVol/FwVol.c b/MdeModulePkg/Core/Dxe/FwVol/FwVol.c
-index fe12d6e..0027e87 100644
---- a/MdeModulePkg/Core/Dxe/FwVol/FwVol.c
-+++ b/MdeModulePkg/Core/Dxe/FwVol/FwVol.c
-@@ -198,9 +198,19 @@ GetFwVolHeader (
-   FvhLength = sizeof (EFI_FIRMWARE_VOLUME_HEADER);
-   Status = ReadFvbData (Fvb, &StartLba, &Offset, FvhLength, (UINT8 *)&TempFvh);
-   if (EFI_ERROR (Status)) {
-+DEBUG((DEBUG_INFO, "GetFwVolHeader: ReadFvbData failed %d\n", Status));
-     return Status;
+diff --git a/MdeModulePkg/Core/Dxe/Event/Event.c b/MdeModulePkg/Core/Dxe/Event/Event.c
+index 86ca369..03a7930 100644
+--- a/MdeModulePkg/Core/Dxe/Event/Event.c
++++ b/MdeModulePkg/Core/Dxe/Event/Event.c
+@@ -153,6 +153,47 @@ CoreInitializeEventServices (
+ }
+ 
+ 
++int gDebugNotify;
++
++const char * get_image_name(void * eip)
++{
++  UINTN                                Pe32Data;
++  VOID                                 *PdbPointer;
++
++  Pe32Data = PeCoffSearchImageBase ((UINTN) eip);
++  if (Pe32Data == 0)
++    return "Unknown";
++
++  PdbPointer = PeCoffLoaderGetPdbPointer ((void*) Pe32Data);
++  if (PdbPointer != NULL)
++    return PdbPointer;
++
++  return "No-pdb";
++}
++
++static int my_strcmp(const char * a, const char * b)
++{
++	while(1)
++	{
++		if (!*a && !*b)
++			return 0;
++		if (*a++ != *b++)
++			return -1;
++	}
++}
++
++void debug_function_pointer(const char * caller, void * eip)
++{
++	const char * file = get_image_name(eip);
++
++	// do not trigger for dxe core
++	int len = __builtin_strlen(file);
++	if (len >= 11 && my_strcmp("DxeCore.dll", file + len - 11) == 0)
++		return;
++
++	DEBUG((DEBUG_INFO, "%a: %p in %a\n", caller, eip, file));
++}
++
+ 
+ /**
+   Dispatches all pending events.
+@@ -197,6 +238,8 @@ CoreDispatchEventNotifies (
+     // Notify this event
+     //
+     ASSERT (Event->NotifyFunction != NULL);
++    if(gDebugNotify)
++	    debug_function_pointer(__func__, Event->NotifyFunction);
+     Event->NotifyFunction (Event, Event->NotifyContext);
+ 
+     //
+diff --git a/MdeModulePkg/Core/Dxe/Hand/Handle.c b/MdeModulePkg/Core/Dxe/Hand/Handle.c
+index 86a4065..b8e99d8 100644
+--- a/MdeModulePkg/Core/Dxe/Hand/Handle.c
++++ b/MdeModulePkg/Core/Dxe/Hand/Handle.c
+@@ -368,8 +368,15 @@ CoreInstallProtocolInterfaceNotify (
    }
  
-+  EFI_GUID NameGuid;
-+  UINTN NameOffset = 0x60;
-+  UINTN NameStartLba = 0;
-+  ReadFvbData (Fvb, &NameStartLba, &NameOffset, sizeof(NameGuid), (UINT8 *)&NameGuid);
-+
-+  EFI_PHYSICAL_ADDRESS phys_address;
-+  Fvb->GetPhysicalAddress(Fvb, &phys_address);
-+DEBUG((DEBUG_INFO, "GetFwVolHeader %g %g %p\n", &TempFvh.FileSystemGuid, &NameGuid, phys_address));
-+
    //
-   // Validate FV Header signature, if not as expected, continue.
-   //
+-  // Print debug message
+-  //
++  // Print debug message for uncommon protocols
++  // this is really useful when turned on
++  //
++  if( 0
++  && Protocol->Data1 != 0xbc62157e
++  && Protocol->Data1 != 0x5B1B31A1
++  && Protocol->Data1 != 0x4CF5B200
++  && Protocol->Data1 != 0x09576E91
++  )
+   DEBUG((DEBUG_INFO, "InstallProtocolInterface: %g %p\n", Protocol, Interface));
+ 
+   Status = EFI_OUT_OF_RESOURCES;
+diff --git a/MdeModulePkg/Core/Dxe/Hand/Locate.c b/MdeModulePkg/Core/Dxe/Hand/Locate.c
+index 3cc146f..24bb4d1 100644
+--- a/MdeModulePkg/Core/Dxe/Hand/Locate.c
++++ b/MdeModulePkg/Core/Dxe/Hand/Locate.c
+@@ -613,6 +613,7 @@ CoreLocateProtocol (
+ 
+ Done:
+   CoreReleaseProtocolLock ();
++//if (Status == EFI_NOT_FOUND) DEBUG((DEBUG_INFO, "%a: %g not found\n", __func__, Protocol));
+   return Status;
+ }
+ 
 diff --git a/MdeModulePkg/Core/Dxe/Image/Image.c b/MdeModulePkg/Core/Dxe/Image/Image.c
-index 03e979a..e4a82a4 100644
+index c49ddfc..01047bc 100644
 --- a/MdeModulePkg/Core/Dxe/Image/Image.c
 +++ b/MdeModulePkg/Core/Dxe/Image/Image.c
-@@ -733,8 +733,11 @@ CoreLoadPeImage (
+@@ -733,10 +733,20 @@ CoreLoadPeImage (
      CHAR8 EfiFileName[256];
  
  
 +extern EFI_GUID * gLastGuid;
 +
++/*
      DEBUG ((DEBUG_INFO | DEBUG_LOAD,
 -           "Loading driver at 0x%11p EntryPoint=0x%11p ",
 +           "Loading driver %g at 0x%11p EntryPoint=0x%11p ",
 +	   gLastGuid,
             (VOID *)(UINTN) Image->ImageContext.ImageAddress,
             FUNCTION_ENTRY_POINT (Image->ImageContext.EntryPoint)));
++*/
++    DEBUG ((DEBUG_INFO | DEBUG_LOAD,
++           "Driver %g @ 0x%08p ",
++	   gLastGuid,
++           (VOID *)(UINTN) Image->ImageContext.ImageAddress
++	));
  
+ 
+     //
 diff --git a/MdeModulePkg/Core/Dxe/Misc/MemoryProtection.c b/MdeModulePkg/Core/Dxe/Misc/MemoryProtection.c
-index a73c4cc..a488e75 100644
+index 862593f..302bdbf 100644
 --- a/MdeModulePkg/Core/Dxe/Misc/MemoryProtection.c
 +++ b/MdeModulePkg/Core/Dxe/Misc/MemoryProtection.c
-@@ -232,7 +232,7 @@ SetUefiImageMemoryAttributes (
+@@ -230,9 +230,9 @@ SetUefiImageMemoryAttributes (
  
-   DEBUG ((DEBUG_INFO, "SetUefiImageMemoryAttributes - 0x%016lx - 0x%016lx (0x%016lx)\n", BaseAddress, Length, FinalAttributes));
+   FinalAttributes = (Descriptor.Attributes & CACHE_ATTRIBUTE_MASK) | (Attributes & MEMORY_ATTRIBUTE_MASK);
+ 
+-  DEBUG ((DEBUG_INFO, "SetUefiImageMemoryAttributes - 0x%016lx - 0x%016lx (0x%016lx)\n", BaseAddress, Length, FinalAttributes));
++  //DEBUG ((DEBUG_INFO, "SetUefiImageMemoryAttributes - 0x%016lx - 0x%016lx (0x%016lx)\n", BaseAddress, Length, FinalAttributes));
  
 -  ASSERT(gCpu != NULL);
 +  if(gCpu)
@@ -351,8 +469,188 @@ index a73c4cc..a488e75 100644
  
    if (gCpu == NULL) {
      return ;
+@@ -919,7 +919,7 @@ MemoryProtectionCpuArchProtocolNotify (
+   EFI_HANDLE                  *HandleBuffer;
+   UINTN                       Index;
+ 
+-  DEBUG ((DEBUG_INFO, "MemoryProtectionCpuArchProtocolNotify:\n"));
++  //DEBUG ((DEBUG_INFO, "MemoryProtectionCpuArchProtocolNotify:\n"));
+   Status = CoreLocateProtocol (&gEfiCpuArchProtocolGuid, NULL, (VOID **)&gCpu);
+   if (EFI_ERROR (Status)) {
+     return;
+diff --git a/MdeModulePkg/Core/PiSmmCore/Dependency.c b/MdeModulePkg/Core/PiSmmCore/Dependency.c
+index deaf4b4..1aafbda 100644
+--- a/MdeModulePkg/Core/PiSmmCore/Dependency.c
++++ b/MdeModulePkg/Core/PiSmmCore/Dependency.c
+@@ -40,6 +40,10 @@ BOOLEAN  *mDepexEvaluationStack        = NULL;
+ BOOLEAN  *mDepexEvaluationStackEnd     = NULL;
+ BOOLEAN  *mDepexEvaluationStackPointer = NULL;
+ 
++
++// Turn off DEPEX parsing; slows things down, but helpful for debugging
++BOOLEAN gDebugDepex = 0;
++
+ /**
+   Grow size of the Depex stack
+ 
+@@ -193,6 +197,7 @@ SmmIsSchedulable (
+     return FALSE;
+   }
+ 
++if(gDebugDepex)
+   DEBUG ((DEBUG_DISPATCH, "Evaluate SMM DEPEX for FFS(%g)\n", &DriverEntry->FileName));
+   
+   if (DriverEntry->Depex == NULL) {
+@@ -255,9 +260,11 @@ SmmIsSchedulable (
+       }
+ 
+       if (EFI_ERROR (Status)) {
++if(gDebugDepex)
+         DEBUG ((DEBUG_DISPATCH, "  PUSH GUID(%g) = FALSE\n", &DriverGuid));
+         Status = PushBool (FALSE);
+       } else {
++if(gDebugDepex)
+         DEBUG ((DEBUG_DISPATCH, "  PUSH GUID(%g) = TRUE\n", &DriverGuid));
+         *Iterator = EFI_DEP_REPLACE_TRUE;
+         Status = PushBool (TRUE);
+@@ -271,7 +278,7 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_AND:
+-      DEBUG ((DEBUG_DISPATCH, "  AND\n"));
++      //DEBUG ((DEBUG_DISPATCH, "  AND\n"));
+       Status = PopBool (&Operator);
+       if (EFI_ERROR (Status)) {
+         DEBUG ((DEBUG_DISPATCH, "  RESULT = FALSE (Unexpected error)\n"));
+@@ -292,6 +299,7 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_OR:
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  OR\n"));
+       Status = PopBool (&Operator);
+       if (EFI_ERROR (Status)) {
+@@ -313,6 +321,7 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_NOT:
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  NOT\n"));
+       Status = PopBool (&Operator);
+       if (EFI_ERROR (Status)) {
+@@ -328,6 +337,7 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_TRUE:
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  TRUE\n"));
+       Status = PushBool (TRUE);
+       if (EFI_ERROR (Status)) {
+@@ -337,6 +347,7 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_FALSE:
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  FALSE\n"));
+       Status = PushBool (FALSE);
+       if (EFI_ERROR (Status)) {
+@@ -346,17 +357,19 @@ SmmIsSchedulable (
+       break;
+ 
+     case EFI_DEP_END:
+-      DEBUG ((DEBUG_DISPATCH, "  END\n"));
++      //DEBUG ((DEBUG_DISPATCH, "  END\n"));
+       Status = PopBool (&Operator);
+       if (EFI_ERROR (Status)) {
+         DEBUG ((DEBUG_DISPATCH, "  RESULT = FALSE (Unexpected error)\n"));
+         return FALSE;
+       }
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  RESULT = %a\n", Operator ? "TRUE" : "FALSE"));
+       return Operator;
+ 
+     case EFI_DEP_REPLACE_TRUE:
+       CopyMem (&DriverGuid, Iterator + 1, sizeof (EFI_GUID));
++if(gDebugDepex)
+       DEBUG ((DEBUG_DISPATCH, "  PUSH GUID(%g) = TRUE\n", &DriverGuid));
+       Status = PushBool (TRUE);
+       if (EFI_ERROR (Status)) {
+diff --git a/MdeModulePkg/Core/PiSmmCore/Dispatcher.c b/MdeModulePkg/Core/PiSmmCore/Dispatcher.c
+index f32bbbd..62e7a75 100644
+--- a/MdeModulePkg/Core/PiSmmCore/Dispatcher.c
++++ b/MdeModulePkg/Core/PiSmmCore/Dispatcher.c
+@@ -656,9 +656,9 @@ SmmLoadImage (
+ 
+ 
+     DEBUG ((DEBUG_INFO | DEBUG_LOAD,
+-           "Loading SMM driver at 0x%11p EntryPoint=0x%11p ",
+-           (VOID *)(UINTN) ImageContext.ImageAddress,
+-           FUNCTION_ENTRY_POINT (ImageContext.EntryPoint)));
++           "Loading SMM driver @ 0x%08p ",
++           (VOID *)(UINTN) ImageContext.ImageAddress));
++           //FUNCTION_ENTRY_POINT (ImageContext.EntryPoint)));
+ 
+ 
+     //
+@@ -908,6 +908,7 @@ SmmDispatcher (
+       //
+       // For each SMM driver, pass NULL as ImageHandle
+       //
++DEBUG((DEBUG_INFO, "%a: loading %g\n", __func__, &DriverEntry->FileName));
+       RegisterSmramProfileImage (DriverEntry, TRUE);
+       PERF_START (DriverEntry->ImageHandle, "StartImage:", NULL, 0);
+       Status = ((EFI_IMAGE_ENTRY_POINT)(UINTN)DriverEntry->ImageEntryPoint)(DriverEntry->ImageHandle, gST);
+@@ -1495,10 +1496,13 @@ SmmDisplayDiscoveredNotDispatched (
+   LIST_ENTRY                   *Link;
+   EFI_SMM_DRIVER_ENTRY         *DriverEntry;
+ 
++extern BOOLEAN gDebugDepex;
++gDebugDepex = 1;
+   for (Link = mDiscoveredList.ForwardLink;Link !=&mDiscoveredList; Link = Link->ForwardLink) {
+     DriverEntry = CR(Link, EFI_SMM_DRIVER_ENTRY, Link, EFI_SMM_DRIVER_ENTRY_SIGNATURE);
+     if (DriverEntry->Dependent) {
+       DEBUG ((DEBUG_LOAD, "SMM Driver %g was discovered but not loaded!!\n", &DriverEntry->FileName));
+     }
+   }
++gDebugDepex = 0;
+ }
+diff --git a/MdeModulePkg/Core/PiSmmCore/Handle.c b/MdeModulePkg/Core/PiSmmCore/Handle.c
+index 19faac8..571d207 100644
+--- a/MdeModulePkg/Core/PiSmmCore/Handle.c
++++ b/MdeModulePkg/Core/PiSmmCore/Handle.c
+@@ -234,7 +234,9 @@ SmmInstallProtocolInterfaceNotify (
+ 
+   //
+   // Print debug message
++  // this is useful for debugging
+   //
++if(0)
+   DEBUG((DEBUG_LOAD | DEBUG_INFO, "SmmInstallProtocolInterface: %g %p\n", Protocol, Interface));
+ 
+   Status = EFI_OUT_OF_RESOURCES;
+diff --git a/MdeModulePkg/Core/PiSmmCore/PiSmmCore.c b/MdeModulePkg/Core/PiSmmCore/PiSmmCore.c
+index d2f0207..40d16e1 100644
+--- a/MdeModulePkg/Core/PiSmmCore/PiSmmCore.c
++++ b/MdeModulePkg/Core/PiSmmCore/PiSmmCore.c
+@@ -227,6 +227,8 @@ SmmExitBootServicesHandler (
+ 
+   SmiHandlerUnRegister (DispatchHandle);
+ 
++DEBUG((DEBUG_INFO, "%a:%d\n", __func__, __LINE__));
++
+   //
+   // It is UEFI boot, unregister LegacyBoot SMI handler.
+   //
+@@ -344,6 +346,7 @@ SmmReadyToLockHandler (
+   EFI_HANDLE  SmmHandle;
+   VOID        *Interface;
+ 
++DEBUG((DEBUG_INFO, "%a:%d\n", __func__, __LINE__));
+   //
+   // Unregister SMI Handlers that are no required after the SMM driver dispatch is stopped
+   //
 diff --git a/MdeModulePkg/MdeModulePkg.dsc b/MdeModulePkg/MdeModulePkg.dsc
-index ad85776..5b68318 100644
+index ad85776..5c8dd4d 100644
 --- a/MdeModulePkg/MdeModulePkg.dsc
 +++ b/MdeModulePkg/MdeModulePkg.dsc
 @@ -76,7 +76,7 @@
@@ -364,7 +662,7 @@ index ad85776..5b68318 100644
    CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf
    PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
    PalLib|MdePkg/Library/BasePalLibNull/BasePalLibNull.inf
-@@ -85,7 +85,7 @@
+@@ -85,19 +85,23 @@
    #
    # Misc
    #
@@ -373,7 +671,24 @@ index ad85776..5b68318 100644
    DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf  
    ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf  
    PeCoffExtraActionLib|MdePkg/Library/BasePeCoffExtraActionLibNull/BasePeCoffExtraActionLibNull.inf
-@@ -135,7 +135,7 @@
+   PerformanceLib|MdePkg/Library/BasePerformanceLibNull/BasePerformanceLibNull.inf
+   DebugAgentLib|MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf
+   PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
++  #PlatformHookLib|CorebootPayloadPkg/Library/PlatformHookLib/PlatformHookLib.inf
+   ResetSystemLib|MdeModulePkg/Library/BaseResetSystemLibNull/BaseResetSystemLibNull.inf
+   SmbusLib|MdePkg/Library/DxeSmbusLib/DxeSmbusLib.inf
+   S3BootScriptLib|MdeModulePkg/Library/PiDxeS3BootScriptLib/DxeS3BootScriptLib.inf
+   CpuExceptionHandlerLib|MdeModulePkg/Library/CpuExceptionHandlerLibNull/CpuExceptionHandlerLibNull.inf
+   PlatformBootManagerLib|MdeModulePkg/Library/PlatformBootManagerLibNull/PlatformBootManagerLibNull.inf
+-  PciHostBridgeLib|MdeModulePkg/Library/PciHostBridgeLibNull/PciHostBridgeLibNull.inf
++  #PciHostBridgeLib|MdeModulePkg/Library/PciHostBridgeLibNull/PciHostBridgeLibNull.inf
++  PciHostBridgeLib|CorebootPayloadPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
++  #PciHostBridgeLib|MdePkg/Library/UefiPciLibPciRootBridgeIo/UefiPciLibPciRootBridgeIo.inf
++  #PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
+   TpmMeasurementLib|MdeModulePkg/Library/TpmMeasurementLibNull/TpmMeasurementLibNull.inf
+   AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
+   VarCheckLib|MdeModulePkg/Library/VarCheckLib/VarCheckLib.inf
+@@ -135,7 +139,7 @@
  [LibraryClasses.common.DXE_RUNTIME_DRIVER]
    HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
    MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
@@ -382,7 +697,7 @@ index ad85776..5b68318 100644
    LockBoxLib|MdeModulePkg/Library/SmmLockBoxLib/SmmLockBoxDxeLib.inf
    CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibFmp/DxeRuntimeCapsuleLib.inf
  
-@@ -148,7 +148,7 @@
+@@ -148,7 +152,7 @@
  
  [LibraryClasses.common.DXE_SMM_DRIVER]
    HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
@@ -391,7 +706,7 @@ index ad85776..5b68318 100644
    MemoryAllocationLib|MdePkg/Library/SmmMemoryAllocationLib/SmmMemoryAllocationLib.inf
    SmmServicesTableLib|MdePkg/Library/SmmServicesTableLib/SmmServicesTableLib.inf
    LockBoxLib|MdeModulePkg/Library/SmmLockBoxLib/SmmLockBoxSmmLib.inf
-@@ -157,13 +157,13 @@
+@@ -157,13 +161,13 @@
  [LibraryClasses.common.UEFI_DRIVER]
    HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
    MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
@@ -407,7 +722,7 @@ index ad85776..5b68318 100644
  
  [LibraryClasses.ARM, LibraryClasses.AARCH64]
    ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
-@@ -193,7 +193,8 @@
+@@ -193,7 +197,8 @@
    gEfiMdeModulePkgTokenSpaceGuid.PcdDevicePathSupportDevicePathToText|FALSE
  
  [PcdsFixedAtBuild]
@@ -417,8 +732,18 @@ index ad85776..5b68318 100644
    gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x06
    gEfiMdeModulePkgTokenSpaceGuid.PcdMaxSizeNonPopulateCapsule|0x0
    gEfiMdeModulePkgTokenSpaceGuid.PcdMaxSizePopulateCapsule|0x0
+@@ -226,6 +231,9 @@
+   MdeModulePkg/Application/MemoryProfileInfo/MemoryProfileInfo.inf
+ 
+   MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
++  #QuarkPlatformPkg/Pci/Dxe/PciHostBridge/PciHostBridge.inf
++  #QuarkPlatformPkg/Pci/Dxe/PciPlatform/PciPlatform.inf
++  #QuarkSocPkg/QuarkSouthCluster/Library/IohLib/IohLib.inf
+   MdeModulePkg/Bus/Pci/PciSioSerialDxe/PciSioSerialDxe.inf
+   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+   MdeModulePkg/Bus/Pci/IncompatiblePciDeviceSupportDxe/IncompatiblePciDeviceSupportDxe.inf
 diff --git a/MdePkg/MdePkg.dsc b/MdePkg/MdePkg.dsc
-index 8648dfa..9905200 100644
+index 8f57263..b39de38 100644
 --- a/MdePkg/MdePkg.dsc
 +++ b/MdePkg/MdePkg.dsc
 @@ -29,7 +29,7 @@
@@ -430,9 +755,49 @@ index 8648dfa..9905200 100644
    gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xE0000000
  
  [PcdsFixedAtBuild.IPF]
---- /dev/null	2017-11-25 22:22:20.266607670 -0500
-+++ b/Makefile	2017-10-20 17:30:30.300473143 -0400
-@@ -0,0 +1,38 @@
+diff --git a/UefiCpuPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.c b/UefiCpuPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.c
+index 2d2bc6d..33a1082 100644
+--- a/UefiCpuPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.c
++++ b/UefiCpuPkg/Library/SmmCpuFeaturesLib/SmmCpuFeaturesLib.c
+@@ -172,6 +172,9 @@ SmmCpuFeaturesLibConstructor (
+     }
+   }
+ 
++DEBUG((DEBUG_INFO, "%a: Force SMMR off\n", __func__));
++mSmrrSupported = FALSE;
++
+   //
+   // Allocate array for state of SMRR enable on all CPUs
+   //
+diff --git a/UefiCpuPkg/UefiCpuPkg.dsc b/UefiCpuPkg/UefiCpuPkg.dsc
+index d9a3d2d..31e40c7 100644
+--- a/UefiCpuPkg/UefiCpuPkg.dsc
++++ b/UefiCpuPkg/UefiCpuPkg.dsc
+@@ -31,8 +31,10 @@
+   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
+   CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
+-  DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
+-  SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
++  DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
++  #SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
++  SerialPortLib|MdeModulePkg/Library/BaseSerialPortLib16550/BaseSerialPortLib16550.inf
++  PlatformHookLib|MdeModulePkg/Library/BasePlatformHookLibNull/BasePlatformHookLibNull.inf
+   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
+   DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+   UefiCpuLib|UefiCpuPkg/Library/BaseUefiCpuLib/BaseUefiCpuLib.inf
+@@ -154,3 +156,8 @@
+ 
+ [BuildOptions]
+   *_*_*_CC_FLAGS = -D DISABLE_NEW_DEPRECATED_INTERFACES
++
++[PcdsFixedAtBuild]
++  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xff
++  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800800cf
++
+--- /dev/null	2018-01-03 08:19:45.059186008 -0500
++++ ./Makefile	2018-01-20 18:01:46.073705972 -0500
+@@ -0,0 +1,43 @@
 +# Wrapper around the edk2 "build" script to generate
 +# the few files that we actually want and avoid rebuilding
 +# if we don't have to.
@@ -458,13 +823,18 @@ index 8648dfa..9905200 100644
 +	cp -a $(EDK2_OUTPUTS) .
 +
 +$(EDK2_OUTPUTS):
-+	build
++	$(MAKE) build-dxe
 +
 +ia32:
 +	build -a IA32
 +
-+build:
-+	build
++build-dxe:
++	cd MdeModulePkg ; build
++build-cpu:
++	cd UefiCpuPkg ; build
++build-quark:
++	cd QuarkPlatformPkg ; build
++build: build-dxe build-cpu
 +
 +clean:
 +	$(RM) $(EDK2_OUTPUTS)
