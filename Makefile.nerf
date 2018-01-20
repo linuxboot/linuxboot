@@ -148,24 +148,16 @@ $(build)/$(linux_dir)/arch/x86/boot/bzImage: linux.intermediate
 
 # Generate a firmware file with a well known guid
 nerf-$(BOARD).full.vol: $(addsuffix .ffs,$(dxe-y)) # Acpi-data.$(BOARD).ffs  # blobs/r630/acpi-data.ffs.uncompressed
-	$(EDK2_DIR)/GenFv \
-		--numberblock $$[$(NERF_FULL_SIZE)/0x1000] \
-		--blocksize 0x1000 \
-		--FvNameGuid 4652454e-482f-6165-6473-2f4c696e7578 \
+	./bin/create-fv -v \
+		--size $(NERF_FULL_SIZE) \
 		-o $@ \
-		$(addprefix -f ,$^)
-	@head -2 $@.txt
-	@-$(RM) $@.txt $@.map
+		$^
 
 nerf-$(BOARD).vol: nerf-$(BOARD).lz.ffs
-	$(EDK2_DIR)/GenFv \
-		--numberblock $$[$(NERF_SIZE)/0x1000] \
-		--blocksize 0x1000 \
-		--FvNameGuid 01234567-89ab-cdef-5a5a-5a5a5a5a5a5a \
+	./bin/create-fv -v \
+		--size $(NERF_SIZE) \
 		-o $@ \
-		$(addprefix -f ,$^)
-	@head -2 $@.txt
-	@-$(RM) $@.txt $@.map
+		$^
 
 	
 
@@ -198,28 +190,19 @@ vendor-files-y := $(shell awk \
 )
 
 # this should replace DxeCore and SmmCore with our own
-vendor-$(BOARD).full.vol: \
+vendor-$(BOARD).vol: \
 	$(vendor-files-y) \
 	Linux.ffs \
 	Initrd.ffs \
 
-	$(EDK2_DIR)/GenFv \
-		--numberblock $$[$(NERF_FULL_SIZE)/0x1000] \
-		--blocksize 0x1000 \
-		--FvNameGuid 4652454e-482f-6165-6473-2f4c696e7578 \
+	./bin/create-fv \
+		--size $(NERF_FULL_SIZE) \
+		$^ \
+	| ./bin/create-ffs \
+		--compress \
+		--type FIRMWARE_VOLUME_IMAGE \
+	| ./bin/create-fv -v \
+		--size $(NERF_SIZE) \
 		-o $@ \
-		$(addprefix -f ,$^)
-	@head -2 $@.txt
-	@-$(RM) $@.txt $@.map
 
-vendor-$(BOARD).vol: vendor-$(BOARD).lz.ffs
-	$(EDK2_DIR)/GenFv \
-		--numberblock $$[$(NERF_SIZE)/0x1000] \
-		--blocksize 0x1000 \
-		--FvNameGuid decafbad-89ab-cdef-5a5a-5a5a5a5a5a5a \
-		-o $@ \
-		$(addprefix -f ,$^)
-	@head -2 $@.txt
-	@-$(RM) $@.txt $@.map
-
-nerf.intermediate: edk2.intermediate nerf-$(BOARD).rom
+nerf.intermediate: nerf-$(BOARD).rom
