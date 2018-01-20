@@ -193,12 +193,12 @@ nerf-$(BOARD).rom: \
 	fi
 
 vendor-files-y := $(shell awk \
-	'/^[0-9A-Fa-f]/ {print "blobs/$(BOARD)/files/file-"$$1"/file.obj"}' \
+	'/^[0-9A-Fa-f]/ {print "blobs/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
 	blobs/$(BOARD)/vendor-files.txt \
 )
 
+# this should replace DxeCore and SmmCore with our own
 vendor-$(BOARD).full.vol: \
-	EmuVariableRuntimeDxe.ffs \
 	$(vendor-files-y) \
 	Linux.ffs \
 	Initrd.ffs \

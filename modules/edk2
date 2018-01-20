@@ -2,7 +2,7 @@
 # coreboot systems do not require this tree
 modules-$(CONFIG_EDK2) += edk2
 
-edk2_branch := UDK2017
+edk2_branch := UDK2018
 edk2_version := git
 edk2_repo := --branch $(edk2_branch) --depth 1 https://github.com/tianocore/edk2
 edk2_dir := edk2-$(edk2_branch)

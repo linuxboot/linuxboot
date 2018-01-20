@@ -80,3 +80,4 @@ clean
 *.fv
 *.bin
 *.bad
+blobs/*/volume*
