@@ -33,10 +33,14 @@ IntelCrystalRidgeGuid		:= 626967C7-071B-4D9A-9D0C-F112CF0836E9
 
 
 
-dxe-$(CONFIG_BUNDLE_DXE) += DxeCore
+dxe-y += DxeCore
 DxeCore-filetype := DXE_CORE
 DxeCore-guid := D6A2CB7F-6A18-4E2F-B43B-9920A733700A 
 #DxeCore-align := 1K
+
+dxe-y += PiSmmCore
+PiSmmCore-filetype := SMM_CORE
+PiSmmCore-guid := e94f54cd-81eb-47ed-aec3-856f5dc157a9
 
 dxe-$(CONFIG_BUNDLE_DXE) += RuntimeDxe
 RuntimeDxe-depex := TRUE
@@ -191,6 +195,8 @@ vendor-files-y := $(shell awk \
 
 # this should replace DxeCore and SmmCore with our own
 vendor-$(BOARD).vol: \
+	DxeCore.ffs \
+	PiSmmCore.ffs \
 	$(vendor-files-y) \
 	Linux.ffs \
 	Initrd.ffs \
