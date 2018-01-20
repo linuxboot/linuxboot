@@ -118,6 +118,18 @@ my %depex_type_map = qw/
 
 my $data = '';
 
+# Read entire files at a time and append a new section
+# for each file read.  Some special types have their own
+# section type; otherwise we're adding a PE32
+# The file goes first so that it will be aligned correctly
+# on the 4 KB page inside the FV.
+local $/ = undef;
+while(<>)
+{
+	$data .= section($section_type_map{$type} || 'PE32', $_);
+}
+
+# Put the optional parts after the input data
 $data .= section(USER_INTERFACE => ucs16($name))
 	if $name;
 
@@ -126,15 +138,6 @@ $data .= section(VERSION => ucs16(chr(0x00) . $version))
 
 $data .= depex($type, split /\s+/, $depex)
 	if $depex;
-
-# Read entire files at a time and append a new section
-# for each file read.  Some special types have their own
-# section type; otherwise we're adding a PE32
-local $/ = undef;
-while(<>)
-{
-	$data .= section($section_type_map{$type} || 'PE32', $_);
-}
 
 
 # If no GUID was provided, make one from the name
