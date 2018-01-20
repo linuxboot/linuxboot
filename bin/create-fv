@@ -110,11 +110,6 @@ while(<>)
 		die "\n" unless $force;
 	}
 	
-	warn sprintf "%s: 0x%x bytes\n",
-		$ARGV,
-		length $_,
-	if $verbose;
-
 	# force at least 8 byte alignment for the section
 	my $unaligned = $length % 8;
 	$_ .= chr(0xFF) x (8 - $unaligned)
@@ -125,12 +120,20 @@ while(<>)
 	my $block_unaligned = $block_size - (length($data) % $block_size);
 	$block_unaligned += $block_size if $block_unaligned < 0x18;
 
-	$data .= pad($block_unaligned - 0x18) . $_;
+	$data .= pad($block_unaligned - 0x18);
 
+	warn sprintf "%s: 0x%x bytes offset %x\n",
+		$ARGV,
+		length $_,
+		length $data
+	if $verbose;
+
+	# finally add the section
+	$data .= $_;
 
 }
 
-if ($hdr_len + length $data > $size)
+if (length $data > $size)
 {
 	warn sprintf "%s: data size 0x%x > volume size 0x%x\n",
 		$output,
@@ -139,14 +142,14 @@ if ($hdr_len + length $data > $size)
 		;
 	die "\n" unless $force;
 } else {
-	# pad out with empty space
+	# pad out with empty space to the end of the volume
 	warn sprintf "%s: 0x%x out of 0x%x\n",
 		$output,
-		$hdr_len + length $data,
+		length $data,
 		$size,
 	if $verbose;
 
-	$data .= chr(0xFF) x ($size - (length($data) - $hdr_len));
+	$data .= chr(0xFF) x ($size - length($data));
 }
 
 if ($output eq '-')
