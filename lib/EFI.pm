@@ -218,7 +218,7 @@ sub ffs
 sub ffs_pad
 {
 	my $len = shift;
-	#return if $len <= $ffs_hdr_len;
+	return '' if $len <= $ffs_hdr_len;
 
 	my $ffs = ffs(FFS_PAD =>
 		chr(0xFF) x ($len - $ffs_hdr_len), # data
@@ -343,6 +343,8 @@ sub fv_append
 		$ffs_length = unpack("Q", substr($ffs, 0x18, 8));
 	}
 
+	# if the size of the file doesn't match the header size
+	# we do not want to add it to our output.  signal an error
 	return if $ffs_length != $length;
 
 	# force at least 8 byte alignment for the section

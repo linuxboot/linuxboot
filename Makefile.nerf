@@ -151,15 +151,10 @@ $(build)/$(linux_dir)/arch/x86/boot/bzImage: linux.intermediate
 
 
 # Generate a firmware file with a well known guid
-nerf-$(BOARD).full.vol: $(addsuffix .ffs,$(dxe-y)) # Acpi-data.$(BOARD).ffs  # blobs/r630/acpi-data.ffs.uncompressed
+nerf-$(BOARD).vol: $(addsuffix .ffs,$(dxe-y)) # Acpi-data.$(BOARD).ffs  # blobs/r630/acpi-data.ffs.uncompressed
 	./bin/create-fv -v \
 		--size $(NERF_FULL_SIZE) \
-		-o $@ \
-		$^
-
-nerf-$(BOARD).vol: nerf-$(BOARD).lz.ffs
-	./bin/create-fv -v \
-		--size $(NERF_SIZE) \
+		--compress $(NERF_SIZE) \
 		-o $@ \
 		$^
 
@@ -190,7 +185,7 @@ nerf-$(BOARD).rom: \
 
 vendor-files-y := $(shell awk \
 	'/^[0-9A-Fa-f]/ {print "blobs/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
-	blobs/$(BOARD)/vendor-files.txt \
+	blobs/$(BOARD)/image-files.txt \
 )
 
 # this should replace DxeCore and SmmCore with our own
@@ -203,12 +198,8 @@ vendor-$(BOARD).vol: \
 
 	./bin/create-fv \
 		--size $(NERF_FULL_SIZE) \
-		$^ \
-	| ./bin/create-ffs \
-		--compress \
-		--type FIRMWARE_VOLUME_IMAGE \
-	| ./bin/create-fv -v \
-		--size $(NERF_SIZE) \
+		--compress $(NERF_SIZE) \
 		-o $@ \
+		$^ \
 
 nerf.intermediate: nerf-$(BOARD).rom
