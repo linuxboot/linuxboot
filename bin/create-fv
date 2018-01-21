@@ -1,17 +1,14 @@
 #!/usr/bin/perl
-# Create a UEFI "Firmware Volume" (FV)
-# typedef struct {
-#  UINT8                   ZeroVector[16];  // 0x00
-#  EFI_GUID                FileSystemGuid;  // 0x10
-#  UINT64                  FvLength;        // 0x20
-#  UINT32                  Signature;       // 0x28
-#  EFI_FVB_ATTRIBUTES      Attributes;      // 0x2C (uint32)
-#  UINT16                  HeaderLength;    // 0x30
-#  UINT16                  Checksum;        // 0x32
-#  UINT8                   Reserved[3];     // 0x34
-#  UINT8                   Revision;        // 0x37
-#  EFI_FV_BLOCK_MAP_ENTRY  FvBlockMap[1];   // 0x38 (unused)
-#} EFI_FIRMWARE_VOLUME_HEADER;
+# Create a UEFI "Firmware Volume" (FV) from "Firmware FileS" (FFS).
+#
+# Typical usage is to create a FFS for each file that will be included,
+# then to wrap them in a (compressed) FV.
+#
+# for file in *.efi; do
+#    ./bin/create-ffs -o $file.ffs -t DRIVER $file
+# done
+# ./bin/create-ffs -o raw.ffs -t FREEFORM raw.bin
+# ./bin/create-fv -o firmware.fv *.ffs
 
 use warnings;
 use strict;
