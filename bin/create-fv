@@ -18,9 +18,8 @@ use strict;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 use Getopt::Long;
-use File::Temp 'tempfile';
 use Digest::SHA 'sha1';
-use GUID;
+use EFI;
 
 my $usage = <<"";
 Usage:
@@ -31,57 +30,27 @@ Options:
     -g | --guid GUID              This file GUID (default is hash of Name)
     -f | --force                  Force FV creation even if FFS are corrupted
     -v | --verbose                Print each file
-    #-z | --compress               Enable LZMA compression
+    -z | --compress BYTES         Enable LZMA compression to final FV size
 
 my $output = '-';
-my $guid_str = "8C8CE578-8A3D-4F1C-9935-896185C32DD3";
 my $size = 4 * 1024 * 1024;
 my $force;
 my $verbose;
-my $hdr_len = 0x48;
-my $block_size = 0x2000; # force alignment of files to this spacing
+my $compress_size;
 
 GetOptions(
 	"o|output=s"	=> \$output,
-	"g|guid=s"	=> \$guid_str,
+	#"g|guid=s"	=> \$guid_str,
 	"s|size=o"	=> \$size,
-	#"z|compress+"	=> \$compress,
+	"z|compress=o"	=> \$compress_size,
 	"f|force+"	=> \$force,
 	"v|verboes+"	=> \$verbose,
 ) or die $usage;
 
-my $guid = guid($guid_str)
-	or die "$guid_str: Unable to parse GUID\n";
+#my $guid = EFI::guid($guid_str)
+#	or die "$guid_str: Unable to parse GUID\n";
 
-my $fv_hdr = ''
-	. (chr(0x00) x 0x10)		# 0x00 Zero vector
-	. $guid				# 0x10
-	. pack("Q", $size)		# 0x20
-	. '_FVH'			# 0x28
-	. pack("V", 0x000CFEFF)		# 0x2C attributes
-	. pack("v", $hdr_len)		# 0x30 header length
-	. pack("v", 0x0000)		# 0x32 checksum
-	. chr(0x00) x 3			# 0x34 reserved
-	. chr(0x02)			# 0x37 version
-	. pack("V", $size / $block_size) # 0x38 number blocks
-	. pack("V", $block_size)	# 0x3C block size
-	. (chr(0x00) x 0x08)		# 0x40 map (unused)
-	;
-
-die "FV Header length ", length $fv_hdr, " != $hdr_len\n"
-	unless $hdr_len == length $fv_hdr;
-
-# update the header checksum
-my $sum = 0;
-for(my $i = 0 ; $i < $hdr_len ; $i += 2)
-{
-	$sum -= unpack("v", substr($fv_hdr, $i, 2));
-}
-
-substr($fv_hdr, 0x32, 2) = pack("v", $sum & 0xFFFF);
-
-
-my $data = $fv_hdr;
+my $fv = EFI::fv($size);
 
 # Read entire files at a time and append a new file
 # for each input read.
@@ -89,115 +58,58 @@ local $/ = undef;
 
 while(<>)
 {
-	# quick sanity check on the file
-	my $length = length $_;
-
-	my $ffs_length = unpack("V", substr($_, 0x14, 4)) & 0xFFFFFF;
-	if ($ffs_length == 0xFFFFFF)
-	{
-		# ffs2 with extended length field
-		$ffs_length = unpack("Q", substr($_, 0x18, 8));
-	}
-
-	if ($ffs_length != $length)
-	{
-		warn sprintf "%s: file size 0x%x != header size 0x%x\n",
-			$ARGV,
-			$length,
-			$ffs_length,
-			;
-
-		die "\n" unless $force;
-	}
-	
-	# force at least 8 byte alignment for the section
-	my $unaligned = $length % 8;
-	$_ .= chr(0xFF) x (8 - $unaligned)
-		if $unaligned != 0;
-
-	# if the current offset does not align with the block size,
-	# we should add a pad section until the next block
-	my $block_unaligned = $block_size - (length($data) % $block_size);
-	$block_unaligned += $block_size if $block_unaligned < 0x18;
-
-	$data .= pad($block_unaligned - 0x18);
+	my $offset = EFI::fv_append(\$fv, $_)
+		or die "$ARGV: Unable to append\n";
 
 	warn sprintf "%s: 0x%x bytes offset %x\n",
 		$ARGV,
 		length $_,
-		length $data
+		$offset
 	if $verbose;
-
-	# finally add the section
-	$data .= $_;
-
 }
 
-if (length $data > $size)
-{
-	warn sprintf "%s: data size 0x%x > volume size 0x%x\n",
+warn sprintf "%08x before pad\n", length($fv);
+
+EFI::fv_pad(\$fv)
+	or die sprintf "%s: data size 0x%x > volume size 0x%x\n",
 		$output,
-		length $data,
+		length $fv,
 		$size
 		;
-	die "\n" unless $force;
-} else {
-	# pad out with empty space to the end of the volume
-	warn sprintf "%s: 0x%x out of 0x%x\n",
-		$output,
-		length $data,
-		$size,
-	if $verbose;
 
-	$data .= chr(0xFF) x ($size - length($data));
+warn sprintf "%08x after pad\n", length($fv);
+
+if ($compress_size)
+{
+	my $sec_lz = EFI::compress(EFI::section(FIRMWARE_VOLUME_IMAGE => $fv));
+	my $ffs_lz = EFI::ffs(FIRMWARE_VOLUME_IMAGE => $sec_lz);
+
+	my $outer_fv = EFI::fv($compress_size);
+	EFI::fv_append(\$outer_fv, $ffs_lz)
+		or die sprintf "%s: Unable to append 0x%08x compressed bytes\n",
+			$output,
+			length($ffs_lz),
+			;
+
+	EFI::fv_pad(\$outer_fv)
+		or die sprintf "%s: Unable to append 0x%08x compressed bytes\n",
+			$output,
+			length($ffs_lz),
+			;
+
+	$fv = $outer_fv;
 }
+
 
 if ($output eq '-')
 {
-	print $data;
+	print $fv;
 } else {
 	open OUTPUT, ">", $output
 		or die "$output: Unable to open: $!\n";
 
-	print OUTPUT $data;
+	print OUTPUT $fv;
 	close OUTPUT;
 }
 
-
-# EFI_FFS_FILE_HEADER:
-# 0x0000  16    Name (EFI_GUID)
-# 0x0010  1     IntegrityCheck.Header (Header Checksum)
-# 0x0011  1     IntegrityCheck.File -> set to 0xAA (FFS_FIXED_CHECKSUM) and clear bit 0x40 of Attributes
-# 0x0012  1     FileType -> 0x07 = EFI_FV_FILETYPE_DRIVER
-# 0x0013  1     Attributes -> 0x00
-# 0x0014  3     Size, including header and all other sections
-# 0x0017  1     State (unused) -> 0X00
-
-sub pad
-{
-	my $len = shift;
-	warn sprintf "pad 0x%x\n", $len
-		if $verbose;
-
-	my $ffs = ''
-		. chr(0xFF) x 16	# 0x00 guid
-		. chr(0x00)		# 0x10 checksum
-		. chr(0x00)		# 0x11 checksum
-		. chr(0xf0)		# 0x12 FFS_PAD type
-		. chr(0x00)		# 0x13 attributes
-		. chr(($len >>  0) & 0xFF) # 0x14 three size bytes
-		. chr(($len >>  8) & 0xFF) # 0x15 three size bytes
-		. chr(($len >> 16) & 0xFF) # 0x16 three size bytes
-		. chr(0xf8)		# 0x17 state
-		;
-
-	# fixup the header checksum
-	my $sum = 0;
-	for my $i (0..length($ffs)-2) {
-		$sum -= ord(substr($ffs, $i, 1));
-	}
-
-	substr($ffs, 0x10, 2) = chr($sum & 0xFF) . chr(0xAA);
-
-	return $ffs . chr(0xFF) x ($len - 0x18);
-}
+__END__
