@@ -328,7 +328,7 @@ $(call map,linux_module,$(linux_modules-y))
 # unlikely that their device file has a different major/minor)
 #
 #
-initrd.cpio: $(initrd_bins) $(initrd_libs) dev.cpio FORCE
+initrd.cpio: $(initrd_bins) $(initrd_libs) blobs/dev.cpio FORCE
 	$(call do,OVERLAY,initrd,\
 		tar -C ./initrd -cf - . | tar -C "$(initrd_dir)" -xf - \
 	)
@@ -338,7 +338,7 @@ initrd.cpio: $(initrd_bins) $(initrd_libs) dev.cpio FORCE
 	find . \
 	| cpio --quiet -H newc -o \
 	| $(pwd)/bin/cpio-clean \
-		$(pwd)/dev.cpio \
+		$(pwd)/blobs/dev.cpio \
 		- \
 		> "$(pwd)/$@" \
 	)
