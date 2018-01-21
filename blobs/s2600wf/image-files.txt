@@ -1,3 +1,17 @@
+#
+# These are the GUIDs from the Intel S2600WF Recovery DXE that
+# are reused in creating the LinuxBoot firmware for that mainboard.
+# The files in volume-0/file-*/ are generated with
+#
+#     uefi-firmware-parser --extract s2600wf-dxe.vol
+#
+# The DxeCore and PiSmmCore are replaced with ones built from edk2,
+# which allows us to enable serial debugging, track which modules are
+# loaded, etc.
+#
+# This list used to work, but there is something missing that is preventing
+# serial interrupts from being delivered correctly.  Need to track that down.
+#
 fc510ee7-ffdc-11d4-bd41-0080c73c8881 DxeApriori
 #d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
 350d356d-f340-45d7-a3b5-335f0085924c FastVideoDxe
