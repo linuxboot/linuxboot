@@ -199,6 +199,7 @@ vendor-$(BOARD).vol: \
 	./bin/create-fv \
 		--size $(NERF_FULL_SIZE) \
 		--compress $(NERF_SIZE) \
+		-v \
 		-o $@ \
 		$^ \
 

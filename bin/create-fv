@@ -29,13 +29,13 @@ Options:
     -s | --size BYTES             Size in bytes (default is 4 MB)
     -g | --guid GUID              This file GUID (default is hash of Name)
     -f | --force                  Force FV creation even if FFS are corrupted
-    -v | --verbose                Print each file
+    -v | --verbose                Increase verbosity
     -z | --compress BYTES         Enable LZMA compression to final FV size
 
 my $output = '-';
 my $size = 4 * 1024 * 1024;
 my $force;
-my $verbose;
+my $verbose = 0;
 my $compress_size;
 
 GetOptions(
@@ -65,10 +65,15 @@ while(<>)
 		$ARGV,
 		length $_,
 		$offset
-	if $verbose;
+	if $verbose > 1;
 }
 
-warn sprintf "%08x before pad\n", length($fv);
+warn sprintf "%s: 0x%08x out of %08x bytes in FV%s\n",
+	$output,
+	length($fv),
+	$size,
+	$compress_size ? " (uncompressed)" : "",
+	if $verbose > 0;
 
 EFI::fv_pad(\$fv)
 	or die sprintf "%s: data size 0x%x > volume size 0x%x\n",
@@ -77,12 +82,16 @@ EFI::fv_pad(\$fv)
 		$size
 		;
 
-warn sprintf "%08x after pad\n", length($fv);
-
 if ($compress_size)
 {
 	my $sec_lz = EFI::compress(EFI::section(FIRMWARE_VOLUME_IMAGE => $fv));
 	my $ffs_lz = EFI::ffs(FIRMWARE_VOLUME_IMAGE => $sec_lz);
+
+	warn sprintf "%s: 0x%08x out of %08x bytes in FV (compressed)\n",
+		$output,
+		length($ffs_lz),
+		$compress_size,
+		if $verbose > 0;
 
 	my $outer_fv = EFI::fv($compress_size);
 	EFI::fv_append(\$outer_fv, $ffs_lz)

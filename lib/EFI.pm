@@ -272,7 +272,7 @@ sub compress
 
 	# -7 produces the same bit-stream as the UEFI tools
 	my $lz_data = `lzma --compress --stdout -7 $filename`;
-	printf STDERR "%d compressed to %d\n", length($data), length($lz_data);
+	#printf STDERR "%d compressed to %d\n", length($data), length($lz_data);
 
 	# fixup the size field in the lzma compressed data
 	substr($lz_data, 5, 8) = pack("VV", length($data), 0);
