@@ -1,3 +1,5 @@
+-include .config
+
 modules-y 	:=
 pwd 		:= $(shell pwd)
 packages 	:= $(pwd)/packages
@@ -68,11 +70,18 @@ BOARD		?= qemu
 # If musl-libc is being used in the initrd, set the heads_cc
 # variable to point to it.
 musl_dep	:= musl
-heads_cc	:= $(INSTALL)/bin/musl-gcc \
+ifndef CROSS_CC
+$(info cross cc not set)
+CROSS_CC	:= $(INSTALL)/bin/musl-gcc
+endif
+heads_cc	:= $(CROSS_CC) \
 	-fdebug-prefix-map=$(pwd)=heads \
 	-gno-record-gcc-switches \
 
+ifndef CROSS
 CROSS		:= $(build)/../crossgcc/x86_64-linux-musl/bin/x86_64-musl-linux-
+endif
+
 CROSS_TOOLS_NOCC := \
 	AR="$(CROSS)ar" \
 	LD="$(CROSS)ld" \
@@ -286,33 +295,8 @@ $(foreach m, $(modules-y), \
 #$(foreach _, $(call outputs,xen), $(eval $(call initrd_bin,$_)))
 
 # hack to install busybox into the initrd
-initrd.cpio: busybox.intermediate
-initrd_bins += $(initrd_bin_dir)/busybox
+initrd.cpio:
 
-$(initrd_bin_dir)/busybox: $(build)/$(busybox_dir)/busybox
-	$(do,SYMLINK,$@,$(MAKE) \
-		-C $(build)/$(busybox_dir) \
-		CC="$(heads_cc)" \
-		CONFIG_PREFIX="$(pwd)/initrd" \
-		$(MAKE_JOBS) \
-		install \
-	)
-
-#
-# hack to build cbmem from coreboot
-# this must be built *AFTER* musl, but since coreboot depends on other things
-# that depend on musl it should be ok.
-#
-ifeq ($(CONFIG_COREBOOT),y)
-$(eval $(call initrd_bin_add,$(build)/$(coreboot_dir)/util/cbmem/cbmem))
-endif
-
-$(build)/$(coreboot_dir)/util/cbmem/cbmem: \
-		$(build)/$(coreboot_dir)/.canary \
-		musl.intermediate
-	$(call do,MAKE,cbmem,\
-		$(MAKE) -C "$(dir $@)" CC="$(heads_cc)" \
-	)
 
 #
 # Linux kernel module installation
