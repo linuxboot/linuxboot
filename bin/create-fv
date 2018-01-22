@@ -82,7 +82,7 @@ EFI::fv_pad(\$fv)
 if ($compress_size)
 {
 	my $sec_lz = EFI::compress(EFI::section(FIRMWARE_VOLUME_IMAGE => $fv));
-	my $ffs_lz = EFI::ffs(FIRMWARE_VOLUME_IMAGE => $sec_lz);
+	my $ffs_lz = EFI::ffs(FIRMWARE_VOLUME_IMAGE => '', $sec_lz);
 
 	warn sprintf "%s: 0x%08x out of %08x bytes in FV (compressed)\n",
 		$output,

@@ -42,7 +42,7 @@ GetOptions(
 die "$type: unknown file type\n"
 	unless exists $EFI::file_types{$type};
 
-my $data = '';
+my @sections;
 
 # Read entire files at a time and append a new section
 # for each file read.  Some special types have their own
@@ -52,37 +52,39 @@ my $data = '';
 local $/ = undef;
 while(<>)
 {
-	$data .= EFI::section($EFI::section_type_map{$type} || 'PE32', $_);
+	push @sections, EFI::section($EFI::section_type_map{$type} || 'PE32', $_);
 }
 
 # Put the optional parts after the input data
-$data .= EFI::section(USER_INTERFACE => EFI::ucs16($name))
+push @sections, EFI::section(USER_INTERFACE => EFI::ucs16($name))
 	if $name;
 
-$data .= EFI::section(VERSION => EFI::ucs16(chr(0x00) . $version))
+push @sections, EFI::section(VERSION => EFI::ucs16(chr(0x00) . $version))
 	if $version;
 
-$data .= EFI::depex($type, split /\s+/, $depex)
+push @sections, EFI::depex($type, split /\s+/, $depex)
 	if $depex;
 
+
+# If we're compressing, compress the data and wrap it with a GUIDed header
+# replacing all of the existing sections.
+@sections = ( EFI::compress(@sections) )
+	if $compress;
 
 # If no GUID was provided, make one from the name
 # if there is no name from the data
 if ($guid)
 {
 	$guid = EFI::guid($guid);
-} else {
-	# Generate a deterministic GUID based on either
-	# the UI name or the hash of the input data
-	$guid = substr(sha1($name || $data), 0, 16);
+}
+elsif ($name)
+{
+	# Generate a deterministic GUID based on the UI name
+	$guid = substr(sha1($name), 0, 16);
 }
 
-# If we're compressing, compress the data and wrap it with a GUIDed header
-$data = EFI::compress($data)
-	if $compress;
-
 # Create the FFS header for the sections
-my $ffs = EFI::ffs($type, $data, $guid);
+my $ffs = EFI::ffs($type, $guid, @sections);
 
 
 if ($output eq '-')

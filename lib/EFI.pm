@@ -164,26 +164,42 @@ sub section
 		. chr(hex $section_types{$type})
 		. $data;
 
-	my $unaligned = length($sec) % 4;
-	$sec .= chr(0x00) x (4 - $unaligned)
-		if $unaligned != 0;
-
 	return $sec;
+}
+
+sub ffs_align
+{
+	my $align = 4;
+	my $data = '';
+
+	for my $sec (@_)
+	{
+		# sections should be aligned,
+		my $unaligned = length($data) % $align;
+		$data .= chr(0x00) x ($align - $unaligned)
+			if $unaligned != 0;
+		$data .= $sec;
+	}
+
+	return $data;
 }
 
 
 sub ffs
 {
 	my $file_type = shift;
-	my $data = shift;
-	my $guid = shift || substr(sha1($data), 0, 16);
+	my $guid = shift;
+	my $data = ffs_align(@_);
+
+	# if they did not provide a GUID, generate one
+	$guid ||= substr(sha1($data), 0, 16);
 
 	my $len = length($data) + $ffs_hdr_len;
 
 	my $type_byte = $file_types{$file_type}
 		or die "$file_type: Unknown file type\n";
 
-	my $attr = 0x28;
+	my $attr = 0x28; # == aligned?
 	my $state = 0x07;
 	if ($file_type eq 'FFS_PAD')
 	{
@@ -227,8 +243,8 @@ sub ffs_pad
 	return '' if $len <= $ffs_hdr_len;
 
 	my $ffs = ffs(FFS_PAD =>
-		chr(0xFF) x ($len - $ffs_hdr_len), # data
 		chr(0xFF) x 16, # GUID
+		chr(0xFF) x ($len - $ffs_hdr_len), # data
 	);
 
 	return $ffs;
@@ -270,8 +286,7 @@ sub depex
 # compress a section and Wrap a GUIDed section around it
 sub compress
 {
-	my $data = shift;
-
+	my $data = ffs_align(@_);
 
 	my ($fh,$filename) = tempfile();
 	print $fh $data;
