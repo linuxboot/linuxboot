@@ -6,6 +6,8 @@ use warnings;
 use strict;
 use File::Temp 'tempfile';
 use Digest::SHA 'sha1';
+#use IO::Compress::Lzma 'lzma';  # apt install libio-compress-lzma-perl
+#use Compress::Raw::Lzma;  # apt install libcompress-raw-lzma-perl
 
 
 # Address Size  Designation
@@ -35,8 +37,10 @@ use Digest::SHA 'sha1';
 # 0x0003  1     Type -> 0x14 (EFI_SECTION_VERSION)
 # 0x0004  ####  NUL terminated UTF-16 string (eg "1.0\0")
 
-my $sec_hdr_len = 0x04;
-my $ffs_hdr_len = 0x18;
+my $sec_hdr_len = 0x04; # FFSv2 sections
+my $ffs_hdr_len = 0x18; # FFSv2
+#my $sec_hdr_len = 0x08; # FFSv3 sections include a 32-bit length
+#my $ffs_hdr_len = 0x20; # FFSv3 files include a 64-bit length
 
 my $fv_hdr_len = 0x48;
 my $fv_block_size = 0x1000; # force alignment of files to this spacing
@@ -151,9 +155,7 @@ sub section
 		unless exists $section_types{$type};
 
 	my $len = length($data) + $sec_hdr_len;
-
-	die "Section length $len > 16 MB, can't include it in a section!\n"
-		if $len >= 0x1000000;
+	die "Section length $len > 0xFFFFFF\n" if $len > 0xFFFFFF;
 
 	my $sec = ''
 		. chr(($len >>  0) & 0xFF)
@@ -189,16 +191,20 @@ sub ffs
 		$state = 0xF8;
 	}
 
+	# since we make everything a large file, set the bit
+	#$attr |= 0x01;
+
 	my $ffs = ''
 		. $guid			# 0x00
 		. chr(0x00)		# 0x10 header checksum
 		. chr(0x00)		# 0x11 FFS_FIXED_CHECKSUM
 		. chr(hex $type_byte)	# 0x12
 		. chr($attr)		# 0x13 attributes
-		. chr(($len >>  0) & 0xFF) # 0x14 length
+		. chr(($len >>  0) & 0xFF) # 0x14 length (24-bit)
 		. chr(($len >>  8) & 0xFF)
 		. chr(($len >> 16) & 0xFF)
 		. chr($state)		# 0x17 state (not included in checksum)
+		# . pack("Q", $len)       # 0x18 64-bit length
 		;
 
 	# fixup the header checksum
@@ -266,11 +272,15 @@ sub compress
 {
 	my $data = shift;
 
+
 	my ($fh,$filename) = tempfile();
 	print $fh $data;
 	close $fh;
 
 	# -7 produces the same bit-stream as the UEFI tools
+	#my $lz = new Compress::Raw::Lzma::EasyEncoder(Preset => 7);
+	#my $lz_data;
+	#$lz->code($data, $lz_data);
 	my $lz_data = `lzma --compress --stdout -7 $filename`;
 	#printf STDERR "%d compressed to %d\n", length($data), length($lz_data);
 
@@ -295,21 +305,25 @@ sub compress
 sub fv
 {
 	my $size = shift;
-	my $guid = guid("8C8CE578-8A3D-4F1C-9935-896185C32DD3");
+	my $guid = guid("8C8CE578-8A3D-4F1C-9935-896185C32DD3");  # FFSv2
+	#my $guid = guid("5473c07a-3dcb-4dca-bd6f-1e9689e7349a"); # FFSv3 for large sections
 
 	my $fv_hdr = ''
 		. (chr(0x00) x 0x10)		# 0x00 Zero vector
 		. $guid				# 0x10
-		. pack("Q", $size)		# 0x20
-		. '_FVH'			# 0x28
+		. pack("Q", $size)		# 0x20 length (64-bit)
+		. '_FVH'			# 0x28 signature
 		. pack("V", 0x000CFEFF)		# 0x2C attributes
-		. pack("v", $fv_hdr_len)	# 0x30 header length
+		. pack("v", $fv_hdr_len)	# 0x30 header length (32-bit)
 		. pack("v", 0x0000)		# 0x32 checksum
-		. chr(0x00) x 3			# 0x34 reserved
+		. chr(0x00)			# 0x34 reserved?
+		. chr(0x00)			# 0x35 reserved
+		. chr(0x00)			# 0x36 reserved
 		. chr(0x02)			# 0x37 version
-		. pack("V", $size / $fv_block_size) # 0x38 number blocks
-		. pack("V", $fv_block_size)	# 0x3C block size
-		. (chr(0x00) x 0x08)		# 0x40 map (unused)
+		. pack("V", $size / $fv_block_size) # 0x38 number blocks (32-bit)
+		. pack("V", $fv_block_size)	# 0x3C block size (32-bit)
+		. pack("V", 0)			# 0x40 number blocks (unused)
+		. pack("V", 0)			# 0x44 block size (unused)
 		;
 
 	die "FV Header length ", length $fv_hdr, " != $fv_hdr_len\n"
@@ -359,6 +373,16 @@ sub fv_append
 
 	$$fv_ref .= EFI::ffs_pad($block_unaligned - $ffs_hdr_len);
 	my $ffs_offset = length($$fv_ref);
+
+	# Due to a stupid design in edk2's GenFfs, the state field in
+	# the FFS will not be set correctly.  We have to flip it if
+	# the top bit is not set.  This should depend on the erase
+	# polarity bit in the FV header, but no one ever changes it.
+	my $state = ord(substr($ffs, 0x17, 1));
+	if (($state & 0x80) == 0)
+	{
+		substr($ffs, 0x17, 1) = chr((~$state) & 0xFF);
+	}
 
 	# finally add the section
 	$$fv_ref .= $ffs;
