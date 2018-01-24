@@ -117,3 +117,13 @@ deb0ee00-18df-415c-af03-74d09b0aad87 JedecNvDimm
 4896840d-46bb-412b-a30a-a62abfb3682f AcpiSSDT-extra
 63809859-f029-41c3-9f34-eeeb9ea787a5 IioInit
 6ec99217-69bb-4ad6-9b4e-8f4ab9af72b9 ResetTesting
+
+#
+# These aren't necesary to boot, but the low memory trampoline
+# won't be allocated with out it.  Why is this legacy?
+#
+37d00905-5a90-4b82-9d44-011990b28a8d CpPcBiosId
+aa7b4695-00b4-4468-ad92-99370ac031c5 LegacyRegion2
+c1c418f9-591d-461c-82a2-b9cd96dfea86 LegacyInterrupt
+f122a15c-c10b-4d54-8f48-60f4f06dd1ad LegacyBiosDxe
+99f1ae6d-a4cd-43ef-9a85-b0fd4f6cc091 LegacyBiosPlatform
