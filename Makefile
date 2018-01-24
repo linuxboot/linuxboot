@@ -18,6 +18,10 @@ BUILD_LOG := $(shell [ -d "$(log_dir)" ] || mkdir -p "$(log_dir)")
 # Timestamps should be in ISO format
 DATE=`date --rfc-3339=seconds`
 
+# Some things want usernames, we use the current checkout
+# so that they are reproducible
+GIT_HASH	:= $(shell git rev-parse HEAD)
+
 # If V is set in the environment, do not redirect the tee
 # command to /dev/null.
 ifeq "$V" ""
@@ -363,7 +367,7 @@ $(build)/$(coreboot_dir)/initrd.cpio.xz: initrd.cpio
 		--lzma2=dict=1MiB \
 		-9 \
 		< "$<" \
-	| dd bs=512 conv=sync > "$@" \
+	| dd bs=512 conv=sync status=none > "$@" \
 	)
 	@sha256sum "$@"
 
