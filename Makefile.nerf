@@ -2,7 +2,7 @@
 # Targets specific for the NERF firmware
 #
 
-NERF_FULL_SIZE=0xF00000
+NERF_FULL_SIZE=0xFF0000
 
 # this assumes that we've already made the edk2 things, via
 # edk2.intermediate or something like that.
@@ -30,6 +30,7 @@ EfiMpServiceProtocolGuid	:= 3fdda605-a76e-4f46-ad29-12f4531b3d08
 IntelPlatformTypeGuid		:= a7ced760-c71c-4e1a-acb1-89604d5216cb
 IntelPlatformCpuPolicy		:= ADB7B9E6-70B7-48D4-B6A5-18FA15EBCD78
 IntelCrystalRidgeGuid		:= 626967C7-071B-4D9A-9D0C-F112CF0836E9
+LpcSomethingGuid		:= 64021DFE-A62C-42A7-BF46-15078CDF9F89
 
 
 
@@ -41,6 +42,13 @@ DxeCore-guid := D6A2CB7F-6A18-4E2F-B43B-9920A733700A
 dxe-y += PiSmmCore
 PiSmmCore-filetype := SMM_CORE
 PiSmmCore-guid := e94f54cd-81eb-47ed-aec3-856f5dc157a9
+
+dxe-y += PiSmmIpl
+PiSmmIpl-guid := 2FA2A6DA-11D5-4DC3-999A-749648B03C56
+PiSmmIpl-depex := \
+	$(EfiSmmAccess2ProtocolGuid) \
+	$(EfiSmmControl2ProtocolGuid) \
+	$(EfiPcdProtocolGuid) \
 
 dxe-$(CONFIG_BUNDLE_DXE) += RuntimeDxe
 RuntimeDxe-depex := TRUE
@@ -56,19 +64,19 @@ AcpiPlatform-depex := \
 	$(RuntimeArchProtocolGuid) \
 	$(AcpiTableProtocolGuid) \
 
-dxe-$(CONFIG_BUNDLE_DXE) += SmbiosDxe
+dxe-y += SmbiosDxe
 SmbiosDxe-guid := F9D88642-0737-49BC-81B5-6889CD57D9EA
 SmbiosDxe-depex := $(RuntimeArchProtocolGuid)
 
-dxe-$(CONFIG_BUNDLE_DXE) += Legacy8259
+#dxe-n += Legacy8259
 Legacy8259-guid := 99998642-0737-49BC-81B5-6889CD57D9EA
 Legacy8259-file := Legacy8259.efi
 Legacy8259-depex := $(RuntimeArchProtocolGuid)
 
-dxe-$(CONFIG_BUNDLE_DXE) += PciBusDxe
+dxe-y += PciBusDxe
 PciBusDxe-depex := $(RuntimeArchProtocolGuid)
 
-dxe-$(CONFIG_BUNDLE_DXE) += PciHostBridgeDxe
+dxe-y += PciHostBridgeDxe
 PciHostBridgeDxe-depex := $(RuntimeArchProtocolGuid)
 
 # the VariableStore doesn't work with most vendor firmwares for some reason.
@@ -76,9 +84,36 @@ PciHostBridgeDxe-depex := $(RuntimeArchProtocolGuid)
 dxe-n += VariableRuntimeDxe
 VariableRuntimeDxe-guid := CBD2E4D5-7068-4FF5-B462-9822B4AD8D60
 VariableRuntimeDxe-depex := $(RuntimeArchProtocolGuid)
-dxe-$(CONFIG_BUNDLE_DXE) += EmuVariableRuntimeDxe
+dxe-y += EmuVariableRuntimeDxe
 EmuVariableRuntimeDxe-guid := CBD2E4D5-7068-4FF5-B462-9822B4AD8D60
 EmuVariableRuntimeDxe-depex := $(RuntimeArchProtocolGuid)
+
+# Required services to make it through BDS
+# Security Arch Protocol
+# CPU Arch Protocol
+# Metronome Arch Protocol
+# Timer Arch Protocol
+# Watchdog Timer Arch Protocol
+# Capsule Arch Protocol
+# Monotonic Counter Arch Protocol
+# Reset Arch Protocol
+# Real Time Clock Arch Protocol
+
+dxe-y += SecurityStubDxe
+SecurityStubDxe-guid := F80697E9-7FD6-4665-8646-88E33EF71DFC
+SecurityStubDxe-depex := $(RuntimeArchProtocolGuid)
+dxe-y += Metronome
+Metronome-guid := C8339973-A563-4561-B858-D8476F9DEFC4
+Metronome-depex := $(RuntimeArchProtocolGuid)
+dxe-y += WatchdogTimer
+WatchdogTimer-guid := F099D67F-71AE-4c36-B2A3-DCEB0EB2B7D8
+WatchdogTimer-depex := $(RuntimeArchProtocolGuid)
+
+dxe-y += PilotIVPc8374
+PilotIVPc8374-file := ./blobs/s2600wf/volume-0/file-cb90f8bd-7012-407d-88a3-7d5e9e701b87/section0.pe
+PilotIVPc8374-guid := cb90f8bd-7012-407d-88a3-7d5e9e701b87
+PilotIVPc8374-depex := \
+	$(LpcSomethingGuid) \
 
 
 #dxe-y += Acpi-data
@@ -98,17 +133,22 @@ Linux-version := $(linux-version)
 Linux-guid := DECAFBAD-6548-6461-732d-2f2d4e455246
 Linux-depex := \
 	$(RuntimeArchProtocolGuid) \
-
-NO=\
 	$(AcpiTableProtocolGuid) \
 	$(SmbiosProtocolGuid) \
 	$(VariableArchProtocolGuid) \
 
 
 dxe-y += Initrd
-Initrd-file := initrd.cpio.xz
+Initrd-file := linuxboot.cpio.xz
 Initrd-filetype := FREEFORM
 Initrd-guid := 74696e69-6472-632e-7069-6f2f62696f73
+
+linuxboot.cpio: \
+	blobs/dev.cpio \
+	initrd.cpio \
+	../s2600wf/initrd.cpio \
+
+	$(pwd)/bin/cpio-clean $^ > $@
 
 #$(build)/$(linux_dir)/arch/x86/boot/bzImage: linux.intermediate
 
@@ -151,10 +191,15 @@ $(build)/$(linux_dir)/arch/x86/boot/bzImage: linux.intermediate
 
 
 # Generate a firmware file with a well known guid
-nerf-$(BOARD).vol: $(addsuffix .ffs,$(dxe-y)) # Acpi-data.$(BOARD).ffs  # blobs/r630/acpi-data.ffs.uncompressed
+	#$(addsuffix .ffs,$(dxe-y)) \
+	#Acpi-data.$(BOARD).ffs \
+
+nerf-$(BOARD).vol: \
+	Linux.ffs \
+	Initrd.ffs \
+
 	./bin/create-fv -v \
-		--size $(NERF_FULL_SIZE) \
-		--compress $(NERF_SIZE) \
+		--size $(NERF_SIZE) \
 		-o $@ \
 		$^
 
@@ -191,10 +236,10 @@ vendor-files-y := $(shell awk \
 # this should replace DxeCore and SmmCore with our own
 vendor-$(BOARD).vol: \
 	DxeCore.ffs \
+	RuntimeDxe.ffs \
 	PiSmmCore.ffs \
+	PiSmmIpl.ffs \
 	$(vendor-files-y) \
-	Linux.ffs \
-	Initrd.ffs \
 
 	./bin/create-fv \
 		--size $(NERF_FULL_SIZE) \
@@ -202,5 +247,20 @@ vendor-$(BOARD).vol: \
 		-v \
 		-o $@ \
 		$^ \
+
+NO=\
+	PilotIVPc8374.ffs \
+	EmuVariableRuntimeDxe.ffs \
+	Metronome.ffs \
+	AcpiTableDxe.ffs \
+	AcpiPlatform.ffs \
+	Acpi-data.$(BOARD).ffs \
+	Linux.ffs \
+	Initrd.ffs \
+	PiSmmCore.ffs \
+	PiSmmIpl.ffs \
+	RuntimeDxe.ffs \
+	EmuVariableRuntimeDxe.ffs \
+	SmbiosDxe.ffs \
 
 nerf.intermediate: nerf-$(BOARD).rom
