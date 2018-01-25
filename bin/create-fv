@@ -77,7 +77,7 @@ EFI::fv_pad(\$fv)
 	or die sprintf "%s: data size 0x%x > volume size 0x%x\n",
 		$output,
 		length $fv,
-		$size
+		$compress_size || $size
 		;
 
 if ($compress_size)
