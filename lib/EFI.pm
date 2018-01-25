@@ -158,9 +158,7 @@ sub section
 	die "Section length $len > 0xFFFFFF\n" if $len > 0xFFFFFF;
 
 	my $sec = ''
-		. chr(($len >>  0) & 0xFF)
-		. chr(($len >>  8) & 0xFF)
-		. chr(($len >> 16) & 0xFF)
+		. write24($len)
 		. chr(hex $section_types{$type})
 		. $data;
 
@@ -216,9 +214,7 @@ sub ffs
 		. chr(0x00)		# 0x11 FFS_FIXED_CHECKSUM
 		. chr(hex $type_byte)	# 0x12
 		. chr($attr)		# 0x13 attributes
-		. chr(($len >>  0) & 0xFF) # 0x14 length (24-bit)
-		. chr(($len >>  8) & 0xFF)
-		. chr(($len >> 16) & 0xFF)
+		. write24($len)		# 0x14 length (24-bit)
 		. chr($state)		# 0x17 state (not included in checksum)
 		# . pack("Q", $len)       # 0x18 64-bit length
 		;
@@ -300,7 +296,7 @@ sub compress
 	#printf STDERR "%d compressed to %d\n", length($data), length($lz_data);
 
 	# fixup the size field in the lzma compressed data
-	substr($lz_data, 5, 8) = pack("VV", length($data), 0);
+	substr($lz_data, 5, 8) = write64(length $data);
 
 	# wrap the lzdata in a GUIDed section
 	my $lz_header = ''
@@ -326,7 +322,7 @@ sub fv
 	my $fv_hdr = ''
 		. (chr(0x00) x 0x10)		# 0x00 Zero vector
 		. $guid				# 0x10
-		. pack("Q", $size)		# 0x20 length (64-bit)
+		. write64($size)		# 0x20 length (64-bit)
 		. '_FVH'			# 0x28 signature
 		. pack("V", 0x000CFEFF)		# 0x2C attributes
 		. pack("v", $fv_hdr_len)	# 0x30 header length (32-bit)
@@ -422,6 +418,79 @@ sub fv_pad
 	return 1;
 }
 
+
+# Helpers for reading values from the ROM images
+sub read16
+{
+	my $data = shift;
+	my $offset = shift;
+	return unpack("v", substr($data, $offset, 2));
+}
+
+sub read24
+{
+	my $data = shift;
+	my $offset = shift;
+	return 0
+		| ord(substr($data, $offset+2, 1)) << 16
+		| ord(substr($data, $offset+1, 1)) <<  8
+		| ord(substr($data, $offset+0, 1)) <<  0
+		;
+}
+
+
+sub write24
+{
+	my $len = shift;
+	return ''
+		. chr(($len >>  0) & 0xFF)
+		. chr(($len >>  8) & 0xFF)
+		. chr(($len >> 16) & 0xFF)
+		;
+}
+
+
+sub read32
+{
+	my $data = shift;
+	my $offset = shift;
+	return unpack("V", substr($data, $offset, 4));
+}
+
+sub read64
+{
+	my $data = shift;
+	my $offset = shift;
+	return read32($data, $offset+4) << 32 | read32($data, $offset+0);
+}
+
+sub write64
+{
+	my $data = shift;
+	return pack("VV", $data >> 0, $data >> 32);
+}
+
+
+sub read_guid
+{
+	my $data = shift;
+	my $offset = shift;
+
+	my ($g1,$g2,$g3,$g4,@g5) = unpack("VvvnCCCCCC", substr($data, $offset, 16));
+
+	return sprintf "%08x-%04x-%04x-%04x-%02x%02x%02x%02x%02x%02x",
+		$g1,
+		$g2,
+		$g3,
+		$g4,
+		$g5[0],
+		$g5[1],
+		$g5[2],
+		$g5[3],
+		$g5[4],
+		$g5[5],
+		;
+}
 
 "0, but true";
 __END__

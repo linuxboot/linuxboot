@@ -23,31 +23,32 @@ Usage:
     $0 -o output.fv [options] file.ffs [...]
 Options:
     -o | --output output.ffs      Output file (default is stdout)
-    -s | --size BYTES             Size in bytes (default is 4 MB)
-    -g | --guid GUID              This file GUID (default is hash of Name)
-    -f | --force                  Force FV creation even if FFS are corrupted
+    -s | --size BYTES             Final size in bytes (default is 4 MB)
     -v | --verbose                Increase verbosity
-    -z | --compress BYTES         Enable LZMA compression to final FV size
+    -z | --compress BYTES         Create an internal LZMA compresed FV
+ 
+For compressed firmware volumes, the --size is the final size of the
+output and --compress size is the internal volume.  So to create a 4MB
+volume with a 8MB internal use --size 0x4000000 --compress 0x800000
+ 
+Sizes are limited to less than 16 MB until FFSv3 support is added.
 
 my $output = '-';
 my $size = 4 * 1024 * 1024;
-my $force;
 my $verbose = 0;
 my $compress_size;
 
 GetOptions(
 	"o|output=s"	=> \$output,
-	#"g|guid=s"	=> \$guid_str,
 	"s|size=o"	=> \$size,
 	"z|compress=o"	=> \$compress_size,
-	"f|force+"	=> \$force,
-	"v|verboes+"	=> \$verbose,
+	"v|verbose+"	=> \$verbose,
 ) or die $usage;
 
 #my $guid = EFI::guid($guid_str)
 #	or die "$guid_str: Unable to parse GUID\n";
 
-my $fv = EFI::fv($size);
+my $fv = EFI::fv($compress_size || $size);
 
 # Read entire files at a time and append a new file
 # for each input read.
@@ -68,7 +69,7 @@ while(<>)
 warn sprintf "%s: 0x%08x out of %08x bytes in FV%s\n",
 	$output,
 	length($fv),
-	$size,
+	$compress_size || $size,
 	$compress_size ? " (uncompressed)" : "",
 	if $verbose > 0;
 
@@ -87,10 +88,10 @@ if ($compress_size)
 	warn sprintf "%s: 0x%08x out of %08x bytes in FV (compressed)\n",
 		$output,
 		length($ffs_lz),
-		$compress_size,
+		$size,
 		if $verbose > 0;
 
-	my $outer_fv = EFI::fv($compress_size);
+	my $outer_fv = EFI::fv($size);
 	EFI::fv_append(\$outer_fv, $ffs_lz)
 		or die sprintf "%s: Unable to append 0x%08x compressed bytes\n",
 			$output,

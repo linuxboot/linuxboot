@@ -1,5 +1,5 @@
 
-# Targets specific for the NERF firmware
+# Targets specific for the LinuxBoot firmware
 #
 
 NERF_FULL_SIZE=0xFF0000
@@ -194,7 +194,7 @@ $(build)/$(linux_dir)/arch/x86/boot/bzImage: linux.intermediate
 	#$(addsuffix .ffs,$(dxe-y)) \
 	#Acpi-data.$(BOARD).ffs \
 
-nerf-$(BOARD).vol: \
+linuxboot-$(BOARD).vol: \
 	Linux.ffs \
 	Initrd.ffs \
 
@@ -214,10 +214,10 @@ blobs/$(BOARD)/me.bin: blobs/$(BOARD)/$(BOARD).rom
 blobs/$(BOARD)/pei.bin: blobs/$(BOARD)/$(BOARD).rom
 	dd < $< bs=$$[0x10000] skip=$$[$(PEI_OFFSET)/0x10000] count=$$[$(PEI_SIZE)/0x10000] > $@
 
-nerf-$(BOARD).rom: \
+linuxboot-$(BOARD).rom: \
 		blobs/$(BOARD)/ifd.bin  \
 		blobs/$(BOARD)/me.bin \
-		nerf.vol \
+		linuxboot-$(BOARD).vol \
 		blobs/$(BOARD)/pei.bin \
 
 	cat $^ > $@
@@ -242,8 +242,8 @@ vendor-$(BOARD).vol: \
 	$(vendor-files-y) \
 
 	./bin/create-fv \
-		--size $(NERF_FULL_SIZE) \
-		--compress $(NERF_SIZE) \
+		--size $(NERF_SIZE) \
+		--compress $(NERF_FULL_SIZE) \
 		-v \
 		-o $@ \
 		$^ \
@@ -263,4 +263,4 @@ NO=\
 	EmuVariableRuntimeDxe.ffs \
 	SmbiosDxe.ffs \
 
-nerf.intermediate: nerf-$(BOARD).rom
+linuxboot.intermediate: linuxboot-$(BOARD).rom
