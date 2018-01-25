@@ -1,0 +1,29 @@
+pwd 		:= $(shell pwd)
+
+# Controls how many parallel jobs are invoked in subshells
+CPUS		:= $(shell nproc)
+MAKE_JOBS	?= -j$(CPUS) --max-load 16
+
+# Timestamps should be in ISO format
+DATE=`date --rfc-3339=seconds`
+
+# Some things want usernames, we use the current checkout
+# so that they are reproducible
+GIT_HASH	:= $(shell git rev-parse HEAD)
+
+# Force pipelines to fail if any of the commands in the pipe fail
+SHELL := /bin/bash
+.SHELLFLAGS := -o pipefail -c
+
+# Disable all built in rules
+.SUFFIXES:
+FORCE:
+
+# Make helpers to operate on lists of things
+define prefix =
+$(foreach _, $2, $1$_)
+endef
+define map =
+$(foreach _,$2,$(eval $(call $1,$_)))
+endef
+

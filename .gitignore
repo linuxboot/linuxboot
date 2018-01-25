@@ -81,3 +81,5 @@ clean
 *.bin
 *.bad
 blobs/*/volume*
+edk2
+bzImage
