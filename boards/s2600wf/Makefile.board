@@ -10,12 +10,13 @@ vendor-$(BOARD)-offset		:= 0x2C00000
 vendor-$(BOARD)-compress	:=  0xF00000  # The uncompressed size
 vendor-$(BOARD)-size		:=  0x400000  # The size after compresion
 
-vendor-files := \ $(shell awk \
+vendor-files := $(shell awk  \
 	'/^[0-9A-Fa-f]/ {print "boards/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(vendor-files): vendor-files.intermediate
-vendor-files.intermediate: boards/$(BOARD)/$(BOARD).rom
+$(vendor-files): boards/$(BOARD)/volume-0
+boards/$(BOARD)/volume-0: boards/$(BOARD)/$(BOARD).rom
 	cd boards/$(BOARD) ; \
 	uefi-firmware-parser --extract $(notdir $<)
+
