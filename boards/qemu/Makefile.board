@@ -5,23 +5,69 @@
 # as part of the "OVMF" package.
 #
 # This pulls that image apart and inserts the Linux kernel and Initrd
+# The ROM layout is:
+# 0x000000.fv NVRAM
+# 0x084000.fv FV (DXE and PEI)
+#        0.fv PEI
+#        1.fv DXE
+# 0x7cc000.fv SEC
 #
 #
 
-vendor-$(BOARD)-offset		:= 0x2C00000
-vendor-$(BOARD)-compress	:=  0xF00000  # The uncompressed size
-vendor-$(BOARD)-size		:=  0x400000  # The size after compresion
+linuxboot-size := 0x800000
 
-#vendor-files := $(shell awk  \
-#	'/^[0-9A-Fa-f]/ {print "boards/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
-#	boards/$(BOARD)/image-files.txt \
-#)
+fv-path := boards/$(BOARD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
+dxe-path := $(fv-path)/1
 
-$(vendor-files): boards/$(BOARD)/volume-0
-boards/$(BOARD)/volume-0: boards/$(BOARD)/$(BOARD).rom
+vendor-files := $(shell awk  \
+	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
+	boards/$(BOARD)/image-files.txt \
+)
+
+# All of the output volumes depend on extracting the firmware
+boards/$(BOARD)/rom/0x00000000.fv \
+boards/$(BOARD)/rom/0x00084000.fv \
+boards/$(BOARD)/rom/0x007cc000.fv \
+: extract.intermediate
+
+$(BUILD)/linuxboot.rom: \
+	boards/$(BOARD)/rom/0x00000000.fv \
+	$(BUILD)/merged.vol \
+	boards/$(BOARD)/rom/0x007cc000.fv \
+
+
+$(BUILD)/merged.vol: \
+	$(fv-path)/0.fv \
+	$(BUILD)/dxe.vol \
+
+	./bin/create-ffs \
+		--compress \
+		--type FIRMWARE_VOLUME_IMAGE \
+		$^ \
+	| ./bin/create-fv \
+		--size 0x748000 \
+		-o $@
+
+
+dxe-size := 0xe00000
+$(BUILD)/dxe.vol: \
+	$(BUILD)/DxeCore.ffs \
+	$(vendor-files) \
+	$(BUILD)/Linux.ffs \
+	$(BUILD)/Initrd.ffs \
+
+$(vendor-files): extract.intermediate
+extract.intermediate: boards/$(BOARD)/$(BOARD).rom
+	( \
 	cd boards/$(BOARD) ; \
-	uefi-firmware-parser --extract $(notdir $<)
+	$(pwd)/bin/extract-firmware \
+		-o rom \
+	| tee $(BOARD).txt ; \
+	) < $^ \
+
+.INTERMEDIATE: extract.intermediate
 
 boards/$(BOARD)/$(BOARD).rom: edk2/.git
 	( cd edk2/OvmfPkg ; ./build.sh )
 	cp edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd $@
+

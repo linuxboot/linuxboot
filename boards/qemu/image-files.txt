@@ -1,0 +1,38 @@
+fc510ee7-ffdc-11d4-bd41-0080c73c8881 DXE Apriori
+# d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
+d93ce3d8-a7eb-4730-8c8e-cc466a9ecc3c ReportStatusCodeRouterRuntimeDxe
+6c2004ef-4e0e-4be4-b14c-340eb4aa5891 StatusCodeHandlerRuntimeDxe
+80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe
+b601f8c4-43b7-4784-95b1-f4226cb40cee RuntimeDxe
+f80697e9-7fd6-4665-8646-88e33ef71dfc SecurityStubDxe
+13ac6dd0-73d0-11d4-b06b-00aa00bd6de7 EbcDxe
+79ca4208-bba1-4a9a-8456-e1e66a81484e Legacy8259
+a19b1fe7-c1bc-49f8-875f-54a5d542443f CpuIo2Dxe
+1a1e4886-9517-440e-9fde-3be44cee2136 CpuDxe
+f2765dec-6b41-11d5-8e71-00902707b35e Timer
+f6697ac4-a776-4ee1-b643-1feff2b615bb IncompatiblePciDeviceSupportDxe
+11a6edf6-a9be-426d-a6cc-b22fe51d9224 PciHotPlugInitDxe
+128fb770-5e79-4176-9e51-9bb268a17dd1 PciHostBridgeDxe
+93b80004-9fb3-11d4-9a3a-0090273fc14d PciBusDxe
+4b28e4c7-ff36-4e10-93cf-a82159e777c5 ResetSystemRuntimeDxe
+c8339973-a563-4561-b858-d8476f9defc4 Metronome
+378d7b65-8da9-4773-b6e4-a47826a833e1 PcRtc
+f099d67f-71ae-4c36-b2a3-dceb0eb2b7d8 WatchdogTimer
+ad608272-d07f-4964-801e-7bd3b7888652 MonotonicCounterRuntimeDxe
+42857f0a-13f2-4b21-8a23-53d3f714b840 CapsuleRuntimeDxe
+9b680fce-ad6b-4f3a-b60b-f59899003443 DevicePathDxe
+348c4d62-bfbd-4882-9ece-c80bb1c4783b HiiDatabase
+96b5c032-df4c-4b6e-8232-438dcf448d0e NullMemoryTestDxe
+f9d88642-0737-49bc-81b5-6889cd57d9ea SmbiosDxe
+4110465d-5ff3-4f4b-b580-24ed0d06747a SmbiosPlatformDxe
+9622e42c-8e38-4a08-9e8f-54f784652f6b AcpiTableDxe
+49970331-e3fa-4637-9abc-3b7868676970 AcpiPlatform
+7e374e25-8e01-4fee-87f2-390c23c606cd ACPI data
+bdce85bb-fbaa-4f4e-9264-501a2c249581 S3SaveStateDxe
+d9dcc5df-4007-435e-9098-8970935504b2 PlatformDxe
+2ec9da37-ee35-4de9-86c5-6d9a81dc38a7 AmdSevDxe
+8657015b-ea43-440d-949a-af3be365c0fc IoMmuDxe
+733cbac2-b23f-4b92-bc8e-fb01ce5907b7 FvbServicesRuntimeDxe
+22dc2b60-fe40-42ac-b01f-3ab1fad9aad8 EmuVariableFvbRuntimeDxe
+fe5cea76-4f72-49e8-986f-2cd899dffe5d FaultTolerantWriteDxe
+cbd2e4d5-7068-4ff5-b462-9822b4ad8d60 VariableRuntimeDxe

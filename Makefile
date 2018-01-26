@@ -4,7 +4,7 @@
 # This requires the vendor firmware image, a Linux kernel and an initrd.cpio.xz file.
 #
 # 
-all: vendor linuxboot
+all: linuxboot
 
 -include .config
 include Makefile.rules
@@ -14,9 +14,13 @@ include Makefile.rules
 BOARD		?= qemu
 KERNEL		?= bzImage
 INITRD		?= initrd.cpio.xz
+BUILD		:= build/$(BOARD)
+$(shell mkdir -p $(BUILD))
 
 # Bring in the board specific things
 include boards/$(BOARD)/Makefile.board
+
+linuxboot: $(BUILD)/linuxboot.rom
 
 # Create a .config file based on the current parameters
 config:
@@ -44,22 +48,8 @@ edk2/.git:
 	git clone --depth 1 --branch UDK2018 https://github.com/linuxboot/edk2
 
 
-vendor: vendor-$(BOARD).vol
-linuxboot: linuxboot-$(BOARD).vol
-
-vendor-$(BOARD).vol: \
-	DxeCore.ffs \
-	PiSmmCore.ffs \
-	$(vendor-files) \
-
-
-linuxboot-$(BOARD).vol: \
-	Linux.ffs \
-	Initrd.ffs \
-
-
-Linux.ffs: $(KERNEL)
-Initrd.ffs: $(INITRD)
+$(BUILD)/Linux.ffs: $(KERNEL)
+$(BUILD)/Initrd.ffs: $(INITRD)
 
 RuntimeArchProtocolGuid	:= b7dfb4e1-052f-449f-87be-9818fc91b733
 AcpiTableProtocolGuid	:= FFE06BDD-6107-46A6-7BB2-5A9C7EC5275C
@@ -80,27 +70,36 @@ DxeCore-type := DXE_CORE
 PiSmmCore-type := SMM_CORE
 
 
-Linux.ffs: bzImage
-
-%.ffs: $(EDK2_OUTPUT_DIR)/%.efi
+$(BUILD)/%.ffs: $(EDK2_OUTPUT_DIR)/%.efi
 	$(create-ffs)
-%.ffs:
+$(BUILD)/%.ffs:
 	$(create-ffs)
 
+$(BUILD)/%.rom:
+	cat > $@.tmp $^
+	@if [ `stat -c'%s' $@.tmp` -ne $$[$($(basename $(notdir $@))-size)] ]; then \
+		echo >&2 "$@: Wrong output size"; \
+		exit 1; \
+	fi
+	@mv $@.tmp $@
 
-%.vol:
+$(BUILD)/%.vol:
 	./bin/create-fv \
 		-o $@ \
-		--size $(or $($(basename $@)-size),0x400000) \
-		--compress $(or $($(basename $@)-compress),0) \
+		--size $(or $($(basename $(notdir $@))-size),0x400000) \
+		--compress $(or $($(basename $(notdir $@))-compress),0) \
 		$^
 
 create-ffs = \
 	./bin/create-ffs \
 		-o $@ \
-		--name $(basename $@) \
+		--name $(basename $(notdir $@)) \
 		--version 1.0 \
-		--type $(or $($(basename $@)-type),DRIVER) \
-		--depex "$($(basename $@)-depex)" \
-		--guid "$($(basename $@)-guid)" \
+		--type $(or $($(basename $(notdir $@))-type),DRIVER) \
+		--depex "$($(basename $(notdir $@))-depex)" \
+		--guid "$($(basename $(notdir $@))-guid)" \
 		$^
+
+
+clean:
+	$(RM) $(BUILD)/{*.ffs,*.rom,*.vol,*.tmp}
