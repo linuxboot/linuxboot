@@ -84,3 +84,4 @@ blobs/*/volume*
 edk2
 bzImage
 boards/*/volume-*
+.config

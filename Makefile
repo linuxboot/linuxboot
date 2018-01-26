@@ -10,10 +10,20 @@ all: vendor linuxboot
 include Makefile.rules
 
 # The config file should set the BOARD variable
+# as well as point to the bzImage and initrd.cpio files
 BOARD		?= qemu
+KERNEL		?= bzImage
+INITRD		?= initrd.cpio.xz
 
 # Bring in the board specific things
 include boards/$(BOARD)/Makefile.board
+
+# Create a .config file based on the current parameters
+config:
+	echo '# Generated $(DATE)' > .config
+	echo 'BOARD ?= $(BOARD)' >> .config
+	echo 'KERNEL ?= $(KERNEL)' >> .config
+	echo 'INITRD ?= $(INITRD)' >> .config
 
 
 # edk2 outputs will be in this deeply nested directory
@@ -48,8 +58,8 @@ linuxboot-$(BOARD).vol: \
 	Initrd.ffs \
 
 
-Linux.ffs: bzImage
-Initrd.ffs: initrd.cpio.xz
+Linux.ffs: $(KERNEL)
+Initrd.ffs: $(INITRD)
 
 RuntimeArchProtocolGuid	:= b7dfb4e1-052f-449f-87be-9818fc91b733
 AcpiTableProtocolGuid	:= FFE06BDD-6107-46A6-7BB2-5A9C7EC5275C
