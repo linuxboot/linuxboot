@@ -1,0 +1,27 @@
+#
+# Specific targets and things for the qemu "mainboard"
+#
+# The ROM image is generated from the edk2 build in the main directory
+# as part of the "OVMF" package.
+#
+# This pulls that image apart and inserts the Linux kernel and Initrd
+#
+#
+
+vendor-$(BOARD)-offset		:= 0x2C00000
+vendor-$(BOARD)-compress	:=  0xF00000  # The uncompressed size
+vendor-$(BOARD)-size		:=  0x400000  # The size after compresion
+
+#vendor-files := $(shell awk  \
+#	'/^[0-9A-Fa-f]/ {print "boards/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
+#	boards/$(BOARD)/image-files.txt \
+#)
+
+$(vendor-files): boards/$(BOARD)/volume-0
+boards/$(BOARD)/volume-0: boards/$(BOARD)/$(BOARD).rom
+	cd boards/$(BOARD) ; \
+	uefi-firmware-parser --extract $(notdir $<)
+
+boards/$(BOARD)/$(BOARD).rom: edk2/.git
+	( cd edk2/OvmfPkg ; ./build.sh )
+	cp edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd $@
