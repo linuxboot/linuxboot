@@ -5,12 +5,6 @@
 #
 #     uefi-firmware-parser --extract s2600wf-dxe.vol
 #
-# Built from edk2:
-#        DxeCore.ffs \
-#        RuntimeDxe.ffs \
-#        PiSmmCore.ffs \
-#        PiSmmIpl.ffs \
-#
 # The DxeCore and PiSmmCore are replaced with ones built from edk2,
 # which allows us to enable serial debugging, track which modules are
 # loaded, etc.
@@ -20,6 +14,7 @@
 #
 fc510ee7-ffdc-11d4-bd41-0080c73c8881 DxeApriori
 80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe
+b601f8c4-43b7-4784-95b1-f4226cb40cee RuntimeDxe
 56d60ee4-5ccf-485c-bbbb-fedae2b24146 RegAccessDxe
 d96a2393-8790-4baa-9ceb-42533f016ee9 RegAccessSMM
 d93ce3d8-a7eb-4730-8c8e-cc466a9ecc3c ReportStatusCodeRouterRuntimeDxe
@@ -97,6 +92,7 @@ e2441b64-7ef4-41fe-b3a3-8caa7f8d3017 PciPlatform
 f9d88642-0737-49bc-81b5-6889cd57d9ea SmbiosDxe
 5be3bdf4-53cf-46a3-a6a9-73c34a6e5ee3 NvmExpressDxe
 87ab821c-79b8-4ef6-a913-21d22063f55f AcpiPlatform
+2fa2a6da-11d5-4dc3-999a-749648b03c56 PiSmmIpl
 274f0c8f-9e57-41d8-9966-29ccd48d31c2 SmmAccess
 8faad0a7-02b4-432f-8f5c-b880965d8b41 SmmCommunicationBuffer
 a3ff0ef5-0c28-42f5-b544-8c7de1e80014 PiSmmCpuDxeSmm
