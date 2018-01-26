@@ -12,6 +12,7 @@ use lib "$FindBin::Bin/../lib";
 use EFI;
 use Getopt::Long;
 use File::Basename;
+use File::Temp 'tempfile';
 use Data::Dumper;
 
 
@@ -31,14 +32,17 @@ sub process_region
 	my $start_offset = shift || 0;
 	my $length = length($data);
 
-	warn sprintf "%s: length 0x%x bytes\n", $base, $length;
+	warn sprintf "%s: length 0x%x bytes\n", $base, $length
+		if $verbose;
+
 	my $start_unknown;
 
 
 	# Search for the start of firmware volumes,
 	# identified by their '_FVH' in the structure
+	my $step = 256;
 
-	for(my $offset = $start_offset ; $offset < $length - 0x30 ; $offset += 16)
+	for(my $offset = $start_offset ; $offset < $length - 0x30 ; $offset += $step)
 	{
 		my $signature = substr($_, $offset + 0x28, 4);
 		my $fv_length = EFI::read64($_, $offset + 0x20);
@@ -47,7 +51,8 @@ sub process_region
 		{
 			# likely not a filesystem; report an unknown region
 			# if we have started processing filesystems
-			$start_unknown ||= $offset;
+			$start_unknown = $offset
+				unless defined $start_unknown;
 			next;
 		}
 
@@ -56,8 +61,8 @@ sub process_region
 			# We have a unknown region to write out
 			my $len = $offset - $start_unknown;
 			my $data = substr($_, $start_unknown, $len);
-			warn sprintf "%s: 0x%08x unknown region 0x%x bytes\n",
-				$base, $offset, $len;
+			warn sprintf "%s/0x%08x: unknown region 0x%x bytes\n",
+				$base, $start_unknown, $len;
 
 			output(sprintf("%s/0x%08x.bin", $base, $start_unknown), $data);
 			undef $start_unknown;
@@ -70,7 +75,7 @@ sub process_region
 
 		# skip to the end of the filesystem
 		# should we care if this FV is not processed?
-		$offset += $fv_length - 16;
+		$offset += $fv_length - $step;
 	}
 }
 
@@ -80,7 +85,21 @@ sub process_fv
 	my $base = shift;
 	my $fv = shift;
 	my $fv_length = length $fv;
+	my $guid = EFI::read_guid($fv, 16);
 
+	if ($guid ne '8c8ce578-8a3d-4f1c-9935-896185c32dd3'
+	and $guid ne '5473c07a-3dcb-4dca-bd6f-1e9689e7349a'
+	) {
+		# we can only process normal firmware volumes
+		warn sprintf "%s/%s: FV length 0x%x\n",
+			$base,
+			$guid,
+			$fv_length,
+			;
+		return;
+	}
+
+	# read the start of data offset from the header
 	my $offset = EFI::read16($fv, 0x30);
 	if ($offset >= $fv_length)
 	{
@@ -89,19 +108,6 @@ sub process_fv
 		return 0;
 	}
 
-	my $guid = EFI::read_guid($fv, 16);
-
-	warn sprintf "%s: FV length 0x%x %s\n",
-		$base,
-		$fv_length,
-		$guid,
-		;
-
-	if ($guid ne '8c8ce578-8a3d-4f1c-9935-896185c32dd3')
-	{
-		# we can only process normal firmware volumes
-		return;
-	}
 
 	while($offset < $fv_length - 0x20)
 	{
@@ -161,6 +167,7 @@ sub process_ffs
 	my $len = length($ffs);
 
 	my $guid = EFI::read_guid($ffs, 0x00);
+	my $type = ord(substr($ffs, 0x12, 1));
 
 	if ($guid eq 'ffffffff-ffff-ffff-ffff-ffffffffffff')
 	{
@@ -170,19 +177,88 @@ sub process_ffs
 	}
 
 	output("$base/$guid.ffs", $ffs);
+	my $data = substr($ffs, $data_offset);
+	my $name = EFI::file_type_lookup($type);
 
-	my @sections = ffs_sections("$base/$guid", $ffs, $data_offset);
-
-	# if this file has a UI section, extract its name
-	my $name = '';
-	for my $sec (@sections)
+	if ($name eq 'RAW')
 	{
-		next unless $sec->[0] eq 'USER_INTERFACE';
-		#$name = Dumper($sec->[1]); # EFI::read_ucs16($sec->[1], 2);
-		$name = EFI::read_ucs16($sec->[1], 0);
+		# we are done here
+		warn sprintf "%s/%s: RAW 0x%x bytes\n", $base, $guid, $len;
+		return;
 	}
 
-	warn sprintf "%s/%s: %s\n", $base, $guid, $name;
+	my @sections = ffs_sections($base, $data);
+
+	# if this file has a UI section, extract its name
+	$name = EFI::read_ucs16($_->[1], 0)
+		for grep { $_->[0] eq 'USER_INTERFACE'} @sections;
+
+	warn "$base/$guid: $name\n";
+
+	process_sections("$base/$guid", $data);
+}
+
+
+sub process_sections
+{
+	my $base = shift;
+	my $data = shift;
+
+	for (ffs_sections($base, $data))
+	{
+		process_section($base, @$_)
+	}
+}
+
+sub process_section
+{
+	my $base = shift;
+	my $type = shift;
+	my $sec = shift;
+	my $number = shift;
+	my $offset = shift;
+
+	# Look for GUID defined sections that encode LZMA compressed data
+	if ($type eq 'GUID_DEFINED')
+	{
+		my $guid = EFI::read_guid($sec, 0);
+		return unless $guid eq $EFI::lzma_guid;
+
+		my $lz_data = substr($sec, 0x14, length($sec) - 0x14);
+
+		my ($fh,$filename) = tempfile();
+		print $fh $lz_data;
+		close $fh;
+
+		my $data = `lzma --decompress --stdout $filename`;
+		warn "$base: found ", length($data), " compressed bytes\n";
+
+		# recursively process this data
+		process_sections($base, $data);
+		return;
+	}
+
+	if ($type eq 'FIRMWARE_VOLUME_IMAGE')
+	{
+		process_fv(sprintf("%s/%d", $base, $number), $sec);
+		return;
+	}
+
+	if ($type eq 'RAW')
+	{
+#		# if the entire data is 0xFF, ignore it as padding
+#		my $all_ff = 1;
+#		for(my $offset = 0 ; $offset < length $sec ; $offset++)
+#		{
+#			$all_ff = 0 unless ord(substr($sec, $offset, 1)) == 0xFF;
+#		}
+#
+#		return if $all_ff;
+#
+#		warn sprintf "%s/%04d: 0x%08x RAW 0x%x bytes\n", $base, $number, $offset, length $sec;
+#		output(sprintf("%s/%04d.raw", $base, $number), $sec);
+		return;
+	}
 
 
 #	if ($guid eq '8c8ce578-8a3d-4f1c-9935-896185c32dd3')
@@ -199,12 +275,13 @@ sub ffs_sections
 {
 	my $base = shift;
 	my $ffs = shift;
-	my $offset = shift;
 	my $ffs_len = length($ffs);
 
 	my @sections;
 
 	# find each section inside 
+	my $number = 0;
+	my $offset = 0;
 	while($offset < $ffs_len - 8)
 	{
 		my $len = EFI::read24($ffs, $offset);
@@ -244,10 +321,27 @@ sub ffs_sections
 		warn sprintf "%s: %s len %x\n", $base, $sec_type_name, $len
 			if $verbose;
 
-		push @sections, [ $sec_type_name, $sec_data ];
+		# ignore RAW sections that are all padding
+		next if $sec_type_name eq 'RAW' and empty_data($sec_data);
+
+		push @sections, [ $sec_type_name, $sec_data, $number, $offset ];
+		$number++;
 	}
 
 	return @sections;
+}
+
+
+sub empty_data
+{
+	my $data = shift;
+	my $byte = substr($data, 0, 1);
+	for(my $i = 0 ; $i < length $data ; $i++)
+	{
+		return 0 if substr($data, $i, 1) ne $byte;
+	}
+
+	return 1;
 }
 
 
@@ -255,6 +349,9 @@ sub output
 {
 	my $name = shift,
 	my $data = shift;
+
+	# check for an empty region (all the same value)
+	return if empty_data($data);
 
 	my $dir = dirname($name);
 	system(mkdir => -p => $dir)

@@ -101,6 +101,25 @@ our %depex_type_map = qw/
 our %file_types_lookup = map { hex $file_types{$_} => $_ } keys %file_types;
 our %section_types_lookup = map { hex $section_types{$_} => $_ } keys %section_types;
 
+
+sub section_type_lookup
+{
+	my $type = shift;
+	my $name = $section_types_lookup{$type};
+	$name ||= sprintf "0x%02x", $type;
+
+	return $name;
+}
+
+sub file_type_lookup
+{
+	my $type = shift;
+	my $name = $file_types_lookup{$type};
+	$name ||= sprintf "0x%02x", $type;
+
+	return $name;
+}
+
 # convert text GUID to hex
 sub guid
 {
@@ -128,6 +147,10 @@ sub guid
 		hex substr($g5,10, 2),
 	);
 }
+
+
+# Some common GUIDs (these should be in a data file)
+our $lzma_guid = 'ee4e5898-3914-4259-9d6e-dc7bd79403cf';
 
 
 # Convert a string to UCS-16 and add a nul terminator
@@ -325,8 +348,8 @@ sub compress
 
 	# wrap the lzdata in a GUIDed section
 	my $lz_header = ''
-		. guid('EE4E5898-3914-4259-9D6E-DC7BD79403CF')
-		. chr($ffs_hdr_len)  # data offset
+		. guid($lzma_guid)
+		. chr($ffs_hdr_len)  # data offset, should this be 0x14?
 		. chr(0x00)
 		. chr(0x01)  # Processing required
 		. chr(0x00)
