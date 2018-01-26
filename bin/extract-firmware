@@ -15,22 +15,37 @@ use File::Basename;
 use File::Temp 'tempfile';
 use Data::Dumper;
 
+my $usage = <<"";
+Usage:
+  $0 [options] firmware.rom | tee firmware.txt
+Options:
+  -v | --version          Print per-section logs
+  -o | --output-dir DIR   Write the output to a different base directory
+  -s | --start 0xX        Starting offset for partial extraction
+  -e | --end 0xX          Ending offset
 
 my $start_offset = 0; # 0x02c00000;
+my $end_offset;
 my $verbose = 0;
 my $base_dir = '.';
+
+GetOptions(
+	"v|verbose+"		=> \$verbose,
+	"o|output-dir=s"	=> \$base_dir,
+	"s|start=o"		=> \$start_offset,
+	"e|end=o"		=> \$end_offset,
+) or die $usage;
 
 local $/;
 while(<>)
 {
-	process_region($base_dir, $_, $start_offset);
+	process_region($base_dir, $_);
 }
 
 sub process_region
 {
 	my $base = shift;
 	my $data = shift;
-	my $start_offset = shift || 0;
 	my $length = length($data);
 
 	printf "%s: length 0x%x\n", $base, $length
@@ -38,12 +53,15 @@ sub process_region
 
 	my $start_unknown;
 
-
 	# Search for the start of firmware volumes,
 	# identified by their '_FVH' in the structure
 	my $step = 256;
 
-	for(my $offset = $start_offset ; $offset < $length - 0x30 ; $offset += $step)
+	# Adjust the end offset if they ask for too much
+	$end_offset = $length - 0x30
+		unless (defined $end_offset || $end_offset > $length - 0x30);
+
+	for(my $offset = $start_offset ; $offset < $end_offset ; $offset += $step)
 	{
 		my $signature = substr($_, $offset + 0x28, 4);
 		my $fv_length = EFI::read64($_, $offset + 0x20);
