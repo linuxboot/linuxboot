@@ -1,0 +1,242 @@
+#!/usr/bin/perl
+# Extract all of the files from a UEFI firmware image.
+#
+# This is a simple replacement for uefi-firmware-parser
+# with fewer features and more suited for reconstituting the
+# firmware later.
+#
+use warnings;
+use strict;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+use EFI;
+use Getopt::Long;
+use File::Basename;
+
+
+my $start_offset = 0; # 0x02c00000;
+
+local $/;
+while(<>)
+{
+	process_region("rom", $_, $start_offset);
+}
+
+sub process_region
+{
+	my $base = shift;
+	my $data = shift;
+	my $start_offset = shift || 0;
+	my $length = length($data);
+
+	warn sprintf "%s: length 0x%x bytes\n", $base, $length;
+	my $start_unknown;
+
+
+	# Search for the start of firmware volumes,
+	# identified by their '_FVH' in the structure
+
+	for(my $offset = $start_offset ; $offset < $length - 0x30 ; $offset += 16)
+	{
+		my $signature = substr($_, $offset + 0x28, 4);
+		my $fv_length = EFI::read64($_, $offset + 0x20);
+
+		if ($signature ne '_FVH' or $offset + $fv_length > $length)
+		{
+			# likely not a filesystem; report an unknown region
+			# if we have started processing filesystems
+			$start_unknown ||= $offset;
+			next;
+		}
+
+		if (defined $start_unknown)
+		{
+			# We have a unknown region to write out
+			my $len = $offset - $start_unknown;
+			my $data = substr($_, $start_unknown, $len);
+			warn sprintf "%s: 0x%08x unknown region 0x%x bytes\n",
+				$base, $offset, $len;
+
+			output(sprintf("%s/0x%08x.bin", $base, $start_unknown), $data);
+			undef $start_unknown;
+		}
+
+		my $fv = substr($data, $offset, $fv_length);
+		output(sprintf("%s/0x%08x.fv", $base, $offset), $fv);
+
+		process_fv(sprintf("%s/0x%08x", $base, $offset), $fv);
+
+		# skip to the end of the filesystem
+		# should we care if this FV is not processed?
+		$offset += $fv_length - 16;
+	}
+}
+
+
+sub process_fv
+{
+	my $base = shift;
+	my $fv = shift;
+	my $fv_length = length $fv;
+
+	my $offset = EFI::read16($fv, 0x30);
+	if ($offset >= $fv_length)
+	{
+		warn sprintf "%s: FV invalid data offset 0x%04x\n",
+			$base, $offset;
+		return 0;
+	}
+
+	my $guid = EFI::read_guid($fv, 16);
+
+	warn sprintf "%s: FV length 0x%x %s\n",
+		$base,
+		$fv_length,
+		$guid,
+		;
+
+	while($offset < $fv_length - 0x20)
+	{
+		my $len = EFI::read24($fv, $offset + 0x14);
+		my $data_offset = 0x18;
+
+		if ($len == 0xFFFFFF)
+		{
+			# Version 2 header with extended length
+			$len = EFI::read64($fv, $offset + 0x18);
+
+			# If we have an all-0xFF length, which indicates
+			# the start of free space
+			return 1 if ~$len == 0;
+
+			# Looks good, adjust the starting offset
+			$data_offset += 0x8;
+		}
+
+		if ($len == 0x0)
+		{
+			warn sprintf "%s: 0x%08x file has zero length?\n",
+				$base,
+				$offset;
+			return 0;
+		}
+
+		if ($len + $offset > $fv_length)
+		{
+			warn sprintf "%s: 0x%08x file len 0x%x exceeds FV len\n",
+				$base,
+				$offset,
+				$len;
+			return 0;
+		}
+
+		
+		my $data = substr($fv, $offset, $len);
+
+		process_ffs($base, $data);
+
+		$offset += $len;
+
+		# align it
+		$offset = ($offset + 7) & ~7;
+	}
+
+	return 1;
+}
+
+
+sub process_ffs
+{
+	my $base = shift;
+	my $ffs = shift;
+	my $len = length($ffs);
+
+	my $guid = EFI::read_guid($ffs, 0x00);
+
+	if ($guid eq 'ffffffff-ffff-ffff-ffff-ffffffffffff')
+	{
+		# padding: do not output it
+		# should check that everything is 0xFF first
+		return;
+	}
+
+	warn sprintf "%s/%s: len %x\n",
+		$base,
+		$guid,
+		$len,
+		;
+
+	output("$base/$guid.ffs", $ffs);
+
+	# TODO: recursively expand embedded, compressed fv
+}
+
+
+sub output
+{
+	my $name = shift,
+	my $data = shift;
+
+	my $dir = dirname($name);
+	system(mkdir => -p => $dir)
+		and die "$name: Unable to create directory\n";
+	open FILE, '>', "$name"
+		or die "$name: Unable to create output file: $!\n";
+	print FILE $data;
+	close FILE;
+}
+
+
+__END__
+sub read16
+{
+	my $data = shift;
+	my $offset = shift;
+	return unpack("v", substr($data, $offset, 2));
+}
+
+sub read24
+{
+	my $data = shift;
+	my $offset = shift;
+	return 0
+		| ord(substr($data, $offset+2, 1)) << 16
+		| ord(substr($data, $offset+1, 1)) <<  8
+		| ord(substr($data, $offset+0, 1)) <<  0
+		;
+}
+
+sub read32
+{
+	my $data = shift;
+	my $offset = shift;
+	return unpack("V", substr($data, $offset, 4));
+}
+
+sub read64
+{
+	my $data = shift;
+	my $offset = shift;
+	return read32($data, $offset+4) << 32 | read32($data, $offset+0);
+}
+
+sub read_guid
+{
+	my $data = shift;
+	my $offset = shift;
+
+	my ($g1,$g2,$g3,$g4,@g5) = unpack("VvvnCCCCCC", substr($data, $offset, 16));
+
+	return sprintf "%08x-%04x-%04x-%04x-%02x%02x%02x%02x%02x%02x",
+		$g1,
+		$g2,
+		$g3,
+		$g4,
+		$g5[0],
+		$g5[1],
+		$g5[2],
+		$g5[3],
+		$g5[4],
+		$g5[5],
+		;
+}
