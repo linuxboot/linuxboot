@@ -18,11 +18,12 @@ use Data::Dumper;
 
 my $start_offset = 0; # 0x02c00000;
 my $verbose = 0;
+my $base_dir = '.';
 
 local $/;
 while(<>)
 {
-	process_region("rom", $_, $start_offset);
+	process_region($base_dir, $_, $start_offset);
 }
 
 sub process_region
@@ -32,7 +33,7 @@ sub process_region
 	my $start_offset = shift || 0;
 	my $length = length($data);
 
-	warn sprintf "%s: length 0x%x bytes\n", $base, $length
+	printf "%s: length 0x%x\n", $base, $length
 		if $verbose;
 
 	my $start_unknown;
@@ -61,7 +62,7 @@ sub process_region
 			# We have a unknown region to write out
 			my $len = $offset - $start_unknown;
 			my $data = substr($_, $start_unknown, $len);
-			warn sprintf "%s/0x%08x: unknown region 0x%x bytes\n",
+			printf "%s/0x%08x.bin: UNKNOWN length 0x%x \n",
 				$base, $start_unknown, $len;
 
 			output(sprintf("%s/0x%08x.bin", $base, $start_unknown), $data);
@@ -69,7 +70,6 @@ sub process_region
 		}
 
 		my $fv = substr($data, $offset, $fv_length);
-		output(sprintf("%s/0x%08x.fv", $base, $offset), $fv);
 
 		process_fv(sprintf("%s/0x%08x", $base, $offset), $fv);
 
@@ -87,15 +87,17 @@ sub process_fv
 	my $fv_length = length $fv;
 	my $guid = EFI::read_guid($fv, 16);
 
+	output("$base.fv", $fv);
+	printf "%s.fv: FV %s length 0x%x\n",
+		$base,
+		$guid,
+		$fv_length,
+		;
+
 	if ($guid ne '8c8ce578-8a3d-4f1c-9935-896185c32dd3'
 	and $guid ne '5473c07a-3dcb-4dca-bd6f-1e9689e7349a'
 	) {
 		# we can only process normal firmware volumes
-		warn sprintf "%s/%s: FV length 0x%x\n",
-			$base,
-			$guid,
-			$fv_length,
-			;
 		return;
 	}
 
@@ -103,9 +105,8 @@ sub process_fv
 	my $offset = EFI::read16($fv, 0x30);
 	if ($offset >= $fv_length)
 	{
-		warn sprintf "%s: FV invalid data offset 0x%04x\n",
+		die sprintf "%s: FV invalid data offset 0x%04x\n",
 			$base, $offset;
-		return 0;
 	}
 
 
@@ -129,19 +130,17 @@ sub process_fv
 
 		if ($len == 0x0)
 		{
-			warn sprintf "%s: 0x%08x file has zero length?\n",
+			die sprintf "%s: 0x%08x file has zero length?\n",
 				$base,
 				$offset;
-			return 0;
 		}
 
 		if ($len + $offset > $fv_length)
 		{
-			warn sprintf "%s: 0x%08x file len 0x%x exceeds FV len\n",
+			die sprintf "%s: 0x%08x file len 0x%x exceeds FV len\n",
 				$base,
 				$offset,
 				$len;
-			return 0;
 		}
 
 		
@@ -183,7 +182,7 @@ sub process_ffs
 	if ($name eq 'RAW')
 	{
 		# we are done here
-		warn sprintf "%s/%s: RAW 0x%x bytes\n", $base, $guid, $len;
+		printf "%s/%s.ffs: RAW length 0x%x \n", $base, $guid, $len;
 		return;
 	}
 
@@ -193,7 +192,7 @@ sub process_ffs
 	$name = EFI::read_ucs16($_->[1], 0)
 		for grep { $_->[0] eq 'USER_INTERFACE'} @sections;
 
-	warn "$base/$guid: $name\n";
+	print "$base/$guid.ffs: $name\n";
 
 	process_sections("$base/$guid", $data);
 }
@@ -231,7 +230,11 @@ sub process_section
 		close $fh;
 
 		my $data = `lzma --decompress --stdout $filename`;
-		warn "$base: found ", length($data), " compressed bytes\n";
+		printf "%s.ffs: length 0x%x (0x%x compressed)\n",
+			$base,
+			length($data),
+			length($lz_data),
+			;
 
 		# recursively process this data
 		process_sections($base, $data);
@@ -246,28 +249,11 @@ sub process_section
 
 	if ($type eq 'RAW')
 	{
-#		# if the entire data is 0xFF, ignore it as padding
-#		my $all_ff = 1;
-#		for(my $offset = 0 ; $offset < length $sec ; $offset++)
-#		{
-#			$all_ff = 0 unless ord(substr($sec, $offset, 1)) == 0xFF;
-#		}
-#
-#		return if $all_ff;
-#
-#		warn sprintf "%s/%04d: 0x%08x RAW 0x%x bytes\n", $base, $number, $offset, length $sec;
-#		output(sprintf("%s/%04d.raw", $base, $number), $sec);
 		return;
 	}
 
-
-#	if ($guid eq '8c8ce578-8a3d-4f1c-9935-896185c32dd3')
-#	{
-#		# recursively expand embedded, compressed fv
-#		process_ffs_fv($base, $ffs, $data_offset);
-#	} else {
-#		# todo: Look for a UI section to produce a nice table
-#	}
+	warn "$base/$number: $type unknown\n"
+		if $type =~ /^0x/;
 }
 
 
@@ -318,7 +304,7 @@ sub ffs_sections
 		my $sec_type_name = $EFI::section_types_lookup{$sec_type};
 		$sec_type_name ||= sprintf "0x%02x", $sec_type;
 
-		warn sprintf "%s: %s len %x\n", $base, $sec_type_name, $len
+		printf "%s.ffs: %s len %x\n", $base, $sec_type_name, $len
 			if $verbose;
 
 		# ignore RAW sections that are all padding
