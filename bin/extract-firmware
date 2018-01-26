@@ -59,7 +59,7 @@ sub process_region
 
 	# Adjust the end offset if they ask for too much
 	$end_offset = $length - 0x30
-		unless (defined $end_offset || $end_offset > $length - 0x30);
+		if !defined $end_offset or $end_offset > $length - 0x30;
 
 	for(my $offset = $start_offset ; $offset < $end_offset ; $offset += $step)
 	{
