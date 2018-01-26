@@ -66,6 +66,7 @@ our %file_types = qw/
 	FFS_PAD               0xf0
 /;
 
+
 our %section_types = qw/
 	GUID_DEFINED          0x02
 	PE32                  0x10
@@ -82,6 +83,7 @@ our %section_types = qw/
 	SMM_DEPEX             0x1C
 /;
 
+
 # Some special cases for non-PE32 sections
 our %section_type_map = qw/
 	FREEFORM		RAW
@@ -95,6 +97,9 @@ our %depex_type_map = qw/
 	SMM			SMM_DEPEX
 /;
 
+# Invert the file type and section type maps
+our %file_types_lookup = map { hex $file_types{$_} => $_ } keys %file_types;
+our %section_types_lookup = map { hex $section_types{$_} => $_ } keys %section_types;
 
 # convert text GUID to hex
 sub guid
@@ -138,6 +143,26 @@ sub ucs16
 
 	# nul terminate the string
 	$rc .= chr(0x0) . chr(0x0);
+
+	return $rc;
+}
+
+# Convert from UCS-16 back to a normal string
+sub read_ucs16
+{
+	my $val = shift;
+	my $offset = shift;
+	my $len = length($val);
+	my $rc = '';
+
+	while($offset < $len-1)
+	{
+		my $word = unpack("n", substr($val, $offset, 2));
+		last if $word == 0x0000;
+
+		$rc .= chr(($word >> 8) & 0xFF);
+		$offset += 2;
+	}
 
 	return $rc;
 }

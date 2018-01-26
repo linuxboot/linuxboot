@@ -12,9 +12,11 @@ use lib "$FindBin::Bin/../lib";
 use EFI;
 use Getopt::Long;
 use File::Basename;
+use Data::Dumper;
 
 
 my $start_offset = 0; # 0x02c00000;
+my $verbose = 0;
 
 local $/;
 while(<>)
@@ -95,6 +97,12 @@ sub process_fv
 		$guid,
 		;
 
+	if ($guid ne '8c8ce578-8a3d-4f1c-9935-896185c32dd3')
+	{
+		# we can only process normal firmware volumes
+		return;
+	}
+
 	while($offset < $fv_length - 0x20)
 	{
 		my $len = EFI::read24($fv, $offset + 0x14);
@@ -109,7 +117,7 @@ sub process_fv
 			# the start of free space
 			return 1 if ~$len == 0;
 
-			# Looks good, adjust the starting offset
+			## Looks good, adjust the starting offset
 			$data_offset += 0x8;
 		}
 
@@ -133,7 +141,7 @@ sub process_fv
 		
 		my $data = substr($fv, $offset, $len);
 
-		process_ffs($base, $data);
+		process_ffs($base, $data, $data_offset);
 
 		$offset += $len;
 
@@ -149,6 +157,7 @@ sub process_ffs
 {
 	my $base = shift;
 	my $ffs = shift;
+	my $data_offset = shift; # might be 0x18 or 0x20
 	my $len = length($ffs);
 
 	my $guid = EFI::read_guid($ffs, 0x00);
@@ -160,15 +169,85 @@ sub process_ffs
 		return;
 	}
 
-	warn sprintf "%s/%s: len %x\n",
-		$base,
-		$guid,
-		$len,
-		;
-
 	output("$base/$guid.ffs", $ffs);
 
-	# TODO: recursively expand embedded, compressed fv
+	my @sections = ffs_sections("$base/$guid", $ffs, $data_offset);
+
+	# if this file has a UI section, extract its name
+	my $name = '';
+	for my $sec (@sections)
+	{
+		next unless $sec->[0] eq 'USER_INTERFACE';
+		#$name = Dumper($sec->[1]); # EFI::read_ucs16($sec->[1], 2);
+		$name = EFI::read_ucs16($sec->[1], 0);
+	}
+
+	warn sprintf "%s/%s: %s\n", $base, $guid, $name;
+
+
+#	if ($guid eq '8c8ce578-8a3d-4f1c-9935-896185c32dd3')
+#	{
+#		# recursively expand embedded, compressed fv
+#		process_ffs_fv($base, $ffs, $data_offset);
+#	} else {
+#		# todo: Look for a UI section to produce a nice table
+#	}
+}
+
+
+sub ffs_sections
+{
+	my $base = shift;
+	my $ffs = shift;
+	my $offset = shift;
+	my $ffs_len = length($ffs);
+
+	my @sections;
+
+	# find each section inside 
+	while($offset < $ffs_len - 8)
+	{
+		my $len = EFI::read24($ffs, $offset);
+		my $data_offset = 0x4;
+		if ($len == 0xFFFFFF)
+		{
+			# FFSv3 section
+			$len = EFI::read32($ffs, $offset + $data_offset);
+			$data_offset += 4;
+		}
+
+		if ($len < $data_offset)
+		{
+			die sprintf "%s: 0x%x Section length %x invalid\n", $base, $offset, $len;
+		}
+
+		if ($offset + $len > $ffs_len)
+		{
+			die sprintf "%s: Section length %x exceeds FFS len %x\n",
+				$base,
+				$len,
+				$ffs_len,
+				;
+		}
+
+		my $sec = substr($ffs, $offset, $len);
+
+		# move to the next section, keeping a 4-byte alignment
+		$offset = ($offset + $len + 3) & ~3;
+
+		my $sec_type = ord(substr($sec, 3, 1));
+		my $sec_data = substr($sec, $data_offset, $len - $data_offset);
+
+		my $sec_type_name = $EFI::section_types_lookup{$sec_type};
+		$sec_type_name ||= sprintf "0x%02x", $sec_type;
+
+		warn sprintf "%s: %s len %x\n", $base, $sec_type_name, $len
+			if $verbose;
+
+		push @sections, [ $sec_type_name, $sec_data ];
+	}
+
+	return @sections;
 }
 
 
@@ -184,59 +263,4 @@ sub output
 		or die "$name: Unable to create output file: $!\n";
 	print FILE $data;
 	close FILE;
-}
-
-
-__END__
-sub read16
-{
-	my $data = shift;
-	my $offset = shift;
-	return unpack("v", substr($data, $offset, 2));
-}
-
-sub read24
-{
-	my $data = shift;
-	my $offset = shift;
-	return 0
-		| ord(substr($data, $offset+2, 1)) << 16
-		| ord(substr($data, $offset+1, 1)) <<  8
-		| ord(substr($data, $offset+0, 1)) <<  0
-		;
-}
-
-sub read32
-{
-	my $data = shift;
-	my $offset = shift;
-	return unpack("V", substr($data, $offset, 4));
-}
-
-sub read64
-{
-	my $data = shift;
-	my $offset = shift;
-	return read32($data, $offset+4) << 32 | read32($data, $offset+0);
-}
-
-sub read_guid
-{
-	my $data = shift;
-	my $offset = shift;
-
-	my ($g1,$g2,$g3,$g4,@g5) = unpack("VvvnCCCCCC", substr($data, $offset, 16));
-
-	return sprintf "%08x-%04x-%04x-%04x-%02x%02x%02x%02x%02x%02x",
-		$g1,
-		$g2,
-		$g3,
-		$g4,
-		$g5[0],
-		$g5[1],
-		$g5[2],
-		$g5[3],
-		$g5[4],
-		$g5[5],
-		;
 }
