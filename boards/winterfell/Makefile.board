@@ -11,8 +11,7 @@
 # 16 MB ROM total size
 linuxboot-size	:= 0x1000000
 
-# 4 MB DXE+Linux ROM, compressed from 15 MB
-dxe-compress	:= 0xF00000
+# 6.9 MB DXE+Linux ROM, uncompressed
 dxe-size	:= 0x6A0000
 
 dxe-path := $(BUILD)/rom/0x00860000/
@@ -37,13 +36,11 @@ $(BUILD)/rom/0x00f00000.fv \
 
 
 # Replace the DxeCore and SmmCore with our own
+# and add in the Linux kernel / initrd
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
 	$(dxe-files) \
-
-# Linux and initrd go into their own FV
-$(BUILD)/linux.vol: \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
