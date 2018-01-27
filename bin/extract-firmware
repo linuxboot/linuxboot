@@ -83,7 +83,7 @@ sub process_region
 			printf "%s/0x%08x.bin: UNKNOWN length 0x%x \n",
 				$base, $start_unknown, $len;
 
-			output(sprintf("%s/0x%08x.bin", $base, $start_unknown), $data);
+			output(sprintf("%s/0x%08x.bin", $base, $start_unknown), $data, 1);
 			undef $start_unknown;
 		}
 
@@ -353,9 +353,10 @@ sub output
 {
 	my $name = shift,
 	my $data = shift;
+	my $force = shift;
 
 	# check for an empty region (all the same value)
-	return if empty_data($data);
+	return if not $force and empty_data($data);
 
 	my $dir = dirname($name);
 	system(mkdir => -p => $dir)
