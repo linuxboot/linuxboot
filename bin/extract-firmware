@@ -173,10 +173,11 @@ sub process_fv
 
 		if ($len + $offset > $fv_length)
 		{
-			die sprintf "%s: 0x%08x file len 0x%x exceeds FV len\n",
+			warn sprintf "%s: 0x%08x file len 0x%x exceeds FV len\n",
 				$base,
 				$offset,
 				$len;
+			return;
 		}
 
 		
