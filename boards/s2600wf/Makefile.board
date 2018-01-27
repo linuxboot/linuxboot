@@ -6,17 +6,68 @@
 # the different firmware images.
 #
 
-vendor-$(BOARD)-offset		:= 0x2C00000
-vendor-$(BOARD)-compress	:=  0xF00000  # The uncompressed size
-vendor-$(BOARD)-size		:=  0x400000  # The size after compresion
+# This pulls that image apart and inserts the Linux kernel and Initrd
+# The ROM layout is:
+# 0x000000.fv NVRAM
+# 0x084000.fv FV (DXE and PEI)
+#        0.fv PEI
+#        1.fv DXE
+# 0x7cc000.fv SEC
+#
+#
 
-vendor-files := $(shell awk  \
-	'/^[0-9A-Fa-f]/ {print "boards/$(BOARD)/volume-0/file-"$$1"/file.obj"}' \
+# 64 MB ROM total size
+linuxboot-size	:= 0x4000000
+
+# 4 MB DXE ROM, compressed from 15 MB
+dxe-compress	:= 0xF00000
+dxe-size	:= 0x400000
+
+# 4 MB Linux ROM, uncompressed since bzImage is already compressed
+linux-size	:= 0x400000
+
+
+dxe-path := $(BUILD)/rom/0x03500000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792/0
+
+dxe-files := $(shell awk  \
+	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(vendor-files): boards/$(BOARD)/volume-0
-boards/$(BOARD)/volume-0: boards/$(BOARD)/$(BOARD).rom
-	cd boards/$(BOARD) ; \
-	uefi-firmware-parser --extract $(notdir $<)
+
+# The Intel firmware has lots of small pieces.
+# We replace the DXE recovery image and one of the other
+# images with the LinuxBoot one.  Potentially we
+# can clean up more space.
+FVS := \
+$(BUILD)/rom/0x00000000.bin \
+$(BUILD)/dxe.vol \
+$(BUILD)/rom/0x03000000.fv \
+$(BUILD)/rom/0x03180000.fv \
+$(BUILD)/rom/0x031a0000.fv \
+$(BUILD)/rom/0x031c0000.fv \
+$(BUILD)/rom/0x031d0000.bin \
+$(BUILD)/rom/0x03200000.fv \
+$(BUILD)/linux.vol \
+$(BUILD)/rom/0x03900000.fv \
+$(BUILD)/rom/0x03a00000.fv \
+$(BUILD)/rom/0x03c00000.fv \
+$(BUILD)/rom/0x03e00000.fv \
+$(BUILD)/rom/0x03e30000.fv \
+$(BUILD)/rom/0x03e80000.fv \
+$(BUILD)/rom/0x03f00000.fv \
+$(BUILD)/rom/0x03f30000.fv \
+$(BUILD)/rom/0x03f80000.fv \
+
+
+# Replace the DxeCore and SmmCore with our own
+$(BUILD)/dxe.vol: \
+	$(BUILD)/DxeCore.ffs \
+	$(BUILD)/PiSmmCore.ffs \
+	$(dxe-files) \
+
+# Linux and initrd go into their own FV
+$(BUILD)/linux.vol: \
+	$(BUILD)/Linux.ffs \
+	$(BUILD)/Initrd.ffs \
 

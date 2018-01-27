@@ -14,9 +14,11 @@
 #
 #
 
-linuxboot-size := 0x800000
+linuxboot-size	:= 0x800000
+dxe-size	:= 0xe00000
+merged-size	:= 0x748000
 
-fv-path := boards/$(BOARD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
+fv-path := $(BUILD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
 dxe-path := $(fv-path)/1
 
 vendor-files := $(shell awk  \
@@ -24,17 +26,10 @@ vendor-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
-# All of the output volumes depend on extracting the firmware
-boards/$(BOARD)/rom/0x00000000.fv \
-boards/$(BOARD)/rom/0x00084000.fv \
-boards/$(BOARD)/rom/0x007cc000.fv \
-: extract.intermediate
-
-$(BUILD)/linuxboot.rom: \
-	boards/$(BOARD)/rom/0x00000000.fv \
+FVS := \
+	$(BUILD)/rom/0x00000000.fv \
 	$(BUILD)/merged.vol \
-	boards/$(BOARD)/rom/0x007cc000.fv \
-
+	$(BUILD)/rom/0x007cc000.fv \
 
 $(BUILD)/merged.vol: \
 	$(fv-path)/0.fv \
@@ -45,29 +40,27 @@ $(BUILD)/merged.vol: \
 		--type FIRMWARE_VOLUME_IMAGE \
 		$^ \
 	| ./bin/create-fv \
-		--size 0x748000 \
+		--size $(merged-size) \
 		-o $@
 
-
-dxe-size := 0xe00000
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(vendor-files) \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
-$(vendor-files): extract.intermediate
-extract.intermediate: boards/$(BOARD)/$(BOARD).rom
-	( \
-	cd boards/$(BOARD) ; \
-	$(pwd)/bin/extract-firmware \
-		-o rom \
-	| tee $(BOARD).txt ; \
-	) < $^ \
 
-.INTERMEDIATE: extract.intermediate
-
+# We can build a firmware image from edk2
+# it is not necessary to provide one
 boards/$(BOARD)/$(BOARD).rom: edk2/.git
 	( cd edk2/OvmfPkg ; ./build.sh )
 	cp edk2/Build/OvmfX64/DEBUG_GCC5/FV/OVMF.fd $@
 
+# We can also launch a qemu with the LinuxBoot kernel
+run: $(BUILD)/linuxboot.rom
+	qemu-system-x86_64 \
+		-machine q35,smm=on  \
+		-global ICH9-LPC.disable_s3=1 \
+		-global driver=cfi.pflash01,property=secure,value=on \
+		--serial $(or $(SERIAL),/dev/tty) \
+		-drive if=pflash,format=raw,unit=0,file=$<

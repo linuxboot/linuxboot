@@ -15,7 +15,19 @@ BOARD		?= qemu
 KERNEL		?= bzImage
 INITRD		?= initrd.cpio.xz
 BUILD		:= build/$(BOARD)
-$(shell mkdir -p $(BUILD))
+
+# Make sure that we have a board file for the user
+$(shell \
+	if [ ! -r boards/$(BOARD)/Makefile.board ]; then \
+		echo >&2 "BOARD=$(BOARD) is not valid."; \
+		echo >&2 ; \
+		echo >&2 "Supported mainboards:"; \
+		ls boards/*/Makefile.board | cut -d/ -f2 >&2 ; \
+		echo >&2 ; \
+		exit 1 ; \
+	fi; \
+	mkdir -p $(BUILD) ; \
+)
 
 # Bring in the board specific things
 include boards/$(BOARD)/Makefile.board
@@ -99,6 +111,24 @@ create-ffs = \
 		--depex "$($(basename $(notdir $@))-depex)" \
 		--guid "$($(basename $(notdir $@))-guid)" \
 		$^
+
+#
+# Extract all of the firmware files from the vendor provided ROM
+#
+extract.intermediate: boards/$(BOARD)/$(BOARD).rom
+	( \
+	cd $(BUILD) ; \
+	$(pwd)/bin/extract-firmware \
+		-o rom \
+	) < $^ \
+	| tee $(BUILD)/$(BOARD).txt ; \
+
+.INTERMEDIATE: extract.intermediate
+
+# All of the output volumes depend on extracting the firmware
+$(patsubst %.vol,,$(FVS)): extract.intermediate
+
+$(BUILD)/linuxboot.rom: $(FVS)
 
 
 clean:
