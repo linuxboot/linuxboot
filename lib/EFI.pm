@@ -68,6 +68,7 @@ our %file_types = qw/
 
 
 our %section_types = qw/
+	TIANO_COMPRESSED      0x01
 	GUID_DEFINED          0x02
 	PE32                  0x10
 	PIC                   0x11

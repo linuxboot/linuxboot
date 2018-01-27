@@ -197,10 +197,10 @@ sub process_ffs
 	my $data = substr($ffs, $data_offset);
 	my $name = EFI::file_type_lookup($type);
 
-	if ($name eq 'RAW')
+	if ($name eq 'FFS_PAD' or $name eq 'RAW')
 	{
 		# we are done here
-		printf "%s/%s.ffs: RAW length 0x%x \n", $base, $guid, $len;
+		printf "%s/%s.ffs: $name length 0x%x \n", $base, $guid, $len;
 		return;
 	}
 
@@ -265,8 +265,9 @@ sub process_section
 		return;
 	}
 
-	if ($type eq 'RAW')
-	{
+	if ($type eq 'RAW'
+	or  $type eq 'TIANO_COMPRESSED'
+	) {
 		return;
 	}
 
