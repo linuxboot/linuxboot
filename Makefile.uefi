@@ -1,0 +1,96 @@
+#
+# Rules for making various parts of the UEFI firmware
+# from edk2 sources
+#
+RuntimeArchProtocolGuid		:= b7dfb4e1-052f-449f-87be-9818fc91b733
+AcpiTableProtocolGuid		:= FFE06BDD-6107-46A6-7BB2-5A9C7EC5275C
+SmbiosProtocolGuid		:= 03583ff6-cb36-4940-947e-b9b39f4afaf7
+VariableArchProtocolGuid	:= 1E5668E2-8481-11D4-BCF1-0080C73C8881
+EfiPciRootBridgeIoProtocolGuid	:= 2F707EBB-4A1A-11D4-9A38-0090273FC14D
+EfiPciEnumerationCompleteProtocolGuid := 30cfe3e7-3de1-4586-be20-deaba1b3b793
+EfiPcdProtocolGuid		:= 13a3f0f6-264a-3ef0-f2e0-dec512342f34
+EfiTimerArchProtocolGuid	:= 26BACCB3-6F42-11D4-BCE7-0080C73C8881
+EfiCpuIo2ProtocolGuid		:= ad61f191-ae5f-4c0e-b9fa-e869d288c64f
+EfiIioUdsProtocolGuid		:= A7CED760-C71C-4E1A-ACB1-89604D5216CB
+EfiSmmAccess2ProtocolGuid	:= c2702b74-800c-4131-8746-8fb5b89ce4ac
+EfiSmmControl2ProtocolGuid	:= 843dc720-ab1e-42cb-9357-8a0078f3561b
+IntelRegAccessProtocolGuid	:= FD480A76-B134-4EF7-ADFE-B0E054639807
+EfiMpServiceProtocolGuid	:= 3fdda605-a76e-4f46-ad29-12f4531b3d08
+IntelPlatformTypeGuid		:= a7ced760-c71c-4e1a-acb1-89604d5216cb
+IntelPlatformCpuPolicy		:= ADB7B9E6-70B7-48D4-B6A5-18FA15EBCD78
+IntelCrystalRidgeGuid		:= 626967C7-071B-4D9A-9D0C-F112CF0836E9
+LpcSomethingGuid		:= 64021DFE-A62C-42A7-BF46-15078CDF9F89
+
+Linux-guid := DECAFBAD-6548-6461-732d-2f2d4e455246
+Linux-depex := $(RuntimeArchProtocolGuid)
+
+Initrd-type := FREEFORM
+Initrd-guid := 74696e69-6472-632e-7069-6f2f62696f73
+
+DxeCore-type := DXE_CORE
+DxeCore-guid := D6A2CB7F-6A18-4E2F-B43B-9920A733700A
+
+#
+# UEFI required achitectural protocols
+#
+RuntimeDxe-depex := TRUE
+RuntimeDxe-guid := B601F8C4-43B7-4784-95B1-F4226CB40CEE
+
+SmbiosDxe-guid := F9D88642-0737-49BC-81B5-6889CD57D9EA
+SmbiosDxe-depex := $(RuntimeArchProtocolGuid)
+
+SecurityStubDxe-guid := F80697E9-7FD6-4665-8646-88E33EF71DFC
+SecurityStubDxe-depex := TRUE
+
+CpuDxe-guid := 1A1E4886-9517-440e-9FDE-3BE44CEE2136
+CpuDxe-depex := \
+	$(IntelRegAccessProtocolGuid) \
+        $(SmbiosProtocolGuid) \
+        $(EfiTimerArchProtocolGuid) \
+        $(IntelPlatformTypeGuid) \
+        $(IntelPlatformCpuPolicy) \
+
+CpuIo2Dxe-guid := A19B1FE7-C1BC-49F8-875F-54A5D542443F
+CpuIo2Dxe-depex := $(IntelRegAccessProtocolGuid)
+
+Metronome-guid := C8339973-A563-4561-B858-D8476F9DEFC4
+Metronome-depex:= TRUE
+
+WatchdogTimer-guid := F099D67F-71AE-4c36-B2A3-DCEB0EB2B7D8
+WatchdogTimer-depex := TRUE
+
+NullMemoryTestDxe-guid := 96B5C032-DF4C-4b6e-8232-438DCF448D0E
+NullMemoryTestDxe-depex := TRUE
+
+HiiDatabase-guid := 348C4D62-BFBD-4882-9ECE-C80BB1C4783B
+HiiDatabase-depex := TRUE
+
+ReportStatusCodeRouterRuntimeDxe-guid := d93ce3d8-a7eb-4730-8c8e-cc466a9ecc3c
+ReportStatusCodeRouterRuntimeDxe-depex := TRUE
+
+MonotonicCounterRuntimeDxe-guid := AD608272-D07F-4964-801E-7BD3B7888652
+MonotonicCounterRuntimeDxe-depex := TRUE
+
+#
+# ACPI related things
+#
+AcpiTableDxe-guid := 9622E42C-8E38-4a08-9E8F-54F784652F6B
+AcpiTableDxe-depex := $(RuntimeArchProtocolGuid)
+
+AcpiPlatform-guid := cb933912-df8f-4305-b1f9-7b44fa11395c
+AcpiPlatform-depex := \
+	$(RuntimeArchProtocolGuid) \
+	$(AcpiTableProtocolGuid) \
+
+
+#
+# SMM related things
+#
+PiSmmCore-type := SMM_CORE
+PiSmmCore-guid := E94F54CD-81EB-47ed-AEC3-856F5DC157A9
+
+PiSmmIpl-guid := 2FA2A6DA-11D5-4dc3-999A-749648B03C56
+PiSmmIpl-depex := \
+	$(EfiSmmAccess2ProtocolGuid) \
+	$(EfiSmmControl2ProtocolGuid) \
+

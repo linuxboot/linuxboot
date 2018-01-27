@@ -8,6 +8,7 @@ all: linuxboot
 
 -include .config
 include Makefile.rules
+include Makefile.uefi
 
 # The config file should set the BOARD variable
 # as well as point to the bzImage and initrd.cpio files
@@ -62,24 +63,6 @@ edk2/.git:
 
 $(BUILD)/Linux.ffs: $(KERNEL)
 $(BUILD)/Initrd.ffs: $(INITRD)
-
-RuntimeArchProtocolGuid	:= b7dfb4e1-052f-449f-87be-9818fc91b733
-AcpiTableProtocolGuid	:= FFE06BDD-6107-46A6-7BB2-5A9C7EC5275C
-SmbiosProtocolGuid	:= 03583ff6-cb36-4940-947e-b9b39f4afaf7
-VariableArchProtocolGuid	:= 1E5668E2-8481-11D4-BCF1-0080C73C8881
-
-Linux-guid := DECAFBAD-6548-6461-732d-2f2d4e455246
-Linux-depex := \
-	$(RuntimeArchProtocolGuid) \
-	$(AcpiTableProtocolGuid) \
-	$(SmbiosProtocolGuid) \
-	$(VariableArchProtocolGuid) \
-
-Initrd-guid := 74696e69-6472-632e-7069-6f2f62696f73
-Initrd-type := FREEFORM
-
-DxeCore-type := DXE_CORE
-PiSmmCore-type := SMM_CORE
 
 
 $(BUILD)/%.ffs: $(EDK2_OUTPUT_DIR)/%.efi
