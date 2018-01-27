@@ -41,7 +41,8 @@ This will write the values into the `.config` file so that you don't
 need to specify them each time.  If all goes well you will end up with
 a file in `build/$(BOARD)/linuxboot.rom` that can be flashed to your machine.
 It will take a while since it also clones the LinuxBoot patched version
-of [`tianocore/edk2`](https://github.com/linuxboot/edk2) and build it.
+of [`tianocore/edk2` UDK2018 branch](https://github.com/linuxboot/edk2/tree/UDK2018)
+and build it.
 
 
 Emulating with qemu
