@@ -15,7 +15,7 @@
 #
 
 linuxboot-size	:= 0x800000
-dxe-size	:= 0xe00000
+dxe-size	:= 0xA00000
 merged-size	:= 0x748000
 
 fv-path := $(BUILD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
