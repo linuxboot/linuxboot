@@ -1,0 +1,51 @@
+#
+# Specific targets and things for the OCP Winterfell board
+#
+# This is responsible for extracting the DXE section from the ROM,
+# extracting each of the images from it, and setting the sizes for
+# the different firmware images.
+#
+
+#
+
+# 16 MB ROM total size
+linuxboot-size	:= 0x1000000
+
+# DXE+Linux ROM, uncompressed
+dxe-size	:= 0x42F000
+dxe-compress	:= 0xF00000
+
+# The DXE files are stored in the FV at 0x920000
+dxe-path := $(BUILD)/rom/0x00920000/
+
+dxe-files := $(shell awk  \
+	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
+	boards/$(BOARD)/image-files.txt \
+)
+
+
+# The Monolake ROM is really fragmented.
+# We could recover osme of the space at 0x8800000
+# if we change the RomLayout to point to it.
+FVS := \
+$(BUILD)/rom/0x00000000.ifd \
+$(BUILD)/rom/0x000f0000.bin \
+$(BUILD)/rom/0x00800000.fv \
+$(BUILD)/rom/0x00880000.bin \
+$(BUILD)/dxe.vol \
+$(BUILD)/rom/0x00d4f000.bin \
+$(BUILD)/rom/0x00d80000.fv \
+$(BUILD)/rom/0x00da0000.bin \
+$(BUILD)/rom/0x00dc0000.fv \
+
+
+# Replace the DxeCore and SmmCore with our own
+# and add in the Linux kernel / initrd
+# The DXE files from Monolake are per-file LZMA compressed
+$(BUILD)/dxe.vol: \
+	$(BUILD)/DxeCore.ffs \
+	$(BUILD)/PiSmmCore.ffs \
+	$(dxe-files) \
+	$(BUILD)/Linux.ffs \
+	$(BUILD)/Initrd.ffs \
+
