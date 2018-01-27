@@ -63,10 +63,28 @@ sub process_region
 
 	for(my $offset = $start_offset ; $offset < $end_offset ; $offset += $step)
 	{
-		my $signature = substr($_, $offset + 0x28, 4);
+		# Look for a flash region descriptor
+		my $ifd_sig = unpack("N", substr($_, $offset + 0x10, 4));
+		if ($ifd_sig == 0x5AA5F00F)
+		{
+			printf "%s/0x%08x.ifd: Flash Descriptor\n",
+				$base,
+				$offset,
+				;
+
+			my $ifd_len = 0xF0000;
+			my $data = substr($_, $offset, $ifd_len);
+
+			output(sprintf("%s/0x%08x.ifd", $base, $offset), $data);
+
+			$offset += $ifd_len - $step;
+			next;
+		}
+
+		my $fv_sig = substr($_, $offset + 0x28, 4);
 		my $fv_length = EFI::read64($_, $offset + 0x20);
 
-		if ($signature ne '_FVH' or $offset + $fv_length > $length)
+		if ($fv_sig ne '_FVH' or $offset + $fv_length > $length)
 		{
 			# likely not a filesystem; report an unknown region
 			# if we have started processing filesystems
