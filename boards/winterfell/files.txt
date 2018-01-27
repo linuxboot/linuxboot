@@ -3,10 +3,10 @@
 #
 17088572-377f-44ef-8f4e-b09fff46a070 Microcode
 1d167657-04fe-42e5-9747-141b5a765875 TseBehavior
-# 93022f8c-1f09-47ef-bbb2-5814ff609df5 FileSystem
-# dac2b117-b5fb-4964-a312-0dcc77061b9b Font
+93022f8c-1f09-47ef-bbb2-5814ff609df5 FileSystem
+dac2b117-b5fb-4964-a312-0dcc77061b9b Font
 9221315b-30bb-46b5-813e-1b1bf4712bd3 Default NVRAM
-# 5ae3f37e-4eae-41ae-8240-35465b5e81eb DxeCore  # Replaced with DxeCore from edk2
+5ae3f37e-4eae-41ae-8240-35465b5e81eb CORE_DXE
 cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
 70e1a818-0be1-4449-bfd4-9ef68c7f02a8 ReFlash
 3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
@@ -43,53 +43,71 @@ efd652cc-0e99-40f0-96c0-e08c089070fc S3Restore
 57e56594-ce95-46ad-9531-3c49310ca7ce OFBD
 8f5a2e02-538c-4d59-b920-c4786acbc552 AHCI
 67820532-7613-4dd3-9ed7-3d9be3a7da63 AINT13
-# bc3245bd-b982-4f55-9f79-056ad7e987c5 AhciSmm
-# a062cf1f-8473-4aa3-8793-600bc4ffe9a8 CSMCORE
+bc3245bd-b982-4f55-9f79-056ad7e987c5 AhciSmm
+a062cf1f-8473-4aa3-8793-600bc4ffe9a8 CSMCORE
 a08276ec-a0fe-4e06-8670-385336c7d093 x86Thunk
 25acf158-dd61-4e64-9a49-55851e9a26c7 BIOSBLKIO
-# 29cf55f8-b675-4f5d-8f2f-b87a3ecfd063 CsmVideo
+29cf55f8-b675-4f5d-8f2f-b87a3ecfd063 CsmVideo
 71ed12d1-250b-42fb-8c17-10dcfa771701 LegacyInterrupt
 59af16b0-661d-4865-a381-38de68385d8d OpalSecurity
 3580a829-3572-416e-bd8c-55877a16ed51 HeciSmm
 8e262d48-6181-493c-83b1-36e0dae0acab DcmiSmm
 b89b4673-23ae-4b80-89bd-151bb80bec73 RtErrorLog
-# 0167ccc4-d0f7-4f21-a3ef-9e64b7cdce8b ScsiBus
-# 0a66e322-3740-4cce-ad62-bd172cecca35 ScsiDisk
-# 952821aa-eacd-465b-b478-5429dfc9a747 SlpSupport
+0167ccc4-d0f7-4f21-a3ef-9e64b7cdce8b ScsiBus
+0a66e322-3740-4cce-ad62-bd172cecca35 ScsiDisk
+952821aa-eacd-465b-b478-5429dfc9a747 SlpSupport
 69009842-63f2-43db-964b-efad1c39ec85 empty pad?
 996aa1e0-1e8c-4f36-b519-a170a206fc14 empty pad?
 be216ba8-38c4-4535-a6ca-5dca5b43addf SmiVariable
 a56897a1-a77f-4600-84db-22b0a801fa9a SmmRuntime
-# 9ba52737-7d71-4306-8b8e-60c90426e66a GenericElog
-# 6c1962b6-921e-420b-acff-d7aea03a08d0 SmbiosElog
-# ee5f9c39-e782-487b-89af-0dd4068bd4bf DataHubErrorCollector
-# df4a6a65-3283-4ba5-90d7-eb08d0695c56 EventLogsSetupPage
-# b1aed58a-c460-4887-93d7-5895041a075d SmbiosElogSetupScreen
+9ba52737-7d71-4306-8b8e-60c90426e66a GenericElog
+6c1962b6-921e-420b-acff-d7aea03a08d0 SmbiosElog
+ee5f9c39-e782-487b-89af-0dd4068bd4bf DataHubErrorCollector
+df4a6a65-3283-4ba5-90d7-eb08d0695c56 EventLogsSetupPage
+b1aed58a-c460-4887-93d7-5895041a075d SmbiosElogSetupScreen
 af987bd6-1fa3-4ea6-8d27-b9f6775ad783 DxeDcmi
 3e2282a2-8be1-42e7-8d8f-b20195d8d85f DcmiDxeFrb
 71ca9ca1-325d-4bfe-afa3-2ec5c94a8680 DmAcpi
 f43c4e50-6f3f-465e-8089-68e3568f011d DcmiSelStatusCode
-# 35240391-dc1b-45b4-85b2-c23b7b9d7a33 SOLConfig
+35240391-dc1b-45b4-85b2-c23b7b9d7a33 SOLConfig
 bc0b9fb8-97cf-4b17-9a9e-f574e62cbcc4 DcmiLanConfig
 486c8efd-4f50-4874-9e05-f9d6c2e7cbbe DcmiFru
-# a59a0056-3341-44b5-9c9c-6d76f7673817 SignON
+b1da0adf-4f77-4070-a88e-bffe1c60529a NERF
+a59a0056-3341-44b5-9c9c-6d76f7673817 SignON
 63819805-67bb-46ef-aa8d-1524a19a01e4 ???
-# c57ad6b7-0515-40a8-9d21-551652854e37 Shellx64
+c57ad6b7-0515-40a8-9d21-551652854e37 Shellx64
 bc327dbd-b982-4f55-9f79-056ad7e987c5 SMIFlash
 4a37320b-3fb3-4365-9730-9e89c600395d SmmDispatcher
 d2596f82-f0e1-49fa-95bc-62012c795728 ???
-# d0632c90-afd7-4492-b186-257c63143c61 SmmBase  # Replaced with PiSmmCore?
+d0632c90-afd7-4492-b186-257c63143c61 SmmBase
 7e2d983f-f703-4a29-9761-77b51f5354ed SmmCommunicate
+399cf3a7-82c7-4d9b-9123-db11842986d3 DpcDxe
+8dd91798-ee87-4f0e-8a84-3f998311f930 ArpDxe
+3dd7a87b-d5bd-44af-986f-2e13db5d274c SnpDxe
+c30b94e3-c8f2-4ab0-91ab-fa8df621b1c9 MnpDxe
+0ef8a3b1-388a-4b62-8be6-c7877d50aedf UefiPxeBcDxe
+0029de6a-e024-4eb8-a91d-9f23aa1f4e92 NetworkStackSetupScreen
+b1625d3c-9d2d-4e0d-b864-8a763ee4ec50 TcpDxe
+8dd9176e-ee87-4f0e-8a84-3f998311f930 Dhcp4Dxe
+8f9296ef-2880-4659-b857-915a8901bdc8 Ip4ConfigDxe
+8f92960f-2880-4659-b857-915a8901bdc8 Ip4Dxe
+61afa223-8ac8-4440-9ab5-762b1bf05156 Mtftp4Dxe
+10ee5462-b207-4a4f-abd8-cb522ecaa3a4 Udp4Dxe
+8dd9176d-ee87-4f0e-8a84-3f998311f930 Dhcp6Dxe
+8f92960e-2880-4659-b857-915a8901bdc8 Ip6Dxe
+61afa251-8ac8-4440-9ab5-762b1bf05156 Mtftp6Dxe
+10ee54ae-b207-4a4f-abd8-cb522ecaa3a4 Udp6Dxe
 580dd900-385d-11d7-883a-00500473d4eb UHCD
-# 04eaaaa1-29a1-11d7-8838-00500473d4eb USBRT
-# 4c006cd9-19ba-4617-8483-609194a1acfc USBINT13
-# 4a3602bc-1a05-4c82-99b4-588cd2a32cd5 LEGACYSREDIR
+04eaaaa1-29a1-11d7-8838-00500473d4eb USBRT
+4c006cd9-19ba-4617-8483-609194a1acfc USBINT13
+4a3602bc-1a05-4c82-99b4-588cd2a32cd5 LEGACYSREDIR
 cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SMBiosBoard
 b13edd38-684c-41ed-a305-d7b7e32497df SMBios64
 ded7956d-7e20-4f20-91a1-190439b04d5b SmbiosGetFlashData64
 daf4bf89-ce71-4917-b522-c89d32fbc59f SmbiosStaticData
 e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
 7a08cb98-e9bc-41c3-be19-b302f3f1f595 Terminal
+2187af13-8880-4f76-8f9f-2a91079c9daa WHEA
 8c783970-f02a-4a4d-af09-8797a51eec8d PowerManagement
 299141bb-211a-48a5-92c0-6f9a0a3a006e PowerManagement-ACPI-table
 2df10014-cf21-4280-8c3f-e539b8ee5150 PpmPolicyInitDxe
@@ -97,12 +115,39 @@ e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
 5446c293-339b-47cd-b719-585de39408cc PostReport
 fb142b99-df57-46cb-bc69-0bf858a734f9 PciSerial
 bfe205c9-5b17-4f8f-9375-89614af8e199 OEMDXE
-# 899407d7-99fe-43d8-9a21-79ec328cac21 Setup
-# 7bb28b99-61bb-11d5-9a5d-0090273fc14d Logo file
+899407d7-99fe-43d8-9a21-79ec328cac21 Setup
+7bb28b99-61bb-11d5-9a5d-0090273fc14d Logo file
 f1274f10-0d43-11e0-81e0-0800200c9a66 PciOutOfResourceSetupPage
 c8743f2c-bfbf-425c-b443-f9a388080026 OEMBDXE
 c76579de-ca13-46d1-b92a-3f5a9f2a7a93 OEMBSMI
 c56d9fcd-4c09-4186-8114-329013f90fd8 OnboardDevice
-# 09538704-8aa7-4d77-b9c7-cf620b07eda2 MiniSasHpDxe
+09538704-8aa7-4d77-b9c7-cf620b07eda2 MiniSasHpDxe
 cd84562c-6864-40a3-a081-c8d35e82b920 CspLibDxe
 1cd3eb4b-3434-4837-9ccb-2f6093fe3499 RuntimeMemoryHole
+
+#
+# PEI modules
+#
+17088572-377f-44ef-8f4e-b09fff46a070 Microcode
+4862aff3-667c-5458-b274-a1c62df8ba80 HECIPEI
+4219e9b5-4393-4ab5-bbeb-605b9a95b791 PeiDcmi
+9ae09151-499e-4668-b0eb-0779d94f3180 DcmiPeiFrb
+a4d42fe9-ed66-468f-9396-6e7a0c3f046f DcmiPeiSelStatusCode
+5c08c7c8-24c2-4400-9627-cf2869421e06 IvtQpiandMrcInit
+c6e9351e-dec3-4031-b05e-a534bf27665a OEMBPEI
+92685943-d810-47ff-a112-cc8490776a1f CORE_PEI
+e008b434-0e73-440c-8612-a143f6a07bcb Recovery
+1555acf3-bd07-4685-b668-a86945a4124d CpuPeiBeforeMem
+2bb5afa9-ff33-417b-8497-cb773c2b93bf CpuPei
+c1fbd624-27ea-40d1-aa48-94c3dc5c7e0d SBPEI
+9ea28d33-0175-4788-bea8-6950516030a5 SmBusPei
+79aa6086-035a-4ad9-a89a-a6d5aa27f0e2 NBPEI
+8401a046-6f70-4505-8471-7015b40355e3 UsbBotPeim
+fd44820b-f1ab-41c0-ae4e-0c55556eb9bd SmbiosFlashData
+0dca793a-ea96-42d8-bd7b-dc7f684e38c1 RomLayout
+a304f9a8-9e92-417b-b4e4-f385654eb90f BatteryMonitor
+db812123-5408-4202-8e66-43ced44f4e18 ReDriver
+67c68e06-cfc4-4c32-9905-b9999c310f6f MiniSasHpPei
+3fd1d3a2-99f7-420b-bc69-8bb1d492a332 Fid
+078f54d4-cc22-4048-9e94-879c214d562f Pad
+1ba0062e-c779-4582-8566-336ae8f78f09 SECCORE
