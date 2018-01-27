@@ -21,27 +21,33 @@ For the `initrd`, the [Heads firmware](http://osresearch.net/) or
 Both will build minimal runtimes that can fit into the few megabytes
 of space available.
 
-Configure the build system:
-
-    make \
-    	BOARD=s2600wf \
-    	KERNEL=../path/to/bzImage \
-    	INITRD=../path/to/initrd.cpio.xz \
-    	config
-
-This will write the values into the `.config` file so that you don't
-need to specify them each time.
-
 For everything except qemu, you'll need to copy the vendor ROM dump
 to `boards/$(BOARD)/$(BOARD).rom`.  Due to copyright restrictions, we can't
 bundle the ROM images in this tree and you must supply your own ROM from
 your own machine.  qemu can built its own ROM from the `edk2` tree,
 so this is not necessary.
 
-Now run `make` and if all goes well you will end up with a file in
-`build/$(BOARD)/linuxboot.rom` that can be flashed to your machine.
+Configure the build system:
 
-For qemu you can launch the emulator by running:
+    cp path/to/s2600wf.rom boards/s2600wf/
+    make \
+    	BOARD=s2600wf \
+    	KERNEL=../path/to/bzImage \
+    	INITRD=../path/to/initrd.cpio.xz \
+    	config
+    make
+
+This will write the values into the `.config` file so that you don't
+need to specify them each time.  If all goes well you will end up with
+a file in `build/$(BOARD)/linuxboot.rom` that can be flashed to your machine.
+
+
+Emulating with qemu
+===
+
+If you want to experiment with LinuxBoot you can run it under qemu.
+No ROM file is necessary, although you still need a Heads or NERF runtime
+kernel/initrd pair.  You can launch the emulator by running:
 
     make run
 
