@@ -213,17 +213,40 @@ sub section
 	return $sec;
 }
 
+
+sub section_pad
+{
+	my $len = shift;
+	return '' if $len < $sec_hdr_len;
+
+	return section(RAW => chr(0x00) x ($len - $sec_hdr_len));
+}
+
 sub ffs_align
 {
+	my $pad_offset = shift || 0;
+	my $pad_align = shift || 0;
 	my $align = 4;
 	my $data = '';
 
 	for my $sec (@_)
 	{
-		# sections should be aligned,
+		# sections must be 4 byte aligned,
 		my $unaligned = length($data) % $align;
 		$data .= chr(0x00) x ($align - $unaligned)
 			if $unaligned != 0;
+
+		# if we need more alignment, add a pad section
+		if ($pad_align)
+		{
+			$unaligned = (length($data) + $pad_offset) % $pad_align;
+			$unaligned += $pad_align
+				if $unaligned < $sec_hdr_len;
+
+			$data .= section_pad($pad_align - $unaligned)
+				if $unaligned != 0;
+		}
+
 		$data .= $sec;
 	}
 
@@ -235,7 +258,7 @@ sub ffs
 {
 	my $file_type = shift;
 	my $guid = shift;
-	my $data = ffs_align(@_);
+	my $data = ffs_align(0, 0, @_);
 
 	# if they did not provide a GUID, generate one
 	$guid ||= substr(sha1($data), 0, 16);
@@ -330,7 +353,9 @@ sub depex
 # compress a section and Wrap a GUIDed section around it
 sub compress
 {
-	my $data = ffs_align(@_);
+	# We could force 128-byte alignment for compressed sections
+	# but it doesn't seem to matter.
+	my $data = ffs_align(0, 00, @_);
 
 	my ($fh,$filename) = tempfile();
 	print $fh $data;
