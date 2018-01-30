@@ -14,7 +14,6 @@
 #
 #
 
-linuxboot-size	:= 0x800000
 dxe-size	:= 0xA00000
 merged-size	:= 0x748000
 

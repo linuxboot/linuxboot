@@ -16,9 +16,6 @@
 #
 #
 
-# 64 MB ROM total size
-linuxboot-size	:= 0x4000000
-
 # 4 MB DXE ROM, compressed from 15 MB
 dxe-compress	:= 0xF00000
 dxe-size	:= 0x400000

@@ -33,6 +33,9 @@ $(shell \
 # Bring in the board specific things
 include boards/$(BOARD)/Makefile.board
 
+# If they don't define a vendor ROM file
+ROM ?= boards/$(BOARD)/$(BOARD).rom
+
 linuxboot: $(BUILD)/linuxboot.rom
 
 # Create a .config file based on the current parameters
@@ -65,6 +68,12 @@ $(BUILD)/Linux.ffs: $(KERNEL)
 $(BUILD)/Initrd.ffs: $(INITRD)
 
 
+$(BUILD)/%.ffs: $(BUILD)/%.vol
+	./bin/create-ffs \
+		-o $@ \
+		--type FIRMWARE_VOLUME_IMAGE \
+		$^
+
 $(BUILD)/%.ffs: $(EDK2_OUTPUT_DIR)/%.efi
 	$(create-ffs)
 $(BUILD)/%.ffs:
@@ -72,14 +81,16 @@ $(BUILD)/%.ffs:
 
 $(BUILD)/%.rom:
 	cat > $@.tmp $^
-	@if [ `stat -c'%s' $@.tmp` -ne $$[$($(basename $(notdir $@))-size)] ]; then \
-		echo >&2 "$@: Wrong output size"; \
+	@if [ `stat -c"%s" $@.tmp` -ne `stat -c"%s" $(ROM)` ]; then \
+		printf >&2 "%s: Wrong output size 0x%x != expected 0x%x\n" \
+			$@ `stat -c'%s' $@.tmp` `stat -c'%s' $(ROM)` ; \
 		exit 1; \
 	fi
 	@mv $@.tmp $@
 
 $(BUILD)/%.vol:
 	./bin/create-fv \
+		-v \
 		-o $@ \
 		--size $(or $($(basename $(notdir $@))-size),0x400000) \
 		--compress $(or $($(basename $(notdir $@))-compress),0) \
@@ -98,13 +109,13 @@ create-ffs = \
 #
 # Extract all of the firmware files from the vendor provided ROM
 #
-extract.intermediate: boards/$(BOARD)/$(BOARD).rom
+extract.intermediate: $(ROM)
 	( \
 	cd $(BUILD) ; \
 	$(pwd)/bin/extract-firmware \
 		-o rom \
 	) < $^ \
-	| tee $(BUILD)/$(BOARD).txt ; \
+	> $(BUILD)/$(BOARD).txt ; \
 
 .INTERMEDIATE: extract.intermediate
 

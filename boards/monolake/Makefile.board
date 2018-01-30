@@ -6,11 +6,6 @@
 # the different firmware images.
 #
 
-#
-
-# 16 MB ROM total size
-linuxboot-size	:= 0x1000000
-
 # DXE+Linux ROM, uncompressed
 dxe-size	:= 0x42F000
 dxe-compress	:= 0xF00000
