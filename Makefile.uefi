@@ -71,6 +71,10 @@ ReportStatusCodeRouterRuntimeDxe-depex := TRUE
 MonotonicCounterRuntimeDxe-guid := AD608272-D07F-4964-801E-7BD3B7888652
 MonotonicCounterRuntimeDxe-depex := TRUE
 
+PciHostBridgeDxe-depex := TRUE
+PciBusDxe-depex := TRUE
+PciSioSerialDxe-depex := TRUE
+
 #
 # ACPI related things
 #

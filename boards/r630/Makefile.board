@@ -1,20 +1,28 @@
 #
 # Specific targets and things for the Dell R630 mainboard
-# These sizes are based on the 1.3.5 UEFI firmware
+# This is specific to the 2.5.5 firmware, although it has
+# been made to work on the 1.3.6 as well.
+#
+# There is an empty section at 0x8f0000 of nearly 4 MB
+# if we need more space.
 #
 # This is responsible for extracting the DXE section from the ROM,
 # extracting each of the images from it, and setting the sizes for
 # the different firmware images.
 #
 
-# 16 MB ROM total size
-linuxboot-size	:= 0x1000000
+VERSION := 1.3.6
+ROM := boards/$(BOARD)/r630-$(VERSION).rom
 
 # 4.x MB DXE ROM, compressed from 15 MB
-#dxe-compress	:= 0xF00000
-dxe-size	:= 0xB30000
+dxe-compress	:= 0xF00000
+dxe-size	:= 0x470000
 
-dxe-path := $(BUILD)/rom/0x03500000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792/0
+#dxe-path0 := $(BUILD)/rom/0x00310000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792/0
+#dxe-path1 := $(BUILD)/rom/0x00310000/ee46c7c1-c9dc-4f47-8710-6f89f0f50357/0
+
+# We will take files from either of the volumes
+dxe-path := $(BUILD)/rom/0x00310000/*/0
 
 dxe-files := $(shell awk  \
 	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
@@ -26,10 +34,20 @@ FVS := \
 $(BUILD)/rom/0x00000000.ifd \
 $(BUILD)/rom/0x000f0000.bin \
 $(BUILD)/dxe.vol \
+$(BUILD)/rom/0x00780000.bin \
+$(BUILD)/rom/0x007c0000.fv \
+$(BUILD)/rom/0x007d0000.fv \
+$(BUILD)/rom/0x00870000.bin \
+$(BUILD)/rom/0x008e0000.fv \
+$(BUILD)/rom/0x008f0000.bin \
+$(BUILD)/rom/0x00d60000.fv \
+$(BUILD)/rom/0x00e00000.fv \
 $(BUILD)/rom/0x00e40000.fv \
 $(BUILD)/rom/0x00f10000.fv \
 $(BUILD)/rom/0x00f60000.fv \
 
+dxe-replaces :=\
+$(BUILD)/rom/0x00310000.fv \
 
 # Replace the DxeCore and SmmCore with our own
 # and bundle the LinuxBoot kernel into the same volume
@@ -37,14 +55,17 @@ $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
 	$(BUILD)/RuntimeDxe.ffs \
-	$(BUILD)/AcpiTableDxe.ffs \
-	$(BUILD)/AcpiPlatform.ffs \
-	$(BUILD)/SmbiosDxe.ffs \
-	$(BUILD)/AcpiTableStorage.ffs \
+	$(dxe-files) \
+	$(BUILD)/PciBusDxe.ffs \
+	$(BUILD)/PciHostBridgeDxe.ffs \
+	$(BUILD)/PciSioSerialDxe.ffs \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
 
+#
+# If we were using our own ACPI tables, we could include them here
+#
 $(BUILD)/AcpiTableStorage.ffs: $(sort boards/$(BOARD)/acpi/*)
 AcpiTableStorage-guid := 7E374E25-8E01-4FEE-87F2-390C23C606CD
 AcpiTableStorage-type := FREEFORM
