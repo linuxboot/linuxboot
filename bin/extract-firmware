@@ -319,7 +319,8 @@ sub ffs_sections
 
 		if ($len < $data_offset)
 		{
-			die sprintf "%s: 0x%x Section length %x invalid\n", $base, $offset, $len;
+			warn sprintf "%s: 0x%x Section length %x invalid\n", $base, $offset, $len;
+			return;
 		}
 
 		if ($offset + $len > $ffs_len)
