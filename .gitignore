@@ -85,3 +85,6 @@ edk2
 bzImage
 boards/*/volume-*
 .config
+*.raw
+*.pad
+*.hop
