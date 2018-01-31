@@ -1,10 +1,6 @@
 #
 # DXE volume files
 #
-17088572-377f-44ef-8f4e-b09fff46a070 Microcode
-1d167657-04fe-42e5-9747-141b5a765875 TseBehavior
-93022f8c-1f09-47ef-bbb2-5814ff609df5 FileSystem
-dac2b117-b5fb-4964-a312-0dcc77061b9b Font
 9221315b-30bb-46b5-813e-1b1bf4712bd3 Default NVRAM
 5ae3f37e-4eae-41ae-8240-35465b5e81eb CORE_DXE
 cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
@@ -14,11 +10,9 @@ cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
 9f3a0016-ae55-4288-829d-d22fd344c347 AmiBoardInfo
 13ac6dd0-73d0-11d4-b06b-00aa00bd6de7 EBC
 e03abadf-e536-4e88-b3a0-b77f78eb34fe CpuDxe
-f3331de6-4a55-44e4-b767-7453f7a1a021 MicrocodeUpdate
 b7d19491-e55a-470d-8508-85a5dfa41974 SBDXE
 e23f86e1-056e-4888-b685-cfcd67c179d4 SBRun
 ed32f7e0-5f9a-499d-bdba-b1eb58d5b0eb SBIDE
-7ccd5c07-8b3a-4be7-9d12-56b47cbfbccb SBAHCI
 750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
 4b680e2d-0d63-4f62-b930-7ae995b9b3a3 SmBusDxe
 6298fe18-d5ef-42b7-bb0c-2953283f5704 SleepSmi
@@ -41,20 +35,12 @@ ee07e0f6-0f6f-4437-a133-648272baf56c MeCore
 26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
 efd652cc-0e99-40f0-96c0-e08c089070fc S3Restore
 57e56594-ce95-46ad-9531-3c49310ca7ce OFBD
-8f5a2e02-538c-4d59-b920-c4786acbc552 AHCI
-67820532-7613-4dd3-9ed7-3d9be3a7da63 AINT13
-bc3245bd-b982-4f55-9f79-056ad7e987c5 AhciSmm
-a062cf1f-8473-4aa3-8793-600bc4ffe9a8 CSMCORE
 a08276ec-a0fe-4e06-8670-385336c7d093 x86Thunk
-25acf158-dd61-4e64-9a49-55851e9a26c7 BIOSBLKIO
-29cf55f8-b675-4f5d-8f2f-b87a3ecfd063 CsmVideo
 71ed12d1-250b-42fb-8c17-10dcfa771701 LegacyInterrupt
 59af16b0-661d-4865-a381-38de68385d8d OpalSecurity
 3580a829-3572-416e-bd8c-55877a16ed51 HeciSmm
 8e262d48-6181-493c-83b1-36e0dae0acab DcmiSmm
 b89b4673-23ae-4b80-89bd-151bb80bec73 RtErrorLog
-0167ccc4-d0f7-4f21-a3ef-9e64b7cdce8b ScsiBus
-0a66e322-3740-4cce-ad62-bd172cecca35 ScsiDisk
 952821aa-eacd-465b-b478-5429dfc9a747 SlpSupport
 69009842-63f2-43db-964b-efad1c39ec85 empty pad?
 996aa1e0-1e8c-4f36-b519-a170a206fc14 empty pad?
@@ -72,25 +58,18 @@ f43c4e50-6f3f-465e-8089-68e3568f011d DcmiSelStatusCode
 35240391-dc1b-45b4-85b2-c23b7b9d7a33 SOLConfig
 bc0b9fb8-97cf-4b17-9a9e-f574e62cbcc4 DcmiLanConfig
 486c8efd-4f50-4874-9e05-f9d6c2e7cbbe DcmiFru
-a59a0056-3341-44b5-9c9c-6d76f7673817 SignON
-63819805-67bb-46ef-aa8d-1524a19a01e4 ???
-c57ad6b7-0515-40a8-9d21-551652854e37 Shellx64
 bc327dbd-b982-4f55-9f79-056ad7e987c5 SMIFlash
 4a37320b-3fb3-4365-9730-9e89c600395d SmmDispatcher
 d2596f82-f0e1-49fa-95bc-62012c795728 ???
 d0632c90-afd7-4492-b186-257c63143c61 SmmBase
 7e2d983f-f703-4a29-9761-77b51f5354ed SmmCommunicate
 580dd900-385d-11d7-883a-00500473d4eb UHCD
-04eaaaa1-29a1-11d7-8838-00500473d4eb USBRT
-4c006cd9-19ba-4617-8483-609194a1acfc USBINT13
 4a3602bc-1a05-4c82-99b4-588cd2a32cd5 LEGACYSREDIR
 cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SMBiosBoard
 b13edd38-684c-41ed-a305-d7b7e32497df SMBios64
 ded7956d-7e20-4f20-91a1-190439b04d5b SmbiosGetFlashData64
 daf4bf89-ce71-4917-b522-c89d32fbc59f SmbiosStaticData
 e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
-7a08cb98-e9bc-41c3-be19-b302f3f1f595 Terminal
-2187af13-8880-4f76-8f9f-2a91079c9daa WHEA
 8c783970-f02a-4a4d-af09-8797a51eec8d PowerManagement
 299141bb-211a-48a5-92c0-6f9a0a3a006e PowerManagement-ACPI-table
 2df10014-cf21-4280-8c3f-e539b8ee5150 PpmPolicyInitDxe
@@ -98,8 +77,6 @@ e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
 5446c293-339b-47cd-b719-585de39408cc PostReport
 fb142b99-df57-46cb-bc69-0bf858a734f9 PciSerial
 bfe205c9-5b17-4f8f-9375-89614af8e199 OEMDXE
-899407d7-99fe-43d8-9a21-79ec328cac21 Setup
-7bb28b99-61bb-11d5-9a5d-0090273fc14d Logo file
 f1274f10-0d43-11e0-81e0-0800200c9a66 PciOutOfResourceSetupPage
 c8743f2c-bfbf-425c-b443-f9a388080026 OEMBDXE
 c76579de-ca13-46d1-b92a-3f5a9f2a7a93 OEMBSMI
