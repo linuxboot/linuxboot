@@ -5,15 +5,15 @@
 # extracting each of the images from it, and setting the sizes for
 # the different firmware images.
 #
-
-# This pulls that image apart and inserts the Linux kernel and Initrd
-# The ROM layout is:
-# 0x000000.fv NVRAM
-# 0x084000.fv FV (DXE and PEI)
-#        0.fv PEI
-#        1.fv DXE
-# 0x7cc000.fv SEC
+# For space reasons the DXE is put in the recovery FV at 0x2C00000
+# and the kernel/initrd are put in a separate volume at 0x3500000.
 #
+# To upload the entire ROM (including ME and PEI):
+# ( echo u0 4000000 ; pv build/s2600wf/linuxboot.vol ) > /dev/ttyACM0
+#
+# To upload just kernel or DXE:
+# ( echo u3500000 400000 ; pv build/s2600wf/linux.vol ) > /dev/ttyACM0
+# ( echo u2c00000 400000 ; pv build/s2600wf/dxe.vol ) > /dev/ttyACM0
 #
 
 # 4 MB DXE ROM, compressed from 15 MB
