@@ -5,11 +5,14 @@
 # extracting each of the images from it, and setting the sizes for
 # the different firmware images.
 #
+# Replace just the dxe volume:
+# ( echo u860000 6a0000 ; pv build/winterfell/dxe.vol ) > /dev/ttyACM0
 
 # 6.9 MB DXE+Linux ROM, uncompressed
 dxe-size	:= 0x6A0000
+#dxe-compress	:= 0xF00000
 
-dxe-path := $(BUILD)/rom/0x00860000/
+dxe-path := $(BUILD)/rom/0x00860000
 
 dxe-files := $(shell awk  \
 	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
@@ -34,9 +37,19 @@ $(BUILD)/rom/0x00f00000.fv \
 # Replace the DxeCore and SmmCore with our own
 # and add in the Linux kernel / initrd
 $(BUILD)/dxe.vol: \
-	$(BUILD)/DxeCore.ffs \
-	$(BUILD)/PiSmmCore.ffs \
-	$(dxe-files) \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
+	$(dxe-files) \
 
+
+
+NO = \
+	$(BUILD)/DxeCore.ffs \
+	$(BUILD)/RuntimeDxe.ffs \
+	$(BUILD)/PiSmmCore.ffs \
+	$(BUILD)/RuntimeDxe.ffs \
+	$(BUILD)/AcpiTableDxe.ffs \
+	$(BUILD)/AcpiPlatform.ffs \
+        $(BUILD)/PciBusDxe.ffs \
+        $(BUILD)/PciHostBridgeDxe.ffs \
+        $(BUILD)/PciSioSerialDxe.ffs \
