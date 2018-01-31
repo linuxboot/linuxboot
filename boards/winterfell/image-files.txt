@@ -4,7 +4,6 @@
 9221315b-30bb-46b5-813e-1b1bf4712bd3 Default NVRAM
 5ae3f37e-4eae-41ae-8240-35465b5e81eb CORE_DXE
 cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
-70e1a818-0be1-4449-bfd4-9ef68c7f02a8 ReFlash
 3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
 80e66e0a-ccd1-43fa-a7b1-2d5ee0f13910 PciRootBridge
 9f3a0016-ae55-4288-829d-d22fd344c347 AmiBoardInfo
@@ -15,7 +14,6 @@ e23f86e1-056e-4888-b685-cfcd67c179d4 SBRun
 ed32f7e0-5f9a-499d-bdba-b1eb58d5b0eb SBIDE
 750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
 4b680e2d-0d63-4f62-b930-7ae995b9b3a3 SmBusDxe
-6298fe18-d5ef-42b7-bb0c-2953283f5704 SleepSmi
 753630c9-fae5-47a9-bbbf-88d621cd7282 SmmChildDispatcher
 7b8db049-c7c7-4d3b-809f-926dee47cca2 SBSMI
 e4ecd0b2-e277-4f2b-becb-e4d75c9a812e NBDXE
@@ -25,21 +23,16 @@ d4c05cd1-5eae-431d-a095-13a9e5822045 MPST
 6869c5b3-ac8d-4973-8b37-e354dbf34add CmosManagerSmm
 db93cb2c-bf1c-431a-abc8-8737bc2afc1f PRAD-ACPI-table
 3bc5b795-a4e0-4d56-9321-316d18a7aefe PRAD
-55e76644-78a5-4a82-a900-7126a5798892 HECIDXE
-ee07e0f6-0f6f-4437-a133-648272baf56c MeCore
 842a454a-75e5-408b-8b1c-36420e4e3f21 NvramSmi
 16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
 26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
 efd652cc-0e99-40f0-96c0-e08c089070fc S3Restore
-57e56594-ce95-46ad-9531-3c49310ca7ce OFBD
-a08276ec-a0fe-4e06-8670-385336c7d093 x86Thunk
 71ed12d1-250b-42fb-8c17-10dcfa771701 LegacyInterrupt
 69009842-63f2-43db-964b-efad1c39ec85 empty pad?
 996aa1e0-1e8c-4f36-b519-a170a206fc14 empty pad?
 be216ba8-38c4-4535-a6ca-5dca5b43addf SmiVariable
 a56897a1-a77f-4600-84db-22b0a801fa9a SmmRuntime
 71ca9ca1-325d-4bfe-afa3-2ec5c94a8680 DmAcpi
-bc327dbd-b982-4f55-9f79-056ad7e987c5 SMIFlash
 4a37320b-3fb3-4365-9730-9e89c600395d SmmDispatcher
 d2596f82-f0e1-49fa-95bc-62012c795728 ???
 d0632c90-afd7-4492-b186-257c63143c61 SmmBase
@@ -54,10 +47,7 @@ e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
 2df10014-cf21-4280-8c3f-e539b8ee5150 PpmPolicyInitDxe
 5446c293-339b-47cd-b719-585de39408cc PostReport
 fb142b99-df57-46cb-bc69-0bf858a734f9 PciSerial
-bfe205c9-5b17-4f8f-9375-89614af8e199 OEMDXE
 f1274f10-0d43-11e0-81e0-0800200c9a66 PciOutOfResourceSetupPage
-c8743f2c-bfbf-425c-b443-f9a388080026 OEMBDXE
-c76579de-ca13-46d1-b92a-3f5a9f2a7a93 OEMBSMI
 c56d9fcd-4c09-4186-8114-329013f90fd8 OnboardDevice
 cd84562c-6864-40a3-a081-c8d35e82b920 CspLibDxe
 1cd3eb4b-3434-4837-9ccb-2f6093fe3499 RuntimeMemoryHole
