@@ -26,7 +26,7 @@ dxe-files := $(shell awk  \
 # can clean up more space.
 FVS := \
 $(BUILD)/rom/0x00000000.ifd \
-$(BUILD)/rom/0x000f0000.bin \
+$(BUILD)/rom/0x00010000.bin \
 $(BUILD)/rom/0x00800000.fv \
 $(BUILD)/rom/0x00820000.fv \
 $(BUILD)/rom/0x00840000.bin \

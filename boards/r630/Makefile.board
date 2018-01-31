@@ -32,7 +32,7 @@ dxe-files := $(shell awk  \
 
 FVS := \
 $(BUILD)/rom/0x00000000.ifd \
-$(BUILD)/rom/0x000f0000.bin \
+$(BUILD)/rom/0x00010000.bin \
 $(BUILD)/dxe.vol \
 $(BUILD)/rom/0x00780000.bin \
 $(BUILD)/rom/0x007c0000.fv \

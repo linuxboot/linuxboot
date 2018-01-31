@@ -72,7 +72,7 @@ sub process_region
 				$offset,
 				;
 
-			my $ifd_len = 0xF0000;
+			my $ifd_len = 0x10000;
 			my $data = substr($_, $offset, $ifd_len);
 
 			output(sprintf("%s/0x%08x.ifd", $base, $offset), $data);
