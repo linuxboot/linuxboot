@@ -15,15 +15,12 @@ ed32f7e0-5f9a-499d-bdba-b1eb58d5b0eb SBIDE
 750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
 4b680e2d-0d63-4f62-b930-7ae995b9b3a3 SmBusDxe
 753630c9-fae5-47a9-bbbf-88d621cd7282 SmmChildDispatcher
-7b8db049-c7c7-4d3b-809f-926dee47cca2 SBSMI
 e4ecd0b2-e277-4f2b-becb-e4d75c9a812e NBDXE
 59242dd8-e7cf-4979-b60e-a6067e2a185f LegacyRegion
 d4c05cd1-5eae-431d-a095-13a9e5822045 MPST
 622b0ffe-69b9-4554-8eef-339a549aaf6a DynamicPciBaseDxe
-6869c5b3-ac8d-4973-8b37-e354dbf34add CmosManagerSmm
 db93cb2c-bf1c-431a-abc8-8737bc2afc1f PRAD-ACPI-table
 3bc5b795-a4e0-4d56-9321-316d18a7aefe PRAD
-842a454a-75e5-408b-8b1c-36420e4e3f21 NvramSmi
 16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
 26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
 efd652cc-0e99-40f0-96c0-e08c089070fc S3Restore
