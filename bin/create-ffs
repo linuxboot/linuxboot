@@ -19,14 +19,16 @@ Options:
     -g | --guid GUID              This file GUID (default is hash of Name)
     -d | --depex 'guid guid..'    Optional dependencies (all ANDed, or TRUE)
     -z | --compress               Enable LZMA compression
+    -a | --auto                   Detect the section types from the filenames
 
 my $output = '-';
 my $name;
-my $type = 'FREEFORM';
+my $type;
 my $version;
 my $guid;
 my $depex;
 my $compress;
+my $auto;
 
 
 GetOptions(
@@ -37,10 +39,11 @@ GetOptions(
 	"g|guid=s"	=> \$guid,
 	"d|depex=s"	=> \$depex,
 	"z|compress+"	=> \$compress,
+	"a|auto+"	=> \$auto,
 ) or die $usage;
 
 die "$type: unknown file type\n"
-	unless exists $EFI::file_types{$type};
+	if $type and not exists $EFI::file_types{$type};
 
 my @sections;
 
@@ -52,7 +55,43 @@ my @sections;
 local $/ = undef;
 while(<>)
 {
-	push @sections, EFI::section($EFI::section_type_map{$type} || 'PE32', $_);
+	my $sec;
+
+	if ($auto)
+	{
+		# attempt to determine the section type from the name
+		# of the file.  This is useful for re-wrapping
+		# unpacked files from uefi-firmware-parser.
+		if ($ARGV =~ /\.dxe.depex$/)
+		{
+			$sec = 'DXE_DEPEX';
+			$type ||= 'DRIVER';
+		}
+
+		if ($ARGV =~ /\.smm.depex$/)
+		{
+			$sec = 'SMM_DEPEX';
+			$type ||= 'SMM';
+		}
+
+		if ($ARGV =~ /\.pie.depex$/)
+		{
+			$sec = 'PEI_DEPEX';
+			$type ||= 'PEIM';
+		}
+		$sec = 'PE32'		if $ARGV =~ /\.pe$/;
+		$sec = 'RAW'		if $ARGV =~ /\.raw$/;
+		$sec = 'VERSION'	if $ARGV =~ /\.version$/;
+		$sec = 'USER_INTERFACE' if $ARGV =~ /\.ui$/;
+		$sec = 'FREEFORM_SUBTYPE_GUID' if $ARGV =~ /\.freeform.guid$/;
+		
+		die "$ARGV: unknown auto extension\n"
+			unless $sec;
+	} else {
+		$sec = $EFI::section_type_map{$type};
+	}
+
+	push @sections, EFI::section($sec || 'PE32', $_);
 }
 
 # Put the optional parts after the input data
@@ -84,7 +123,7 @@ elsif ($name)
 }
 
 # Create the FFS header for the sections
-my $ffs = EFI::ffs($type, $guid, @sections);
+my $ffs = EFI::ffs($type || 'FREEFORM', $guid, @sections);
 
 
 if ($output eq '-')
