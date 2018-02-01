@@ -1,0 +1,46 @@
+#!/bin/sh
+# The Winterfell ROM is Tiano compressed, which we don't handle in
+# our DxeCore.  So it is necessary to uncompress it with uefi-firmware-parser
+# and then regenerate the files.
+
+DIRNAME="`dirname $0`"
+INPUTS="$DIRNAME/../../build/winterfell/volume-0"
+OUTPUTS="$DIRNAME/../../build/winterfell/rom/0x00860000"
+
+fixup()
+{
+	echo $GUID
+	find "$INPUTS/file-$1" \
+		-type f \
+		-a \
+		-name 'section*' \
+	| grep -v compressed \
+	| xargs "$DIRNAME/../../bin/create-ffs" \
+		-o "$OUTPUTS/$1.ffs" \
+		-g "$1" \
+		-t "$2" \
+		--auto
+}
+
+# Process all the files
+for file in "$INPUTS"/file-*; do
+	GUID="`basename "$file" | cut -d- -f2-`"
+	fixup $GUID
+done
+
+
+# Special case the DXE_CORE and SMM_CORE types
+# as well as some combined mode drivers
+
+echo "DXE CORE"
+fixup 5ae3f37e-4eae-41ae-8240-35465b5e81eb DXE_CORE
+
+echo "SMM CORE"
+fixup 4a37320b-3fb3-4365-9730-9e89c600395d SMM_CORE
+
+echo "misc"
+fixup 3c1de39f-d207-408a-aacc-731cfb7f1dd7 DRIVER
+
+echo "s3"
+fixup 26a2481e-4424-46a2-9943-cc4039ead8f8 COMBINED_SMM_DXE
+fixup 7e2d983f-f703-4a29-9761-77b51f5354ed COMBINED_SMM_DXE
