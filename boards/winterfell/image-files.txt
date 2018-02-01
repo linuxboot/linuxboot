@@ -1,7 +1,6 @@
 #
 # DXE volume files
 #
-9221315b-30bb-46b5-813e-1b1bf4712bd3 Default NVRAM
 5ae3f37e-4eae-41ae-8240-35465b5e81eb CORE_DXE
 cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
 3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
@@ -11,40 +10,30 @@ cbc59c4a-383a-41eb-a8ee-4498aea567e4 Runtime
 e03abadf-e536-4e88-b3a0-b77f78eb34fe CpuDxe
 b7d19491-e55a-470d-8508-85a5dfa41974 SBDXE
 e23f86e1-056e-4888-b685-cfcd67c179d4 SBRun
-ed32f7e0-5f9a-499d-bdba-b1eb58d5b0eb SBIDE
 750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
 4b680e2d-0d63-4f62-b930-7ae995b9b3a3 SmBusDxe
 753630c9-fae5-47a9-bbbf-88d621cd7282 SmmChildDispatcher
 e4ecd0b2-e277-4f2b-becb-e4d75c9a812e NBDXE
 59242dd8-e7cf-4979-b60e-a6067e2a185f LegacyRegion
 d4c05cd1-5eae-431d-a095-13a9e5822045 MPST
-622b0ffe-69b9-4554-8eef-339a549aaf6a DynamicPciBaseDxe
 db93cb2c-bf1c-431a-abc8-8737bc2afc1f PRAD-ACPI-table
 3bc5b795-a4e0-4d56-9321-316d18a7aefe PRAD
 16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
 26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
 efd652cc-0e99-40f0-96c0-e08c089070fc S3Restore
 71ed12d1-250b-42fb-8c17-10dcfa771701 LegacyInterrupt
-69009842-63f2-43db-964b-efad1c39ec85 empty pad?
-996aa1e0-1e8c-4f36-b519-a170a206fc14 empty pad?
+69009842-63f2-43db-964b-efad1c39ec85 Raw data uesd by Smmbase?
 be216ba8-38c4-4535-a6ca-5dca5b43addf SmiVariable
 a56897a1-a77f-4600-84db-22b0a801fa9a SmmRuntime
 71ca9ca1-325d-4bfe-afa3-2ec5c94a8680 DmAcpi
 4a37320b-3fb3-4365-9730-9e89c600395d SmmDispatcher
-d2596f82-f0e1-49fa-95bc-62012c795728 ???
+d2596f82-f0e1-49fa-95bc-62012c795728 Raw data used by SmmBase?
 d0632c90-afd7-4492-b186-257c63143c61 SmmBase
 7e2d983f-f703-4a29-9761-77b51f5354ed SmmCommunicate
 cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SMBiosBoard
 b13edd38-684c-41ed-a305-d7b7e32497df SMBios64
 ded7956d-7e20-4f20-91a1-190439b04d5b SmbiosGetFlashData64
-daf4bf89-ce71-4917-b522-c89d32fbc59f SmbiosStaticData
-e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDMIEdit
+daf4bf89-ce71-4917-b522-c89d32fbc59f SmbiosStaticData -- tiano compresed SMBIOS data
 8c783970-f02a-4a4d-af09-8797a51eec8d PowerManagement
 299141bb-211a-48a5-92c0-6f9a0a3a006e PowerManagement-ACPI-table
 2df10014-cf21-4280-8c3f-e539b8ee5150 PpmPolicyInitDxe
-5446c293-339b-47cd-b719-585de39408cc PostReport
-fb142b99-df57-46cb-bc69-0bf858a734f9 PciSerial
-f1274f10-0d43-11e0-81e0-0800200c9a66 PciOutOfResourceSetupPage
-c56d9fcd-4c09-4186-8114-329013f90fd8 OnboardDevice
-cd84562c-6864-40a3-a081-c8d35e82b920 CspLibDxe
-1cd3eb4b-3434-4837-9ccb-2f6093fe3499 RuntimeMemoryHole
