@@ -8,10 +8,11 @@ use Getopt::Long;
 use Digest::SHA 'sha1';
 use EFI;
 
-my $usage = <<"";
+my $usage = <<"END";
 Usage:
     $0 -o output.ffs [options] file.efi [...]
 Options:
+    -h | -? | --help              This help
     -o | --output output.ffs      Output file (default is stdout)
     -n | --name FileName          Name to include in UI Section 
     -t | --type Type              FREEFORM|DRIVER|SMM|DXE_CORE|SMM_CORE|PEIM
@@ -20,6 +21,7 @@ Options:
     -d | --depex 'guid guid..'    Optional dependencies (all ANDed, or TRUE)
     -z | --compress               Enable LZMA compression
     -a | --auto                   Detect the section types from the filenames
+END
 
 my $output = '-';
 my $name;
@@ -32,6 +34,7 @@ my $auto;
 
 
 GetOptions(
+	"h|?|help"	=> sub { print $usage; exit 0 },
 	"o|output=s"	=> \$output,
 	"n|name=s"	=> \$name,
 	"t|type=s"	=> \$type,
@@ -44,6 +47,8 @@ GetOptions(
 
 die "$type: unknown file type\n"
 	if $type and not exists $EFI::file_types{$type};
+
+die "At least one FFS section is required\n" unless @ARGV;
 
 my @sections;
 

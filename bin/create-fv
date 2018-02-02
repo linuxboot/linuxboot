@@ -18,20 +18,26 @@ use Getopt::Long;
 use Digest::SHA 'sha1';
 use EFI;
 
-my $usage = <<"";
+my $usage = <<"END";
 Usage:
     $0 -o output.fv [options] file.ffs [...]
 Options:
+    -h | -? | --help              This help
     -o | --output output.ffs      Output file (default is stdout)
     -s | --size BYTES             Final size in bytes (default is 4 MB)
     -v | --verbose                Increase verbosity
     -z | --compress BYTES         Create an internal LZMA compresed FV
- 
+
 For compressed firmware volumes, the --size is the final size of the
 output and --compress size is the internal volume.  So to create a 4MB
 volume with a 8MB internal use --size 0x4000000 --compress 0x800000
- 
+
 Sizes are limited to less than 16 MB until FFSv3 support is added.
+
+END
+
+# if invoked with no options, we should probably print some help
+die $usage unless @ARGV;
 
 my $output = '-';
 my $size = 4 * 1024 * 1024;
@@ -39,6 +45,7 @@ my $verbose = 0;
 my $compress_size;
 
 GetOptions(
+	"h|?|help"	=> sub { print $usage; exit 0 },
 	"o|output=s"	=> \$output,
 	"s|size=o"	=> \$size,
 	"z|compress=o"	=> \$compress_size,
