@@ -386,7 +386,7 @@ sub compress
 }
 
 
-# Create a FV header for a given file size
+# Create a FV for a given file size with the included files
 sub fv
 {
 	my $size = shift;
@@ -423,10 +423,24 @@ sub fv
 
 	substr($fv_hdr, 0x32, 2) = pack("v", $sum & 0xFFFF);
 
-	return $fv_hdr;
+	for my $ffs (@_)
+	{
+		next if fv_append(\$fv_hdr, $ffs);
+
+		warn "FV append failed\n";
+		return;
+	}
+
+	return $fv_hdr if fv_pad(\$fv_hdr);
+
+	warn "FV pad failed\n";
+	return;
 }
 
-# Add files to an existing FV
+
+# Append a file to an FV, adding an initial pad if necessary
+# This is used internally by EFI::fv() and should not need to be called
+# by users of the EFI library.
 sub fv_append
 {
 	my $fv_ref = shift;

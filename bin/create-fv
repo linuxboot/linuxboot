@@ -55,37 +55,32 @@ GetOptions(
 #my $guid = EFI::guid($guid_str)
 #	or die "$guid_str: Unable to parse GUID\n";
 
-my $fv = EFI::fv($compress_size || $size);
-
 # Read entire files at a time and append a new file
 # for each input read.
 local $/ = undef;
+my @ffs;
+my $length_sum = 0;
 
 while(<>)
 {
-	my $offset = EFI::fv_append(\$fv, $_)
-		or die "$ARGV: Unable to append\n";
+	push @ffs, $_;
+	$length_sum += length $_;
 
-	warn sprintf "%s: 0x%x bytes offset %x\n",
+	warn sprintf "%s: 0x%x bytes\n",
 		$ARGV,
 		length $_,
-		$offset
 	if $verbose > 1;
 }
 
 warn sprintf "%s: 0x%08x out of %08x bytes in FV%s\n",
 	$output,
-	length($fv),
+	$length_sum,
 	$compress_size || $size,
 	$compress_size ? " (uncompressed)" : "",
 	if $verbose > 0;
 
-EFI::fv_pad(\$fv)
-	or die sprintf "%s: data size 0x%x > volume size 0x%x\n",
-		$output,
-		length $fv,
-		$compress_size || $size
-		;
+my $fv = EFI::fv($compress_size || $size, @ffs)
+	or die "$output: Unable to create FV\n";
 
 if ($compress_size)
 {
@@ -98,14 +93,7 @@ if ($compress_size)
 		$size,
 		if $verbose > 0;
 
-	my $outer_fv = EFI::fv($size);
-	EFI::fv_append(\$outer_fv, $ffs_lz)
-		or die sprintf "%s: Unable to append 0x%08x compressed bytes\n",
-			$output,
-			length($ffs_lz),
-			;
-
-	EFI::fv_pad(\$outer_fv)
+	my $outer_fv = EFI::fv($size, $ffs_lz)
 		or die sprintf "%s: Unable to append 0x%08x compressed bytes\n",
 			$output,
 			length($ffs_lz),
