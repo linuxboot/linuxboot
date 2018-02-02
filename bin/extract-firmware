@@ -15,25 +15,29 @@ use File::Basename;
 use File::Temp 'tempfile';
 use Data::Dumper;
 
-my $usage = <<"";
+my $usage = <<"END";
 Usage:
   $0 [options] firmware.rom | tee firmware.txt
 Options:
+  -h | -? | --help        this usage
   -v | --version          Print per-section logs
   -o | --output-dir DIR   Write the output to a different base directory
   -s | --start 0xX        Starting offset for partial extraction
-  -e | --end 0xX          Ending offset
+  -n | --length 0xX       Number of bytes to extract for partial extraction
+
+END
 
 my $start_offset = 0; # 0x02c00000;
-my $end_offset;
+my $extract_length;
 my $verbose = 0;
 my $base_dir = '.';
 
 GetOptions(
+	"h|?|help"		=> sub { print $usage; exit 0 },
 	"v|verbose+"		=> \$verbose,
 	"o|output-dir=s"	=> \$base_dir,
 	"s|start=o"		=> \$start_offset,
-	"e|end=o"		=> \$end_offset,
+	"n|length=o"		=> \$extract_length,
 ) or die $usage;
 
 local $/;
@@ -58,8 +62,13 @@ sub process_region
 	my $step = 256;
 
 	# Adjust the end offset if they ask for too much
-	$end_offset = $length - 0x30
-		if !defined $end_offset or $end_offset > $length - 0x30;
+	my $end_offset = $length - 0x30;
+	if (defined $extract_length)
+	{
+		my $new_end_offset = $start_offset + $extract_length;
+		$end_offset = $new_end_offset
+			if $new_end_offset < $end_offset;
+	}
 
 	for(my $offset = $start_offset ; $offset < $end_offset ; $offset += $step)
 	{
