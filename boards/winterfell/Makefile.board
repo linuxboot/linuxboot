@@ -37,14 +37,16 @@ $(BUILD)/rom/0x00f00000.fv \
 # Replace the DxeCore and SmmCore with our own
 # and add in the Linux kernel / initrd
 $(BUILD)/dxe.vol: \
+	$(dxe-files) \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
-	$(dxe-files) \
 
-
-
+# I wish we could use our own builds of these, but
+# the AMI firmware modules do not play nice with us.
 NO = \
 	$(BUILD)/DxeCore.ffs \
+	$(BUILD)/ReportStatusCodeRouterRuntimeDxe.ffs \
+	$(BUILD)/StatusCodeHandlerRuntimeDxe.ffs \
 	$(BUILD)/RuntimeDxe.ffs \
 	$(BUILD)/PiSmmCore.ffs \
 	$(BUILD)/RuntimeDxe.ffs \
