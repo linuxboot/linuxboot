@@ -304,7 +304,7 @@ sub ffs
 }
 
 
-# Generate a padding firmware firle
+# Generate a padding firmware file
 sub ffs_pad
 {
 	my $len = shift;
