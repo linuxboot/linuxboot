@@ -26,7 +26,7 @@ Why keep the vendor blobs?
 ---
 LinuxBoot retains the vendor's PEI section of their UEFI firmware, which
 is necessary for doing things like chipset initialization, memory controller
-setup, CPU interconect.  These functions are not documented by the CPU vendors,
+setup, CPU interconnect.  These functions are not documented by the CPU vendors,
 so it is necessary to reuse the proprietary pieces -- even coreboot uses
 the Intel provided FSP for these functions on modern laptops.
 

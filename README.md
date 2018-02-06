@@ -6,8 +6,8 @@ Supported server mainboards
 * qemu emulated Q35 systems
 * [Intel S2600WF](https://trmm.net/S2600wf)
 * [Dell R630](https://trmm.net/NERF)
-* Winterfell Open Compute node
-* Monolake Open Compute node
+* Winterfell Open Compute node (works well)
+* Monolake Open Compute node (not tested)
 
 Build instructions
 ===
