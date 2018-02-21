@@ -43,7 +43,7 @@ my $ffs_hdr_len = 0x18; # FFSv2
 #my $ffs_hdr_len = 0x20; # FFSv3 files include a 64-bit length
 
 my $fv_hdr_len = 0x48;
-my $fv_block_size = 0x1000; # force alignment of files to this spacing
+my $fv_block_size = 0x20; # force alignment of files to this spacing
 
 
 
@@ -467,8 +467,20 @@ sub fv_append
 
 	# if the current offset does not align with the block size,
 	# we should add a pad section until the next block
-	my $block_unaligned = $fv_block_size - (length($$fv_ref) % $fv_block_size);
-	$block_unaligned += $fv_block_size if $block_unaligned < $ffs_hdr_len;
+	# The firmware files can specify their desired alignment
+	# we just force 4KB is they want anything
+	my $attr = ord(substr($ffs, 0x13, 1));
+	my $alignment = ($attr & 0x38) >> 3;
+	if ($alignment == 0)
+	{
+		$alignment = 0x10;
+	} else {
+		warn sprintf "alignment attribute %02x\n", $alignment;
+		$alignment = 0x1000;
+	}
+
+	my $block_unaligned = $alignment - (length($$fv_ref) % $alignment);
+	$block_unaligned += $alignment if $block_unaligned < $ffs_hdr_len;
 
 	$$fv_ref .= EFI::ffs_pad($block_unaligned - $ffs_hdr_len);
 	my $ffs_offset = length($$fv_ref);
@@ -676,7 +688,6 @@ sub parse
 		next	=> $next,
 		data	=> $data,
 	}, $class;
-	warn sprintf "%x: %02x len %x\n", $offset, $self->{attr}, $self->length();
 
 	return $self;
 }
