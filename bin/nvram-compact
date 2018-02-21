@@ -13,6 +13,7 @@ use File::Temp 'tempfile';
 use Data::Dumper;
 
 my $nvram_guid = "cef5b9a3-476d-497f-9fdc-e98143e0422c";
+my $verbose = 0;
 
 local $/;
 my $ffs = <>;
@@ -34,7 +35,6 @@ while($offset < $ffs_len - 0x08)
 	my $nvar = EFI::NVRAM::NVAR->parse($ffs, $offset)
 		or last;
 
-	warn sprintf "%x: %02x len %x\n", $offset, $nvar->{attr}, $nvar->length();
 	$offset += $nvar->length();
 
 	# Decide if we keep it:
@@ -57,7 +57,6 @@ while($offset < $ffs_len - 0x08)
 	{
 		my $next = $nvar->next()
 			or last;
-		warn sprintf "-- %x\n", $next;
 
 		$nvar = EFI::NVRAM::NVAR->parse($ffs, $next);
 
@@ -74,7 +73,9 @@ while($offset < $ffs_len - 0x08)
 	$nvar->{guid} = $guid;
 	$nvar->{attr} = $attr;
 
-	warn "$name\n";
+	warn "$name\n"
+		if $verbose;
+
 	$data .= $nvar->output();
 }
 
