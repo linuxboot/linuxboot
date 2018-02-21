@@ -1,0 +1,103 @@
+#!/usr/bin/perl
+# Remove invalid and non-data entries from an NVRAM section
+# This only handles the common cases
+
+use strict;
+use warnings;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+use EFI;
+use Getopt::Long;
+use File::Basename;
+use File::Temp 'tempfile';
+use Data::Dumper;
+
+my $nvram_guid = "cef5b9a3-476d-497f-9fdc-e98143e0422c";
+
+local $/;
+my $ffs = <>;
+
+my $file_guid = EFI::read_guid($ffs, 0x00);
+die "$file_guid != nvram guid $nvram_guid\n"
+	unless $file_guid eq $nvram_guid;
+
+# should check for FFS header 2, as well as confirm length
+my $offset = 0x18;
+my $ffs_hdr = substr($ffs, 0x00, $offset);
+my $ffs_len = length($ffs);
+my $data = '';
+
+
+
+while($offset < $ffs_len - 0x08)
+{
+	my $nvar = EFI::NVRAM::NVAR->parse($ffs, $offset)
+		or last;
+
+	warn sprintf "%x: %02x len %x\n", $offset, $nvar->{attr}, $nvar->length();
+	$offset += $nvar->length();
+
+	# Decide if we keep it:
+	# No valid bit? do not keep
+	next unless $nvar->valid();
+
+	# if this is not an ASCII name variable
+	# we probably have already copied its data by
+	# following the linked list
+	my $name = $nvar->name()
+		or next;
+	my $guid = $nvar->guid();
+	my $attr = $nvar->{attr};
+
+	# Linked? Superceded. We don't want to keep it
+	# but we need to follow the linked list to
+	# find the latest version of the data
+
+	while(1)
+	{
+		my $next = $nvar->next()
+			or last;
+		warn sprintf "-- %x\n", $next;
+
+		$nvar = EFI::NVRAM::NVAR->parse($ffs, $next);
+
+		die sprintf "offset 0x%x: next failed?\n", $next
+			unless $nvar;
+
+		die sprintf "offset 0x%x: nvar is not valid?\n", $next
+			unless $nvar->valid();
+	}
+
+	# Replace the name and guid with that of our first one
+	# in the linked list of nvars
+	$nvar->{name} = $name;
+	$nvar->{guid} = $guid;
+	$nvar->{attr} = $attr;
+
+	warn "$name\n";
+	$data .= $nvar->output();
+}
+
+# Create the new FFS and pad it to the end
+my $new_ffs = $ffs_hdr . $data;
+$new_ffs .= chr(0xFF) x ($ffs_len - length($new_ffs));
+
+# Look to see if there is a GUID store?
+while($offset < $ffs_len)
+{
+	if (substr($ffs, $offset, 1) eq chr(0xFF))
+	{
+		$offset++;
+		next;
+	}
+
+	# Non-empty space. copy it to the end
+	warn sprintf "offset 0x%x: GUID store found\n", $offset;
+	my $guid_store = substr($ffs, $offset);
+	substr($new_ffs, $offset) = $guid_store;
+	last;
+}
+
+
+print $new_ffs;
+
