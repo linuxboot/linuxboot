@@ -43,7 +43,7 @@ my $ffs_hdr_len = 0x18; # FFSv2
 #my $ffs_hdr_len = 0x20; # FFSv3 files include a 64-bit length
 
 my $fv_hdr_len = 0x48;
-my $fv_block_size = 0x20; # force alignment of files to this spacing
+my $fv_block_size = 0x1000; # force alignment of files to this spacing
 
 
 
