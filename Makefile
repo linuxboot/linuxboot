@@ -121,6 +121,7 @@ extract.intermediate: $(ROM)
 
 # All of the output volumes depend on extracting the firmware
 $(patsubst %.vol,,$(FVS)): extract.intermediate
+$(patsubst %.fv,,$(FVS)): extract.intermediate
 
 $(BUILD)/linuxboot.rom: $(FVS)
 

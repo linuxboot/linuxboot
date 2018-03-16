@@ -20,10 +20,16 @@ merged-size	:= 0x748000
 fv-path := $(BUILD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
 dxe-path := $(fv-path)/1
 
-vendor-files := $(shell awk  \
+dxe-files := $(shell awk  \
 	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
 	boards/$(BOARD)/image-files.txt \
 )
+
+$(dxe-files): extract.intermediate
+
+# since the 0.fv is nested inside another FV, we have to add an
+# explicit dependency on the extract target to ensure that it is created
+$(fv-path)/0.fv: extract.intermediate
 
 FVS := \
 	$(BUILD)/rom/0x00000000.fv \
@@ -44,7 +50,7 @@ $(BUILD)/merged.vol: \
 
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
-	$(vendor-files) \
+	$(dxe-files) \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
