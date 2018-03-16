@@ -86,7 +86,7 @@ $(BUILD)/%.rom:
 			$@ `stat -c'%s' $@.tmp` `stat -c'%s' $(ROM)` ; \
 		exit 1; \
 	fi
-	@mv $@.tmp $@
+	mv $@.tmp $@
 
 $(BUILD)/%.vol:
 	./bin/create-fv \
