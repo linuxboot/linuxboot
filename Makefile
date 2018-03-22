@@ -113,6 +113,7 @@ extract.intermediate: $(ROM)
 	( \
 	cd $(BUILD) ; \
 	$(pwd)/bin/extract-firmware \
+		--repack \
 		-o rom \
 	) < $^ \
 	> $(BUILD)/$(BOARD).txt ; \
