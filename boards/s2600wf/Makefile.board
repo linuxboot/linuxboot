@@ -31,6 +31,8 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
+$(dxe-files): extract.intermediate
+
 
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other

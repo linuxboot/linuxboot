@@ -29,6 +29,8 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
+$(dxe-files): extract.intermediate
+
 
 FVS := \
 $(BUILD)/rom/0x00000000.ifd \
