@@ -24,12 +24,12 @@ fc1b7640-3466-4c06-b1cc-1c935394b5c2 PchSerialGpio
 90cb75db-71fc-489d-aacf-943477ec7212 SmartTimer
 e052d8a6-224a-4c32-8d37-2e0ae162364d PchSmbusDxe
 5aab83e5-f027-4ca7-bfd0-16358cc9e453 WdtDxe
-67820532-7613-4dd3-9ed7-3d9be3a7da63 Aint13
+# 67820532-7613-4dd3-9ed7-3d9be3a7da63 Aint13
 # 899407d7-99fe-43d8-9a21-79ec328cac21 Setup
 # 129f6aa7-ab69-4cb8-aed1-40985001115e SerialMuxControl
 # bc0b9fb8-97cf-4b17-9a9e-f574e62cbcc4 BmcLanConfig
-1b08a1db-f91a-4fa1-a911-255c417f1cf7 ServerMgmtSetup
-1015ea63-7421-417d-bb51-e5193061c551 DxeIpmiUsb
+# 1b08a1db-f91a-4fa1-a911-255c417f1cf7 ServerMgmtSetup
+# 1015ea63-7421-417d-bb51-e5193061c551 DxeIpmiUsb
 16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
 26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
 4e82091e-32a1-4689-8a00-cde41ed63cdd SioDxeInit
@@ -40,10 +40,10 @@ e052d8a6-224a-4c32-8d37-2e0ae162364d PchSmbusDxe
 502b04f3-71ab-47b4-beae-4736ea190aa4 PciDxeInit
 271b424e-a4cc-4e0e-90a2-7ea4841f12f3 ExportHiiDb
 a210f973-229d-4f4d-aa37-9895e6c9eaba DpcDxe
-21891a9e-763e-4377-8841-8d5c90d88c51 NetworkStackSetupScreen
+# 21891a9e-763e-4377-8841-8d5c90d88c51 NetworkStackSetupScreen
 9f3a0016-ae55-4288-829d-d55fd3aac347 AmiBoardInfo2
 70e1a818-0be1-4449-bfd4-9ef68c7f02a8 ReFlash
-a062cf1f-8473-4aa3-8793-600bc4ffe9a8 CsmDxe
+# a062cf1f-8473-4aa3-8793-600bc4ffe9a8 CsmDxe
 9529dd7b-9ba5-4fc3-b1e5-e085c9f98fcb AmiCpuInfoProtocols
 87ab821c-79b8-4ef6-a913-21d22063f55f AcpiPlatform
 64a11188-5b86-4f59-a702-73365896e65e AcpiVTD
@@ -58,17 +58,17 @@ e2441b64-7ef4-41fe-b3a3-8caa7f8d3017 PciPlatform
 abbce13d-e25a-4d9f-a1f9-2f7710786892 Platform
 678bd19c-b4c9-4ff2-ffff-ffffecffa924 C2FDxe
 # ae3356f4-f95b-404b-b1de-64eb5d5e5bbe MemRas
-905cf1b3-32f8-489c-a641-46a714583262 AmiErrorLog
-e954929c-5bac-4494-b963-3b23d4a13ad2 QuiesceSupport
+# 905cf1b3-32f8-489c-a641-46a714583262 AmiErrorLog
+# e954929c-5bac-4494-b963-3b23d4a13ad2 QuiesceSupport
 # b2cd74de-11f9-418c-bf2e-dac3035aab7a IsPlatformSupportWhea
-55e76644-78a5-4a82-a900-7126a5798892 HeciInitDxe
+# 55e76644-78a5-4a82-a900-7126a5798892 HeciInitDxe
 # 7adbad98-7fe1-4774-9260-747327435e6d AslInformation
-e8f6a75c-3cda-4b00-9837-8ca2a1f34eac SpsDxe
+# e8f6a75c-3cda-4b00-9837-8ca2a1f34eac SpsDxe
 ae587172-cc15-48e1-8be1-29ddf05c6a1e OemVtdRmrr
-b7ee4835-84ce-4b15-bf52-2d11574ce470 HardwareSignatureEntry
-a9b700cf-019e-4d8b-a3a7-88e1ea01699e HddSecurity
-81a4f912-e72f-44ed-8931-16a9fe9650e0 KbcEmulDxe
-c9a6de36-fdff-4faf-8343-85d9e3470f43 NvmeInt13
+# b7ee4835-84ce-4b15-bf52-2d11574ce470 HardwareSignatureEntry
+# a9b700cf-019e-4d8b-a3a7-88e1ea01699e HddSecurity
+# 81a4f912-e72f-44ed-8931-16a9fe9650e0 KbcEmulDxe
+# c9a6de36-fdff-4faf-8343-85d9e3470f43 NvmeInt13
 24f17bb7-3b20-4895-9108-a9aa554304ee OemDxe
 # c7e3726f-2ed1-4126-905c-c6a0635b655d OemBmc
 # 9cb45ac4-ec29-4f0f-9357-997e3cd7e1da PostErrInfo
@@ -81,23 +81,25 @@ cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SmbiosBoard
 # a29a63e3-e4e7-495f-8a6a-07738300cbb3 AmiTcgPlatformDxe
 # 2688b232-9c02-4c12-be1f-857c0ff2aae3 TcgDxeplatform
 # 858ebe6f-360f-415b-b7dc-463aaeb03412 TcgLegacy
+
+# These seem like they should be required, but huh
 # 0718ad81-f26a-4850-a6ec-f268e309d707 Tpm20PlatformDxe
 # 4c8bdf60-2085-4577-8a46-96cb180967bc Tpm20Acpi
-580dd900-385d-11d7-883a-00500473d4eb Uhcd
-4c006cd9-19ba-4617-8483-609194a1acfc UsbInt13
+# 580dd900-385d-11d7-883a-00500473d4eb Uhcd
+# 4c006cd9-19ba-4617-8483-609194a1acfc UsbInt13
 b7d19491-e55a-470d-8508-85a5dfa41974 SBDXE
 cdc1c80d-e6d3-4a42-9229-75f3befcf109 PciOutOfResourceSetupPage
 c8339973-a563-4561-b858-d8476f9defc4 Metronome
 f099d67f-71ae-4c36-b2a3-dceb0eb2b7d8 WatchdogTimer
 bae7599f-3c6b-43b7-bdf0-9ce07aa91aa6 CpuIoDxe
-16271fca-55d9-4a33-93fc-5a3eb128deb6 CRBDxe
+# 16271fca-55d9-4a33-93fc-5a3eb128deb6 CRBDxe
 54b070f3-9eb8-47cc-adaf-39029c853cbb NvramSmiDxe
 42857f0a-13f2-4b21-8a23-53d3f714b840 CapsuleRuntimeDxe
 b601f8c4-43b7-4784-95b1-f4226cb40cee RuntimeDxe
 06d20d84-a032-4e25-969a-346d255e46d1 CpuCsrAccess
 af59f2f5-5e28-4e03-80e2-4727545af811 PchReset
 ba31025c-4aa8-4cae-98ca-ba12c6bc7d78 SmmControl2Dxe
-77eb6c06-fd48-488b-a1b3-ae0a70801369 CryptoDXE
+# 77eb6c06-fd48-488b-a1b3-ae0a70801369 CryptoDXE
 # 8f2c127e-117d-484b-8a44-fbd911be125e IpmiRedirFru
 # 43788beb-638f-434c-8a84-46d33a589e76 BmcElog
 # 3b0673a3-5197-454c-ba76-e2d0c8c48efd GenericElog
@@ -137,7 +139,7 @@ ba31025c-4aa8-4cae-98ca-ba12c6bc7d78 SmmControl2Dxe
 # 961578fe-b6b7-44c3-af35-6bc705cd2b1f Fat
 # 0167ccc4-d0f7-4f21-a3ef-9e64b7cdce8b ScsiBus
 # 0a66e322-3740-4cce-ad62-bd172cecca35 ScsiDisk
-634e8db5-c432-43be-a653-9ca2922cc458 Nvme
+# 634e8db5-c432-43be-a653-9ca2922cc458 Nvme
 # e94f54cd-81eb-47ed-aec3-856f5dc157a9 PiSmmCore
 0c375a90-4c4c-4428-8ea0-531be8959bf7 FlashDriverSmm
 447a1b58-8f3e-4658-abaa-9e7b2280b90a NVRAMSmm
@@ -151,9 +153,9 @@ aad10051-5d94-4b9f-b778-e4555ee3ccca IioSmm
 f3b38282-b951-4e2a-8df5-de01fc527ae4 RtcWakeup
 2374eddf-f203-4fc0-a20e-61bad73089d6 IoTrap
 b0d6ed53-b844-43f5-bd2f-61095264e77e PchSmiDispatcher
-2ee81acb-64b2-41ae-8635-7030d16c4aa8 PchBiosWriteProtect
+# 2ee81acb-64b2-41ae-8635-7030d16c4aa8 PchBiosWriteProtect
 59287178-59b2-49ca-bc63-532b12ea2c53 PchSmbusSmm
-46b94c2d-af5d-4915-814d-159323ae780a PowerButtonHandler
+# 46b94c2d-af5d-4915-814d-159323ae780a PowerButtonHandler
 # bc3245bd-b982-4f55-9f79-056ad7e987c5 AhciSmm
 # 2ad511c7-1b60-4002-841d-2998ddc138ee CryptoSMM
 # e8c729fe-fb0a-4344-ad7e-48784116c9ef SmmIpmiBmcInitialize
@@ -180,18 +182,18 @@ f3331de6-4a55-44e4-b767-7453f7a1a021 MicrocodeUpdate
 # 3b24f79d-91a0-46ff-be29-458ae211fac5 KbcEmul
 # e5e2c9d9-5bf5-497e-8860-94f81a09ade0 NvmeSmm
 # a7d9c360-f98c-42b0-998e-afad2c99d7fa OemSmi
-57e56594-ce95-46ad-9531-3c49310ca7ce Ofbd
+# 57e56594-ce95-46ad-9531-3c49310ca7ce Ofbd
 # 20b181e2-33e8-4211-b9d7-9b8696764e66 WheaElog
 # aa6fb263-6464-4073-aae9-ac095a19dea3 WheaPlatform
 # ea1d58a2-ea3d-4c14-928a-80a14545e681 WheaPlatformBoot
-e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDmiEdit
+# e2a74738-8934-48f5-8412-99e948c8dc1b SmbiosDmiEdit
 bc327dbd-b982-4f55-9f79-056ad7e987c5 SmiFlash
 33fb3535-f15e-4c17-b303-5eb94595ecb6 SmmLockBox
 fd93f9e1-3c73-46e0-b7b8-2bba3f718f6c TcgSmm
 # 04eaaaa1-29a1-11d7-8838-00500473d4eb UsbRt
 46b94c2d-af5d-4915-814d-159323ae880a TcoSmiHandler
 750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
-221f1d4f-034c-4bea-b2bb-b7a9672b06d7 CRBSmi
+# 221f1d4f-034c-4bea-b2bb-b7a9672b06d7 CRBSmi
 # c57ad6b7-0515-40a8-9d21-551652854e37 Shell_Full
 63819805-67bb-46ef-aa8d-1524a19a01e4 FREEFORM
 a08276ec-a0fe-4e06-8670-385336c7d093 FREEFORM
