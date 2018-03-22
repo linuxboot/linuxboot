@@ -24,6 +24,7 @@ Options:
   -o | --output-dir DIR   Write the output to a different base directory
   -s | --start 0xX        Starting offset for partial extraction
   -n | --length 0xX       Number of bytes to extract for partial extraction
+  -r | --repack           Unpack LZMA compressed file sections
 
 END
 
@@ -31,6 +32,7 @@ my $start_offset = 0; # 0x02c00000;
 my $extract_length;
 my $verbose = 0;
 my $base_dir = '.';
+my $repack;
 
 GetOptions(
 	"h|?|help"		=> sub { print $usage; exit 0 },
@@ -38,6 +40,7 @@ GetOptions(
 	"o|output-dir=s"	=> \$base_dir,
 	"s|start=o"		=> \$start_offset,
 	"n|length=o"		=> \$extract_length,
+	"r|repack+"		=> \$repack,
 ) or die $usage;
 
 local $/;
@@ -223,7 +226,8 @@ sub process_ffs
 
 	output("$base/$guid.ffs", $ffs);
 	my $data = substr($ffs, $data_offset);
-	my $name = EFI::file_type_lookup($type);
+	my $type_str = EFI::file_type_lookup($type);
+	my $name = $type_str;
 
 	if ($name eq 'FFS_PAD' or $name eq 'RAW')
 	{
@@ -232,7 +236,19 @@ sub process_ffs
 		return;
 	}
 
-	my @sections = ffs_sections($base, $data);
+	# if we are re-packing, recursively expand the sections
+	# and regenerate the section file
+	my @sections = process_sections("$base/$guid", $data);
+	my @new_sections = map { EFI::section($_->[0], $_->[1]) } @sections;
+
+	if ($repack)
+	{
+		output("$base/$guid.ffs", EFI::ffs(
+			$type_str,
+			EFI::guid($guid),
+			@new_sections
+		));
+	}
 
 	# if this file has a UI section, extract its name
 	$name = EFI::read_ucs16($_->[1], 0)
@@ -240,7 +256,6 @@ sub process_ffs
 
 	print "$base/$guid.ffs: $name\n";
 
-	process_sections("$base/$guid", $data);
 }
 
 
@@ -248,11 +263,15 @@ sub process_sections
 {
 	my $base = shift;
 	my $data = shift;
+	my @rc;
 
 	for (ffs_sections($base, $data))
 	{
-		process_section($base, @$_)
+		my @sec = process_section($base, @$_);
+		push @rc, @sec if @sec;
 	}
+
+	return @rc;
 }
 
 sub process_section
@@ -262,6 +281,12 @@ sub process_section
 	my $sec = shift;
 	my $number = shift;
 	my $offset = shift;
+
+	if ($type eq 'USER_INTERFACE')
+	{
+		# we should record that we've seen a UI section
+		#printf "Name: %s\n", EFI::read_ucs16($sec, 0);
+	}
 
 	# Look for GUID defined sections that encode LZMA compressed data
 	if ($type eq 'GUID_DEFINED')
@@ -283,8 +308,7 @@ sub process_section
 			;
 
 		# recursively process this data
-		process_sections($base, $data);
-		return;
+		return process_sections($base, $data);
 	}
 
 	if ($type eq 'FIRMWARE_VOLUME_IMAGE')
@@ -296,11 +320,13 @@ sub process_section
 	if ($type eq 'RAW'
 	or  $type eq 'TIANO_COMPRESSED'
 	) {
-		return;
+		#return;
 	}
 
 	warn "$base/$number: $type unknown\n"
 		if $type =~ /^0x/;
+
+	return ([ $type, $sec, $number, $offset ]);
 }
 
 
