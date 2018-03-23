@@ -189,7 +189,7 @@ sub process_fv
 			return;
 		}
 
-		
+
 		my $data = substr($fv, $offset, $len);
 
 		process_ffs($base, $data, $data_offset);
@@ -275,7 +275,7 @@ sub process_section
 		print $fh $lz_data;
 		close $fh;
 
-		my $data = `lzma --decompress --stdout $filename`;
+		my $data = `lzma --decompress --stdout - < $filename`;
 		printf "%s.ffs: length 0x%x (0x%x compressed)\n",
 			$base,
 			length($data),
@@ -312,7 +312,7 @@ sub ffs_sections
 
 	my @sections;
 
-	# find each section inside 
+	# find each section inside
 	my $number = 0;
 	my $offset = 0;
 	while($offset < $ffs_len - 8)
