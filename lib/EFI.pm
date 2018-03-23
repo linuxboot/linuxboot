@@ -467,8 +467,20 @@ sub fv_append
 
 	# if the current offset does not align with the block size,
 	# we should add a pad section until the next block
-	my $block_unaligned = $fv_block_size - (length($$fv_ref) % $fv_block_size);
-	$block_unaligned += $fv_block_size if $block_unaligned < $ffs_hdr_len;
+	# The firmware files can specify their desired alignment
+	# we just force 4KB is they want anything
+	my $attr = ord(substr($ffs, 0x13, 1));
+	my $alignment = ($attr & 0x38) >> 3;
+	if ($alignment == 0)
+	{
+		$alignment = 0x10;
+	} else {
+		warn sprintf "alignment attribute %02x\n", $alignment;
+		$alignment = 0x1000;
+	}
+
+	my $block_unaligned = $alignment - (length($$fv_ref) % $alignment);
+	$block_unaligned += $alignment if $block_unaligned < $ffs_hdr_len;
 
 	$$fv_ref .= EFI::ffs_pad($block_unaligned - $ffs_hdr_len);
 	my $ffs_offset = length($$fv_ref);
@@ -508,11 +520,27 @@ sub fv_pad
 
 
 # Helpers for reading values from the ROM images
+sub read8
+{
+	my $data = shift;
+	my $offset = shift;
+	return unpack("C", substr($data, $offset, 1));
+}
+
 sub read16
 {
 	my $data = shift;
 	my $offset = shift;
 	return unpack("v", substr($data, $offset, 2));
+}
+
+sub write16
+{
+	my $len = shift;
+	return ''
+		. chr(($len >>  0) & 0xFF)
+		. chr(($len >>  8) & 0xFF)
+		;
 }
 
 sub read24
@@ -525,7 +553,6 @@ sub read24
 		| ord(substr($data, $offset+0, 1)) <<  0
 		;
 }
-
 
 sub write24
 {
@@ -543,6 +570,17 @@ sub read32
 	my $data = shift;
 	my $offset = shift;
 	return unpack("V", substr($data, $offset, 4));
+}
+
+sub write32
+{
+	my $len = shift;
+	return ''
+		. chr(($len >>  0) & 0xFF)
+		. chr(($len >>  8) & 0xFF)
+		. chr(($len >> 16) & 0xFF)
+		. chr(($len >> 24) & 0xFF)
+		;
 }
 
 sub read64
@@ -579,6 +617,138 @@ sub read_guid
 		$g5[5],
 		;
 }
+
+
+#
+# Parse the older NVAR (non-volatile variable) structures
+#
+package EFI::NVRAM::NVAR;
+
+my $nvar_sig			= 0x5241564e; # 'NVAR'
+my $nvar_entry_ascii_name	= 0x02;
+my $nvar_entry_data_only	= 0x08;
+my $nvar_entry_valid		= 0x80;
+
+
+#
+# Create a NVAR object from an in-memory representation
+# of the structure.
+#
+sub parse
+{
+	my $class = shift;
+	my $ffs = shift;
+	my $offset = shift || 0;
+
+	my $ffs_len = length($ffs);
+
+	my $sig = EFI::read32($ffs, $offset + 0x00);
+
+	# we've reached the end of the data;
+	return if $sig == 0xFFFFFFFF;
+
+	die sprintf "0x%x: sig %08x != nvram %08x\n",
+		$offset, $sig, $nvar_sig
+		unless $sig eq $nvar_sig;
+
+	my $len = EFI::read16($ffs, $offset + 0x04);
+
+	die sprintf "0x%x: len %x > length %x\n",
+		$offset, $len, $ffs_len
+		unless $offset + $len <= $ffs_len;
+
+	my $nvar = substr($ffs, $offset, $len);
+	my $next = EFI::read24($nvar, 0x06);
+	my $attr = EFI::read8($nvar, 0x09);
+	my $data = substr($nvar, 0x0a);
+	my $name;
+	my $guid_id;
+
+	# depending on the attribute we might have a
+	# nul terminated string and a guid index in the guidstore
+	if ($attr & $nvar_entry_ascii_name)
+	{
+		$guid_id = EFI::read8($data, 0);
+		my $name_end = index($data, chr(0), 1);
+		die sprintf "offset 0x%x: ascii name, but no nul\n", $offset
+			if $name_end == -1;
+
+		$name = substr($data, 1, $name_end-1);
+
+		# remove the guid and name from the data
+		$data = substr($data, $name_end+1);
+	}
+
+	my $self = bless {
+		nvar	=> $nvar,
+		offset	=> $offset,
+		attr	=> $attr,
+		name	=> $name,
+		guid	=> $guid_id,
+		next	=> $next,
+		data	=> $data,
+	}, $class;
+
+	return $self;
+}
+
+
+#
+# Serialize an NVRAM NVAR structure
+#
+sub output
+{
+	my $self = shift;
+
+	my $data = $self->{data};
+	my $attr = $self->{attr};
+	my $name = $self->{name};
+	if ($name)
+	{
+		# update the attribute that we have name
+		$attr |=  $nvar_entry_ascii_name;
+		$attr &= ~$nvar_entry_data_only;
+		$data = chr($self->{guid}) . $self->{name} . chr(0x00) . $data;
+	}
+
+	return ''
+		. EFI::write32($nvar_sig)		# 0x00
+		. EFI::write16(length($data) + 0x0A)	# 0x04
+		. EFI::write24(0xFFFFFF) # no next	# 0x06
+		. chr($attr)				# 0x09
+		. $data;				# 0x0A
+}
+
+
+sub length
+{
+	my $self = shift;
+	return length $self->{nvar};
+}
+
+
+sub valid
+{
+	my $self = shift;
+	return $self->{attr} & $nvar_entry_valid;
+}
+
+
+sub next
+{
+	my $self = shift;
+	# all F is no next, since that can be inverted in the flash
+	return if $self->{next} eq 0xFFFFFF;
+
+	# the next pointer is relative to the offset of this one,
+	# so shift it by the amount that we've advanced
+	return $self->{next} + $self->{offset};
+}
+
+sub name { my $self = shift; return $self->{name}; }
+sub guid { my $self = shift; return $self->{guid}; }
+sub data { my $self = shift; return $self->{data}; }
+
 
 "0, but true";
 __END__

@@ -29,8 +29,8 @@ $(dixe-files): extract.intermediate
 FVS := \
 $(BUILD)/rom/0x00000000.ifd \
 $(BUILD)/rom/0x00010000.bin \
-$(BUILD)/rom/0x00800000.fv \
-$(BUILD)/rom/0x00820000.fv \
+$(BUILD)/nvram1.vol \
+$(BUILD)/nvram2.vol \
 $(BUILD)/rom/0x00840000.bin \
 $(BUILD)/dxe.vol \
 $(BUILD)/rom/0x00f00000.fv \
@@ -42,6 +42,16 @@ $(BUILD)/dxe.vol: \
 	$(dxe-files) \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
+
+nvram1-size := 0x20000
+nvram2-size := 0x20000
+$(BUILD)/nvram1.vol: $(BUILD)/nvram1.ffs
+$(BUILD)/nvram2.vol: $(BUILD)/nvram2.ffs
+
+$(BUILD)/nvram1.ffs: $(BUILD)/rom/0x00800000/cef5b9a3-476d-497f-9fdc-e98143e0422c.ffs
+	./bin/nvram-compact < $< > $@
+$(BUILD)/nvram2.ffs: $(BUILD)/rom/0x00820000/cef5b9a3-476d-497f-9fdc-e98143e0422c.ffs
+	./bin/nvram-compact < $< > $@
 
 # I wish we could use our own builds of these, but
 # the AMI firmware modules do not play nice with us.
