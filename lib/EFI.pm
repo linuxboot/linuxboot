@@ -93,7 +93,7 @@ our %section_type_map = qw/
 
 # Special cases for DEPEX sections
 our %depex_type_map = qw/
-	PEIM			PEI_DEPX
+	PEIM			PEI_DEPEX
 	DRIVER			DXE_DEPEX
 	SMM			SMM_DEPEX
 /;
