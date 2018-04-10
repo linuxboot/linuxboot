@@ -39,6 +39,11 @@ d2596f82-f0e1-49fa-95bc-62012c795728 Raw data used by SmmBase?
 d0632c90-afd7-4492-b186-257c63143c61 SmmBase
 7e2d983f-f703-4a29-9761-77b51f5354ed SmmCommunicate
 
+# CMOS and NVRAM handlers to avoid post code 0x0d
+6869c5b3-ac8d-4973-8b37-e354dbf34add CmosManagerSmm
+842a454a-75e5-408b-8b1c-36420e4e3f21 NvramSmi
+5446c293-339b-47cd-b719-585de39408cc PostReport
+
 #
 # Only necessary if you need DMI
 #
