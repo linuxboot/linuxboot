@@ -108,12 +108,12 @@ create-ffs = \
 
 #
 # Extract all of the firmware files from the vendor provided ROM
+#		--repack \
 #
 extract.intermediate: $(ROM)
 	( \
 	cd $(BUILD) ; \
 	$(pwd)/bin/extract-firmware \
-		--repack \
 		-o rom \
 	) < $^ \
 	> $(BUILD)/$(BOARD).txt ; \
