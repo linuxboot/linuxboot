@@ -7,6 +7,8 @@ Supported server mainboards
 * [Intel S2600WF](https://trmm.net/S2600wf)
 * [Dell R630](https://trmm.net/NERF)
 * Winterfell Open Compute node (works well)
+* Leopard Open Compute node (works well)
+* Tioga Pass Open Compute node (works well)
 * Monolake Open Compute node (not tested)
 
 Build instructions
