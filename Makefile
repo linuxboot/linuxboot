@@ -83,9 +83,11 @@ $(BUILD)/%.ffs: $(EDK2_OUTPUT_DIR)/%.efi
 $(BUILD)/%.ffs:
 	$(create-ffs)
 
+ROM_SIZE ?= `stat -c"%s" $(ROM)`
+
 $(BUILD)/%.rom:
 	cat > $@.tmp $^
-	@if [ `stat -c"%s" $@.tmp` -ne `stat -c"%s" $(ROM)` ]; then \
+	@if [ `stat -c"%s" $@.tmp` -ne $(ROM_SIZE) ]; then \
 		printf >&2 "%s: Wrong output size 0x%x != expected 0x%x\n" \
 			$@ `stat -c'%s' $@.tmp` `stat -c'%s' $(ROM)` ; \
 		exit 1; \
