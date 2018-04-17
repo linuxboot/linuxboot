@@ -269,11 +269,12 @@ sub ffs
 	my $type_byte = $file_types{$file_type}
 		or die "$file_type: Unknown file type\n";
 
-	my $attr = 0x28; # == aligned?
-	my $state = 0x07;
+	#my $attr = 0x28; # == aligned?
+	my $attr = 0x40; # == aligned?
+	my $state = 0xF8;
 	if ($file_type eq 'FFS_PAD')
 	{
-		$attr = 0x00;
+		$attr = 0x40;
 		$state = 0xF8;
 	}
 
@@ -297,7 +298,14 @@ sub ffs
 		$sum -= ord(substr($ffs, $i, 1));
 	}
 
-	substr($ffs, 0x10, 2) = chr($sum & 0xFF) . chr(0xAA);
+	# fixup the data checksum
+	my $data_sum = 0x00;
+	for my $i (0..length($data))
+	{
+		$data_sum -= ord(substr($data, $i, 1));
+	}
+
+	substr($ffs, 0x10, 2) = chr($sum & 0xFF) . chr($data_sum & 0xFF);
 
 	# Add the rest of the data
 	return $ffs . $data;
