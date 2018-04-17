@@ -8,12 +8,17 @@
 // #define VOLUME_ADDRESS 0xFF840000 // Winterfell
 // #define VOLUME_LENGTH  0x20000
 
-// Heron
-#define VOLUME_ADDRESS	0xFF410000
-#define VOLUME_LENGTH	0x00800000
+#define VOLUME_ADDRESS	0xFF800000
+#define VOLUME_LENGTH	0x00410000
 
 #include "serial.h"
 #include "efi.h"
+
+static void hexdump(uint64_t p, unsigned len)
+{
+	for(unsigned i = 0 ; i < len ; i += 8)
+		serial_hex(*(const uint64_t*)(p+i), 16);
+}
 
 
 EFI_STATUS
@@ -47,7 +52,14 @@ efi_main(
 		&handle
 	);
 
-	serial_string("FvLoader: rc="); serial_hex(rc, 8);
+	if (rc == 0)
+	{
+		serial_string("FVLoader: mapped 0x");
+		serial_hex(VOLUME_LENGTH, 8);
+	} else {
+		serial_string("FvLoader: error rc="); serial_hex(rc, 8);
+		hexdump(VOLUME_ADDRESS, 128);
+	}
 
         return rc;
 }
