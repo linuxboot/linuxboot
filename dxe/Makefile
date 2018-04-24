@@ -19,8 +19,9 @@ FORCE:
 %.ffs: %.efi
 	../bin/create-ffs \
 		-o $@ \
-		-t DRIVER \
-		-n "$(basename $@)" \
+		--type DRIVER \
+		--name "$(basename $@)" \
+		--depex TRUE \
 		$<
 
 BITS=64
