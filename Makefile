@@ -94,7 +94,7 @@ $(BUILD)/%.vol:
 		-o $@ \
 		--size $(or $($(basename $(notdir $@))-size),0x400000) \
 		--compress $(or $($(basename $(notdir $@))-compress),0) \
-		$^
+		$(filter-out extract.intermediate,$^)
 
 create-ffs = \
 	./bin/create-ffs \
@@ -115,9 +115,9 @@ extract.intermediate: $(ROM)
 	$(pwd)/bin/extract-firmware \
 		-o rom \
 	) < $^ \
-	> $(BUILD)/$(BOARD).txt ; \
-
+	> $(BUILD)/$(BOARD).txt
 .INTERMEDIATE: extract.intermediate
+
 
 # All of the output volumes depend on extracting the firmware
 $(patsubst %.vol,,$(FVS)): extract.intermediate
