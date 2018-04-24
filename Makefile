@@ -49,6 +49,7 @@ config:
 	echo 'KERNEL ?= $(KERNEL)' >> .config
 	echo 'INITRD ?= $(INITRD)' >> .config
 	echo 'ROM ?= $(ROM)' >> .config
+	echo 'CUSTOM ?= $(CUSTOM)' >> .config
 
 
 # edk2 outputs will be in this deeply nested directory
@@ -71,6 +72,13 @@ edk2/.git:
 $(BUILD)/Linux.ffs: $(KERNEL)
 $(BUILD)/Initrd.ffs: $(INITRD)
 
+ifdef CUSTOM
+$(BUILD)/User.ffs: $(CUSTOM) FORCE
+$(CUSTOM):
+$(BUILD)/user.vol: $(BUILD)/User.ffs
+else
+$(BUILD)/user.vol: FORCE
+endif
 
 $(BUILD)/%.ffs: $(BUILD)/%.vol
 	./bin/create-ffs \

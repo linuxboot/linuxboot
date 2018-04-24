@@ -15,7 +15,8 @@
 #
 
 dxe-size	:= 0xA00000
-merged-size	:= 0x748000
+merged-size	:= 0x700000
+user-size	:= 0x048000
 
 fv-path := $(BUILD)/rom/0x00084000/9e21fd93-9c72-4c15-8c4b-e77f1db2d792
 dxe-path := $(fv-path)/1
@@ -33,6 +34,7 @@ $(fv-path)/0.fv: $(BUILD)/$(BOARD).txt
 
 FVS := \
 	$(BUILD)/rom/0x00000000.fv \
+	$(BUILD)/user.vol \
 	$(BUILD)/merged.vol \
 	$(BUILD)/rom/0x007cc000.fv \
 

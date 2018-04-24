@@ -27,6 +27,9 @@ Linux-type := APPLICATION
 Initrd-type := FREEFORM
 Initrd-guid := 74696e69-6472-632e-7069-6f2f62696f73
 
+User-type := FREEFORM
+User-guid := 74696e69-6472-632e-7069-6f2f75736572
+
 DxeCore-type := DXE_CORE
 DxeCore-guid := D6A2CB7F-6A18-4E2F-B43B-9920A733700A
 
