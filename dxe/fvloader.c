@@ -8,11 +8,13 @@
 // #define VOLUME_ADDRESS 0xFF840000 // Winterfell
 // #define VOLUME_LENGTH  0x20000
 
-#define VOLUME_ADDRESS	0xFF800000
-#define VOLUME_LENGTH	0x00410000
+#define VOLUME_ADDRESS	0xFF500000
+#define VOLUME_LENGTH	0x00400000
 
 #include "serial.h"
-#include "efi.h"
+//#include "efi.h"
+#include <efi/efi.h>
+#include "efidxe.h"
 
 static void hexdump(uint64_t p, unsigned len)
 {

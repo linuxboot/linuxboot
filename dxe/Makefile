@@ -38,7 +38,6 @@ EFI_ARCH=x86_64
 CFLAGS += \
 	-std=c99 \
 	-D__efi__ \
-	-nostdinc \
 	-fshort-wchar \
 	-mno-red-zone \
 	-fno-stack-protector \
@@ -48,6 +47,7 @@ CFLAGS += \
 	-W \
 	-Wall \
 	-I . \
+	-I /usr/include/efi/x86_64 \
 	-MMD \
 	-MF .$(notdir $@).d \
 

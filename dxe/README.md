@@ -2,6 +2,7 @@ Overview
 ===
 
 These are small DXE modules that help bootstrap the LinuxBoot kernel.
+They depend on the gnu-efi-devel package for the headers.
 
 Developing DXE
 ===
