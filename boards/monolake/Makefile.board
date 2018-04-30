@@ -18,8 +18,6 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(dxe-files): extract.intermediate
-
 
 # The Monolake ROM is really fragmented.
 # We could recover osme of the space at 0x8800000
