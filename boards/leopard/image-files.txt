@@ -1,0 +1,124 @@
+fc510ee7-ffdc-11d4-bd41-0080c73c8881 DXE Apriori
+ab7ed12e-1d78-4635-ab87-23f00a911ec7 RomLayoutDxe
+53bcc14f-c24f-434c-b294-8ed2d4cc1860 DataHubDxe
+9b680fce-ad6b-4f3a-b60b-f59899003443 DevicePathDxe
+13ac6dd0-73d0-11d4-b06b-00aa00bd6de7 EbcDxe
+348c4d62-bfbd-4882-9ece-c80bb1c4783b HiiDatabase
+f80697e9-7fd6-4665-8646-88e33ef71dfc SecurityStubDxe
+c10194e7-deb2-4af4-9eee-bffde4d7d4c7 TimestampDxe
+a19b1fe7-c1bc-49f8-875f-54a5d542443f CpuIo2Dxe
+40beab40-cece-4909-b133-20a413ae19e9 CpuMpDxe
+62d171cb-78cd-4480-8678-c6a2a797a8de CpuArchDxe
+63809859-f029-41c3-9f34-eeeb9ea787a5 IioInit
+3ffcae95-23cf-4967-94f5-16352f68e43b PpmInitialize
+274f0c8f-9e57-41d8-9966-29ccd48d31c2 SmmAccess
+79ca4208-bba1-4a9a-8456-e1e66a81484e Legacy8259
+378d7b65-8da9-4773-b6e4-a47826a833e1 PcRtc
+c1c418f9-591d-461c-82a2-b9cd96dfea86 LegacyInterrupt
+de23acee-cf55-4fb6-aa77-984ab53de823 PchInitDxe
+c7ea9787-ca0a-43b4-b1e5-25ef87391f8d PchS3Support
+fc1b7640-3466-4c06-b1cc-1c935394b5c2 PchSerialGpio
+90cb75db-71fc-489d-aacf-943477ec7212 SmartTimer
+e052d8a6-224a-4c32-8d37-2e0ae162364d PchSmbusDxe
+5aab83e5-f027-4ca7-bfd0-16358cc9e453 WdtDxe
+16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
+26a2481e-4424-46a2-9943-cc4039ead8f8 S3Save
+# 4e82091e-32a1-4689-8a00-cde41ed63cdd SioDxeInit
+80e66e0a-ccd1-43fa-a7b1-2d5ee0f13910 PciRootBridge
+502b04f3-71ab-47b4-beae-4736ea190aa4 PciDxeInit
+271b424e-a4cc-4e0e-90a2-7ea4841f12f3 ExportHiiDb
+# a210f973-229d-4f4d-aa37-9895e6c9eaba DpcDxe
+9f3a0016-ae55-4288-829d-d55fd3aac347 AmiBoardInfo2
+# 70e1a818-0be1-4449-bfd4-9ef68c7f02a8 ReFlash
+9529dd7b-9ba5-4fc3-b1e5-e085c9f98fcb AmiCpuInfoProtocols
+87ab821c-79b8-4ef6-a913-21d22063f55f AcpiPlatform
+64a11188-5b86-4f59-a702-73365896e65e AcpiVTD
+76a7b4fc-c8d5-462d-a4d2-6e88338a772a PlatformCpuPolicy
+aa7b4695-00b4-4468-ad92-99370ac031c5 LegacyRegion2
+e2441b64-7ef4-41fe-b3a3-8caa7f8d3017 PciPlatform
+2e6a521c-f697-402d-9774-98b2b7e140f3 PlatformType
+62dc08ac-a651-4ee9-af81-eaa9261e9780 S3NvramSave
+0f99e33c-ca0c-4aa2-887d-b57ec9050278 SaveMemoryConfig
+7f8d35bd-0ce3-4654-b5d3-73fc4b38aabf PlatformEarlyDxe
+# 6a3def38-0a45-4107-a74e-abf2b8eaed86 MemorySubClass
+abbce13d-e25a-4d9f-a1f9-2f7710786892 Platform
+# 678bd19c-b4c9-4ff2-ffff-ffffecffa924 C2FDxe
+# ae587172-cc15-48e1-8be1-29ddf05c6a1e OemVtdRmrr
+# 24f17bb7-3b20-4895-9108-a9aa554304ee OemDxe
+# ff917e22-a228-448d-bdaa-68efccdda5d3 TxtDxe
+b13edd38-684c-41ed-a305-d7b7e32497df Smbios
+cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SmbiosBoard
+b7d19491-e55a-470d-8508-85a5dfa41974 SBDXE
+# cdc1c80d-e6d3-4a42-9229-75f3befcf109 PciOutOfResourceSetupPage
+c8339973-a563-4561-b858-d8476f9defc4 Metronome
+f099d67f-71ae-4c36-b2a3-dceb0eb2b7d8 WatchdogTimer
+bae7599f-3c6b-43b7-bdf0-9ce07aa91aa6 CpuIoDxe
+54b070f3-9eb8-47cc-adaf-39029c853cbb NvramSmiDxe
+42857f0a-13f2-4b21-8a23-53d3f714b840 CapsuleRuntimeDxe
+b601f8c4-43b7-4784-95b1-f4226cb40cee RuntimeDxe
+06d20d84-a032-4e25-969a-346d255e46d1 CpuCsrAccess
+af59f2f5-5e28-4e03-80e2-4727545af811 PchReset
+ba31025c-4aa8-4cae-98ca-ba12c6bc7d78 SmmControl2Dxe
+253e85e9-993b-439b-b74c-6120f77b4723 PlatformReset
+2fa2a6da-11d5-4dc3-999a-749648b03c56 PiSmmIpl
+# 8eef9ad2-463e-425f-a4fe-2f6783d6f97e GenericSio
+3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
+0c375a90-4c4c-4428-8ea0-531be8959bf7 FlashDriverSmm
+447a1b58-8f3e-4658-abaa-9e7b2280b90a NVRAMSmm
+842a454a-75e5-408b-8b1c-36420e4e3f21 NvramSmi
+a47ee2d8-f60e-42fd-8e58-7bd65ee4c29b CpuIo2Smm
+e21f35a8-42ff-4050-82d6-93f7cdfa7073 PiSmmCommunicationSmm
+870e0f5a-1981-45f6-ae26-0391425cc46f CpuCsrAccessSMM
+116e1acf-2533-4cc2-820a-bbc10a2ab07c CpuSpSMI
+aad10051-5d94-4b9f-b778-e4555ee3ccca IioSmm
+378d7b65-8da9-4773-b6e4-a47826a833e2 PcRtcSmm
+f3b38282-b951-4e2a-8df5-de01fc527ae4 RtcWakeup
+2374eddf-f203-4fc0-a20e-61bad73089d6 IoTrap
+b0d6ed53-b844-43f5-bd2f-61095264e77e PchSmiDispatcher
+59287178-59b2-49ca-bc63-532b12ea2c53 PchSmbusSmm
+413b1952-d564-4aeb-8cda-8353161500bc S3SaveSmm
+be216ba8-38c4-4535-a6ca-5dca5b43addf SmiVariable
+4a6d890f-93c3-4b6d-a67d-5f2c4dce347b RuntimeSmm
+f5ac7057-5650-466e-b692-76a47223efb0 AcpiSmmPlatform
+a3ff0ef5-0c28-42f5-b544-8c7de1e80014 PiSmmCpuDxeSmm
+56f80aa7-87fb-4f43-bee1-0ba18fad4a06 PlatformResetSmm
+# f3331de6-4a55-44e4-b767-7453f7a1a021 MicrocodeUpdate
+bc327dbd-b982-4f55-9f79-056ad7e987c5 SmiFlash
+33fb3535-f15e-4c17-b303-5eb94595ecb6 SmmLockBox
+# fd93f9e1-3c73-46e0-b7b8-2bba3f718f6c TcgSmm
+# 46b94c2d-af5d-4915-814d-159323ae880a TcoSmiHandler
+750890a6-7acf-4f4f-81bd-b400c2bea95a AcpiModeEnable
+63819805-67bb-46ef-aa8d-1524a19a01e4 FREEFORM
+a08276ec-a0fe-4e06-8670-385336c7d093 FREEFORM
+e998c6d8-572b-4e18-96cc-031ea3dd558c FREEFORM
+142204e2-c7b1-4af9-a729-923758d96d03 FREEFORM
+0aa31bc6-3379-41e8-825a-53f82cc0f254 FREEFORM
+7d113aa9-6280-48c6-bace-dfe7668e8307 FREEFORM
+b733c141-e88f-4786-94af-8b87bc4867fe FREEFORM
+61422d26-81ec-47ff-b6cf-939eaee73fba StatusCodeDxe
+db08f6ca-3048-4cd8-9b1f-20bed33ecfe7 StatusCodeSmm
+cbc59c4a-383a-41eb-a8ee-4498aea567e4 FlashDriver
+1807040d-5934-41a2-a088-8e0f777f71ab NVRAMDxe
+80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe
+a59a0056-3341-44b5-9c9c-6d76f7673817 FREEFORM
+69009842-63f2-43db-964b-efad1c39ec85 FREEFORM
+996aa1e0-1e8c-4f36-b519-a170a206fc14 FREEFORM
+7b9a0a12-42f8-4d4c-82b6-32f0ca1953f4 FREEFORM
+7e374e25-8e01-4fee-87f2-390c23c606cd FREEFORM
+4ba8c0db-1858-4b39-9d5e-ded9294dcc8e FREEFORM
+4896840d-46bb-412b-a30a-a62abfb3682f FREEFORM
+daf4bf89-ce71-4917-b522-c89d32fbc59f FREEFORM
+# 5e9caba3-f2b1-497a-adac-24f575e9cde9 TcgDxe
+# 39045756-fca3-49bd-8dae-c7bae8389aff TrEEDxe
+# 196ca3d8-9a5a-4735-b328-8ffc1d93d188 TcgPlatformSetupPolicy
+17088572-377f-44ef-8f4e-b09fff46a070 RAW length 0x5028 
+dac2b117-b5fb-4964-a312-0dcc77061b9b FREEFORM
+9221315b-30bb-46b5-813e-1b1bf4712bd3 FREEFORM
+7bb28b99-61bb-11d5-9a5d-0090273fc14d FREEFORM
+365c62ba-05ef-4b2e-a7f7-92c1781af4f9 FREEFORM
+7934156d-cfce-460e-92f5-a07909a59eca RAW length 0x7b9c 
+8bd816b2-655f-4c71-9032-c90d72c07c03 FREEFORM
+cc0f8a3f-3dea-4376-9679-5426ba0a907e FREEFORM
+9fe7de69-0aea-470a-b50a-139813649189 FREEFORM
+fbf95065-427f-47b3-8077-d13c60710998 FREEFORM
+9d7a05e9-f740-44c3-858b-75586a8f9c8e FREEFORM

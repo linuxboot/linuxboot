@@ -108,6 +108,7 @@ create-ffs = \
 
 #
 # Extract all of the firmware files from the vendor provided ROM
+#		--repack \
 #
 extract.intermediate: $(ROM)
 	( \

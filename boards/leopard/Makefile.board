@@ -1,0 +1,42 @@
+#
+# Specific targets and things for the OCP Leopard
+#
+# This is responsible for extracting the DXE section from the ROM,
+# extracting each of the images from it, and setting the sizes for
+# the different firmware images.
+#
+
+# 4 MB DXE ROM, compressed from 15 MB
+dxe-compress	:= 0xF00000
+dxe-size	:= 0x4DF000
+
+
+dxe-path := $(BUILD)/rom/0x00890000
+
+dxe-files := $(shell awk  \
+	'/^[0-9A-Fa-f]/ {print "$(dxe-path)/"$$1".ffs"}' \
+	boards/$(BOARD)/image-files.txt \
+)
+
+
+# The Intel firmware has lots of small pieces.
+# We replace the DXE recovery image and one of the other
+# images with the LinuxBoot one.  Potentially we
+# can clean up more space.
+FVS := \
+$(BUILD)/rom/0x00000000.ifd \
+$(BUILD)/rom/0x00010000.bin \
+$(BUILD)/rom/0x00800000.fv \
+$(BUILD)/rom/0x00840000.bin \
+$(BUILD)/dxe.vol \
+$(BUILD)/rom/0x00d6f000.bin \
+$(BUILD)/rom/0x00da0000.fv \
+
+
+# Replace the DxeCore and SmmCore with our own
+$(BUILD)/dxe.vol: \
+	$(BUILD)/DxeCore.ffs \
+	$(BUILD)/PiSmmCore.ffs \
+	$(BUILD)/Linux.ffs \
+	$(BUILD)/Initrd.ffs \
+	$(dxe-files) \
