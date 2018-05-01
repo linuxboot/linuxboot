@@ -44,6 +44,7 @@ config:
 	echo 'BOARD ?= $(BOARD)' >> .config
 	echo 'KERNEL ?= $(KERNEL)' >> .config
 	echo 'INITRD ?= $(INITRD)' >> .config
+	echo 'ROM ?= $(ROM)' >> .config
 
 
 # edk2 outputs will be in this deeply nested directory
@@ -94,7 +95,7 @@ $(BUILD)/%.vol:
 		-o $@ \
 		--size $(or $($(basename $(notdir $@))-size),0x400000) \
 		--compress $(or $($(basename $(notdir $@))-compress),0) \
-		$^
+		$(filter-out $(BUILD)/$(BOARD).txt,$^)
 
 create-ffs = \
 	./bin/create-ffs \
@@ -110,19 +111,23 @@ create-ffs = \
 # Extract all of the firmware files from the vendor provided ROM
 #		--repack \
 #
-extract.intermediate: $(ROM)
+$(BUILD)/$(BOARD).txt: $(ROM)
 	( \
 	cd $(BUILD) ; \
 	$(pwd)/bin/extract-firmware \
 		-o rom \
 	) < $^ \
-	> $(BUILD)/$(BOARD).txt ; \
-
-.INTERMEDIATE: extract.intermediate
+	> $@.tmp
+	mv $@.tmp $@
 
 # All of the output volumes depend on extracting the firmware
-$(patsubst %.vol,,$(FVS)): extract.intermediate
-$(patsubst %.fv,,$(FVS)): extract.intermediate
+$(patsubst %.vol,,$(FVS)): $(BUILD)/$(BOARD).txt
+$(patsubst %.fv,,$(FVS)): $(BUILD)/$(BOARD).txt
+
+# Most of the boards define a $(dxe-files) that are extracted
+# from the vendor ROM. Make sure they depend on the board target
+$(dxe-files): $(BUILD)/$(BOARD).txt
+	@true
 
 $(BUILD)/linuxboot.rom: $(FVS)
 

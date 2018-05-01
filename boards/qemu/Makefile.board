@@ -25,11 +25,11 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(dxe-files): extract.intermediate
 
 # since the 0.fv is nested inside another FV, we have to add an
 # explicit dependency on the extract target to ensure that it is created
-$(fv-path)/0.fv: extract.intermediate
+$(fv-path)/0.fv: $(BUILD)/$(BOARD).txt
+	@true
 
 FVS := \
 	$(BUILD)/rom/0x00000000.fv \

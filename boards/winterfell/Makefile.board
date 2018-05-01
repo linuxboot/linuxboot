@@ -19,8 +19,6 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(dixe-files): extract.intermediate
-
 
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other
@@ -43,27 +41,22 @@ $(BUILD)/dxe.vol: \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
+#
+# Compact the NVRAM region.  this isn't required, but makes for cleaner images.
+#
 nvram1-size := 0x20000
 nvram2-size := 0x20000
 $(BUILD)/nvram1.vol: $(BUILD)/nvram1.ffs
 $(BUILD)/nvram2.vol: $(BUILD)/nvram2.ffs
 
-$(BUILD)/nvram1.ffs: $(BUILD)/rom/0x00800000/cef5b9a3-476d-497f-9fdc-e98143e0422c.ffs
+NVRAM_GUID = cef5b9a3-476d-497f-9fdc-e98143e0422c
+NVRAM1_FFS = $(BUILD)/rom/0x00800000/$(NVRAM_GUID).ffs
+NVRAM2_FFS = $(BUILD)/rom/0x00820000/$(NVRAM_GUID).ffs
+$(NVRAM1_FFS) $(NVRAM2_FFS): $(BUILD)/$(BOARD).txt
+	@true
+
+$(BUILD)/nvram1.ffs: $(NVRAM1_FFS)
 	./bin/nvram-compact < $< > $@
-$(BUILD)/nvram2.ffs: $(BUILD)/rom/0x00820000/cef5b9a3-476d-497f-9fdc-e98143e0422c.ffs
+$(BUILD)/nvram2.ffs: $(NVRAM2_FFS)
 	./bin/nvram-compact < $< > $@
 
-# I wish we could use our own builds of these, but
-# the AMI firmware modules do not play nice with us.
-NO = \
-	$(BUILD)/DxeCore.ffs \
-	$(BUILD)/ReportStatusCodeRouterRuntimeDxe.ffs \
-	$(BUILD)/StatusCodeHandlerRuntimeDxe.ffs \
-	$(BUILD)/RuntimeDxe.ffs \
-	$(BUILD)/PiSmmCore.ffs \
-	$(BUILD)/RuntimeDxe.ffs \
-	$(BUILD)/AcpiTableDxe.ffs \
-	$(BUILD)/AcpiPlatform.ffs \
-        $(BUILD)/PciBusDxe.ffs \
-        $(BUILD)/PciHostBridgeDxe.ffs \
-        $(BUILD)/PciSioSerialDxe.ffs \

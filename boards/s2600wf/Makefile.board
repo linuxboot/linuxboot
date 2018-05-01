@@ -31,40 +31,51 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
-$(dxe-files): extract.intermediate
-
 
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other
 # images with the LinuxBoot one.  Potentially we
 # can clean up more space.
-FVS := \
-$(BUILD)/rom/0x00000000.ifd \
-$(BUILD)/rom/0x00010000.bin \
-$(BUILD)/dxe.vol \
-$(BUILD)/rom/0x03000000.fv \
-$(BUILD)/rom/0x03180000.fv \
-$(BUILD)/rom/0x031a0000.fv \
-$(BUILD)/rom/0x031c0000.fv \
-$(BUILD)/rom/0x031d0000.bin \
-$(BUILD)/rom/0x03200000.fv \
-$(BUILD)/linux.vol \
-$(BUILD)/rom/0x03900000.fv \
-$(BUILD)/rom/0x03a00000.fv \
-$(BUILD)/rom/0x03c00000.fv \
-$(BUILD)/rom/0x03e00000.fv \
-$(BUILD)/rom/0x03e30000.fv \
-$(BUILD)/rom/0x03e80000.fv \
-$(BUILD)/rom/0x03f00000.fv \
-$(BUILD)/rom/0x03f30000.fv \
-$(BUILD)/rom/0x03f80000.fv \
+FVS =
+FVS += $(BUILD)/rom/0x00000000.ifd
+FVS += $(BUILD)/rom/0x00010000.bin  # ME + PDR + DevExp + Gbe + PTT regions
+FVS += $(BUILD)/dxe.vol # Recovery DXE at 0x2C00000
+FVS += $(BUILD)/rom/0x03000000.fv # Empty FV at 0x3000000 (1.5 MB)
+FVS += $(BUILD)/rom/0x03180000.fv # Empty FV (128 KB)
+FVS += $(BUILD)/rom/0x031a0000.fv # Logo FV (128 KB)
+FVS += $(BUILD)/rom/0x031c0000.fv # Empty FV (64 KB)
+FVS += $(BUILD)/rom/0x031d0000.bin # Empty padding (196 KB)
+FVS += $(BUILD)/rom/0x03200000.fv # Empty FV (3 MB)
+FVS += $(BUILD)/linux.vol # Non-recovery DXE, replaced with Linux (4 MB)
+FVS += $(BUILD)/rom/0x03900000.fv # NVRAM (1 MB)
+# FVS += $(BUILD)/rom/0x03a00000.fv # PEI (non-recovery?) (2 MB)
+FVS += $(BUILD)/2mb.fv # an empty FV to replace the unused PEI
+FVS += $(BUILD)/rom/0x03c00000.fv # PEI (2 MB) (recovery won't boot without it)
+FVS += $(BUILD)/rom/0x03e00000.fv # Microcode (196 KB)
+FVS += $(BUILD)/rom/0x03e30000.fv # Unknown (512 KB)
+FVS += $(BUILD)/rom/0x03e80000.fv # PeiCore (recovery) (512 KB)
+FVS += $(BUILD)/rom/0x03f00000.fv # Microcode in FIT (196 KB)
+FVS += $(BUILD)/rom/0x03f30000.fv # Unknown (512 KB)
+# FVS += $(BUILD)/rom/0x03f80000.fv # PeiCore (non-recovery?) (512 KB)
+FVS += $(BUILD)/512kb.fv # an empty FV to replace the unused PeiCore
+
+$(BUILD)/512kb.fv: dxe/hello.ffs
+	./bin/create-fv -s 0x80000 $< > $@
+$(BUILD)/2mb.fv: dxe/hello.ffs
+	./bin/create-fv -s 0x200000 $< > $@
 
 
 # Replace the DxeCore and SmmCore with our own
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
+	dxe/fvloader.ffs \
+	dxe/hello.ffs \
 	$(dxe-files) \
+
+dxe/fvloader.ffs dxe/hello.ffs: dxe.intermediate
+dxe.intermediate:
+	$(MAKE) -C dxe
 
 # Linux and initrd go into their own FV
 $(BUILD)/linux.vol: \
