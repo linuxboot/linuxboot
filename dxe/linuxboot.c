@@ -265,7 +265,7 @@ efi_main(
 	serial_string("|                    |\r\n");
 	serial_string("+--------------------+\r\n");
 
-	(void) image;
+	(void) image; // should we call loaded image protocol?
 	gST = st;
 	gBS = gST->BootServices;
 	gRT = gST->RuntimeServices;
@@ -295,5 +295,6 @@ efi_main(
 		&efi_bds_arch_protocol
 	);
 
+	serial_string("waiting for callback\r\n");
 	return 0;
 }

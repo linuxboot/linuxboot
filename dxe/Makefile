@@ -21,7 +21,7 @@ FORCE:
 %.exe: %.o
 	$(CROSS)ld \
 		$(LDFLAGS) \
-		-T pei-x86-64.lds \
+		-T elf_x86_64_efi.lds \
 		-o $@ \
 		$^
 
@@ -30,6 +30,8 @@ FORCE:
 
 %.efi: %.exe
 	objcopy \
+		-j .text -j .sdata -j .data -j .dynamic \
+		-j .dynsym  -j .rel -j .rela -j .reloc \
 		--subsystem efi-bsd \
 		--target efi-app-$(EFI_ARCH) \
 		$^ \
@@ -66,6 +68,8 @@ CFLAGS += \
 LDFLAGS += \
 	-nostdlib \
 	-znocombreloc \
+	-shared \
+	-Bsymbolic \
 
 NO_LFLAGS += \
 	-T $(EFI_LDS) \
