@@ -20,6 +20,7 @@
 #include <efi/efi.h>
 #include "efidxe.h"
 
+static EFI_HANDLE gImage;
 static EFI_SYSTEM_TABLE * gST;
 static EFI_BOOT_SERVICES * gBS;
 static EFI_RUNTIME_SERVICES * gRT;
@@ -299,7 +300,7 @@ efi_final_init(void)
 /*
  * Locate a firmware file based on the GUID
  */
-static EFI_FIRMWARE_VOLUME2_PROTOCOL * 
+static EFI_HANDLE
 find_ffs(
 	EFI_GUID * guid
 )
@@ -363,7 +364,8 @@ find_ffs(
 
 		serial_string("LinuxBoot: fv=");
 		serial_hex((unsigned long) fv, 16);
-		return fv;
+
+		return handles[i];
 	}
 
 	// this leaks the handle buffer.
@@ -373,23 +375,29 @@ find_ffs(
 
 static int
 read_ffs(
+	EFI_HANDLE fv_handle,
 	EFI_GUID * guid,
 	void ** buffer,
-	UINTN * size
+	UINTN * size,
+	EFI_SECTION_TYPE section_type
 )
 {
-	EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = find_ffs(guid);
-	if (!fv)
-	{
-		serial_string("LinuxBoot: FFS not found\r\n");
+	EFI_STATUS status;
+	EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = NULL;
+
+	status = gBS->HandleProtocol(
+		fv_handle,
+		&EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID,
+		(void**) &fv
+	);
+	if (status != 0)
 		return -1;
-	}
 
 	UINT32 auth_status;
-	EFI_STATUS status = fv->ReadSection(
+	status = fv->ReadSection(
 		fv,
 		guid,
-		EFI_SECTION_RAW,
+		section_type,
 		0,
 		buffer,
 		size,
@@ -413,17 +421,68 @@ read_ffs(
 static int
 linuxboot_start()
 {
+	EFI_STATUS status;
 	EFI_GUID bzimage_guid = { 0xDECAFBAD, 0x6548, 0x6461, { 0x73, 0x2d, 0x2f, 0x2d, 0x4e, 0x45, 0x52, 0x46 }};
 	EFI_GUID initrd_guid = { 0x74696e69, 0x6472, 0x632e, { 0x70, 0x69, 0x6f, 0x2f, 0x62, 0x69, 0x6f, 0x73 }};
 
-	EFI_FIRMWARE_VOLUME2_PROTOCOL * bzimage = find_ffs(&bzimage_guid);
-	if (!bzimage)
+	EFI_HANDLE bzimage_handle = find_ffs(&bzimage_guid);
+	if (!bzimage_handle)
+	{
+		serial_string("LinuxBoot: bzImage FFS not found\r\n");
+		return -1;
+	}
+
+	void * bzimage_buffer = NULL;
+	UINTN bzimage_length = 0;
+	if (read_ffs(bzimage_handle, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
 		return -1;
 
+	// convert the firmware volume protocol to a loaded image
+	EFI_HANDLE bzimage_image_handle = NULL;
+
+	status = gBS->LoadImage(
+		TRUE, // Boot
+		gImage,
+		NULL, // no device path
+		bzimage_buffer,
+		bzimage_length,
+		&bzimage_image_handle
+	);
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: unable to create loaded image protocol\r\n");
+		return -1;
+	}
+	
+/*
+	EFI_GUID loaded_image_guid = LOADED_IMAGE_PROTOCOL;
+	status = gBS->HandleProtocol(
+		bzimage,
+		&loaded_image_guid,
+		(void**) &bzimage_image
+	);
+*/
+	// attempt to load the kernel
+	UINTN exit_data_len = 0;
+	CHAR16 * exit_data = NULL;
+
+	status = gBS->StartImage(
+		bzimage_image_handle,
+		&exit_data_len,
+		&exit_data
+	);
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: Unable to start bzImage\r\n");
+		return -1;
+	}
+
+#if 0
 	void * initrd_buffer = NULL;
 	UINTN initrd_length = 0;
-	if (read_ffs(&initrd_guid, &initrd_buffer, &initrd_length) < 0)
+	if (read_ffs(&initrd_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW) < 0)
 		return -1;
+#endif
 
 	return 0;
 }
@@ -478,7 +537,7 @@ efi_main(
 	serial_string("|                    |\r\n");
 	serial_string("+--------------------+\r\n");
 
-	(void) image; // should we call loaded image protocol?
+	gImage = image;
 	gST = st;
 	gBS = gST->BootServices;
 	gRT = gST->RuntimeServices;
