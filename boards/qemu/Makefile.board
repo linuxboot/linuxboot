@@ -50,7 +50,9 @@ $(BUILD)/merged.vol: \
 
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
+	./dxe/hello.ffs \
 	$(dxe-files) \
+	./dxe/linuxboot.ffs \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
@@ -63,9 +65,10 @@ boards/$(BOARD)/$(BOARD).rom: edk2/.git
 
 # We can also launch a qemu with the LinuxBoot kernel
 run: $(BUILD)/linuxboot.rom
-	qemu-system-x86_64 \
+	-qemu-system-x86_64 \
 		-machine q35,smm=on  \
 		-global ICH9-LPC.disable_s3=1 \
 		-global driver=cfi.pflash01,property=secure,value=on \
-		--serial $(or $(SERIAL),/dev/tty) \
+		--serial $(or $(SERIAL),stdio) \
 		-drive if=pflash,format=raw,unit=0,file=$<
+	stty sane
