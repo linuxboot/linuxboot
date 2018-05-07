@@ -16,7 +16,7 @@ typedef struct {
 	void*              RemoveIoSpace;
 	void*      GetIoSpaceDescriptor;
 	void*             GetIoSpaceMap;
-	void*                     Dispatch;
+	EFI_STATUS EFIAPI (*Dispatch)(void);
 	void*                     Schedule;
 	void*                        Trust;
 	EFI_STATUS EFIAPI (*ProcessFirmwareVolume)(
