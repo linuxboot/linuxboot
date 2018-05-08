@@ -6,7 +6,7 @@ EFI_ARCH	= x86_64
 #EFI_ARCH	= x86
 
 
-TARGETS += fvloader.ffs
+#TARGETS += fvloader.ffs
 TARGETS += linuxboot.ffs
 TARGETS += hello.ffs
 
@@ -15,18 +15,17 @@ all: $(TARGETS)
 clean: FORCE
 	$(RM) *.efi *.exe *.rom *.o .*.d $(TARGETS)
 
+linuxboot.exe: linuxboot.o efifv.o
+hello.exe: hello.o
 
 FORCE:
 
-%.exe: %.o
+%.exe:
 	$(CROSS)ld \
 		$(LDFLAGS) \
 		-T elf_x86_64_efi.lds \
 		-o $@ \
 		$^
-
-%.efi-wrap: %.exe
-	./efi-wrap $^ > $@
 
 %.efi: %.exe
 	objcopy \

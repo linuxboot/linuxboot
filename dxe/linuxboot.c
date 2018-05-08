@@ -19,12 +19,13 @@
 #include "serial.h"
 #include <efi/efi.h>
 #include "efidxe.h"
+#include "efifv.h"
 
-static EFI_HANDLE gImage;
-static EFI_SYSTEM_TABLE * gST;
-static EFI_BOOT_SERVICES * gBS;
-static EFI_RUNTIME_SERVICES * gRT;
-static EFI_DXE_SERVICES * gDXE;
+EFI_HANDLE gImage;
+EFI_SYSTEM_TABLE * gST;
+EFI_BOOT_SERVICES * gBS;
+EFI_RUNTIME_SERVICES * gRT;
+EFI_DXE_SERVICES * gDXE;
 
 static void hexdump(uint64_t p, unsigned len)
 {
@@ -88,77 +89,6 @@ empty_notify(void* unused1, void* unused2)
 #define EFI_DXE_SMM_READY_TO_LOCK_PROTOCOL_GUID	((EFI_GUID){ 0x60ff8964, 0xe906, 0x41d0, { 0xaf, 0xed, 0xf2, 0x41, 0xe9, 0x74, 0xe0, 0x8e } })
 
 #define EFI_BDS_ARCH_PROTOCOL_GUID		((EFI_GUID){ 0x665E3FF6, 0x46CC, 0x11d4, { 0x9A, 0x38, 0x00, 0x90, 0x27, 0x3F, 0xC1, 0x4D } })
-
-#define EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID	((EFI_GUID){ 0x220e73b6, 0x6bdb, 0x4413, { 0x84, 0x05, 0xb9, 0x74, 0xb1, 0x08, 0x61, 0x9a } })
-
-typedef UINT8 EFI_FV_FILETYPE;
-#define EFI_FV_FILETYPE_RAW                   0x01
-#define EFI_FV_FILETYPE_FREEFORM              0x02
-#define EFI_FV_FILETYPE_SECURITY_CORE         0x03
-#define EFI_FV_FILETYPE_PEI_CORE              0x04
-#define EFI_FV_FILETYPE_DXE_CORE              0x05
-#define EFI_FV_FILETYPE_PEIM                  0x06
-#define EFI_FV_FILETYPE_DRIVER                0x07
-#define EFI_FV_FILETYPE_COMBINED_PEIM_DRIVER  0x08
-#define EFI_FV_FILETYPE_APPLICATION           0x09
-#define EFI_FV_FILETYPE_FIRMWARE_VOLUME_IMAGE 0x0b
-#define EFI_FV_FILETYPE_FFS_PAD               0xf0
-
-typedef UINT32 EFI_FV_FILE_ATTRIBUTES;
-#define EFI_FV_FILE_ATTRIB_ALIGNMENT 0x0000001F
-
-typedef UINT8 EFI_SECTION_TYPE;
-#define EFI_SECTION_ALL                   0x00
-#define EFI_SECTION_COMPRESSION           0x01
-#define EFI_SECTION_GUID_DEFINED          0x02
-#define EFI_SECTION_DISPOSABLE            0x03
-#define EFI_SECTION_PE32                  0x10
-#define EFI_SECTION_PIC                   0x11
-#define EFI_SECTION_DXE_DEPEX             0x13
-#define EFI_SECTION_COMPATIBILITY16       0x16
-#define EFI_SECTION_FIRMWARE_VOLUME_IMAGE 0x17
-#define EFI_SECTION_FREEFORM_SUBTYPE_GUID 0x18
-#define EFI_SECTION_RAW                   0x19
-#define EFI_SECTION_PEI_DEPEX             0x1B
-
-
-typedef struct _EFI_FIRMWARE_VOLUME2_PROTOCOL EFI_FIRMWARE_VOLUME2_PROTOCOL;
-
-typedef EFI_STATUS
-(EFIAPI * EFI_FV_READ_FILE) (
-  IN     EFI_FIRMWARE_VOLUME2_PROTOCOL *This,
-  IN     EFI_GUID                     *NameGuid,
-  IN OUT VOID                         **Buffer,
-  IN OUT UINTN                        *BufferSize,
-  OUT    EFI_FV_FILETYPE              *FoundType,
-  OUT    EFI_FV_FILE_ATTRIBUTES       *FileAttributes,
-  OUT    UINT32                       *AuthenticationStatus
-  );
-
-typedef EFI_STATUS
-(EFIAPI * EFI_FV_READ_SECTION) (
-  IN     EFI_FIRMWARE_VOLUME2_PROTOCOL *This,
-  IN     EFI_GUID                     *NameGuid,
-  IN     EFI_SECTION_TYPE             SectionType,
-  IN     UINTN                        SectionInstance,
-  IN OUT VOID                         **Buffer,
-  IN OUT UINTN                        *BufferSize,
-  OUT    UINT32                       *AuthenticationStatus
-  );
-
-struct _EFI_FIRMWARE_VOLUME2_PROTOCOL {
-  uint64_t    GetVolumeAttributes;
-  uint64_t    SetVolumeAttributes;
-	EFI_FV_READ_FILE	ReadFile;
-	EFI_FV_READ_SECTION	ReadSection;
-  uint64_t    WriteFile;
-  uint64_t    GetNextFile;
-  uint32_t    KeySize;
-  uint64_t    ParentHandle;
-  uint64_t    GetInfo;
-  uint64_t    SetInfo;
-};
-
 
 
 static void
@@ -297,125 +227,6 @@ efi_final_init(void)
 }
 
 
-/*
- * Locate a firmware file based on the GUID
- */
-static EFI_HANDLE
-find_ffs(
-	EFI_GUID * guid
-)
-{
-	EFI_STATUS status;
-	EFI_HANDLE * handles = NULL;
-	UINTN handle_count;
-	EFI_GUID fv_proto = EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID;
-
-	status = gBS->LocateHandleBuffer(
-		ByProtocol,
-		&fv_proto,
-		NULL,
-		&handle_count,
-		&handles
-	);
-
-	if (status != 0)
-	{
-		serial_string("LinuxBoot: locate_handle rc=");
-		serial_hex(status, 8);
-		return NULL;
-	}
-
-	for(unsigned i = 0 ; i < handle_count ; i++)
-	{
-		EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = NULL;
-
-		serial_string("handle=");
-		serial_hex((unsigned long) handles[i], 16);
-
-		status = gBS->HandleProtocol(
-			handles[i],
-			&fv_proto,
-			(void**) &fv
-		);
-
-		if (status != 0)
-		{
-			serial_string("handle proto rc=");
-			serial_hex(status, 8);
-			continue;
-		}
-
-		UINTN size;
-		UINT32 auth_status;
-		EFI_FV_FILETYPE type;
-		EFI_FV_FILE_ATTRIBUTES attributes;
-	
-		status = fv->ReadFile(
-			fv,
-			guid,
-			NULL,
-			&size,
-			&type,
-			&attributes,
-			&auth_status
-		);
-		if (status != EFI_SUCCESS)
-			continue;
-
-		serial_string("LinuxBoot: fv=");
-		serial_hex((unsigned long) fv, 16);
-
-		return handles[i];
-	}
-
-	// this leaks the handle buffer.
-	return NULL;
-}
-
-
-static int
-read_ffs(
-	EFI_HANDLE fv_handle,
-	EFI_GUID * guid,
-	void ** buffer,
-	UINTN * size,
-	EFI_SECTION_TYPE section_type
-)
-{
-	EFI_STATUS status;
-	EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = NULL;
-
-	status = gBS->HandleProtocol(
-		fv_handle,
-		&EFI_FIRMWARE_VOLUME2_PROTOCOL_GUID,
-		(void**) &fv
-	);
-	if (status != 0)
-		return -1;
-
-	UINT32 auth_status;
-	status = fv->ReadSection(
-		fv,
-		guid,
-		section_type,
-		0,
-		buffer,
-		size,
-		&auth_status
-	);
-	if (status != 0)
-	{
-		serial_string("LinuxBoot: read section rc=");
-		serial_hex(status, 8);
-		return -1;
-	}
-
-	serial_string("LinuxBoot: FFS buffer=");
-	serial_hex((unsigned long) *buffer, 16);
-	serial_string("LinuxBoot: FFS length=");
-	serial_hex(*size, 8);
-	return 0;
-}
 
 // code in MdeModulePkg/Library/UefiBootManagerLib/BmBoot.c
 static int
@@ -425,16 +236,9 @@ linuxboot_start()
 	EFI_GUID bzimage_guid = { 0xDECAFBAD, 0x6548, 0x6461, { 0x73, 0x2d, 0x2f, 0x2d, 0x4e, 0x45, 0x52, 0x46 }};
 	EFI_GUID initrd_guid = { 0x74696e69, 0x6472, 0x632e, { 0x70, 0x69, 0x6f, 0x2f, 0x62, 0x69, 0x6f, 0x73 }};
 
-	EFI_HANDLE bzimage_handle = find_ffs(&bzimage_guid);
-	if (!bzimage_handle)
-	{
-		serial_string("LinuxBoot: bzImage FFS not found\r\n");
-		return -1;
-	}
-
 	void * bzimage_buffer = NULL;
 	UINTN bzimage_length = 0;
-	if (read_ffs(bzimage_handle, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
+	if (read_ffs(gBS, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
 		return -1;
 
 	// convert the firmware volume protocol to a loaded image
@@ -480,7 +284,7 @@ linuxboot_start()
 #if 0
 	void * initrd_buffer = NULL;
 	UINTN initrd_length = 0;
-	if (read_ffs(&initrd_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW) < 0)
+	if (read_ffs(gBS, &initrd_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW) < 0)
 		return -1;
 #endif
 
