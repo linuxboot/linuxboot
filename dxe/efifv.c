@@ -34,8 +34,8 @@ find_ffs(
 	{
 		EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = NULL;
 
-		serial_string("handle=");
-		serial_hex((unsigned long) handles[i], 16);
+		//serial_string("handle=");
+		//serial_hex((unsigned long) handles[i], 16);
 
 		status = gBS->HandleProtocol(
 			handles[i],
@@ -67,8 +67,8 @@ find_ffs(
 		if (status != EFI_SUCCESS)
 			continue;
 
-		serial_string("LinuxBoot: fv=");
-		serial_hex((unsigned long) fv, 16);
+		//serial_string("LinuxBoot: fv=");
+		//serial_hex((unsigned long) fv, 16);
 
 		return fv;
 	}
