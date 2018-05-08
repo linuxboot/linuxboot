@@ -20,6 +20,7 @@
 #include <efi/efi.h>
 #include "efidxe.h"
 #include "efifv.h"
+#include <asm/bootparam.h>
 
 EFI_HANDLE gImage;
 EFI_SYSTEM_TABLE * gST;
@@ -238,40 +239,76 @@ linuxboot_start()
 
 	void * bzimage_buffer = NULL;
 	UINTN bzimage_length = 0;
+	serial_string("LinuxBoot: Looking for bzimage\r\n");
 	if (read_ffs(gBS, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
 		return -1;
 
-	// convert the firmware volume protocol to a loaded image
-	EFI_HANDLE bzimage_image_handle = NULL;
+#if 0
+	// jump right into it
+	static struct boot_params bp;
+	bp.ext_ramdisk_image = (uint32_t) initrd_buffer;
+	bp.ext_ramdisk_size = (uint32_t) initrd_length;
+	bp.ext_cmd_line_ptr = "hello world";
 
+	void (*kernel_entry)(void* rdi, void *rsi) = 0x200 + (uintptr_t) bzimage_buffer;
+	kernel_entry(NULL, &bp);
+#endif
+
+	// convert the RAM image of the kernel into a loaded image
+	EFI_HANDLE bzimage_handle = NULL;
 	status = gBS->LoadImage(
 		TRUE, // Boot
 		gImage,
 		NULL, // no device path
 		bzimage_buffer,
 		bzimage_length,
-		&bzimage_image_handle
+		&bzimage_handle
 	);
 	if (status != 0)
 	{
-		serial_string("LinuxBoot: unable to create loaded image protocol\r\n");
+		serial_string("LinuxBoot: unable to load bzImage image\r\n");
 		return -1;
 	}
 	
-/*
 	EFI_GUID loaded_image_guid = LOADED_IMAGE_PROTOCOL;
+	EFI_LOADED_IMAGE_PROTOCOL * loaded_image = NULL;
 	status = gBS->HandleProtocol(
-		bzimage,
+		bzimage_handle,
 		&loaded_image_guid,
-		(void**) &bzimage_image
+		(void**) &loaded_image
 	);
-*/
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: unable to get LoadedImageProtocol\r\n");
+		return -1;
+	}
+
+	void * initrd_buffer = NULL;
+	UINTN initrd_length = 0;
+	serial_string("LinuxBoot: Looking for initrd\r\n");
+	if (read_ffs(gBS, &initrd_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW) < 0)
+	{
+		serial_string("LinuxBoot: no initrd found\r\n");
+	} else {
+		static uint16_t cmdline[] = L"found_initd";
+		loaded_image->LoadOptions = cmdline;
+		loaded_image->LoadOptionsSize = sizeof(cmdline);
+
+		uintptr_t hdr = (uintptr_t) loaded_image->ImageBase;
+		*(uint32_t*)(hdr + 0x218) = (uint32_t)(uintptr_t) initrd_buffer;
+		*(uint32_t*)(hdr + 0x21c) = (uint32_t)(uintptr_t) initrd_length;
+	}
+
+
+
+
 	// attempt to load the kernel
 	UINTN exit_data_len = 0;
 	CHAR16 * exit_data = NULL;
 
+	serial_string("LinuxBoot: Starting bzImage\r\n");
 	status = gBS->StartImage(
-		bzimage_image_handle,
+		bzimage_handle,
 		&exit_data_len,
 		&exit_data
 	);
@@ -280,13 +317,6 @@ linuxboot_start()
 		serial_string("LinuxBoot: Unable to start bzImage\r\n");
 		return -1;
 	}
-
-#if 0
-	void * initrd_buffer = NULL;
-	UINTN initrd_length = 0;
-	if (read_ffs(gBS, &initrd_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW) < 0)
-		return -1;
-#endif
 
 	return 0;
 }
