@@ -28,7 +28,9 @@ EFI_BOOT_SERVICES * gBS;
 EFI_RUNTIME_SERVICES * gRT;
 EFI_DXE_SERVICES * gDXE;
 
-static void hexdump(uint64_t p, unsigned len)
+
+static void
+hexdump(uint64_t p, unsigned len)
 {
 	for(unsigned i = 0 ; i < len ; i += 8)
 		serial_hex(*(const uint64_t*)(p+i), 16);
@@ -62,6 +64,7 @@ process_fv(
 
         return rc;
 }
+
 
 /*
  * The LinuxBoot kernel is invoked as a DXE driver that registers
@@ -243,17 +246,6 @@ linuxboot_start()
 	if (read_ffs(gBS, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
 		return -1;
 
-#if 0
-	// jump right into it
-	static struct boot_params bp;
-	bp.ext_ramdisk_image = (uint32_t) initrd_buffer;
-	bp.ext_ramdisk_size = (uint32_t) initrd_length;
-	bp.ext_cmd_line_ptr = "hello world";
-
-	void (*kernel_entry)(void* rdi, void *rsi) = 0x200 + (uintptr_t) bzimage_buffer;
-	kernel_entry(NULL, &bp);
-#endif
-
 	// convert the RAM image of the kernel into a loaded image
 	EFI_HANDLE bzimage_handle = NULL;
 	status = gBS->LoadImage(
@@ -321,6 +313,7 @@ linuxboot_start()
 	return 0;
 }
 
+
 static EFI_STATUS EFIAPI
 efi_bds_main(void)
 {
@@ -330,32 +323,16 @@ efi_bds_main(void)
 	if (linuxboot_start() < 0)
 		return 0;
 
-
+	serial_string("LinuxBoot: SOMETHING IS WRONG\r\n");
 	return EFI_NOT_FOUND;
 }
+
 
 static struct
 {
 	EFI_STATUS (EFIAPI *bds_main)(void);
 } efi_bds_arch_protocol;
 
-
-/*
-int efi_bds_entry(struct efi_config *c)
-{
-	EFI_STATUS status;
-	EFI_GUID bds_guid = EFI_BDS_ARCH_PROTOCOL_GUID;
-
-	EFI_LOADED_IMAGE *image;
-	EFI_GUID proto = EFI_LOADED_IMAGE_PROTOCOL_GUID;
-	void * handle;
-
-	serial_string("bds_entry\r\n");
-
-	serial_string("should locate linux, initrd, etc...\n");
-	return EFI_NOT_FOUND;
-}
-*/
 
 
 EFI_STATUS
