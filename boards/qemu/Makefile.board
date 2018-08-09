@@ -50,7 +50,6 @@ $(BUILD)/merged.vol: \
 
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
-	./dxe/hello.ffs \
 	$(dxe-files) \
 	./dxe/linuxboot.ffs \
 	$(BUILD)/Linux.ffs \
