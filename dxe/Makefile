@@ -8,7 +8,7 @@ EFI_ARCH	= x86_64
 
 #TARGETS += fvloader.ffs
 TARGETS += linuxboot.ffs
-TARGETS += hello.ffs
+#TARGETS += hello.ffs
 
 all: $(TARGETS)
 
@@ -60,7 +60,7 @@ CFLAGS += \
 	-W \
 	-Wall \
 	-I . \
-	-I /usr/include/efi/x86_64 \
+	-I efi/x86_64 \
 	-MMD \
 	-MF .$(notdir $@).d \
 
