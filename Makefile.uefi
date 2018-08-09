@@ -22,7 +22,7 @@ IntelCrystalRidgeGuid		:= 626967C7-071B-4D9A-9D0C-F112CF0836E9
 LpcSomethingGuid		:= 64021DFE-A62C-42A7-BF46-15078CDF9F89
 
 Linux-guid := DECAFBAD-6548-6461-732d-2f2d4e455246
-Linux-depex := $(RuntimeArchProtocolGuid)
+Linux-type := APPLICATION
 
 Initrd-type := FREEFORM
 Initrd-guid := 74696e69-6472-632e-7069-6f2f62696f73
