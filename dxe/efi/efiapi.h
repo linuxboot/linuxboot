@@ -576,7 +576,7 @@ EFI_STATUS
     IN EFI_TPL                  NotifyTpl,
     IN EFI_EVENT_NOTIFY         NotifyFunction OPTIONAL,
     IN const VOID               *NotifyContext OPTIONAL,
-    IN const EFI_GUID           EventGroup OPTIONAL,
+    IN const EFI_GUID           *EventGroup OPTIONAL,
     OUT EFI_EVENT               *Event
     );
 
@@ -947,13 +947,16 @@ typedef struct _EFI_SYSTEM_TABLE {
     UINT32                          FirmwareRevision;
 
     EFI_HANDLE                      ConsoleInHandle;
-    SIMPLE_INPUT_INTERFACE          *ConIn;
+    //SIMPLE_INPUT_INTERFACE          *ConIn;
+    void                            *ConIn;
 
     EFI_HANDLE                      ConsoleOutHandle;
-    SIMPLE_TEXT_OUTPUT_INTERFACE    *ConOut;
+    //SIMPLE_TEXT_OUTPUT_INTERFACE    *ConOut;
+    void                            *ConOut;
 
     EFI_HANDLE                      StandardErrorHandle;
-    SIMPLE_TEXT_OUTPUT_INTERFACE    *StdErr;
+    //SIMPLE_TEXT_OUTPUT_INTERFACE    *StdErr;
+    void                            *StdErr;
 
     EFI_RUNTIME_SERVICES            *RuntimeServices;
     EFI_BOOT_SERVICES               *BootServices;
