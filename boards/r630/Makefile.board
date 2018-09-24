@@ -55,6 +55,7 @@ $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
 	$(BUILD)/RuntimeDxe.ffs \
+	./dxe/linuxboot.ffs \
 	$(dxe-files) \
 	$(BUILD)/PciBusDxe.ffs \
 	$(BUILD)/PciHostBridgeDxe.ffs \

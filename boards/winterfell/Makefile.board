@@ -38,6 +38,7 @@ $(BUILD)/rom/0x00f00000.fv \
 # and add in the Linux kernel / initrd
 $(BUILD)/dxe.vol: \
 	$(dxe-files) \
+	./dxe/linuxboot.ffs \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 
