@@ -25,6 +25,34 @@ all:
 		save x.bin \
 		remove .*Ipmi.* \
 		save ipmisucks.bin \
+		remove DxeIpmiBmcInitialize \
+		remove SmmBmcElog \
+		remove BmcAcpi \
+		remove SmmIpmiBmcInitialize \
+		remove BmcElog \
+		remove BmcLanConfig \
+		save removeBMCcrap.bin \
+		remove SecurityStubDxe \
+		save removesomecrap.bin \
+		remove TimestampDxe \
+		remove Legacy8259 \
+		remove HiiDatabase \
+		remove DataHubDxe \
+		remove EnglishDxe \
+		remove PcRtc \
+		remove FpgaDxe \
+		remove LegacyInterrupt \
+		remove SmartTimer \
+		remove LegacySredir \
+		remove LegacyRegion2 \
+		remove TcgLegacy \
+		remove LegacySmmSredir \
+		remove DevicePathDxe \
+		remove CpuIo2Dxe \
+		remove CpuMpDxe \
+		remove SmmAccess \
+		remove WdtDxe \
+		save removemorecrap.bin \
 		remove SetupConfigUpdateDxeNeonCityEPRP \
 		remove StaticSkuDataDxeNeonCityEPRP \
 		remove OpromUpdateDxeNeonCityEPRP \
@@ -75,33 +103,6 @@ all:
 		remove SmbiosDataUpdateDxeNeonCityEPECB \
 		remove StaticSkuDataDxeNeonCityEPECB \
 		save removesetupcrap.bin \
-		remove DxeIpmiBmcInitialize \
-		remove SmmBmcElog \
-		remove BmcAcpi \
-		remove SmmIpmiBmcInitialize \
-		remove BmcElog \
-		remove BmcLanConfig \
-		save removeBMCcrap.bin \
-		remove DataHubDxe \
-		remove DevicePathDxe \
-		remove EnglishDxe \
-		remove HiiDatabase \
-		remove SecurityStubDxe \
-		remove TimestampDxe \
-		remove CpuIo2Dxe \
-		remove Legacy8259 \
-		remove PcRtc \
-		remove CpuMpDxe \
-		remove FpgaDxe \
-		remove SmmAccess \
-		remove LegacyInterrupt \
-		remove SmartTimer \
-		remove WdtDxe \
-		remove LegacySredir \
-		remove LegacyRegion2 \
-		remove TcgLegacy \
-		remove LegacySmmSredir \
-		save removemorecrap.bin \
 		remove PchSerialGpio \
 		remove PchSmbusDxe \
 		remove IioInit \
@@ -286,4 +287,3 @@ all:
 		remove OPAPlatConfigSkt0 \
 		remove OPAPlatConfigSkt1 \
 		remove PeiCore 
-		
