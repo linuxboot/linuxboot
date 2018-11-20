@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+set -x
+echo TEST $1
+sudo ~rminnich/bin/em100 -c W25Q256FV -s -d $1 -r
+echo /bin/reset > /dev/ttyUSB0
+./uinit -r
