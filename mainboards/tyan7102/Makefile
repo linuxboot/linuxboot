@@ -1,4 +1,17 @@
-default: all
+default: build
+
+build: buildbzimage
+	futk tyan7102.bin fv '.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv bzImage splat	
+
+buildbzimage:
+	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+	
+i:
+	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/cmds/elvish github.com/u-root/u-root/cmds/ip github.com/u-root/u-root/cmds/ls
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
 
 cleanme: 
 	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
