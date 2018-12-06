@@ -3,7 +3,7 @@
 #
 # This requires the vendor firmware image, a Linux kernel and an initrd.cpio.xz file.
 #
-# 
+#
 all: linuxboot
 
 -include .config
@@ -36,6 +36,28 @@ include boards/$(BOARD)/Makefile.board
 # If they don't define a vendor ROM file
 ROM ?= boards/$(BOARD)/$(BOARD).rom
 
+# Check go version. We need go 1.11 or newer
+GOVERSION:=$(shell go version | grep ^go | cut -d ' ' -f 3 | cut -c 3-)
+GOMAJOR:=$(shell echo $(GOVERSION) | cut -d '.' -f 1)
+GOMINOR:=$(shell echo $(GOVERSION) | cut -d '.' -f 2)
+GOVERSIONREQ:=1.11
+GOMAJORREQ:=1
+GOMINORREQ:=11
+
+$(shell \
+	if [ "$(GOMAJOR)" -lt "$(GOMAJORREQ)" ]; then \
+		echo >&2 "Go version $(GOVERSION) too old, please install go $(GOVERSIONREQ) or newer"; \
+		exit 1; \
+	elif [ "$(GOMAJOR)" -eq "$(GOMAJORREQ)" ]; then \
+		if [ "$(GOMINOR)" -lt "$(GOMINORREQ)" ]; then \
+			echo >&2 "Go version $(GOVERSION) too old, please install go $(GOVERSIONREQ) or newer"; \
+			exit 1; \
+		fi; \
+	fi; \
+)
+
+
+
 linuxboot: $(BUILD)/linuxboot.rom
 
 # Create a .config file based on the current parameters
@@ -64,6 +86,9 @@ edk2.force: edk2/.git
 edk2/.git:
 	git clone --depth 1 --branch UDK2018 https://github.com/linuxboot/edk2
 
+bin/utk:
+	go get github.com/linuxboot/fiano/cmds/utk
+	cp ~/go/bin/utk $@
 
 $(BUILD)/Linux.ffs: $(KERNEL)
 $(BUILD)/Initrd.ffs: $(INITRD)
@@ -129,8 +154,16 @@ $(patsubst %.fv,,$(FVS)): $(BUILD)/$(BOARD).txt
 $(dxe-files): $(BUILD)/$(BOARD).txt
 	@true
 
-$(BUILD)/linuxboot.rom: $(FVS)
+#$(BUILD)/linuxboot.rom: $(FVS)
 
+$(BUILD)/linuxboot.rom: bin/utk $(BUILD)/Linux.ffs $(BUILD)/Initrd.ffs
+	$< \
+		$(ROM) \
+		remove_dxes_except boards/$(BOARD)/image-files.txt \
+		insert_dxe $(BUILD)/Linux.ffs \
+		insert_dxe $(BUILD)/Initrd.ffs \
+		save $@
 
 clean:
 	$(RM) $(BUILD)/{*.ffs,*.rom,*.vol,*.tmp}
+	$(RM) ./bin/utk
