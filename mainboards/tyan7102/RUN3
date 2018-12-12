@@ -1267,4 +1267,69 @@ EM100Pro hold pin currently low
 Stopped EM100Pro
 Sending flash chip configuration
 Chip set to W25Q256FV
-Sent 
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:50:35 Listening on 192.168.0.1:8080 at 2018-12-11 16:50:35.390707146 -0800 PST m=+0.001135852
+2018/12/11 16:53:35 Listen failed: accept tcp 192.168.0.1:8080: i/o timeout at 2018-12-11 16:53:35.391103422 -0800 PST m=+180.001531893
+2018/12/11 16:53:35 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/11 16:53:35 Try to remove 899407D7-99FE-43D8-9A21-79EC328CAC21:EFI_FV_FILETYPE_DRIVER:Setup (899407D7-99FE-43D8-9A21-79EC328CAC21)
+2018/12/11 16:53:35 removed [0xc000023080]
++ echo TEST /tmp/futk295406176/2
+TEST /tmp/futk295406176/2
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk295406176/2 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:54:01 Listening on 192.168.0.1:8080 at 2018-12-11 16:54:01.756748322 -0800 PST m=+0.000692799
+^Cinterrupt
+[405 [/tmp/futk295406176/0] signal: killed]OK [?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ [?2004l[?2004h[?2004lexit
+
+Script done on 2018-12-12 10:14:06-0800

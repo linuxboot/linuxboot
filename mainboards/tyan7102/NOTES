@@ -1,0 +1,4 @@
+GPIO control functions in
+/usr/libexec/itami-host-power-control-common.sh
+
+/bin/reset works but I can't get power button to do anything useful.
