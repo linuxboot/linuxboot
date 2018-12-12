@@ -1,0 +1,1270 @@
+Script started on 2018-12-11 16:18:42-0800
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make d
+[?2004lfutk tyan7102.bin fv 'Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+2018/12/11 16:18:48 Found 414 things
+2018/12/11 16:18:48 Try to remove 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru (2E3AB8B6-AC9D-4D70-A675-54F52FB22D66)
+2018/12/11 16:18:48 removed [0xc00a042900]
+2018/12/11 16:18:48 Try to remove 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe (6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B)
+2018/12/11 16:18:48 removed [0xc00a042680]
+2018/12/11 16:18:48 Try to remove 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe (94734718-0BBC-47FB-96A5-EE7A5AE6A2AD)
+2018/12/11 16:18:48 removed [0xc00a042500]
+2018/12/11 16:18:48 Try to remove 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe (1A7E4468-2F55-4A56-903C-01265EB7622B)
+2018/12/11 16:18:48 removed [0xc00a042200]
+2018/12/11 16:18:48 Try to remove D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe (D912C7BC-F098-4367-92BA-E911083C7B0E)
+2018/12/11 16:18:48 removed [0xc00a042780]
+2018/12/11 16:18:48 Try to remove 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe (6B38F7B4-AD98-40E9-9093-ACA2B5A253C4)
+2018/12/11 16:18:48 removed [0xc00a02bc80]
+2018/12/11 16:18:48 Try to remove 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe (95E3669D-34BE-4775-A651-7EA41B69D89E)
+2018/12/11 16:18:48 removed [0xc00a042800]
+2018/12/11 16:18:48 Try to remove 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk (0A66E322-3740-4CCE-AD62-BD172CECCA35)
+2018/12/11 16:18:48 removed [0xc00a042d00]
+2018/12/11 16:18:48 Try to remove B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe (B95E9FDA-26DE-48D2-8807-1F9107AC5E3A)
+2018/12/11 16:18:48 removed [0xc00a042280]
+2018/12/11 16:18:58 Found 406 things
+2018/12/11 16:19:09 script is ./DXECLEANER
+2018/12/11 16:19:21 Try to remove FF917E22-A228-448D-BDAA-68EFCCDDA5D3:EFI_FV_FILETYPE_DRIVER:TxtDxe (FF917E22-A228-448D-BDAA-68EFCCDDA5D3)
+2018/12/11 16:19:21 removed [0xc00fb5d800]
+[sudo] password for rminnich: 
+2018/12/11 16:23:55 Try to remove 43AC4333-472C-4B91-8C5C-52A8B4374256:EFI_FV_FILETYPE_DRIVER:IioCfgUpdateDxeNeonCityFPGA (43AC4333-472C-4B91-8C5C-52A8B4374256)
+2018/12/11 16:23:55 removed [0xc00fb5c380]
+^Cinterrupt
+[414 [1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe] 406 [/tmp/futk735359563/0] + echo TEST /tmp/futk735359563/2
+TEST /tmp/futk735359563/2
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk735359563/2 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:24:21 Listening on 192.168.0.1:8080 at 2018-12-11 16:24:21.603903217 -0800 PST m=+0.002112136
+ signal: interrupt]OK 
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make i
+[?2004lgo run /usr/local/google/home/rminnich/go/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+2018/12/11 16:26:22 Build environment: GOARCH=amd64 GOOS=linux GOROOT=/usr/local/src/projects/nobinaryblobs/go1.6 GOPATH=/usr/local/google/home/rminnich/go CGO_ENABLED=0
+2018/12/11 16:26:22 Filename is /tmp/initramfs.linux_amd64.cpio
+2018/12/11 16:26:30 Successfully wrote initramfs.
+cp /tmp/initramfs.linux_amd64.cpio .
+mlzma -f initramfs.linux_amd64.cpio
+aek      
+
+make b
+ls -l initramfs*
+-rwxr-xr-x 1 rminnich primarygroup 2853547 Dec 11 16:26 initramfs.linux_amd64.cpio.lzma
+cp *lzma linux
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make b
+[?2004l(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+make[1]: Entering directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+  CHK     include/config/kernel.release
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  GEN     usr/initramfs_data.cpio.lzma
+  CHK     include/generated/compile.h
+  AS      usr/initramfs_data.o
+  AR      usr/built-in.o
+  CHK     kernel/config_data.h
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.o
+  AR      built-in.o
+  LD      vmlinux.o
+  MODPOST vmlinux.o
+  KSYM    .tmp_kallsyms1.o
+  KSYM    .tmp_kallsyms2.o
+  LD      vmlinux
+  SORTEX  vmlinux
+  SYSMAP  System.map
+  Building modules, stage 2.
+  CC      arch/x86/boot/version.o
+  MODPOST 4 modules
+  VOFFSET arch/x86/boot/compressed/../voffset.h
+  OBJCOPY arch/x86/boot/compressed/vmlinux.bin
+  XZKERN  arch/x86/boot/compressed/vmlinux.bin.xz
+  CC      arch/x86/boot/compressed/misc.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  DATAREL arch/x86/boot/compressed/vmlinux
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Setup is 15580 bytes (padded to 15872 bytes).
+System is 5141 kB
+CRC fe6f13ce
+Kernel: arch/x86/boot/bzImage is ready  (#62)
+make[1]: Leaving directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+-rw-r----- 1 rminnich eng 5279792 Dec 11 16:26 arch/x86/boot/bzImage
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make b
+[?2004l(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+make[1]: Entering directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+  CHK     include/config/kernel.release
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CHK     kernel/config_data.h
+cat  Building modules, stage 2.
+  MODPOST 4 modules
+   DATAREL arch/x86/boot/compressed/vmlinux
+Kernel: arch/x86/boot/bzImage is ready  (#62)
+make[1]: Leaving directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+-rw-r----- 1 rminnich eng 5279792 Dec 11 16:26 arch/x86/boot/bzImage
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ cat Makefile 
+[?2004ldefault: build
+
+build:
+	echo b to build, i for initramfs, q for qemu, d to dxeclean
+
+b: buildbzimage
+
+d:
+	futk tyan7102.bin fv 'Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+
+buildbzimage:
+	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+	
+i:
+	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
+
+cleanme: 
+	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
+
+q:
+	qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
+findit:
+	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx
+	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
+
+all:
+	~/go/bin/utk tyan7102.bin \
+		remove Ip.*  \
+		remove Tcp.*  \
+		remove Usb.*  \
+		remove Udp.*  \
+		remove Dhcp.*  \
+		remove .np.*  \
+		remove .tftp.*  \
+		remove Http.* \
+		remove .*Dns.* \
+		remove Arp.* \
+		remove .*NetworkStackSetupScreen.*  \
+		remove Iscsi.* \
+		remove Scsi.* \
+		remove Fat.* \
+		remove Ahci.* \
+		remove Partition.* \
+		remove Sata.* \
+		remove Disk.* \
+		remove Whea.* \
+		remove .*Pxe.* \
+		remove Ata.* \
+		replace_pe32 FullShell bzImage \
+		save x.bin \
+		remove .*Ipmi.* \
+		save ipmisucks.bin \
+		remove DxeIpmiBmcInitialize \
+		remove SmmBmcElog \
+		remove BmcAcpi \
+		remove SmmIpmiBmcInitialize \
+		remove BmcElog \
+		remove BmcLanConfig \
+		save removeBMCcrap.bin \
+		remove SecurityStubDxe \
+		save removesomecrap.bin \
+		comment TimestampDxe \
+		comment Legacy8259 \
+		comment HiiDatabase \
+		comment DataHubDxe \
+		comment EnglishDxe \
+		comment here \
+		comment PcRtc \
+		comment FpgaDxe \
+		comment LegacyInterrupt \
+		comment SmartTimer \
+		comment LegacySredir \
+		comment LegacyRegion2 \
+		comment TcgLegacy \
+		comment LegacySmmSredir \
+		comment DevicePathDxe \
+		comment CpuIo2Dxe \
+		comment CpuMpDxe \
+		comment SmmAccess \
+		comment WdtDxe \
+		save commentmorecrap.bin \
+		comment SetupConfigUpdateDxeNeonCityEPRP \
+		comment StaticSkuDataDxeNeonCityEPRP \
+		comment OpromUpdateDxeNeonCityEPRP \
+		comment SmbiosDataUpdateDxeNeonCityEPRP \
+		comment IioCfgUpdateDxeNeonCityEPRP \
+		comment SlotDataUpdateDxeNeonCityEPRP \
+		comment SetupConfigUpdateDxeLightningRidgeEXRP \
+		comment StaticSkuDataDxeLightningRidgeEXRP \
+		comment OpromUpdateDxeLightningRidgeEXRP \
+		comment SmbiosDataUpdateDxeLightningRidgeEXRP \
+		comment IioCfgUpdateDxeLightningRidgeEXRP \
+		comment SlotDataUpdateDxeLightningRidgeEXRP \
+		comment OpromUpdateDxeNeonCityFPGA \
+		comment SetupConfigUpdateDxeNeonCityFPGA \
+		comment SmbiosDataUpdateDxeNeonCityFPGA \
+		comment StaticSkuDataDxeNeonCityFPGA \
+		comment IioCfgUpdateDxeNeonCityFPGA \
+		comment SlotDataUpdateDxeNeonCityFPGA \
+		comment FpgaConfigDataDxeNeonCityFPGA \
+		comment IioCfgUpdateDxeLightningRidgeEXECB1 \
+		comment OpromUpdateDxeLightningRidgeEXECB1 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB1 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB1 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB1 \
+		comment StaticSkuDataDxeLightningRidgeEXECB1 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB2 \
+		comment OpromUpdateDxeLightningRidgeEXECB2 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB2 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB2 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB2 \
+		comment StaticSkuDataDxeLightningRidgeEXECB2 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB3 \
+		comment OpromUpdateDxeLightningRidgeEXECB3 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB3 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB3 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB3 \
+		comment StaticSkuDataDxeLightningRidgeEXECB3 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB4 \
+		comment OpromUpdateDxeLightningRidgeEXECB4 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB4 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB4 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB4 \
+		comment StaticSkuDataDxeLightningRidgeEXECB4 \
+		comment IioCfgUpdateDxeNeonCityEPECB \
+		comment OpromUpdateDxeNeonCityEPECB \
+		comment SetupConfigUpdateDxeNeonCityEPECB \
+		comment SlotDataUpdateDxeNeonCityEPECB \
+		comment SmbiosDataUpdateDxeNeonCityEPECB \
+		comment StaticSkuDataDxeNeonCityEPECB \
+		save commentsetupcrap.bin \
+		comment PchSerialGpio \
+		comment PchSmbusDxe \
+		comment IioInit \
+		comment PpmInitialize \
+		comment CpuArchDxe \
+		comment PchInitDxe \
+		comment start_dxecleaner \
+		remove AB7ED12E-1D78-4635-AB87-23F00A911EC7 \
+		save fail.bin \
+		comment HeciInitDxe \
+		comment SpsDxe \
+		comment SpsSmm \
+		comment Aint13 \
+		comment Setup \
+		comment ServerMgmtSetup \
+		comment ACPI \
+		comment S3SaveStateDxe \
+		comment BootScriptExecutorDxe \
+		comment SioDxeInit \
+		comment OA3 \
+		comment OptionRomPolicy \
+		comment PciRootBridge \
+		comment PciDxeInit \
+		comment PciOutOfResourceSetupPage \
+		comment RuntimeMemoryHoleVar \
+		comment ExportHiiDb \
+		comment DpcDxe \
+		comment AmiBoardInfo2 \
+		comment ReFlash \
+		comment CsmDxe \
+		comment UbaConfigDatabaseDxe \
+		comment HardwareSignatureEntry \
+		comment KbcEmulDxe \
+		comment EsrtDxe \
+		comment NvmeInt13 \
+		comment OpalSecurity \
+		comment AcpiPlatform \
+		comment AcpiVTD \
+		comment PlatformCpuPolicy \
+		comment PciPlatform \
+		comment PlatformEarlyDxe \
+		comment PlatformType \
+		comment S3NvramSave \
+		comment UuidDxe \
+		comment OpaPlatCfg \
+		comment MemorySubClass \
+		comment SocketSetup \
+		comment FpgaSocketSetup \
+		comment HstiPlatformDxe \
+		comment HstiIhvProviderDxe \
+		comment IsPlatformSupportWhea \
+		comment OemVtdRmrr \
+		comment MePolicyInitDxe \
+		comment SpsAcpiHooks \
+		comment Platform \
+		comment FpkSetup \
+		comment SystemBoardDxe \
+		comment UbaInitDxe \
+		comment CsmRt32 \
+		comment AmiRedFishApi \
+		comment AmiDeviceGuardApi \
+		comment TxtDxe \
+		comment Smbios \
+		comment SmbiosBoard \
+		comment SmbiosGetFlashData \
+		comment AmiTcgNvflagSample \
+		comment AmiTcgPlatformDxe \
+		comment TcgDxeplatform \
+		comment Tpm20PlatformDxe \
+		comment Tpm20Acpi \
+		comment TpmSmbiosDxe \
+		comment Uhcd \
+		comment SBDXE \
+		comment Metronome \
+		comment WatchdogTimer \
+		comment CpuIoDxe \
+		comment CRBDxe \
+		comment EndlessbootDxe \
+		comment TyanDxe \
+		comment TyanBadDimmDxe \
+		comment S7106_PROJECT_DXE \
+		comment CapsuleRuntimeDxe \
+		comment RuntimeDxe \
+		comment PiSmmIpl \
+		comment CpuCsrAccess \
+		comment CrystalRidge \
+		comment JedecNvDimm \
+		comment PchResetRuntime \
+		comment SmmControl \
+		comment CryptoDXE \
+		comment GenericElog \
+		comment PlatformReset \
+		comment SvSmmSupport \
+		comment TraceHubStatusCodeHandlerRuntimeDxe \
+		comment SmiFlashDxe \
+		comment ConSplitter \
+		comment GraphicsConsole \
+		comment GenericSio \
+		comment PciBus \
+		comment TerminalSrc \
+		comment SerialIo \
+		comment CsmBlockIo \
+		comment CsmVideo \
+		comment IScsiDxe \
+		comment PostReport \
+		comment DcScreen \
+		comment Nvme \
+		comment PiSmmCore \
+		comment FlashDriverSmm \
+		comment NvramSmm \
+		comment CpuIo2Smm \
+		comment SmmLockBox \
+		comment PcRtcSmm \
+		comment PiSmmCpuDxeSmm \
+		comment MemRas \
+		comment CpuCsrAccessSMM \
+		comment CrystalRidgeSMM \
+		comment JedecNvDimmSMM \
+		comment IioSmm \
+		comment FpgaSmm \
+		comment HwpLvtSmm \
+		comment SmbusRecovery \
+		comment QuiesceSupport \
+		comment PchInitSmm \
+		comment PchSmiDispatcher \
+		comment PchSmbusSmm \
+		comment HeciSmm \
+		comment Heci3Smm \
+		comment CryptoSMM \
+		comment MicrocodeUpdate \
+		comment SmmS3SaveState \
+		comment SmmGenericSio \
+		comment OA3_SMM \
+		comment SmmPciRbIo \
+		comment RuntimeMemoryHoleSmm \
+		comment SmiVariable \
+		comment RuntimeSmm \
+		comment SmmGenericElog \
+		comment KbcEmul \
+		comment NvmeSmm \
+		comment Ofbd \
+		comment AcpiSmmPlatform \
+		comment PowerButtonHandler \
+		comment EmcaErrorLog \
+		comment PartialMirrorHandler \
+		comment MainErrorHandler \
+		comment PlatformErrorHandler \
+		comment ProcessorErrorHandler \
+		comment AmiErrorHandlerMain \
+		comment FpgaErrorHandler \
+		comment PcieErrorHandler \
+		comment PcieErrorEnable \
+		comment McBankErrorInjection \
+		comment LastBootErrorLog \
+		comment SvSmmHandler \
+		comment TraceHubStatusCodeHandlerSmm \
+		comment RTCWakeup \
+		comment SmbiosDmiEdit \
+		comment SmiFlash \
+		comment TcgSmm \
+		comment TpmClearOnRollbackSmm \
+		comment TcoSmi \
+		comment AcpiModeEnable \
+		comment PiSmmCommunicationSmm \
+		comment TyanNvdimmAdrTrigger \
+		comment FullShell \
+		comment StatusCodeDxe \
+		comment StatusCodeSmm \
+		comment FlashDriver \
+		comment NvramDxe \
+		comment PcdDxe \
+		comment DxeSelStatusCode \
+		comment DxeFrb \
+		comment CmosDxe \
+		comment RegAccessDxe \
+		comment RegAccessSMM \
+		comment SecureBootDXE \
+		comment TcgDxe \
+		comment Tcg2Dxe \
+		comment TcgPlatformSetupPolicy \
+		comment TyanBoardDXE \
+		comment AMITSE \
+		comment AMITSESetupData \
+		comment OPAPlatConfigSkt0 \
+		comment OPAPlatConfigSkt1 \
+		comment PeiCore 
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ :
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ am[Kcme Makefile 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make d
+[?2004lfutk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+2018/12/11 16:28:18 Found 414 things
+2018/12/11 16:28:18 Try to remove D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe (D912C7BC-F098-4367-92BA-E911083C7B0E)
+2018/12/11 16:28:18 removed [0xc00703a780]
+2018/12/11 16:28:18 Try to remove 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe (1A7E4468-2F55-4A56-903C-01265EB7622B)
+2018/12/11 16:28:18 removed [0xc00703a200]
+2018/12/11 16:28:18 Try to remove 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk (0A66E322-3740-4CCE-AD62-BD172CECCA35)
+2018/12/11 16:28:18 removed [0xc00703ad00]
+2018/12/11 16:28:18 Try to remove 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe (6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B)
+2018/12/11 16:28:18 removed [0xc00703a680]
+2018/12/11 16:28:18 Try to remove 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe (95E3669D-34BE-4775-A651-7EA41B69D89E)
+2018/12/11 16:28:18 removed [0xc00703a800]
+2018/12/11 16:28:18 Try to remove 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru (2E3AB8B6-AC9D-4D70-A675-54F52FB22D66)
+2018/12/11 16:28:18 removed [0xc00703a900]
+2018/12/11 16:28:18 Try to remove B1DA0ADF-4F77-4070-A88E-BFFE1C60529A:EFI_FV_FILETYPE_DRIVER:AMITSE (B1DA0ADF-4F77-4070-A88E-BFFE1C60529A)
+2018/12/11 16:28:18 removed [0xc01324a300]
+2018/12/11 16:28:18 Try to remove B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe (B95E9FDA-26DE-48D2-8807-1F9107AC5E3A)
+2018/12/11 16:28:18 removed [0xc00703a280]
+2018/12/11 16:28:18 Try to remove 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe (6B38F7B4-AD98-40E9-9093-ACA2B5A253C4)
+2018/12/11 16:28:18 removed [0xc0000afc80]
+2018/12/11 16:28:18 Try to remove FE612B72-203C-47B1-8560-A66D946EB371:EFI_FV_FILETYPE_FREEFORM:AMITSESetupData (FE612B72-203C-47B1-8560-A66D946EB371)
+2018/12/11 16:28:18 removed [0xc01324a380]
+2018/12/11 16:28:18 Try to remove 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe (94734718-0BBC-47FB-96A5-EE7A5AE6A2AD)
+2018/12/11 16:28:18 removed [0xc00703a500]
+2018/12/11 16:28:27 Found 404 things
+2018/12/11 16:28:38 script is ./DXECLEANER
+2018/12/11 16:28:48 Try to remove DE5FC8BF-06ED-4DC5-BA9D-29F711699A85:EFI_FV_FILETYPE_DRIVER:TraceHubStatusCodeHandlerRuntimeDxe (DE5FC8BF-06ED-4DC5-BA9D-29F711699A85)
+2018/12/11 16:28:48 removed [0xc0072dca00]
+^Cinterrupt
+[414 [B1DA0ADF-4F77-4070-A88E-BFFE1C60529A:EFI_FV_FILETYPE_DRIVER:AMITSE B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe FE612B72-203C-47B1-8560-A66D946EB371:EFI_FV_FILETYPE_FREEFORM:AMITSESetupData 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru] 404 [/tmp/futk468995033/0] + echo TEST /tmp/futk468995033/1
+TEST /tmp/futk468995033/1
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk468995033/1 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:29:14 Listening on 192.168.0.1:8080 at 2018-12-11 16:29:14.64677836 -0800 PST m=+0.001084957
+ signal: killed]OK 
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ip a
+[?2004l1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eno1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether a0:b3:cc:fb:43:4f brd ff:ff:ff:ff:ff:ff
+    inet 100.123.242.67/23 brd 100.123.243.255 scope global dynamic noprefixroute eno1
+       valid_lft 86281sec preferred_lft 86281sec
+    inet6 2620:15c:2c5:3:9e1d:7a27:764f:7ba8/64 scope global dynamic noprefixroute 
+       valid_lft 2592000sec preferred_lft 604800sec
+    inet6 fe80::60f2:3c97:9f2d:1310/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+8: enx00e04c68000e: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:e0:4c:68:00:0e brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.1/24 brd 192.168.0.255 scope global noprefixroute enx00e04c68000e
+       valid_lft forever preferred_lft forever
+    inet6 fe80::3a9b:c240:403a:2846/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ vi [K./uinit -
+[?2004l2018/12/11 16:31:29 dial tcp 192.168.0.1:8080: connect: connection refused
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./uinit -r
+[?2004l2018/12/11 16:31:30 Listening on 192.168.0.1:8080 at 2018-12-11 16:31:30.626348543 -0800 PST m=+0.000982786
+^C
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ vi DXECLEANER 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"DXECLEANER" 8L, 140C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H#!/bin/bash
+set -e
+set -x
+echo TEST $1
+sudo ~rminnich/bin/em100 -c W25Q256FV -s -d $1 -r
+echo /bin/reset > /dev/ttyUSB1
+sleep 10
+./uinit -r
+[94m~                                                                                                                                                 [10;1H~                                                                                                                                                 [11;1H~                                                                                                                                                 [12;1H~                                                                                                                                                 [13;1H~                                                                                                                                                 [14;1H~                                                                                                                                                 [15;1H~                                                                                                                                                 [16;1H~                                                                                                                                                 [17;1H~                                                                                                                                                 [18;1H~                                                                                                                                                 [19;1H~                                                                                                                                                 [20;1H~                                                                                                                                                 [21;1H~                                                                                                                                                 [22;1H~                                                                                                                                                 [23;1H~                                                                                                                                                 [24;1H~                                                                                                                                                 [25;1H~                                                                                                                                                 [26;1H~                                                                                                                                                 [27;1H~                                                                                                                                                 [28;1H~                                                                                                                                                 [29;1H~                                                                                                                                                 [30;1H~                                                                                                                                                 [31;1H~                                                                                                                                                 [32;1H~                                                                                                                                                 [33;1H~                                                                                                                                                 [34;1H~                                                                                                                                                 [35;1H~                                                                                                                                                 [36;1H~                                                                                                                                                 [37;1H~                                                                                                                                                 [38;1H~                                                                                                                                                 [39;1H~                                                                                                                                                 [40;1H~                                                                                                                                                 [41;1H~                                                                                                                                                 [42;1H~                                                                                                                                                 [43;1H~                                                                                                                                                 [44;1H~                                                                                                                                                 [45;1H~                                                                                                                                                 [46;1H~                                                                                                                                                 [47;1H~                                                                                                                                                 [48;1H~                                                                                                                                                 [49;1H~                                                                                                                                                 [50;1H~                                                                                                                                                 [51;1H~                                                                                                                                                 [52;1H~                                                                                                                                                 [53;1H~                                                                                                                                                 [54;1H~                                                                                                                                                 [55;1H~                                                                                                                                                 [56;1H~                                                                                                                                                 [57;1H~                                                                                                                                                 [58;1H~                                                                                                                                                 [59;1H~                                                                                                                                                 [60;1H~                                                                                                                                                 [61;1H~                                                                                                                                                 [62;1H~                                                                                                                                                 [63;1H~                                                                                                                                                 [64;1H~                                                                                                                                                 [65;1H~                                                                                                                                                 [66;1H~                                                                                                                                                 [67;1H~                                                                                                                                                 [68;1H~                                                                                                                                                 [69;1H~                                                                                                                                                 [70;1H~                                                                                                                                                 [71;1H~                                                                                                                                                 [72;1H~                                                                                                                                                 [73;1H~                                                                                                                                                 [74;1H~                                                                                                                                                 [75;1H~                                                                                                                                                 [76;1H~                                                                                                                                                 [77;1H~                                                                                                                                                 [78;1H~                                                                                                                                                 [79;1H~                                                                                                                                                 [80;1H~                                                                                                                                                 [81;1H~                                                                                                                                                 [m[82;129H1,1[11CAll]2;DXECLEANER (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;DXECLEANER[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;129H2[2;1H[?25h[?25l[82;129H3[3;1H[?25h[?25l[82;129H4[4;1H[?25h[?25l[82;1H[K[82;1H:[?2004h[?25he[?25l[?25h[?25l [?25hM[?25l[?25h...[?25lakefile[?25h[?25l"Makefile" 321L, 9393C[1;1Hdefault: build[2;1H[K[3;1Hbuild:
+        echo b to build, i for initramfs, q for qemu, d to dxeclean[5;1H[K[6;1Hb: buildbzimage[6;17H[K[7;1H[K[8;1Hd:[8;3H[K[9;1H        futk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boott[10;1H/bzImage splat drop /tmp/x saverom    ./DXECLEANER clean[10;57H[K[11;1H[K[12;1Hbuildbzimage:[12;14H[K[13;1H        (cd linux && make -j32 && ls -l arch/x86/boot/bzImage)[13;63H[K[14;1H        [14;9H[K[15;1Hi:[15;3H[K[16;1H        go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init githubb[17;1H.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  [17;137H[K[18;1H        cp /tmp/initramfs.linux_amd64.cpio .[18;45H[K[19;1H        lzma -f initramfs.linux_amd64.cpio[19;43H[K[20;1H        ls -l initramfs*[20;25H[K[21;1H        cp *lzma linux[21;23H[K[22;1H[K[23;1Hcleanme: [23;10H[K[24;1H        ~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist[24;80H[K[25;1H[K[26;1Hq:[26;3H[K[27;1H        qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192[27;105H[K[28;1Hfindit:[28;8H[K[29;1H        jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx[29;120H[K[30;1H        jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx[30;137H[K[31;1H[K[32;1Hall:[32;5H[K[33;1H        ~/go/bin/utk tyan7102.bin \[33;36H[K[34;1H                remove Ip.*  \[34;31H[K[35;1H                remove Tcp.*  \[35;32H[K[36;1H                remove Usb.*  \[36;32H[K[37;1H                remove Udp.*  \[37;32H[K[38;1H                remove Dhcp.*  \[38;33H[K[39;1H                remove .np.*  \[39;32H[K[40;1H                remove .tftp.*  \[40;34H[K[41;1H                remove Http.* \[41;32H[K[42;1H                remove .*Dns.* \[42;33H[K[43;1H                remove Arp.* \[43;31H[K[44;1H                remove .*NetworkStackSetupScreen.*  \[44;54H[K[45;1H                remove Iscsi.* \[45;33H[K[46;1H                remove Scsi.* \[46;32H[K[47;1H                remove Fat.* \[47;31H[K[48;1H                remove Ahci.* \[48;32H[K[49;1H                remove Partition.* \[49;37H[K[50;1H                remove Sata.* \[50;32H[K[51;1H                remove Disk.* \[51;32H[K[52;1H                remove Whea.* \[52;32H[K[53;1H                remove .*Pxe.* \[53;33H[K[54;1H                remove Ata.* \[54;31H[K[55;1H                replace_pe32 FullShell bzImage \[55;49H[K[56;1H                save x.bin \[56;29H[K[57;1H                remove .*Ipmi.* \[57;34H[K[58;1H                save ipmisucks.bin \[58;37H[K[59;1H                remove DxeIpmiBmcInitialize \[59;46H[K[60;1H                remove SmmBmcElog \[60;36H[K[61;1H                remove BmcAcpi \[61;33H[K[62;1H                remove SmmIpmiBmcInitialize \[62;46H[K[63;1H                remove BmcElog \[63;33H[K[64;1H                remove BmcLanConfig \[64;38H[K[65;1H                save removeBMCcrap.bin \[65;41H[K[66;1H                remove SecurityStubDxe \[66;41H[K[67;1H                save removesomecrap.bin \[67;42H[K[68;1H                comment TimestampDxe \[68;39H[K[69;1H                comment Legacy8259 \[69;37H[K[70;1H                comment HiiDatabase \[70;38H[K[71;1H                comment DataHubDxe \[71;37H[K[72;1H                comment EnglishDxe \[72;37H[K[73;1H                comment here \[73;31H[K[74;1H                comment PcRtc \[74;32H[K[75;1H                comment FpgaDxe \[75;34H[K[76;1H                comment LegacyInterrupt \[76;42H[K[77;1H                comment SmartTimer \[77;37H[K[78;1H                comment LegacySredir \[78;39H[K[79;1H                comment LegacyRegion2 \[79;40H[K[80;1H                comment TcgLegacy \[80;36H[K[81;1H                comment LegacySmmSredir \[81;42H[K[82;129H1,1[11CTop]2;Makefile (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;Makefile[1;1H[?25h[?25l[82;129H2,0-1[2;1H[?25h[?25l[82;129H3,1  [3;1H[?25h[?25l[82;129H4,1-8[4;8H[?25h[?25l[82;129H5,0-1[5;1H[?25h[?25l[82;129H6,1  [6;1H[?25h[?25l[82;129H7,0-1[7;1H[?25h[?25l[82;129H8,1  [8;1H[?25h[?25l[82;129H9,1-8[9;8H[?25h[?25l[82;129H10,0-1[11;1H[?25h[?25l[82;130H1,1  [12;1H[?25h[?25l[82;130H2,1-8[13;8H[?25h[?25l[82;130H3[14;8H[?25h[?25l[82;130H2[13;8H[?25h[?25l[82;130H1,1  [12;1H[?25h[?25l[82;130H0,0-1[11;1H[?25h[?25l[82;129H9,1-8 [9;8H[?25h[?25l[82;1H[K[82;1H:[?2004h[?25hq[?25l[?25h[?25l[?2004l]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102[82;1H[K[82;1H[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ls -l ./DXECLEANER 
+[?2004l-rwxr-xr-x 1 rminnich primarygroup 140 Dec 11 14:40 [0m[01;32m./DXECLEANER[0m
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./D
+DIT         DXECLEANER  
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./D
+DIT         DXECLEANER  
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./DXECLEANER 
+blacklist                        EATIT                            LIST                             tyan7102.bin
+bzImage                          fail.bin                         LOG                              uinit
+commentmorecrap.bin              futk.remove.99/                  Makefile                         x.bin
+commentsetupcrap.bin             .gitignore                       removeBMCcrap.bin                xxx
+config-4.13.0-rc7                initramfs.linux_amd64.cpio.lzma  removemorecrap.bin               yyy
+DIT                              ipmisucks.bin                    removesetupcrap.bin              
+dxeclean.bin                     L                                removesomecrap.bin               
+DXECLEANER                       linux/                           RUN3                             
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./DXECLEANER [K
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ cat Makefile 
+[?2004ldefault: build
+
+build:
+	echo b to build, i for initramfs, q for qemu, d to dxeclean
+
+b: buildbzimage
+
+d:
+	futk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+
+buildbzimage:
+	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+	
+i:
+	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
+
+cleanme: 
+	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
+
+q:
+	qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
+findit:
+	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx
+	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
+
+all:
+	~/go/bin/utk tyan7102.bin \
+		remove Ip.*  \
+		remove Tcp.*  \
+		remove Usb.*  \
+		remove Udp.*  \
+		remove Dhcp.*  \
+		remove .np.*  \
+		remove .tftp.*  \
+		remove Http.* \
+		remove .*Dns.* \
+		remove Arp.* \
+		remove .*NetworkStackSetupScreen.*  \
+		remove Iscsi.* \
+		remove Scsi.* \
+		remove Fat.* \
+		remove Ahci.* \
+		remove Partition.* \
+		remove Sata.* \
+		remove Disk.* \
+		remove Whea.* \
+		remove .*Pxe.* \
+		remove Ata.* \
+		replace_pe32 FullShell bzImage \
+		save x.bin \
+		remove .*Ipmi.* \
+		save ipmisucks.bin \
+		remove DxeIpmiBmcInitialize \
+		remove SmmBmcElog \
+		remove BmcAcpi \
+		remove SmmIpmiBmcInitialize \
+		remove BmcElog \
+		remove BmcLanConfig \
+		save removeBMCcrap.bin \
+		remove SecurityStubDxe \
+		save removesomecrap.bin \
+		comment TimestampDxe \
+		comment Legacy8259 \
+		comment HiiDatabase \
+		comment DataHubDxe \
+		comment EnglishDxe \
+		comment here \
+		comment PcRtc \
+		comment FpgaDxe \
+		comment LegacyInterrupt \
+		comment SmartTimer \
+		comment LegacySredir \
+		comment LegacyRegion2 \
+		comment TcgLegacy \
+		comment LegacySmmSredir \
+		comment DevicePathDxe \
+		comment CpuIo2Dxe \
+		comment CpuMpDxe \
+		comment SmmAccess \
+		comment WdtDxe \
+		save commentmorecrap.bin \
+		comment SetupConfigUpdateDxeNeonCityEPRP \
+		comment StaticSkuDataDxeNeonCityEPRP \
+		comment OpromUpdateDxeNeonCityEPRP \
+		comment SmbiosDataUpdateDxeNeonCityEPRP \
+		comment IioCfgUpdateDxeNeonCityEPRP \
+		comment SlotDataUpdateDxeNeonCityEPRP \
+		comment SetupConfigUpdateDxeLightningRidgeEXRP \
+		comment StaticSkuDataDxeLightningRidgeEXRP \
+		comment OpromUpdateDxeLightningRidgeEXRP \
+		comment SmbiosDataUpdateDxeLightningRidgeEXRP \
+		comment IioCfgUpdateDxeLightningRidgeEXRP \
+		comment SlotDataUpdateDxeLightningRidgeEXRP \
+		comment OpromUpdateDxeNeonCityFPGA \
+		comment SetupConfigUpdateDxeNeonCityFPGA \
+		comment SmbiosDataUpdateDxeNeonCityFPGA \
+		comment StaticSkuDataDxeNeonCityFPGA \
+		comment IioCfgUpdateDxeNeonCityFPGA \
+		comment SlotDataUpdateDxeNeonCityFPGA \
+		comment FpgaConfigDataDxeNeonCityFPGA \
+		comment IioCfgUpdateDxeLightningRidgeEXECB1 \
+		comment OpromUpdateDxeLightningRidgeEXECB1 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB1 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB1 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB1 \
+		comment StaticSkuDataDxeLightningRidgeEXECB1 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB2 \
+		comment OpromUpdateDxeLightningRidgeEXECB2 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB2 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB2 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB2 \
+		comment StaticSkuDataDxeLightningRidgeEXECB2 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB3 \
+		comment OpromUpdateDxeLightningRidgeEXECB3 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB3 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB3 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB3 \
+		comment StaticSkuDataDxeLightningRidgeEXECB3 \
+		comment IioCfgUpdateDxeLightningRidgeEXECB4 \
+		comment OpromUpdateDxeLightningRidgeEXECB4 \
+		comment SetupConfigUpdateDxeLightningRidgeEXECB4 \
+		comment SlotDataUpdateDxeLightningRidgeEXECB4 \
+		comment SmbiosDataUpdateDxeLightningRidgeEXECB4 \
+		comment StaticSkuDataDxeLightningRidgeEXECB4 \
+		comment IioCfgUpdateDxeNeonCityEPECB \
+		comment OpromUpdateDxeNeonCityEPECB \
+		comment SetupConfigUpdateDxeNeonCityEPECB \
+		comment SlotDataUpdateDxeNeonCityEPECB \
+		comment SmbiosDataUpdateDxeNeonCityEPECB \
+		comment StaticSkuDataDxeNeonCityEPECB \
+		save commentsetupcrap.bin \
+		comment PchSerialGpio \
+		comment PchSmbusDxe \
+		comment IioInit \
+		comment PpmInitialize \
+		comment CpuArchDxe \
+		comment PchInitDxe \
+		comment start_dxecleaner \
+		remove AB7ED12E-1D78-4635-AB87-23F00A911EC7 \
+		save fail.bin \
+		comment HeciInitDxe \
+		comment SpsDxe \
+		comment SpsSmm \
+		comment Aint13 \
+		comment Setup \
+		comment ServerMgmtSetup \
+		comment ACPI \
+		comment S3SaveStateDxe \
+		comment BootScriptExecutorDxe \
+		comment SioDxeInit \
+		comment OA3 \
+		comment OptionRomPolicy \
+		comment PciRootBridge \
+		comment PciDxeInit \
+		comment PciOutOfResourceSetupPage \
+		comment RuntimeMemoryHoleVar \
+		comment ExportHiiDb \
+		comment DpcDxe \
+		comment AmiBoardInfo2 \
+		comment ReFlash \
+		comment CsmDxe \
+		comment UbaConfigDatabaseDxe \
+		comment HardwareSignatureEntry \
+		comment KbcEmulDxe \
+		comment EsrtDxe \
+		comment NvmeInt13 \
+		comment OpalSecurity \
+		comment AcpiPlatform \
+		comment AcpiVTD \
+		comment PlatformCpuPolicy \
+		comment PciPlatform \
+		comment PlatformEarlyDxe \
+		comment PlatformType \
+		comment S3NvramSave \
+		comment UuidDxe \
+		comment OpaPlatCfg \
+		comment MemorySubClass \
+		comment SocketSetup \
+		comment FpgaSocketSetup \
+		comment HstiPlatformDxe \
+		comment HstiIhvProviderDxe \
+		comment IsPlatformSupportWhea \
+		comment OemVtdRmrr \
+		comment MePolicyInitDxe \
+		comment SpsAcpiHooks \
+		comment Platform \
+		comment FpkSetup \
+		comment SystemBoardDxe \
+		comment UbaInitDxe \
+		comment CsmRt32 \
+		comment AmiRedFishApi \
+		comment AmiDeviceGuardApi \
+		comment TxtDxe \
+		comment Smbios \
+		comment SmbiosBoard \
+		comment SmbiosGetFlashData \
+		comment AmiTcgNvflagSample \
+		comment AmiTcgPlatformDxe \
+		comment TcgDxeplatform \
+		comment Tpm20PlatformDxe \
+		comment Tpm20Acpi \
+		comment TpmSmbiosDxe \
+		comment Uhcd \
+		comment SBDXE \
+		comment Metronome \
+		comment WatchdogTimer \
+		comment CpuIoDxe \
+		comment CRBDxe \
+		comment EndlessbootDxe \
+		comment TyanDxe \
+		comment TyanBadDimmDxe \
+		comment S7106_PROJECT_DXE \
+		comment CapsuleRuntimeDxe \
+		comment RuntimeDxe \
+		comment PiSmmIpl \
+		comment CpuCsrAccess \
+		comment CrystalRidge \
+		comment JedecNvDimm \
+		comment PchResetRuntime \
+		comment SmmControl \
+		comment CryptoDXE \
+		comment GenericElog \
+		comment PlatformReset \
+		comment SvSmmSupport \
+		comment TraceHubStatusCodeHandlerRuntimeDxe \
+		comment SmiFlashDxe \
+		comment ConSplitter \
+		comment GraphicsConsole \
+		comment GenericSio \
+		comment PciBus \
+		comment TerminalSrc \
+		comment SerialIo \
+		comment CsmBlockIo \
+		comment CsmVideo \
+		comment IScsiDxe \
+		comment PostReport \
+		comment DcScreen \
+		comment Nvme \
+		comment PiSmmCore \
+		comment FlashDriverSmm \
+		comment NvramSmm \
+		comment CpuIo2Smm \
+		comment SmmLockBox \
+		comment PcRtcSmm \
+		comment PiSmmCpuDxeSmm \
+		comment MemRas \
+		comment CpuCsrAccessSMM \
+		comment CrystalRidgeSMM \
+		comment JedecNvDimmSMM \
+		comment IioSmm \
+		comment FpgaSmm \
+		comment HwpLvtSmm \
+		comment SmbusRecovery \
+		comment QuiesceSupport \
+		comment PchInitSmm \
+		comment PchSmiDispatcher \
+		comment PchSmbusSmm \
+		comment HeciSmm \
+		comment Heci3Smm \
+		comment CryptoSMM \
+		comment MicrocodeUpdate \
+		comment SmmS3SaveState \
+		comment SmmGenericSio \
+		comment OA3_SMM \
+		comment SmmPciRbIo \
+		comment RuntimeMemoryHoleSmm \
+		comment SmiVariable \
+		comment RuntimeSmm \
+		comment SmmGenericElog \
+		comment KbcEmul \
+		comment NvmeSmm \
+		comment Ofbd \
+		comment AcpiSmmPlatform \
+		comment PowerButtonHandler \
+		comment EmcaErrorLog \
+		comment PartialMirrorHandler \
+		comment MainErrorHandler \
+		comment PlatformErrorHandler \
+		comment ProcessorErrorHandler \
+		comment AmiErrorHandlerMain \
+		comment FpgaErrorHandler \
+		comment PcieErrorHandler \
+		comment PcieErrorEnable \
+		comment McBankErrorInjection \
+		comment LastBootErrorLog \
+		comment SvSmmHandler \
+		comment TraceHubStatusCodeHandlerSmm \
+		comment RTCWakeup \
+		comment SmbiosDmiEdit \
+		comment SmiFlash \
+		comment TcgSmm \
+		comment TpmClearOnRollbackSmm \
+		comment TcoSmi \
+		comment AcpiModeEnable \
+		comment PiSmmCommunicationSmm \
+		comment TyanNvdimmAdrTrigger \
+		comment FullShell \
+		comment StatusCodeDxe \
+		comment StatusCodeSmm \
+		comment FlashDriver \
+		comment NvramDxe \
+		comment PcdDxe \
+		comment DxeSelStatusCode \
+		comment DxeFrb \
+		comment CmosDxe \
+		comment RegAccessDxe \
+		comment RegAccessSMM \
+		comment SecureBootDXE \
+		comment TcgDxe \
+		comment Tcg2Dxe \
+		comment TcgPlatformSetupPolicy \
+		comment TyanBoardDXE \
+		comment AMITSE \
+		comment AMITSESetupData \
+		comment OPAPlatConfigSkt0 \
+		comment OPAPlatConfigSkt1 \
+		comment PeiCore 
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./futk.remove.99/[K./[K[Kfu
+function    funzip      fuser       fusermount  futk        
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ fu
+function    funzip      fuser       fusermount  futk        
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ futk /tmp/x fv ./DXECLEANER clan[K[Kean
+[?2004l2018/12/11 16:32:43 Found 405 things
+2018/12/11 16:32:43 script is ./DXECLEANER
+2018/12/11 16:32:54 Try to remove BAE7599F-3C6B-43B7-BDF0-9CE07AA91AA6:EFI_FV_FILETYPE_DRIVER:CpuIoDxe (BAE7599F-3C6B-43B7-BDF0-9CE07AA91AA6)
+2018/12/11 16:32:54 removed [0xc007d65100]
+^Cinterrupt
+[405 [/tmp/futk065694863/0] + echo TEST /tmp/futk065694863/1
+TEST /tmp/futk065694863/1
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk065694863/1 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:33:20 Listening on 192.168.0.1:8080 at 2018-12-11 16:33:20.123583731 -0800 PST m=+0.002652025
+ signal: killed]OK [?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ futk /tmp/x fv ./DXECLEANER clean
+[?2004l2018/12/11 16:36:08 Found 405 things
+2018/12/11 16:36:08 script is ./DXECLEANER
+2018/12/11 16:36:18 Try to remove 35F85B7F-F15A-4378-B508-AB2CE6491B10:EFI_FV_FILETYPE_DRIVER:EndlessbootDxe (35F85B7F-F15A-4378-B508-AB2CE6491B10)
+2018/12/11 16:36:18 removed [0xc006fed200]
+2018/12/11 16:39:44 Try to remove 492CB3AE-66DB-4F1E-91AE-534C48F2F83D:EFI_FV_FILETYPE_DRIVER:WheaSupport (492CB3AE-66DB-4F1E-91AE-534C48F2F83D)
+2018/12/11 16:39:44 removed [0xc000023c00]
+^Cinterrupt
+[405 [/tmp/futk048392420/0] + echo TEST /tmp/futk048392420/2
+TEST /tmp/futk048392420/2
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk048392420/2 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:40:10 Listening on 192.168.0.1:8080 at 2018-12-11 16:40:10.475068567 -0800 PST m=+0.001003970
+ signal: killed]OK [?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ (reverse-i-search)`': [K.': futk /tmp/x fv ./DXECLEANER clean]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ futk /tmp/x fv ./DXECLEANER clean
+[?2004l2018/12/11 16:43:13 Found 405 things
+2018/12/11 16:43:13 script is ./DXECLEANER
+2018/12/11 16:43:24 Try to remove 63AAAFFA-53BD-4ED1-B5A3-A8A5619C563F:EFI_FV_FILETYPE_DRIVER:SlotDataUpdateDxeLightningRidgeEXECB2 (63AAAFFA-53BD-4ED1-B5A3-A8A5619C563F)
+2018/12/11 16:43:24 removed [0xc008027a80]
++ echo TEST /tmp/futk843189903/1
+TEST /tmp/futk843189903/1
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk843189903/1 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:43:50 Listening on 192.168.0.1:8080 at 2018-12-11 16:43:50.501023884 -0800 PST m=+0.001368507
+2018/12/11 16:46:50 Listen failed: accept tcp 192.168.0.1:8080: i/o timeout at 2018-12-11 16:46:50.501579141 -0800 PST m=+180.001923510
+2018/12/11 16:46:50 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/11 16:46:50 Try to remove 634E8DB5-C432-43BE-A653-9CA2922CC458:EFI_FV_FILETYPE_DRIVER:Nvme (634E8DB5-C432-43BE-A653-9CA2922CC458)
+2018/12/11 16:46:50 removed [0xc008198900]
++ echo TEST /tmp/futk843189903/2
+TEST /tmp/futk843189903/2
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk843189903/2 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
++ ./uinit -r
+2018/12/11 16:47:15 Listening on 192.168.0.1:8080 at 2018-12-11 16:47:15.020000897 -0800 PST m=+0.001181621
+^Cinterrupt
+[405 [/tmp/futk843189903/0] signal: killed]OK [?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make i
+[?2004lgo run /usr/local/google/home/rminnich/go/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+2018/12/11 16:47:58 Build environment: GOARCH=amd64 GOOS=linux GOROOT=/usr/local/src/projects/nobinaryblobs/go1.6 GOPATH=/usr/local/google/home/rminnich/go CGO_ENABLED=0
+2018/12/11 16:47:58 Filename is /tmp/initramfs.linux_amd64.cpio
+make b
+make d
+2018/12/11 16:48:06 Successfully wrote initramfs.
+cp /tmp/initramfs.linux_amd64.cpio .
+lzma -f initramfs.linux_amd64.cpio
+ls -l initramfs*
+-rwxr-xr-x 1 rminnich primarygroup 2853272 Dec 11 16:48 initramfs.linux_amd64.cpio.lzma
+cp *lzma linux
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make b
+[?2004l(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+make[1]: Entering directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+  CHK     include/config/kernel.release
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  GEN     usr/initramfs_data.cpio.lzma
+  AS      usr/initramfs_data.o
+  AR      usr/built-in.o
+  CHK     kernel/config_data.h
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.o
+  AR      built-in.o
+  LD      vmlinux.o
+  MODPOST vmlinux.o
+  KSYM    .tmp_kallsyms1.o
+  KSYM    .tmp_kallsyms2.o
+  LD      vmlinux
+  SORTEX  vmlinux
+  SYSMAP  System.map
+  Building modules, stage 2.
+  CC      arch/x86/boot/version.o
+  MODPOST 4 modules
+  VOFFSET arch/x86/boot/compressed/../voffset.h
+  OBJCOPY arch/x86/boot/compressed/vmlinux.bin
+  XZKERN  arch/x86/boot/compressed/vmlinux.bin.xz
+  CC      arch/x86/boot/compressed/misc.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  DATAREL arch/x86/boot/compressed/vmlinux
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Setup is 15580 bytes (padded to 15872 bytes).
+System is 5141 kB
+CRC 9ca02560
+Kernel: arch/x86/boot/bzImage is ready  (#63)
+make[1]: Leaving directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+-rw-r----- 1 rminnich eng 5279792 Dec 11 16:48 arch/x86/boot/bzImage
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make d
+[?2004lfutk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+2018/12/11 16:48:30 Found 414 things
+2018/12/11 16:48:30 Try to remove B1DA0ADF-4F77-4070-A88E-BFFE1C60529A:EFI_FV_FILETYPE_DRIVER:AMITSE (B1DA0ADF-4F77-4070-A88E-BFFE1C60529A)
+2018/12/11 16:48:30 removed [0xc00aecfa80]
+2018/12/11 16:48:30 Try to remove D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe (D912C7BC-F098-4367-92BA-E911083C7B0E)
+2018/12/11 16:48:30 removed [0xc00a298780]
+2018/12/11 16:48:30 Try to remove 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe (95E3669D-34BE-4775-A651-7EA41B69D89E)
+2018/12/11 16:48:30 removed [0xc00a298800]
+2018/12/11 16:48:30 Try to remove B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe (B95E9FDA-26DE-48D2-8807-1F9107AC5E3A)
+2018/12/11 16:48:30 removed [0xc00a298280]
+2018/12/11 16:48:30 Try to remove 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk (0A66E322-3740-4CCE-AD62-BD172CECCA35)
+2018/12/11 16:48:30 removed [0xc00a298d00]
+2018/12/11 16:48:30 Try to remove FE612B72-203C-47B1-8560-A66D946EB371:EFI_FV_FILETYPE_FREEFORM:AMITSESetupData (FE612B72-203C-47B1-8560-A66D946EB371)
+2018/12/11 16:48:30 removed [0xc00aecfb00]
+2018/12/11 16:48:30 Try to remove 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe (6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B)
+2018/12/11 16:48:30 removed [0xc00a298680]
+2018/12/11 16:48:30 Try to remove 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe (1A7E4468-2F55-4A56-903C-01265EB7622B)
+2018/12/11 16:48:30 removed [0xc00a298200]
+2018/12/11 16:48:30 Try to remove 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe (6B38F7B4-AD98-40E9-9093-ACA2B5A253C4)
+2018/12/11 16:48:30 removed [0xc00a115c80]
+2018/12/11 16:48:30 Try to remove 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru (2E3AB8B6-AC9D-4D70-A675-54F52FB22D66)
+2018/12/11 16:48:30 removed [0xc00a298900]
+2018/12/11 16:48:30 Try to remove 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe (94734718-0BBC-47FB-96A5-EE7A5AE6A2AD)
+2018/12/11 16:48:30 removed [0xc00a298500]
+2018/12/11 16:48:39 Found 404 things
+2018/12/11 16:48:50 script is ./DXECLEANER
+2018/12/11 16:49:01 Try to remove CF6BCADD-D4C4-4095-B2BC-417D7247890A:EFI_FV_FILETYPE_DRIVER:StaticSkuDataDxeNeonCityFPGA (CF6BCADD-D4C4-4095-B2BC-417D7247890A)
+2018/12/11 16:49:01 removed [0xc009ecc280]
++ echo TEST /tmp/futk424599522/1
+TEST /tmp/futk424599522/1
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk424599522/1 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo /bin/reset
++ sleep 10
+^Cinterrupt
+[414 [FE612B72-203C-47B1-8560-A66D946EB371:EFI_FV_FILETYPE_FREEFORM:AMITSESetupData 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe B1DA0ADF-4F77-4070-A88E-BFFE1C60529A:EFI_FV_FILETYPE_DRIVER:AMITSE D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk] 404 [/tmp/futk424599522/0] signal: interrupt]OK 
+[414 [FE612B72-203C-47B1-8560-A66D946EB371:EFI_FV_FILETYPE_FREEFORM:AMITSESetupData 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B:EFI_FV_FILETYPE_DRIVER:Udp4Dxe 1A7E4468-2F55-4A56-903C-01265EB7622B:EFI_FV_FILETYPE_DRIVER:TcpDxe 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4:EFI_FV_FILETYPE_DRIVER:DiskIoDxe 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66:EFI_FV_FILETYPE_DRIVER:AtaPassThru 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD:EFI_FV_FILETYPE_DRIVER:Dhcp4Dxe B1DA0ADF-4F77-4070-A88E-BFFE1C60529A:EFI_FV_FILETYPE_DRIVER:AMITSE D912C7BC-F098-4367-92BA-E911083C7B0E:EFI_FV_FILETYPE_DRIVER:Udp6Dxe 95E3669D-34BE-4775-A651-7EA41B69D89E:EFI_FV_FILETYPE_DRIVER:Dhcp6Dxe B95E9FDA-26DE-48D2-8807-1F9107AC5E3A:EFI_FV_FILETYPE_DRIVER:UefiPxeBcDxe 0A66E322-3740-4CCE-AD62-BD172CECCA35:EFI_FV_FILETYPE_DRIVER:ScsiDisk] 404 [/tmp/futk424599522/0] signal: interrupt]OK 
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ 
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ vi Makefile 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"Makefile" 321L, 9393C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1Hdefault: build
+
+build:[4;9Hecho b to build, i for initramfs, q for qemu, d to dxeclean
+
+b: buildbzimage
+
+d:[9;9Hfutk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boott[10;1H/bzImage splat drop /tmp/x saverom    ./DXECLEANER clean
+
+buildbzimage:[13;9H(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+
+i:[16;9Hgo run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init githubb[17;1H.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish[18;9Hcp /tmp/initramfs.linux_amd64.cpio .[19;9Hlzma -f initramfs.linux_amd64.cpio[20;9Hls -l initramfs*[21;9Hcp *lzma linux
+
+cleanme:[24;9H~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
+
+q:[27;9Hqemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
+findit:[29;9Hjq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx[30;9Hjq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
+
+all:[33;9H~/go/bin/utk tyan7102.bin \[34;17Hremove Ip.*  \[35;17Hremove Tcp.*  \[36;17Hremove Usb.*  \[37;17Hremove Udp.*  \[38;17Hremove Dhcp.*  \[39;17Hremove .np.*  \[40;17Hremove .tftp.*  \[41;17Hremove Http.* \[42;17Hremove .*Dns.* \[43;17Hremove Arp.* \[44;17Hremove .*NetworkStackSetupScreen.*  \[45;17Hremove Iscsi.* \[46;17Hremove Scsi.* \[47;17Hremove Fat.* \[48;17Hremove Ahci.* \[49;17Hremove Partition.* \[50;17Hremove Sata.* \[51;17Hremove Disk.* \[52;17Hremove Whea.* \[53;17Hremove .*Pxe.* \[54;17Hremove Ata.* \[55;17Hreplace_pe32 FullShell bzImage \[56;17Hsave x.bin \[57;17Hremove .*Ipmi.* \[58;17Hsave ipmisucks.bin \[59;17Hremove DxeIpmiBmcInitialize \[60;17Hremove SmmBmcElog \[61;17Hremove BmcAcpi \[62;17Hremove SmmIpmiBmcInitialize \[63;17Hremove BmcElog \[64;17Hremove BmcLanConfig \[65;17Hsave removeBMCcrap.bin \[66;17Hremove SecurityStubDxe \[67;17Hsave removesomecrap.bin \[68;17Hcomment TimestampDxe \[69;17Hcomment Legacy8259 \[70;17Hcomment HiiDatabase \[71;17Hcomment DataHubDxe \[72;17Hcomment EnglishDxe \[73;17Hcomment here \[74;17Hcomment PcRtc \[75;17Hcomment FpgaDxe \[76;17Hcomment LegacyInterrupt \[77;17Hcomment SmartTimer \[78;17Hcomment LegacySredir \[79;17Hcomment LegacyRegion2 \[80;17Hcomment TcgLegacy \[81;17Hcomment LegacySmmSredir \[82;129H1,1[11CTop]2;Makefile (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;Makefile[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;1H[K[82;1H/[?2004h[?25hf[?25l[?25hu[?25l[?25h[?25l[128C9,2-9[9CTop[9;9H[?25h[?25l[82;1H[K[82;1H:[?2004h[?25hq[?25l[?25h[?25l[?2004l]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102[82;1H[K[82;1H[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ which futk
+[?2004l/usr/local/google/home/rminnich/go/bin/futk
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ (reverse-i-search)`': [K.': futk /tmp/x fv ./DXECLEANER clean[1@/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pf': ./futk ./futk.remove.99/99 fv[1@u[C[C[C[C[C[C[C[C[C[C]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./futk ./futk.remove.99/99 fv[Kfutk /tmp/x fv ./DXECLEANER clean
+[?2004l2018/12/11 16:49:58 Found 405 things
+2018/12/11 16:49:58 script is ./DXECLEANER
+2018/12/11 16:50:09 Try to remove 54891A9E-763E-4377-8841-8D5C90D88CDE:EFI_FV_FILETYPE_DRIVER:TerminalSrc (54891A9E-763E-4377-8841-8D5C90D88CDE)
+2018/12/11 16:50:09 removed [0xc006ea1f00]
++ echo TEST /tmp/futk295406176/1
+TEST /tmp/futk295406176/1
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk295406176/1 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 
