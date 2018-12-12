@@ -3,5 +3,6 @@ set -e
 set -x
 echo TEST $1
 sudo ~rminnich/bin/em100 -c W25Q256FV -s -d $1 -r
-echo /bin/reset > /dev/ttyUSB0
+echo /bin/reset > /dev/ttyUSB1
+sleep 10
 ./uinit -r

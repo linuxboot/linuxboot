@@ -1,13 +1,18 @@
 default: build
 
-build: buildbzimage
-	futk tyan7102.bin fv '.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv bzImage splat	
+build:
+	echo b to build, i for initramfs, q for qemu, d to dxeclean
+
+b: buildbzimage
+
+d:
+	futk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
 
 buildbzimage:
 	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
 	
 i:
-	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/cmds/elvish github.com/u-root/u-root/cmds/ip github.com/u-root/u-root/cmds/ls
+	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
@@ -16,6 +21,8 @@ i:
 cleanme: 
 	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
 
+q:
+	qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
 findit:
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
