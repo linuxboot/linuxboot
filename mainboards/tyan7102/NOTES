@@ -2,3 +2,7 @@ GPIO control functions in
 /usr/libexec/itami-host-power-control-common.sh
 
 /bin/reset works but I can't get power button to do anything useful.
+
+if I remove CsmDxe, then I can't warm reboot from the kernel
+
+The power cycle bits are a mess, DXECLEANER now has a reliable one.

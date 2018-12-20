@@ -2,7 +2,15 @@
 set -e
 set -x
 echo TEST $1
+echo "date" > /dev/ttyUSB1
+echo "./0" > /dev/ttyUSB1
+echo "./pg" > /dev/ttyUSB1
 sudo ~rminnich/bin/em100 -c W25Q256FV -s -d $1 -r
-echo /bin/reset > /dev/ttyUSB1
+echo "date" > /dev/ttyUSB1
+echo "sleeping 50 because this piece of shit can't take it"
+sleep 50
+echo "./0" > /dev/ttyUSB1
+sleep 5
+echo "./1" > /dev/ttyUSB1
 sleep 10
 ./uinit -r

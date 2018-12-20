@@ -8,10 +8,15 @@ b: buildbzimage
 d:
 	futk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
 
+d98:
+	futk 98.splat fv ./DXECLEANER clean
+
 buildbzimage:
 	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
 	
 i:
+	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
+	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
 	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -f initramfs.linux_amd64.cpio
