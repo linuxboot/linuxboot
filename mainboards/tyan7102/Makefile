@@ -11,6 +11,9 @@ d:
 d98:
 	futk 98.splat fv ./DXECLEANER clean
 
+d4:
+	futk RUN4.4.rom fv ./DXECLEANER clean
+
 buildbzimage:
 	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
 	

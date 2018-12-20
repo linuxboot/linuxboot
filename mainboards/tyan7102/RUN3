@@ -3036,4 +3036,2346 @@ commentmorecrap.bin  dxeclean.bin          [01;34mfutk.remove.99[0m  [01;34ml
   remove 63809859-F029-41C3-9F34-EEEB9EA787A5 \
 
 [94m~                                                                                                                                                 [17;1H~                                                                                                                                                 [18;1H~                                                                                                                                                 [19;1H~                                                                                                                                                 [20;1H~                                                                                                                                                 [21;1H~                                                                                                                                                 [22;1H~                                                                                                                                                 [23;1H~                                                                                                                                                 [24;1H~                                                                                                                                                 [25;1H~                                                                                                                                                 [26;1H~                                                                                                                                                 [27;1H~                                                                                                                                                 [28;1H~                                                                                                                                                 [29;1H~                                                                                                                                                 [30;1H~                                                                                                                                                 [31;1H~                                                                                                                                                 [32;1H~                                                                                                                                                 [33;1H~                                                                                                                                                 [34;1H~                                                                                                                                                 [35;1H~                                                                                                                                                 [36;1H~                                                                                                                                                 [37;1H~                                                                                                                                                 [38;1H~                                                                                                                                                 [39;1H~                                                                                                                                                 [40;1H~                                                                                                                                                 [41;1H~                                                                                                                                                 [42;1H~                                                                                                                                                 [43;1H~                                                                                                                                                 [44;1H~                                                                                                                                                 [45;1H~                                                                                                                                                 [46;1H~                                                                                                                                                 [47;1H~                                                                                                                                                 [48;1H~                                                                                                                                                 [49;1H~                                                                                                                                                 [50;1H~                                                                                                                                                 [51;1H~                                                                                                                                                 [52;1H~                                                                                                                                                 [53;1H~                                                                                                                                                 [54;1H~                                                                                                                                                 [55;1H~                                                                                                                                                 [56;1H~                                                                                                                                                 [57;1H~                                                                                                                                                 [58;1H~                                                                                                                                                 [59;1H~                                                                                                                                                 [60;1H~                                                                                                                                                 [61;1H~                                                                                                                                                 [62;1H~                                                                                                                                                 [63;1H~                                                                                                                                                 [64;1H~                                                                                                                                                 [65;1H~                                                                                                                                                 [66;1H~                                                                                                                                                 [67;1H~                                                                                                                                                 [68;1H~                                                                                                                                                 [69;1H~                                                                                                                                                 [70;1H~                                                                                                                                                 [71;1H~                                                                                                                                                 [72;1H~                                                                                                                                                 [73;1H~                                                                                                                                                 [74;1H~                                                                                                                                                 [75;1H~                                                                                                                                                 [76;1H~                                                                                                                                                 [77;1H~                                                                                                                                                 [78;1H~                                                                                                                                                 [79;1H~                                                                                                                                                 [80;1H~                                                                                                                                                 [81;1H~                                                                                                                                                 [m[82;129H1,3[11CAll]2;LIST (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;LIST[1;3H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;1H[K[82;1H:[?2004h[?25he[?25l[?25h[?25l [?25hN[?25l[?25hO[?25l[?25hT[?25l[?25hE[?25l[?25hS[?25l[?25h[?25l"NOTES" 4L, 144C[1;1HGPIO control functions in[1;26H[K[2;1H/usr/libexec/itami-host-power-control-common.sh[3;3H[K[4;1H/bin/reset works but I can't get power button to do anything useful.
-[94m~                                                                                                                                                 [6;1H~                                                                                                                                                 [7;1H~                                                                                                                                                 [8;1H~                                                                                                                                                 [9;1H~                                                                                                                                                 [10;1H~                                                                                                                                                 [11;1H~                                                                                                                                                 [12;1H~                                                                                                                                                 [13;1H~                                                                                                                                                 [14;1H~                                                                                                                                                 [15;1H~                                                                                                                                                 [m[82;129H1,1[11CAll]2;NOTES (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;NOTES[1;1H[?25h[?25l[82;129H2[2;1H[?25h[?25l[82;129H3,0-1[3;1H[?25h[?25l[82;129H4,1  [4;1H[?25h[?25l[82;1H[1m-- INSERT --[m[82;13H[K[82;129H5,1[11CAll[5;1H[K]2;NOTES + (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;NOTES[5;1H[?25h[?25l[6;1H[K[82;129H6[6;1H[?25h[?25li[82;131H2[6;2H[?25h[?25lf[82;131H3[6;3H[?25h[?25l[82;131H4[6;4H[?25h[?25lI[82;131H5[6;5H[?25h[?25l[82;131H6[6;6H[?25h[?25lr[82;131H7[6;7H[?25h[?25le[82;131H8[6;8H[?25h[?25lm[82;131H9[6;9H[?25h[?25lo[82;131H10[6;10H[?25h[?25lv[82;132H1[6;11H[?25h[?25le[82;132H2[6;12H[?25h[?25l[82;132H3[6;13H[?25h[?25lC[82;132H4[6;14H[?25h[?25ls[82;132H5[6;15H[?25h[?25lm[82;132H6[6;16H[?25h[?25lD[82;132H7[6;17H[?25h[?25lx[82;132H8[6;18H[?25h[?25le[82;132H9[6;19H[?25h[?25l,[82;131H20[6;20H[?25h[?25l[82;132H1[6;21H[?25h[?25lt[82;132H2[6;22H[?25h[?25lh[82;132H3[6;23H[?25h[?25le[82;132H4[6;24H[?25h[?25ln[82;132H5[6;25H[?25h[?25l[82;132H6[6;26H[?25h[?25lI[82;132H7[6;27H[?25h[?25l[82;132H8[6;28H[?25h[?25lc[82;132H9[6;29H[?25h[?25la[82;131H30[6;30H[?25h[?25ln[82;132H1[6;31H[?25h[?25l'[82;132H2[6;32H[?25h[?25lt[82;132H3[6;33H[?25h[?25l[82;132H4[6;34H[?25h[?25lr[82;132H5[6;35H[?25h[?25le[82;132H6[6;36H[?25h[?25l[6;35H[K[82;132H5[6;35H[?25h[?25l[6;34H[K[82;132H4[6;34H[?25h[?25lw[82;132H5[6;35H[?25h[?25la[82;132H6[6;36H[?25h[?25lr[82;132H7[6;37H[?25h[?25lm[82;132H8[6;38H[?25h[?25l[82;132H9[6;39H[?25h[?25lr[82;131H40[6;40H[?25h[?25le[82;132H1[6;41H[?25h[?25lb[82;132H2[6;42H[?25h[?25lo[82;132H3[6;43H[?25h[?25lo[82;132H4[6;44H[?25h[?25lt[82;132H5[6;45H[?25h[?25l[82;132H6[6;46H[?25h[?25lf[82;132H7[6;47H[?25h[?25lr[82;132H8[6;48H[?25h[?25lo[82;132H9[6;49H[?25h[?25lm[82;131H50[6;50H[?25h[?25l[82;132H1[6;51H[?25h[?25lt[82;132H2[6;52H[?25h[?25lh[82;132H3[6;53H[?25h[?25le[82;132H4[6;54H[?25h[?25l[82;132H5[6;55H[?25h[?25lk[82;132H6[6;56H[?25h[?25le[82;132H7[6;57H[?25h[?25lr[82;132H8[6;58H[?25h[?25ln[82;132H9[6;59H[?25h[?25le[82;131H60[6;60H[?25h[?25ll[82;132H1[6;61H[?25h[?25l[7;1H[K[82;129H7,1 [7;1H[?25h[?25l[8;1H[K[82;129H8[8;1H[?25h[?25lT[82;131H2[8;2H[?25h[?25lH[82;131H3[8;3H[?25h[?25le[82;131H4[8;4H[?25h[?25l[82;131H5[8;5H[?25h[?25l[82;131H4[8;4H[?25h[?25l[8;3H[K[82;131H3[8;3H[?25h[?25l[8;2H[K[82;131H2[8;2H[?25h[?25lh[82;131H3[8;3H[?25h[?25le[82;131H4[8;4H[?25h[?25l[82;131H5[8;5H[?25h[?25lp[82;131H6[8;6H[?25h[?25lo[82;131H7[8;7H[?25h[?25lw[82;131H8[8;8H[?25h[?25le[82;131H9[8;9H[?25h[?25l[82;131H10[8;10H[?25h[?25lc[82;132H1[8;11H[?25h[?25ly[82;132H2[8;12H[?25h[?25lc[82;132H3[8;13H[?25h[?25l[8;12H[K[82;132H2[8;12H[?25h[?25l[8;11H[K[82;132H1[8;11H[?25h[?25l[8;10H[K[82;132H0[8;10H[?25h[?25l[82;131H9 [8;9H[?25h[?25lr[82;131H10[8;10H[?25h[?25l[82;132H1[8;11H[?25h[?25lc[82;132H2[8;12H[?25h[?25ly[82;132H3[8;13H[?25h[?25lc[82;132H4[8;14H[?25h[?25ll[82;132H5[8;15H[?25h[?25le[82;132H6[8;16H[?25h[?25l[82;132H7[8;17H[?25h[?25lb[82;132H8[8;18H[?25h[?25li[82;132H9[8;19H[?25h[?25lt[82;131H20[8;20H[?25h[?25ls[82;132H1[8;21H[?25h[?25l[82;132H2[8;22H[?25h[?25la[82;132H3[8;23H[?25h[?25lr[82;132H4[8;24H[?25h[?25le[82;132H5[8;25H[?25h[?25l[82;132H6[8;26H[?25h[?25la[82;132H7[8;27H[?25h[?25l[82;132H8[8;28H[?25h[?25lm[82;132H9[8;29H[?25h[?25le[82;131H30[8;30H[?25h[?25ls[82;132H1[8;31H[?25h[?25ls[82;132H2[8;32H[?25h[?25l,[82;132H3[8;33H[?25h[?25l[82;132H4[8;34H[?25h[?25lD[82;132H5[8;35H[?25h[?25lX[82;132H6[8;36H[?25h[?25lE[82;132H7[8;37H[?25h[?25lC[82;132H8[8;38H[?25h[?25lL[82;132H9[8;39H[?25h[?25lE[82;131H40[8;40H[?25h[?25lR[82;132H1[8;41H[?25h[?25lN[82;132H2[8;42H[?25h[?25lA[82;132H3[8;43H[?25h[?25lE[82;132H4[8;44H[?25h[?25lR[82;132H5[8;45H[?25h[?25l[82;132H6[8;46H[?25h[?25l[82;132H5[8;45H[?25h[?25l[8;44H[K[82;132H4[8;44H[?25h[?25l[8;43H[K[82;132H3[8;43H[?25h[?25l[8;42H[K[82;132H2[8;42H[?25h[?25l[8;41H[K[82;132H1[8;41H[?25h[?25l[8;40H[K[82;132H0[8;40H[?25h[?25lA[82;132H1[8;41H[?25h[?25lN[82;132H2[8;42H[?25h[?25lE[82;132H3[8;43H[?25h[?25lR[82;132H4[8;44H[?25h[?25l[82;132H5[8;45H[?25h[?25ln[82;132H6[8;46H[?25h[?25lo[82;132H7[8;47H[?25h[?25lw[82;132H8[8;48H[?25h[?25l[82;132H9[8;49H[?25h[?25lh[82;131H50[8;50H[?25h[?25la[82;132H1[8;51H[?25h[?25ls[82;132H2[8;52H[?25h[?25l
+[94m~                                                                                                                                                 [6;1H~                                                                                                                                                 [7;1H~                                                                                                                                                 [8;1H~                                                                                                                                                 [9;1H~                                                                                                                                                 [10;1H~                                                                                                                                                 [11;1H~                                                                                                                                                 [12;1H~                                                                                                                                                 [13;1H~                                                                                                                                                 [14;1H~                                                                                                                                                 [15;1H~                                                                                                                                                 [m[82;129H1,1[11CAll]2;NOTES (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;NOTES[1;1H[?25h[?25l[82;129H2[2;1H[?25h[?25l[82;129H3,0-1[3;1H[?25h[?25l[82;129H4,1  [4;1H[?25h[?25l[82;1H[1m-- INSERT --[m[82;13H[K[82;129H5,1[11CAll[5;1H[K]2;NOTES + (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;NOTES[5;1H[?25h[?25l[6;1H[K[82;129H6[6;1H[?25h[?25li[82;131H2[6;2H[?25h[?25lf[82;131H3[6;3H[?25h[?25l[82;131H4[6;4H[?25h[?25lI[82;131H5[6;5H[?25h[?25l[82;131H6[6;6H[?25h[?25lr[82;131H7[6;7H[?25h[?25le[82;131H8[6;8H[?25h[?25lm[82;131H9[6;9H[?25h[?25lo[82;131H10[6;10H[?25h[?25lv[82;132H1[6;11H[?25h[?25le[82;132H2[6;12H[?25h[?25l[82;132H3[6;13H[?25h[?25lC[82;132H4[6;14H[?25h[?25ls[82;132H5[6;15H[?25h[?25lm[82;132H6[6;16H[?25h[?25lD[82;132H7[6;17H[?25h[?25lx[82;132H8[6;18H[?25h[?25le[82;132H9[6;19H[?25h[?25l,[82;131H20[6;20H[?25h[?25l[82;132H1[6;21H[?25h[?25lt[82;132H2[6;22H[?25h[?25lh[82;132H3[6;23H[?25h[?25le[82;132H4[6;24H[?25h[?25ln[82;132H5[6;25H[?25h[?25l[82;132H6[6;26H[?25h[?25lI[82;132H7[6;27H[?25h[?25l[82;132H8[6;28H[?25h[?25lc[82;132H9[6;29H[?25h[?25la[82;131H30[6;30H[?25h[?25ln[82;132H1[6;31H[?25h[?25l'[82;132H2[6;32H[?25h[?25lt[82;132H3[6;33H[?25h[?25l[82;132H4[6;34H[?25h[?25lr[82;132H5[6;35H[?25h[?25le[82;132H6[6;36H[?25h[?25l[6;35H[K[82;132H5[6;35H[?25h[?25l[6;34H[K[82;132H4[6;34H[?25h[?25lw[82;132H5[6;35H[?25h[?25la[82;132H6[6;36H[?25h[?25lr[82;132H7[6;37H[?25h[?25lm[82;132H8[6;38H[?25h[?25l[82;132H9[6;39H[?25h[?25lr[82;131H40[6;40H[?25h[?25le[82;132H1[6;41H[?25h[?25lb[82;132H2[6;42H[?25h[?25lo[82;132H3[6;43H[?25h[?25lo[82;132H4[6;44H[?25h[?25lt[82;132H5[6;45H[?25h[?25l[82;132H6[6;46H[?25h[?25lf[82;132H7[6;47H[?25h[?25lr[82;132H8[6;48H[?25h[?25lo[82;132H9[6;49H[?25h[?25lm[82;131H50[6;50H[?25h[?25l[82;132H1[6;51H[?25h[?25lt[82;132H2[6;52H[?25h[?25lh[82;132H3[6;53H[?25h[?25le[82;132H4[6;54H[?25h[?25l[82;132H5[6;55H[?25h[?25lk[82;132H6[6;56H[?25h[?25le[82;132H7[6;57H[?25h[?25lr[82;132H8[6;58H[?25h[?25ln[82;132H9[6;59H[?25h[?25le[82;131H60[6;60H[?25h[?25ll[82;132H1[6;61H[?25h[?25l[7;1H[K[82;129H7,1 [7;1H[?25h[?25l[8;1H[K[82;129H8[8;1H[?25h[?25lT[82;131H2[8;2H[?25h[?25lH[82;131H3[8;3H[?25h[?25le[82;131H4[8;4H[?25h[?25l[82;131H5[8;5H[?25h[?25l[82;131H4[8;4H[?25h[?25l[8;3H[K[82;131H3[8;3H[?25h[?25l[8;2H[K[82;131H2[8;2H[?25h[?25lh[82;131H3[8;3H[?25h[?25le[82;131H4[8;4H[?25h[?25l[82;131H5[8;5H[?25h[?25lp[82;131H6[8;6H[?25h[?25lo[82;131H7[8;7H[?25h[?25lw[82;131H8[8;8H[?25h[?25le[82;131H9[8;9H[?25h[?25l[82;131H10[8;10H[?25h[?25lc[82;132H1[8;11H[?25h[?25ly[82;132H2[8;12H[?25h[?25lc[82;132H3[8;13H[?25h[?25l[8;12H[K[82;132H2[8;12H[?25h[?25l[8;11H[K[82;132H1[8;11H[?25h[?25l[8;10H[K[82;132H0[8;10H[?25h[?25l[82;131H9 [8;9H[?25h[?25lr[82;131H10[8;10H[?25h[?25l[82;132H1[8;11H[?25h[?25lc[82;132H2[8;12H[?25h[?25ly[82;132H3[8;13H[?25h[?25lc[82;132H4[8;14H[?25h[?25ll[82;132H5[8;15H[?25h[?25le[82;132H6[8;16H[?25h[?25l[82;132H7[8;17H[?25h[?25lb[82;132H8[8;18H[?25h[?25li[82;132H9[8;19H[?25h[?25lt[82;131H20[8;20H[?25h[?25ls[82;132H1[8;21H[?25h[?25l[82;132H2[8;22H[?25h[?25la[82;132H3[8;23H[?25h[?25lr[82;132H4[8;24H[?25h[?25le[82;132H5[8;25H[?25h[?25l[82;132H6[8;26H[?25h[?25la[82;132H7[8;27H[?25h[?25l[82;132H8[8;28H[?25h[?25lm[82;132H9[8;29H[?25h[?25le[82;131H30[8;30H[?25h[?25ls[82;132H1[8;31H[?25h[?25ls[82;132H2[8;32H[?25h[?25l,[82;132H3[8;33H[?25h[?25l[82;132H4[8;34H[?25h[?25lD[82;132H5[8;35H[?25h[?25lX[82;132H6[8;36H[?25h[?25lE[82;132H7[8;37H[?25h[?25lC[82;132H8[8;38H[?25h[?25lL[82;132H9[8;39H[?25h[?25lE[82;131H40[8;40H[?25h[?25lR[82;132H1[8;41H[?25h[?25lN[82;132H2[8;42H[?25h[?25lA[82;132H3[8;43H[?25h[?25lE[82;132H4[8;44H[?25h[?25lR[82;132H5[8;45H[?25h[?25l[82;132H6[8;46H[?25h[?25l[82;132H5[8;45H[?25h[?25l[8;44H[K[82;132H4[8;44H[?25h[?25l[8;43H[K[82;132H3[8;43H[?25h[?25l[8;42H[K[82;132H2[8;42H[?25h[?25l[8;41H[K[82;132H1[8;41H[?25h[?25l[8;40H[K[82;132H0[8;40H[?25h[?25lA[82;132H1[8;41H[?25h[?25lN[82;132H2[8;42H[?25h[?25lE[82;132H3[8;43H[?25h[?25lR[82;132H4[8;44H[?25h[?25l[82;132H5[8;45H[?25h[?25ln[82;132H6[8;46H[?25h[?25lo[82;132H7[8;47H[?25h[?25lw[82;132H8[8;48H[?25h[?25l[82;132H9[8;49H[?25h[?25lh[82;131H50[8;50H[?25h[?25la[82;132H1[8;51H[?25h[?25ls[82;132H2[8;52H[?25h[?25l[82;132H3[8;53H[?25h[?25la[82;132H4[8;54H[?25h[?25l[82;132H5[8;55H[?25h[?25lr[82;132H6[8;56H[?25h[?25le[82;132H7[8;57H[?25h[?25ll[82;132H8[8;58H[?25h[?25li[82;132H9[8;59H[?25h[?25la[82;131H60[8;60H[?25h[?25lb[82;132H1[8;61H[?25h[?25ll[82;132H2[8;62H[?25h[?25le[82;132H3[8;63H[?25h[?25l[82;132H4[8;64H[?25h[?25lo[82;132H5[8;65H[?25h[?25ln[82;132H6[8;66H[?25h[?25le[82;132H7[8;67H[?25h[?25l.[82;132H8[8;68H[?25h[82;1H[K[8;67H[?25l[82;129H8,67[10CAll[8;67H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l"NOTES" 8L, 275C written]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ git add [Kdit[K[K[Kgit status .
+[?2004lOn branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   DXECLEANER[m
+	[31mmodified:   Makefile[m
+	[31mmodified:   NOTES[m
+	[31mmodified:   RUN3[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m98.splat[m
+	[31mL[m
+	[31mLIST[m
+	[31mLOG[m
+	[31mfutk.remove.99/[m
+	[31minitramfs.linux_amd64.cpio.lzma[m
+	[31muinit[m
+	[31mxxx[m
+	[31myyy[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ git commit -as
+[?2004lhint: Waiting for your editor to close the file... [?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"/usr/local/src/projects/nobinaryblobs/mainboards/.git/COMMIT_EDITMSG" 27L, 503C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[3;1HSigned-off-by: Ronald G. Minnich <rminnich@google.com>
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#[7Cmodified:   DXECLEANER
+#[7Cmodified:   Makefile
+#[7Cmodified:   NOTES
+#[7Cmodified:   RUN3
+#
+# Untracked files:
+#[7C98.splat
+#[7CL
+#[7CLIST
+#[7CLOG
+#[7Cfutk.remove.99/
+#[7Cinitramfs.linux_amd64.cpio.lzma
+#[7Cuinit
+#[7Cxxx
+#[7Cyyy
+#
+[94m~                                                                                                                                                 [29;1H~                                                                                                                                                 [30;1H~                                                                                                                                                 [31;1H~                                                                                                                                                 [32;1H~                                                                                                                                                 [33;1H~                                                                                                                                                 [34;1H~                                                                                                                                                 [35;1H~                                                                                                                                                 [36;1H~                                                                                                                                                 [37;1H~                                                                                                                                                 [38;1H~                                                                                                                                                 [39;1H~                                                                                                                                                 [40;1H~                                                                                                                                                 [41;1H~                                                                                                                                                 [42;1H~                                                                                                                                                 [43;1H~                                                                                                                                                 [44;1H~                                                                                                                                                 [45;1H~                                                                                                                                                 [46;1H~                                                                                                                                                 [47;1H~                                                                                                                                                 [48;1H~                                                                                                                                                 [49;1H~                                                                                                                                                 [50;1H~                                                                                                                                                 [51;1H~                                                                                                                                                 [52;1H~                                                                                                                                                 [53;1H~                                                                                                                                                 [54;1H~                                                                                                                                                 [55;1H~                                                                                                                                                 [56;1H~                                                                                                                                                 [57;1H~                                                                                                                                                 [58;1H~                                                                                                                                                 [59;1H~                                                                                                                                                 [60;1H~                                                                                                                                                 [61;1H~                                                                                                                                                 [62;1H~                                                                                                                                                 [63;1H~                                                                                                                                                 [64;1H~                                                                                                                                                 [65;1H~                                                                                                                                                 [66;1H~                                                                                                                                                 [67;1H~                                                                                                                                                 [68;1H~                                                                                                                                                 [69;1H~                                                                                                                                                 [70;1H~                                                                                                                                                 [71;1H~                                                                                                                                                 [72;1H~                                                                                                                                                 [73;1H~                                                                                                                                                 [74;1H~                                                                                                                                                 [75;1H~                                                                                                                                                 [76;1H~                                                                                                                                                 [77;1H~                                                                                                                                                 [78;1H~                                                                                                                                                 [79;1H~                                                                                                                                                 [80;1H~                                                                                                                                                 [81;1H~                                                                                                                                                 [m[82;129H1,0-1[9CAll]2;COMMIT_EDITMSG (/usr/local/src/projects/nobinaryblobs/mainboards/.git) - VIM]1;COMMIT_EDITMSG[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;129H3,6  [3;6H[?25h[?25l[82;131H5[3;5H[?25h[?25l[82;129H2,0-1[2;1H[?25h[?25l[82;129H1[1;1H[?25h[?25l[82;1H[1m-- INSERT --[m[82;13H[K[82;129H1,1[11CAll[1;1H[?25h[?25lF[82;131H2]2;COMMIT_EDITMSG + (/usr/local/src/projects/nobinaryblobs/mainboards/.git) - VIM]1;COMMIT_EDITMSG[1;2H[?25h[?25li[82;131H3[1;3H[?25h[?25ln[82;131H4[1;4H[?25h[?25la[82;131H5[1;5H[?25h[?25ll[82;131H6[1;6H[?25h[?25ly[82;131H7[1;7H[?25h[?25l[1;6H[K[82;131H6[1;6H[?25h[?25ll[82;131H7[1;7H[?25h[?25ly[82;131H8[1;8H[?25h[?25l[82;131H9[1;9H[?25h[?25lg[82;131H10[1;10H[?25h[?25le[82;132H1[1;11H[?25h[?25lt[82;132H2[1;12H[?25h[?25l[82;132H3[1;13H[?25h[?25lp[82;132H4[1;14H[?25h[?25lo[82;132H5[1;15H[?25h[?25lw[82;132H6[1;16H[?25h[?25le[82;132H7[1;17H[?25h[?25lr[82;132H8[1;18H[?25h[?25l[82;132H9[1;19H[?25h[?25lr[82;131H20[1;20H[?25h[?25li[82;132H1[1;21H[?25h[?25lg[82;132H2[1;22H[?25h[?25lh[82;132H3[1;23H[?25h[?25lt[82;132H4[1;24H[?25h[?25l.[82;132H5[1;25H[?25h[82;1H[K[1;24H[?25l[82;129H1,24[10CAll[1;24H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l".git/COMMIT_EDITMSG" 27L, 527C written]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004l[?1l>[?25h[?1049l[K[master a5333ed] Finally get power right.
+ 4 files changed, 2448 insertions(+), 673 deletions(-)
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pusdh
+[?2004lbash: pusdh: command not found
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pushd
+[?2004lbash: pushd: no other directory
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pushd ~/go/src/github.com/linuxboot/dut/
+.bb/   .git/  uinit/ 
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pushd ~/go/src/github.com/linuxboot/dut/
+.bb/   .git/  uinit/ 
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pushd ~/go/src/github.com/linuxboot/dut/uinit/u.[Kin.[K[K[K[K.bb/[K[K[K[K
+[?2004l~/go/src/github.com/linuxboot/dut/uinit /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ ls
+[?2004ldut.go  dut_test.go  rpc.go  [0m[01;32muinit[0m  uinit.go
+[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ vi dut.go 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"dut.go" 97L, 2155C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H// This is a very simple dut program. It builds into one binary to implement
+// both client and server. It's just easier to see both sides of the code and test
+// that way.
+package main
+
+import ([7;9H"flag"[8;9H"fmt"[9;9H"log"[10;9H"net"[11;9H"net/rpc"[12;9H"time"
+)
+
+var ([16;9Hhost   = flag.String("h", "192.168.0.1", "hostname")[17;9Hme   = flag.String("me", "192.168.0.2", "dut hostname")[18;9Hport   = flag.String("p", "8080", "port number")[19;9Hdir    = flag.String("d", ".", "directory to serve")[20;9HrunDUT = flag.Bool("r", false, "run as the DUT controller")[21;9HconfigNet = flag.Bool("C", true, "configure the network")
+)
+
+func dutStart(t, host, port string) (net.Listener, error) {[25;9Hln, err := net.Listen(t, host+":"+port)[26;9Hif err != nil {[27;17Hlog.Print(err)[28;17Hreturn nil, err[29;9H}[30;9Hlog.Printf("Listening on %v at %v", ln.Addr(), time.Now())[31;9Hreturn ln, nil
+}
+
+func dutAccept(l net.Listener) (net.Conn, error) {[35;9Hif err := l.(*net.TCPListener).SetDeadline(time.Now().Add(3 * time.Minute)); err != nil {[36;17Hreturn nil, err[37;9H}[38;9Hc, err := l.Accept()[39;9Hif err != nil {[40;17Hlog.Printf("Listen failed: %v at %v", err, time.Now())[41;17Hlog.Print(err)[42;17Hreturn nil, err[43;9H}[44;9Hlog.Printf("Accepted %v", c)[45;9Hreturn c, nil
+}
+
+func dutRPC(host, port string) error {[49;9Hl, err := dutStart("tcp", host, port)[50;9Hif err != nil {[51;17Hreturn err[52;9H}[53;9Hc, err := dutAccept(l)[54;9Hif err != nil {[55;17Hreturn err[56;9H}[57;9Hcl := rpc.NewClient(c)[58;9Hfor _, cmd := range []struct {[59;17Hcall string[60;17Hargs interface{}[61;9H} {[62;17H{ "Command.Welcome", &RPCWelcome{}},[63;17H{ "Command.Reboot", &RPCReboot{}},[64;9H} {[65;17Hvar r RPCRes[66;17Hif err := cl.Call(cmd.call, cmd.args, &r); err != nil {[67;25Hreturn err[68;17H}[69;17Hfmt.Printf("%v(%v): %v\n", cmd.call, cmd.args, string(r.C))[70;9H}[72;9Hif c, err = dutAccept(l); err != nil {[73;17Hreturn err[74;9H}[75;9Hcl = rpc.NewClient(c)[76;9Hvar r RPCRes[77;9Hif err := cl.Call("Command.Welcome", &RPCWelcome{}, &r); err != nil {[78;17Hreturn err[79;9H}[80;9Hfmt.Printf("%v(%v): %v\n","Command.Welcome", nil, string(r.C))[82;129H1,1[11CTop]2;dut.go (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[1;81r[1;1H[16M[1;82r[66;9Hreturn nil
+}
+
+func main() {[70;9Hflag.Parse()[71;9Hvar err error[72;9Hif *runDUT {[73;17Herr = dutRPC(*host, *port)[74;9H} else {[75;17Herr = uinit(*host, *me, *port)[76;9H}[77;9Hlog.Printf("We are now done ......................")[78;9Hif err != nil{[79;17Hlog.Fatal(err)[80;9H}
+}[82;1H[K[82;129H97,1[10CBot[81;1H[?25h[?25l[82;130H6,1-8[80;8H[?25h[?25l[82;130H5[79;8H[?25h[?25l[82;130H4[78;8H[?25h[?25l[82;130H3[77;8H[?25h[?25l[82;130H2[76;8H[?25h[?25l[82;130H1[75;8H[?25h[?25l[82;130H0[74;8H[?25h[?25l[82;129H89[73;8H[?25h[?25l[82;130H8[72;8H[?25h[?25l[82;130H7[71;8H[?25h[?25l[82;130H6[70;8H[?25h[?25l[82;130H5,1  [69;1H[?25h[?25l[82;130H4,0-1[68;1H[?25h[?25l[32;38H[106m{[67;1H}[m[82;130H3,1  [67;1H[?25h[?25l[32;38H{[67;1H}[82;130H2,1-8[66;8H[?25h[?25l[82;130H1,0-1[65;1H[?25h[?25l[82;130H0,1-8[64;8H[?25h[?25l[82;129H79[63;8H[?25h[?25l[82;130H8[62;8H[?25h[?25l[82;130H7[61;8H[?25h[?25l[82;130H6[60;8H[?25h[?25l[82;130H5[59;8H[?25h[?25l[82;130H4[58;8H[?25h[?25l[82;130H3[57;8H[?25h[?25l[82;130H2[56;8H[?25h[?25l[82;130H1,0-1[55;1H[?25h[?25l[82;130H0,1-8[54;8H[?25h[?25l[82;129H69[53;8H[?25h[?25l[82;130H8[52;8H[?25h[?25l[82;130H7[51;8H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25he[?25l[?25h[?25l [?25hD[?25l[?25hX[?25l[?25h...[?25l[82;6H[K[82;6H[?25hU[?25l[?25h[?25l[82;2H[K[82;2H[?25h[?25l[128C67,1-8[8CBot[51;8H[?25h[?25l drop]2;dut.go + (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[82;132H6-13[51;13H[?25h[?25l[82;1H1 change; before #1  0 seconds ago[82;129H[K[51;9H    [82;129H67,1-8[8CBot]2;dut.go (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[51;8H[?25h[?25l[82;1H[1m-- INSERT --[m[82;13H[K[82;129H67,1[10CBot[51;17Hreturn err[51;27H[K]2;dut.go + (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[51;1H[?25h[?25lh[82;132H2[51;2H[?25h[?25ld[82;132H3[51;3H[?25h[?25l[52;81r[52;1H[L[1;82r[51;17H[K[52;17Hreturn err[82;129H[K[82;129H68,1[10C94%[52;1H[?25h[82;1H[K[52;1H[?25l[82;129H68,1-8[8C94%[52;8H[?25h[?25l[82;1H1 line less; before #2  1 seconds ago[82;129H[K[51;81r[81;1H
+[1;82r[51;17H        return err[81;1H}[82;1H[K[82;129H67,1-8[8CBot]2;dut.go (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[51;8H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hq[?25l[?25h![?25l[?25h[?25l[?2004l]2;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinit]1;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinit[82;1H[K[82;1H[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ pushd 
+[?2004l/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102 ~/go/src/github.com/linuxboot/dut/uinit
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ vi DXECLEANER 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"DXECLEANER" 16L, 345C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H#!/bin/bash
+set -e
+set -x
+echo TEST $1
+echo "date" > /dev/ttyUSB1
+echo "./0" > /dev/ttyUSB1
+echo "./pg" > /dev/ttyUSB1
+sudo ~rminnich/bin/em100 -c W25Q256FV -s -d $1 -r
+echo "date" > /dev/ttyUSB1
+echo "sleeping 50 because this piece of shit can't take it"
+sleep 50
+echo "./0" > /dev/ttyUSB1
+sleep 5
+echo "./1" > /dev/ttyUSB1
+sleep 10
+./uinit -r
+[94m~                                                                                                                                                 [18;1H~                                                                                                                                                 [19;1H~                                                                                                                                                 [20;1H~                                                                                                                                                 [21;1H~                                                                                                                                                 [22;1H~                                                                                                                                                 [23;1H~                                                                                                                                                 [24;1H~                                                                                                                                                 [25;1H~                                                                                                                                                 [26;1H~                                                                                                                                                 [27;1H~                                                                                                                                                 [28;1H~                                                                                                                                                 [29;1H~                                                                                                                                                 [30;1H~                                                                                                                                                 [31;1H~                                                                                                                                                 [32;1H~                                                                                                                                                 [33;1H~                                                                                                                                                 [34;1H~                                                                                                                                                 [35;1H~                                                                                                                                                 [36;1H~                                                                                                                                                 [37;1H~                                                                                                                                                 [38;1H~                                                                                                                                                 [39;1H~                                                                                                                                                 [40;1H~                                                                                                                                                 [41;1H~                                                                                                                                                 [42;1H~                                                                                                                                                 [43;1H~                                                                                                                                                 [44;1H~                                                                                                                                                 [45;1H~                                                                                                                                                 [46;1H~                                                                                                                                                 [47;1H~                                                                                                                                                 [48;1H~                                                                                                                                                 [49;1H~                                                                                                                                                 [50;1H~                                                                                                                                                 [51;1H~                                                                                                                                                 [52;1H~                                                                                                                                                 [53;1H~                                                                                                                                                 [54;1H~                                                                                                                                                 [55;1H~                                                                                                                                                 [56;1H~                                                                                                                                                 [57;1H~                                                                                                                                                 [58;1H~                                                                                                                                                 [59;1H~                                                                                                                                                 [60;1H~                                                                                                                                                 [61;1H~                                                                                                                                                 [62;1H~                                                                                                                                                 [63;1H~                                                                                                                                                 [64;1H~                                                                                                                                                 [65;1H~                                                                                                                                                 [66;1H~                                                                                                                                                 [67;1H~                                                                                                                                                 [68;1H~                                                                                                                                                 [69;1H~                                                                                                                                                 [70;1H~                                                                                                                                                 [71;1H~                                                                                                                                                 [72;1H~                                                                                                                                                 [73;1H~                                                                                                                                                 [74;1H~                                                                                                                                                 [75;1H~                                                                                                                                                 [76;1H~                                                                                                                                                 [77;1H~                                                                                                                                                 [78;1H~                                                                                                                                                 [79;1H~                                                                                                                                                 [80;1H~                                                                                                                                                 [81;1H~                                                                                                                                                 [m[82;129H1,1[11CAll]2;DXECLEANER (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;DXECLEANER[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;129H2[2;1H[?25h[?25l[82;129H3[3;1H[?25h[?25l[82;129H4[4;1H[?25h[?25l[82;129H5[5;1H[?25h[?25l[82;129H6[6;1H[?25h[?25l[82;129H7[7;1H[?25h[?25l[82;129H8[8;1H[?25h[?25l[82;129H9[9;1H[?25h[?25l[82;129H10,1[10;1H[?25h[?25l[82;130H1[11;1H[?25h[?25l[82;130H2[12;1H[?25h[?25l[82;130H3[13;1H[?25h[?25l[82;130H4[14;1H[?25h[?25l[82;130H5[15;1H[?25h[?25l[82;130H6[16;1H[?25h[?25l[82;1H[1m-- INSERT --[m[82;14H[K[82;129H17,1[10CAll[17;1H[K]2;DXECLEANER + (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;DXECLEANER[17;1H[?25h[?25le[82;132H2[17;2H[?25h[?25lc[82;132H3[17;3H[?25h[?25lh[82;132H4[17;4H[?25h[?25lo[82;132H5[17;5H[?25h[?25l[82;132H6[17;6H[?25h[?25l"[82;132H7[17;7H[?25h[?25lA[82;132H8[17;8H[?25h[?25lL[82;132H9[17;9H[?25h[?25lL[82;132H10[17;10H[?25h[?25l[82;133H1[17;11H[?25h[?25lD[82;133H2[17;12H[?25h[?25lO[82;133H3[17;13H[?25h[?25lN[82;133H4[17;14H[?25h[?25lE[82;133H5[17;15H[?25h[?25l"[82;133H6[17;16H[?25h[82;1H[K[17;15H[?25l[82;129H17,15[9CAll[17;15H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l"DXECLEANER" 17L, 361C written]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ pushd
+[?2004l~/go/src/github.com/linuxboot/dut/uinit /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ vi dut.go 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"dut.go" 97L, 2155C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H// This is a very simple dut program. It builds into one binary to implement
+// both client and server. It's just easier to see both sides of the code and test
+// that way.
+package main
+
+import ([7;9H"flag"[8;9H"fmt"[9;9H"log"[10;9H"net"[11;9H"net/rpc"[12;9H"time"
+)
+
+var ([16;9Hhost   = flag.String("h", "192.168.0.1", "hostname")[17;9Hme   = flag.String("me", "192.168.0.2", "dut hostname")[18;9Hport   = flag.String("p", "8080", "port number")[19;9Hdir    = flag.String("d", ".", "directory to serve")[20;9HrunDUT = flag.Bool("r", false, "run as the DUT controller")[21;9HconfigNet = flag.Bool("C", true, "configure the network")
+)
+
+func dutStart(t, host, port string) (net.Listener, error) {[25;9Hln, err := net.Listen(t, host+":"+port)[26;9Hif err != nil {[27;17Hlog.Print(err)[28;17Hreturn nil, err[29;9H}[30;9Hlog.Printf("Listening on %v at %v", ln.Addr(), time.Now())[31;9Hreturn ln, nil
+}
+
+func dutAccept(l net.Listener) (net.Conn, error) {[35;9Hif err := l.(*net.TCPListener).SetDeadline(time.Now().Add(3 * time.Minute)); err != nil {[36;17Hreturn nil, err[37;9H}[38;9Hc, err := l.Accept()[39;9Hif err != nil {[40;17Hlog.Printf("Listen failed: %v at %v", err, time.Now())[41;17Hlog.Print(err)[42;17Hreturn nil, err[43;9H}[44;9Hlog.Printf("Accepted %v", c)[45;9Hreturn c, nil
+}
+
+func dutRPC(host, port string) error {[49;9Hl, err := dutStart("tcp", host, port)[50;9Hif err != nil {[51;17Hreturn err[52;9H}[53;9Hc, err := dutAccept(l)[54;9Hif err != nil {[55;17Hreturn err[56;9H}[57;9Hcl := rpc.NewClient(c)[58;9Hfor _, cmd := range []struct {[59;17Hcall string[60;17Hargs interface{}[61;9H} {[62;17H{ "Command.Welcome", &RPCWelcome{}},[63;17H{ "Command.Reboot", &RPCReboot{}},[64;9H} {[65;17Hvar r RPCRes[66;17Hif err := cl.Call(cmd.call, cmd.args, &r); err != nil {[67;25Hreturn err[68;17H}[69;17Hfmt.Printf("%v(%v): %v\n", cmd.call, cmd.args, string(r.C))[70;9H}[72;9Hif c, err = dutAccept(l); err != nil {[73;17Hreturn err[74;9H}[75;9Hcl = rpc.NewClient(c)[76;9Hvar r RPCRes[77;9Hif err := cl.Call("Command.Welcome", &RPCWelcome{}, &r); err != nil {[78;17Hreturn err[79;9H}[80;9Hfmt.Printf("%v(%v): %v\n","Command.Welcome", nil, string(r.C))[82;129H1,1[11CTop]2;dut.go (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[1;81r[1;1H[16M[1;82r[66;9Hreturn nil
+}
+
+func main() {[70;9Hflag.Parse()[71;9Hvar err error[72;9Hif *runDUT {[73;17Herr = dutRPC(*host, *port)[74;9H} else {[75;17Herr = uinit(*host, *me, *port)[76;9H}[77;9Hlog.Printf("We are now done ......................")[78;9Hif err != nil{[79;17Hlog.Fatal(err)[80;9H}
+}[82;1H[K[82;129H97,1[10CBot[81;1H[?25h[?25l[82;130H6,1-8[80;8H[?25h[?25l[82;130H5[79;8H[?25h[?25l[82;130H4[78;8H[?25h[?25l[82;1H[1m-- INSERT --[m[82;129H[K[82;129H95,1[10C94%[79;17H[K[80;9H [7Clog.Fatal(err)
+ [7C}]2;dut.go + (~/go/src/github.com/linuxboot/dut/uinit) - VIM]1;dut.go[79;1H[?25h[?25l[82;132H2-9[79;9H[?25h[?25l[82;132H3-17[79;17H[?25h[?25ll[82;132H4-18[79;18H[?25h[?25ls[82;132H5-19[79;19H[?25h[?25l.[82;132H6-20[79;20H[?25h[?25lE[82;132H7-21[79;21H[?25h[?25lx[82;132H8-22[79;22H[?25h[?25l[79;21H[K[82;132H7-21[79;21H[?25h[?25l[79;20H[K[82;132H6-20[79;20H[?25h[?25l[79;19H[K[82;132H5-19[79;19H[?25h[?25l[79;18H[K[82;132H4-18[79;18H[?25h[?25l[79;17H[K[82;132H3-17[79;17H[?25h[?25ll[82;132H4-18[79;18H[?25h[?25lo[82;132H5-19[79;19H[?25h[?25lg[82;132H6-20[79;20H[?25h[?25l.[82;132H7-21[79;21H[?25h[?25lP[82;132H8-22[79;22H[?25h[?25lrt[82;132H10-24[79;24H[?25h[?25li[82;133H1-25[79;25H[?25h[?25ln[82;133H2-26[79;26H[?25h[?25lt[82;133H3-27[79;27H[?25h[?25lf[82;133H4-28[79;28H[?25h[?25l[79;27H[K[82;133H3-27[79;27H[?25h[?25l[79;26H[K[82;133H2-26[79;26H[?25h[?25l[79;25H[K[82;133H1-25[79;25H[?25h[?25l[79;24H[K[82;133H0-24[79;24H[?25h[?25l[79;23H[K[82;132H9-23 [79;23H[?25h[?25li[82;132H10-24[79;24H[?25h[?25ln[82;133H1-25[79;25H[?25h[?25lt[82;133H2-26[79;26H[?25h[?25l([82;133H3-27[79;27H[?25h[?25l"[82;133H4-28[79;28H[?25h[?25l%[82;133H5-29[79;29H[?25h[?25lv[82;133H6-30[79;30H[?25h[?25l[79;29H[K[82;133H5-29[79;29H[?25h[?25l[79;28H[K[82;133H4-28[79;28H[?25h[?25l[79;27H[K[82;133H3-27[79;27H[?25h[?25l[79;26H[K[82;133H2-26[79;26H[?25h[?25lf[82;133H3-27[79;27H[?25h[?25l([82;133H4-28[79;28H[?25h[?25l"[82;133H5-29[79;29H[?25h[?25l%[82;133H6-30[79;30H[?25h[?25lv[82;133H7-31[79;31H[?25h[?25l"[82;133H8-32[79;32H[?25h[?25l,[82;133H9-33[79;33H[?25h[?25l[82;132H20-34[79;34H[?25h[?25le[82;133H1-35[79;35H[?25h[?25lr[82;133H2-36[79;36H[?25h[?25lr[82;133H3-37[79;37H[?25h[?25l[79;27H[106m([9C)[m[82;133H4-38[79;38H[?25h[?25l[79;27H([9C)[80;17H[K[81;9H [7Clog.Fatal(err)[82;130H6,1          88[80;1H[?25h[?25l[82;132H2-9[80;9H[?25h[?25l[82;132H3-17[80;17H[?25h[?25l[82;132H4-25[80;25H[?25h[?25l[82;132H3-17[80;17H[?25h[?25lo[82;132H4-18[80;18H[?25h[?25ls[82;132H5-19[80;19H[?25h[?25l.[82;132H6-20[80;20H[?25h[?25lE[82;132H7-21[80;21H[?25h[?25lx[82;132H8-22[80;22H[?25h[?25li[82;132H9-23[80;23H[?25h[?25lt[82;132H10-24[80;24H[?25h[?25l([82;133H1-25[80;25H[?25h[?25l2[82;133H2-26[80;26H[?25h[?25l[106m([m2[106m)[m[82;133H3-27[80;27H[?25h[82;1H[K[80;26H[?25l[82;129H96,12-26      88%[80;26H[?25h[?25l(2)[81;26H[106m([merr[106m)[m[82;130H7[81;26H[?25h[?25l[78;22H[106m{[81;9H}[m[81;17H[K[82;132H2-9        94[81;9H[?25h[?25l[78;22H{[81;9H}[82;130H6,2-16[80;16H[?25h[?25l[82;130H5[79;16H[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l"dut.go" 98L, 2175C written]2;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinit]1;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinit
+[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ go build
+[?2004l# github.com/linuxboot/dut/uinit
+./dut.go:96:3: undefined: os
+[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ goimports 8[K-w *.go
+[?2004lgo build
+[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ go build
+[?2004l[?2004h]0;rminnich@xcpu: ~/go/src/github.com/linuxboot/dut/uinitrminnich@xcpu:~/go/src/github.com/linuxboot/dut/uinit$ pushd
+[?2004l/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102 ~/go/src/github.com/linuxboot/dut/uinit
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make i
+[?2004l(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
+cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
+go run /usr/local/google/home/rminnich/go/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+2018/12/20 12:35:59 Build environment: GOARCH=amd64 GOOS=linux GOROOT=/usr/local/src/projects/nobinaryblobs/go1.6 GOPATH=/usr/local/google/home/rminnich/go CGO_ENABLED=0
+2018/12/20 12:35:59 Filename is /tmp/initramfs.linux_amd64.cpio
+2018/12/20 12:36:07 Successfully wrote initramfs.
+cp /tmp/initramfs.linux_amd64.cpio .
+lzma -f initramfs.linux_amd64.cpio
+ls -l initramfs*
+-rwxr-xr-x 1 rminnich primarygroup 2853746 Dec 20 12:36 initramfs.linux_amd64.cpio.lzma
+cp *lzma linux
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ maek b[Kmake b
+[?2004l(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+make[1]: Entering directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+  CHK     include/config/kernel.release
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  GEN     usr/initramfs_data.cpio.lzma
+  AS      usr/initramfs_data.o
+  AR      usr/built-in.o
+  CHK     kernel/config_data.h
+  GEN     .version
+  CHK     include/generated/compile.h
+  UPD     include/generated/compile.h
+  CC      init/version.o
+  AR      init/built-in.o
+  AR      built-in.o
+  LD      vmlinux.o
+  MODPOST vmlinux.o
+  KSYM    .tmp_kallsyms1.o
+  KSYM    .tmp_kallsyms2.o
+  LD      vmlinux
+  SORTEX  vmlinux
+  SYSMAP  System.map
+  Building modules, stage 2.
+  CC      arch/x86/boot/version.o
+  MODPOST 4 modules
+  VOFFSET arch/x86/boot/compressed/../voffset.h
+  OBJCOPY arch/x86/boot/compressed/vmlinux.bin
+  XZKERN  arch/x86/boot/compressed/vmlinux.bin.xz
+  CC      arch/x86/boot/compressed/misc.o
+  MKPIGGY arch/x86/boot/compressed/piggy.S
+  AS      arch/x86/boot/compressed/piggy.o
+  DATAREL arch/x86/boot/compressed/vmlinux
+  LD      arch/x86/boot/compressed/vmlinux
+  ZOFFSET arch/x86/boot/zoffset.h
+  OBJCOPY arch/x86/boot/vmlinux.bin
+  AS      arch/x86/boot/header.o
+  LD      arch/x86/boot/setup.elf
+  OBJCOPY arch/x86/boot/setup.bin
+  BUILD   arch/x86/boot/bzImage
+Setup is 15580 bytes (padded to 15872 bytes).
+System is 5141 kB
+CRC bcf362bf
+Kernel: arch/x86/boot/bzImage is ready  (#74)
+make[1]: Leaving directory '/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/linux'
+-rw-r----- 1 rminnich eng 5279792 Dec 20 12:37 arch/x86/boot/bzImage
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ (reverse-i-search)`': [K[15@D': vi DXECLEANER[1@X[C[C[C[C[C[C./DXECLEANER /tmp/futk824997279/5[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ./DXECLEANER /tmp/futk824997279/5[K(reverse-i-search)`': [Kc': futk futk.remove.99/98  fv linux/arch/x86/boot/bzImage splat 98.splat saverom[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[26Pp': cp /tmp/me.bin 3rdparty/blobs/baseboard-dragonegg/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@ [C[C[C]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ cp /tmp/me.bin 3rdparty/blobs/baseboard-dragonegg/[K(reverse-i-search)`': [Kf': make menuconfigu': ls /tmp/futk120101721/[1@t[C[C[C[C[C[C[C[C[C[C[C]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ ls /tmp/futk120101721/[Khistory
+[?2004l 1064  [2018-10-19 09:25:46 -0700] ls
+ 1065  [2018-10-19 09:25:49 -0700] tmux
+ 1066  [2018-11-01 14:35:04 -0700] cd /usr/local/src/projects/NERF/
+ 1067  [2018-11-01 14:35:04 -0700] ls
+ 1068  [2018-11-01 14:35:20 -0700] find .. -name EATIT -print
+ 1069  [2018-11-01 14:35:25 -0700] ls prod
+ 1070  [2018-11-01 14:35:36 -0700] ls
+ 1071  [2018-11-01 14:35:43 -0700] cd ../nobinaryblobs/linux-4HEAD/
+ 1072  [2018-11-01 14:35:43 -0700] ls
+ 1073  [2018-11-01 14:35:57 -0700] ~/go/bin/utk tyan7102.bin count
+ 1074  [2018-11-01 14:36:15 -0700] ~/go/bin/utk removesetupcrap.bin count|grep DRIVER
+ 1075  [2018-11-01 14:48:28 -0700] vi EATIT
+ 1076  [2018-11-01 14:50:12 -0700] ./EATIT
+ 1077  [2018-11-15 14:15:54 -0800] make cleanme
+ 1078  [2018-11-06 13:20:15 -0800] sudo minicom
+ 1079  [2018-11-06 13:21:02 -0800] dmesg
+ 1080  [2018-11-06 13:22:09 -0800] sudo minicom
+ 1081  [2018-11-09 16:24:23 -0800] echo reset > /dev/ttyUSB0
+ 1082  [2018-11-09 16:24:33 -0800] cat /dev/ttyUSB0
+ 1083  [2018-11-09 16:24:36 -0800] bg
+ 1084  [2018-11-09 16:24:41 -0800] echo reset > /dev/ttyUSB0
+ 1085  [2018-11-09 16:24:47 -0800] fg
+ 1086  [2018-11-09 16:24:51 -0800] which reset
+ 1087  [2018-11-09 16:25:00 -0800] ls /etc/minicom usb1
+ 1088  [2018-11-09 16:25:05 -0800] sudo minicom usb1
+ 1089  [2018-11-09 16:25:19 -0800] cat /dev/ttyUSB0
+ 1090  [2018-11-09 16:25:21 -0800] bg
+ 1091  [2018-11-09 16:25:28 -0800] echo /bin/reset > /dev/ttyUSB0
+ 1092  [2018-11-09 16:25:43 -0800] fg
+ 1093  [2018-11-09 16:25:50 -0800] ls /etc/minicom 
+ 1094  [2018-11-09 16:25:56 -0800] sudo minicom 
+ 1095  [2018-11-09 16:28:33 -0800] cat /dev/ttyUSB0
+ 1096  [2018-11-09 16:28:35 -0800] bg
+ 1097  [2018-11-09 16:35:17 -0800] echo cat /bin/reset > /dev/ttyUSB0
+ 1098  [2018-11-09 16:50:29 -0800] cd go/src/github.com/linuxboot/dut/
+ 1099  [2018-11-09 16:50:30 -0800] ls
+ 1100  [2018-11-09 16:50:39 -0800] vi uinit/uinit.go 
+ 1101  [2018-11-09 16:50:44 -0800] vi dut
+ 1102  [2018-11-09 16:56:23 -0800] vi dut.go
+ 1103  [2018-11-09 16:56:59 -0800] git diff
+ 1104  [2018-11-09 16:57:18 -0800] git commit -as
+ 1105  [2018-11-09 16:57:29 -0800] git push
+ 1106  [2018-11-15 10:50:34 -0800] git log
+ 1107  [2018-11-15 10:50:45 -0800] git branch
+ 1108  [2018-11-15 10:50:55 -0800] git checkout -b characterio
+ 1109  [2018-11-15 12:46:02 -0800] jobs
+ 1110  [2018-11-15 12:46:22 -0800] echo cat /bin/reset >/dev/ttyUSB0
+ 1111  [2018-11-15 12:46:28 -0800] fg
+ 1112  [2018-11-15 12:46:31 -0800] sudo minicom 
+ 1113  [2018-11-15 12:47:04 -0800] cat /dev/ttyUSB0
+ 1114  [2018-11-15 12:47:06 -0800] bg
+ 1115  [2018-11-16 10:00:59 -0800] echo  /bin/reset >/dev/ttyUSB0
+ 1116  [2018-11-16 10:01:01 -0800] fg
+ 1117  [2018-11-16 10:01:04 -0800] sudo minicom 
+ 1118  [2018-11-16 10:01:23 -0800] cat /dev/ttyUSB0
+ 1119  [2018-11-16 10:01:25 -0800] bg
+ 1120  [2018-11-16 10:16:41 -0800] make cleanme
+ 1121  [2018-11-09 13:46:47 -0800] cd
+ 1122  [2018-11-09 13:46:53 -0800] cd go/src/github.com/linuxboot/fiano/
+ 1123  [2018-11-09 13:46:54 -0800] git pull
+ 1124  [2018-11-09 13:47:34 -0800] wget https://patch-diff.githubusercontent.com/raw/linuxboot/fiano/pull/227.patch
+ 1125  [2018-11-09 13:47:36 -0800] git diff
+ 1126  [2018-11-09 13:47:38 -0800] git show
+ 1127  [2018-11-09 13:47:46 -0800] history
+ 1128  [2018-11-09 13:47:50 -0800] more 227.patch 
+ 1129  [2018-11-09 13:47:55 -0800] git patch 227.patch
+ 1130  [2018-11-09 13:48:02 -0800] git apply 227.patch
+ 1131  [2018-11-09 13:48:04 -0800] git show
+ 1132  [2018-11-09 13:48:08 -0800] git status
+ 1133  [2018-11-09 13:48:10 -0800] git diff
+ 1134  [2018-11-09 13:48:19 -0800] cd cmds/utk/
+ 1135  [2018-11-09 13:48:21 -0800] go install
+ 1136  [2018-11-15 11:16:33 -0800] cd .././../../dut/
+ 1137  [2018-11-15 11:16:34 -0800] ls
+ 1138  [2018-11-15 11:16:38 -0800] vi dut.go 
+ 1139  [2018-11-15 11:17:15 -0800] git branch
+ 1140  [2018-11-15 11:17:18 -0800] git checkout master
+ 1141  [2018-11-15 11:17:19 -0800] git pull
+ 1142  [2018-11-15 11:17:23 -0800] ls
+ 1143  [2018-11-15 11:17:25 -0800] ls uinit
+ 1144  [2018-11-15 11:18:04 -0800] go build dut 
+ 1145  [2018-11-15 11:18:09 -0800] go build
+ 1146  [2018-11-15 11:18:10 -0800] ls
+ 1147  [2018-11-15 11:18:14 -0800] ./dut 
+ 1148  [2018-11-15 11:18:41 -0800] vi dut.go
+ 1149  [2018-11-15 11:45:35 -0800] cd uinit/
+ 1150  [2018-11-15 11:45:41 -0800] git mv ../*.go .
+ 1151  [2018-11-15 11:45:42 -0800] ls
+ 1152  [2018-11-15 11:45:50 -0800] go build
+ 1153  [2018-11-15 11:45:51 -0800] ls
+ 1154  [2018-11-15 11:45:56 -0800] ls ..
+ 1155  [2018-11-15 11:46:01 -0800] go build
+ 1156  [2018-11-15 11:46:45 -0800] vi dut.go 
+ 1157  [2018-11-15 11:47:02 -0800] go build
+ 1158  [2018-11-15 12:41:20 -0800] vi uinit.go 
+ 1159  [2018-11-15 12:41:36 -0800] ./uinit 
+ 1160  [2018-11-15 12:41:40 -0800] fg
+ 1161  [2018-11-15 12:42:50 -0800] go build
+ 1162  [2018-11-15 12:42:53 -0800] vi uinit.go 
+ 1163  [2018-11-15 12:42:57 -0800] go build
+ 1164  [2018-11-15 12:42:59 -0800] ./uinit 
+ 1165  [2018-11-15 12:48:47 -0800] vi uinit.go 
+ 1166  [2018-11-15 12:49:08 -0800] vi dut.go 
+ 1167  [2018-11-15 12:49:26 -0800] go build
+ 1168  [2018-11-15 12:49:28 -0800] vi dut.go 
+ 1169  [2018-11-15 12:49:38 -0800] go build
+ 1170  [2018-11-15 12:59:04 -0800] vi dut.go 
+ 1171  [2018-11-15 12:59:11 -0800] go build
+ 1172  [2018-11-15 12:59:14 -0800] ./uinit
+ 1173  [2018-11-15 13:09:21 -0800] vi dut.go
+ 1174  [2018-11-15 13:29:16 -0800] go build
+ 1175  [2018-11-15 14:02:57 -0800] cd ../../fiano/cmds/utk/
+ 1176  [2018-11-15 14:02:58 -0800] ls
+ 1177  [2018-11-15 14:02:59 -0800] vi utk.go 
+ 1178  [2018-11-15 14:03:05 -0800] ./ut
+ 1179  [2018-11-15 14:03:15 -0800] ~/go/bin/utk  -h
+ 1180  [2018-11-15 14:03:21 -0800] git grep -i blacklist
+ 1181  [2018-11-15 14:03:33 -0800] git log
+ 1182  [2018-11-15 14:03:47 -0800] git show 241969791e4210d0592758149ecfcfdd48f248c0
+ 1183  [2018-11-15 14:14:01 -0800] vi 241969791e4210d0592758149ecfcfdd48f248c0
+ 1184  [2018-11-15 14:14:04 -0800] vi utk.go 
+ 1185  [2018-11-15 14:14:19 -0800] vi ../../pkg/visitors/dxecleaner.go 
+ 1186  [2018-11-16 10:07:40 -0800] git grep Failed
+ 1187  [2018-11-16 10:07:43 -0800] git grep Failed ..
+ 1188  [2018-11-16 10:07:46 -0800] git grep Failed ../..
+ 1189  [2018-11-16 10:08:04 -0800] vi ../../pkg/visitors/dxecleaner.go 
+ 1190  [2018-11-16 10:11:12 -0800] cd ../../pkg/visitors/
+ 1191  [2018-11-16 10:11:14 -0800] go test -v
+ 1192  [2018-11-16 10:11:40 -0800] cd ../../cmds/utk/
+ 1193  [2018-11-16 10:11:41 -0800] go install
+ 1194  [2018-11-16 10:11:51 -0800] git diff
+ 1195  [2018-11-16 10:12:00 -0800] git checkout -b moreinfo origin/master
+ 1196  [2018-11-16 10:12:04 -0800] git commit -as
+ 1197  [2018-11-16 10:12:49 -0800] git push rminnich
+ 1198  [2018-11-16 10:12:52 -0800] hub fork
+ 1199  [2018-11-16 10:12:59 -0800] vi .git/config
+ 1200  [2018-11-16 10:13:05 -0800] vi ./../../.git/config 
+ 1201  [2018-11-16 10:13:21 -0800] hub fork
+ 1202  [2018-11-16 10:13:50 -0800] git remote show
+ 1203  [2018-11-16 10:13:59 -0800] git remote add rminnich git@github.com:rminnich/fiano
+ 1204  [2018-11-16 10:14:03 -0800] git push rminnich
+ 1205  [2018-11-16 10:14:15 -0800] hub pull-request
+ 1206  [2018-11-16 10:14:31 -0800] git remote show -v
+ 1207  [2018-11-16 10:14:37 -0800] git remote show 
+ 1208  [2018-11-16 10:14:43 -0800] git remote -v show
+ 1209  [2018-11-16 10:14:45 -0800] git remote -v 
+ 1210  [2018-11-16 10:15:03 -0800] hub pull-request
+ 1211  [2018-11-16 10:16:02 -0800] git fetch origin
+ 1212  [2018-11-16 10:36:10 -0800] pushd ../../pkg/
+ 1213  [2018-11-16 10:36:10 -0800] ls
+ 1214  [2018-11-16 10:36:13 -0800] cd visitors/
+ 1215  [2018-11-16 10:36:13 -0800] ls
+ 1216  [2018-11-16 10:36:17 -0800] vi dxecleaner.go 
+ 1217  [2018-11-16 10:37:02 -0800] git grep -i type.*dxe ..
+ 1218  [2018-11-16 10:37:20 -0800] cd
+ 1219  [2018-11-16 10:37:32 -0800] cd go/src/github.com/linuxboot/dut/
+ 1220  [2018-11-16 10:37:32 -0800] ls
+ 1221  [2018-11-16 10:37:47 -0800] cd /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/
+ 1222  [2018-11-16 10:37:48 -0800] ls
+ 1223  [2018-11-16 10:37:57 -0800] jq < xxx
+ 1224  [2018-11-16 10:38:00 -0800] jq < xxx|less
+ 1225  [2018-11-16 10:38:10 -0800] jq < xxx
+ 1226  [2018-11-16 10:38:16 -0800] strace jq < xxx
+ 1227  [2018-11-16 10:38:25 -0800] jq < xxx > yyy
+ 1228  [2018-11-16 10:38:37 -0800] jq < xxx
+ 1229  [2018-11-16 10:38:41 -0800] jq < xxx > yyy
+ 1230  [2018-11-16 10:38:43 -0800] cat yyy
+ 1231  [2018-11-16 10:39:00 -0800] jq '.[]' < xxx
+ 1232  [2018-11-16 10:39:03 -0800] jq '.[]' < xxx |less
+ 1233  [2018-11-16 10:41:28 -0800] jq '.[]|arrays' < xxx |less
+ 1234  [2018-11-16 10:41:31 -0800] jq '.[]|arrays' < xxx 
+ 1235  [2018-11-16 10:42:00 -0800] jq '.[]|.["sections"]' < xxx |less
+ 1236  [2018-11-16 10:42:12 -0800] jq '.[]|.[sections]' < xxx |less
+ 1237  [2018-11-16 10:42:41 -0800] jq '.[]|["Sections]' < xxx |less
+ 1238  [2018-11-16 10:42:47 -0800] jq '.[]|["Sections"]' < xxx |less
+ 1239  [2018-11-16 10:42:56 -0800] jq '.[]|.Sections[]' < xxx |less
+ 1240  [2018-11-16 10:43:50 -0800] jq '.[]|.Sections[].Encapsulated[]' < xxx |less
+ 1241  [2018-11-16 10:43:59 -0800] jq '.[]|.Sections[]|.Encapsulated[]' < xxx |less
+ 1242  [2018-11-16 10:44:09 -0800] jq '.[]|.Sections[]' < xxx |less
+ 1243  [2018-11-16 10:44:22 -0800] jq '.[]' < xxx 
+ 1244  [2018-11-16 10:45:13 -0800] more xxx
+ 1245  [2018-11-16 10:46:15 -0800] jq '.[]|.Sections[2]' < xxx |less
+ 1246  [2018-11-16 10:46:26 -0800] jq '.[]|.Sections[0]' < xxx |less
+ 1247  [2018-11-16 10:47:20 -0800] jq '.[]|.Sections[.Type==2]' < xxx |less
+ 1248  [2018-11-16 10:47:48 -0800] jq '.[]|.Sections|.select(.Type==2)' < xxx |less
+ 1249  [2018-11-16 10:47:52 -0800] jq '.[]|.Sections|.select(.Type==2)' < xxx
+ 1250  [2018-11-16 10:48:06 -0800] jq '.[]|.Sections.select(.Type==2)' < xxx
+ 1251  [2018-11-16 10:49:39 -0800] jq '.[]|.Sections|select(.Type=="2")' < xxx
+ 1252  [2018-11-16 10:50:05 -0800] jq '.[]|.Sections[p)' < xxx
+ 1253  [2018-11-16 10:51:10 -0800] jq '.[]|.Sections[]|select(.Type=="2")' < xxx
+ 1254  [2018-11-16 10:51:20 -0800] jq '.[]|.Sections[]' < xxx
+ 1255  [2018-11-16 10:51:37 -0800] jq '.[]|.Sections[].Encapsulated[]' < xxx
+ 1256  [2018-11-16 10:51:46 -0800] jq '.[]|.Sections[]|.Encapsulated[]' < xxx
+ 1257  [2018-11-16 10:52:46 -0800] greo ccess LOG
+ 1258  [2018-11-16 10:52:50 -0800] grep ccess LOG
+ 1259  [2018-11-16 10:52:53 -0800] grep FAIL log
+ 1260  [2018-11-16 10:52:57 -0800] grep -i fail LOG
+ 1261  [2018-11-16 10:53:24 -0800] ~/go/bin/go utk dxeclean.bin find 16D0A23E-C09C-407D-A14A-AD058FDD0CA1
+ 1262  [2018-11-16 10:53:28 -0800] ~/go/bin/utk dxeclean.bin find 16D0A23E-C09C-407D-A14A-AD058FDD0CA1
+ 1263  [2018-11-16 10:53:42 -0800] cat blacklist 
+ 1264  [2018-11-16 13:16:59 -0800] grep -i fail LOG
+ 1265  [2018-11-16 13:17:08 -0800] grep -i ucc LOG
+ 1266  [2018-11-16 13:19:47 -0800] jq -c to_entries < xxx
+ 1267  [2018-11-16 13:21:15 -0800] jq -c 'to_entries | select ( .Type == "EFI_FV_FILETYPE_DRIVER")'
+ 1268  [2018-11-16 13:21:19 -0800] jq -c 'to_entries | select ( .Type == "EFI_FV_FILETYPE_DRIVER")'<xxx
+ 1269  [2018-11-16 13:21:36 -0800] jq -c 'to_entries[] | select ( .Type == "EFI_FV_FILETYPE_DRIVER")'<xxx
+ 1270  [2018-11-16 13:21:53 -0800] jq -c 'to_entries[] | select ( Type == "EFI_FV_FILETYPE_DRIVER")'<xxx
+ 1271  [2018-11-16 13:22:09 -0800] jq -c 'to_entries[] | select ( .key == ""0"")'<xxx
+ 1272  [2018-11-16 13:22:13 -0800] jq -c 'to_entries[] | select ( .key == "0")'<xxx
+ 1273  [2018-11-16 13:22:17 -0800] jq -c 'to_entries[] | select ( .key == 0)'<xxx
+ 1274  [2018-11-16 13:23:04 -0800] jq -c 'to_entries[] | select ( .value.Header.GUI.Type == 7)'<xxx
+ 1275  [2018-11-16 13:23:09 -0800] jq -c 'to_entries[] | select ( .value.Header.GUID.Type == 7)'<xxx
+ 1276  [2018-11-16 13:23:35 -0800] jq -c 'to_entries[]' < xxx
+ 1277  [2018-11-16 13:24:08 -0800] jq -c 'to_entries[] | .value' < xxx
+ 1278  [2018-11-16 13:24:23 -0800] jq -c 'to_entries[] | .value | .Header' < xxx
+ 1279  [2018-11-16 13:24:56 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER")' < xxx
+ 1280  [2018-11-16 13:25:13 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections []' < xxx
+ 1281  [2018-11-16 13:25:32 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[]' < xxx
+ 1282  [2018-11-16 13:25:37 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated' < xxx
+ 1283  [2018-11-16 13:26:16 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated | select(.Type == "EFI_SECTION_USER_INTERFACE")' < xxx
+ 1284  [2018-11-16 13:26:33 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated["EFI_SECTION_USER_INTERFACE"]' < xxx
+ 1285  [2018-11-16 13:26:44 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[EFI_SECTION_USER_INTERFACE]' < xxx
+ 1286  [2018-11-16 13:27:18 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated | Select( .Type == "EFI_SECTION_USER_INTERFACE")' < xxx
+ 1287  [2018-11-16 13:27:32 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx
+ 1288  [2018-11-16 13:27:44 -0800] vi Makefile 
+ 1289  [2018-11-16 13:27:54 -0800] make findit
+ 1290  [2018-11-16 13:27:58 -0800] vi Makefile 
+ 1291  [2018-11-16 13:28:03 -0800] make
+ 1292  [2018-11-16 13:28:09 -0800] make findit 
+ 1293  [2018-11-16 13:28:37 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated []' < xxx
+ 1294  [2018-11-16 13:28:47 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated |.[]' < xxx
+ 1295  [2018-11-16 13:28:54 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated' < xxx
+ 1296  [2018-11-16 13:29:34 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated | select(.Type == "*uefi.Section"' < xxx
+ 1297  [2018-11-16 13:29:41 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated | select(.Type == "*uefi.Section")' < xxx
+ 1298  [2018-11-16 13:29:58 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ["*uefi.Section"]' < xxx
+ 1299  [2018-11-16 13:30:07 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [0]"< /xxx
+ 1300  [2018-11-16 13:30:11 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [0]'< /xxx
+ 1301  [2018-11-16 13:30:16 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [0]'< xxx
+ 1302  [2018-11-16 13:30:28 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [1]'< xxx
+ 1303  [2018-11-16 13:30:38 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [2]'< xxx
+ 1304  [2018-11-16 13:30:45 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated [3]'< xxx
+ 1305  [2018-11-16 13:30:54 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated []"< /xxx
+ 1306  [2018-11-16 13:31:00 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated []'< /xxx
+ 1307  [2018-11-16 13:31:02 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated []'< xxx
+ 1308  [2018-11-16 13:31:06 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated '< xxx
+ 1309  [2018-11-16 13:31:28 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[0] '< xxx
+ 1310  [2018-11-16 13:31:33 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] '< xxx
+ 1311  [2018-11-16 13:31:51 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] {.Name}'< xxx
+ 1312  [2018-11-16 13:32:08 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]| [.Name]'< xxx
+ 1313  [2018-11-16 13:32:14 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]| [Name]'< xxx
+ 1314  [2018-11-16 13:32:23 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]| []'< xxx
+ 1315  [2018-11-16 13:32:29 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]'< xxx
+ 1316  [2018-11-16 13:32:47 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]' | [.Value]< xxx
+ 1317  [2018-11-16 13:32:53 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1]' | .Value< xxx
+ 1318  [2018-11-16 13:33:01 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value]'< xxx
+ 1319  [2018-11-16 13:33:13 -0800] jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
+ 1320  [2018-11-16 13:33:41 -0800] vi Makefile 
+ 1321  [2018-11-16 13:34:00 -0800] grep -i ucc LOG
+ 1322  [2018-11-16 13:34:05 -0800] grep -i fail LOG
+ 1323  [2018-11-16 13:34:27 -0800] pushd
+ 1324  [2018-11-16 13:34:33 -0800] cd ../../pkg/
+ 1325  [2018-11-16 13:34:36 -0800] cd utk/
+ 1326  [2018-11-16 13:34:40 -0800] git grep blacklist
+ 1327  [2018-11-16 13:34:47 -0800] git grep -i blackl
+ 1328  [2018-11-16 13:34:50 -0800] cd ../..
+ 1329  [2018-11-16 13:34:51 -0800] git grep -i blackl
+ 1330  [2018-11-16 13:35:00 -0800] cd pkg/visitors/
+ 1331  [2018-11-16 13:35:03 -0800] emacs dxecleaner.go 
+ 1332  [2018-11-16 13:36:32 -0800] git grep -i blackList ../..
+ 1333  [2018-11-16 13:36:44 -0800] acme `git -l grep -i blackList ../..`
+ 1334  [2018-11-16 13:37:00 -0800] acme `git  grep -li blackList ../..`
+ 1335  [2018-11-16 13:56:19 -0800] vi Makefile 
+ 1336  [2018-11-16 15:47:24 -0800] acme `git  grep -li blackList ../..`
+ 1337  [2018-11-16 15:47:32 -0800] grep -i succ LOG
+ 1338  [2018-11-16 15:47:39 -0800] grep -i succ LOG|less
+ 1339  [2018-11-16 16:08:01 -0800] grep Fail LOG 
+ 1340  [2018-11-16 16:08:03 -0800] grep Fail LOG |wc
+ 1341  [2018-11-20 13:34:02 -0800] prodaccess -s
+ 1342  [2018-11-20 13:47:25 -0800] more DIT
+ 1343  [2018-11-20 13:47:40 -0800] vi Makefile 
+ 1344  [2018-11-20 13:53:37 -0800] more Makefile 
+ 1345  [2018-11-20 13:53:47 -0800] more DIT
+ 1346  [2018-11-20 13:53:59 -0800] more Makefile 
+ 1347  [2018-11-20 13:54:14 -0800] more DIT
+ 1348  [2018-11-20 13:54:21 -0800] more Makefile 
+ 1349  [2018-11-20 13:54:29 -0800] history
+ 1350  [2018-11-06 12:22:15 -0800] ip a
+ 1351  [2018-11-06 12:44:53 -0800] cowsay nichrome is not ready
+ 1352  [2018-11-06 12:44:56 -0800] ip l s
+ 1353  [2018-11-06 12:44:58 -0800] ip l
+ 1354  [2018-11-06 12:59:09 -0800] cd /usr/local/src/projects/nobinaryblobs/mainboards/
+ 1355  [2018-11-06 12:59:10 -0800] ls
+ 1356  [2018-11-06 12:59:12 -0800] git diff
+ 1357  [2018-11-06 12:59:33 -0800] git commit -as
+ 1358  [2018-11-06 12:59:44 -0800] git push
+ 1359  [2018-11-06 13:02:07 -0800] dmesg
+ 1360  [2018-11-06 13:02:12 -0800] ip l
+ 1361  [2018-11-06 13:03:16 -0800] ip a a
+ 1362  [2018-11-06 13:03:17 -0800] ip a
+ 1363  [2018-11-06 13:03:23 -0800] host github.com
+ 1364  [2018-11-06 13:03:26 -0800] git push
+ 1365  [2018-11-06 13:05:22 -0800] cd tyan7102/
+ 1366  [2018-11-06 13:05:22 -0800] ls
+ 1367  [2018-11-06 13:05:29 -0800] vi Makefile 
+ 1368  [2018-11-06 13:05:30 -0800] fg
+ 1369  [2018-11-06 13:05:31 -0800] ls -a
+ 1370  [2018-11-06 13:05:33 -0800] vi Makefile 
+ 1371  [2018-11-06 13:06:13 -0800] pushd ~/go/src/github.com/linuxboot/fiano/
+ 1372  [2018-11-06 13:06:14 -0800] ls
+ 1373  [2018-11-06 13:06:16 -0800] git pull
+ 1374  [2018-11-06 13:06:19 -0800] git log
+ 1375  [2018-11-06 13:06:25 -0800] ls
+ 1376  [2018-11-06 13:06:26 -0800] go install
+ 1377  [2018-11-06 13:06:32 -0800] cd cmds/utk/
+ 1378  [2018-11-06 13:06:33 -0800] go install
+ 1379  [2018-11-06 13:06:38 -0800] pushd
+ 1380  [2018-11-06 13:06:42 -0800] make
+ 1381  [2018-11-06 13:10:06 -0800] vi Makefile 
+ 1382  [2018-11-06 13:10:11 -0800] fg
+ 1383  [2018-11-06 13:10:15 -0800] rm .Makefile.swp 
+ 1384  [2018-11-06 13:10:17 -0800] vi Makefile 
+ 1385  [2018-11-06 13:10:57 -0800] cat Makefile 
+ 1386  [2018-11-06 13:11:13 -0800] utk fail.bin count
+ 1387  [2018-11-06 13:11:19 -0800] ~/go/bin/utk fail.bin count
+ 1388  [2018-11-06 13:11:40 -0800] ~/go/bin/utk tyan7102.bin.bin count
+ 1389  [2018-11-06 13:11:58 -0800] ~/go/bin/utk tyan7102.bin count
+ 1390  [2018-11-06 13:12:13 -0800] ~/go/bin/utk fail.bin count
+ 1391  [2018-11-06 13:12:31 -0800] ~/go/bin/utk removesomecrap.bin count
+ 1392  [2018-11-06 13:19:34 -0800] vi Makefile 
+ 1393  [2018-11-06 13:20:03 -0800] make
+ 1394  [2018-11-06 13:22:29 -0800] cat Makefile 
+ 1395  [2018-11-06 13:22:30 -0800] ./EATIT 
+ 1396  [2018-11-06 13:22:33 -0800] cat DIT
+ 1397  [2018-11-06 13:22:40 -0800] ls
+ 1398  [2018-11-06 13:22:42 -0800] grep make *
+ 1399  [2018-11-06 13:22:45 -0800] vi DIT
+ 1400  [2018-11-06 13:23:02 -0800] ./DIT 
+ 1401  [2018-11-06 13:24:20 -0800] prodaccess -s
+ 1402  [2018-11-06 13:33:28 -0800] vi Makefile 
+ 1403  [2018-11-06 13:33:59 -0800] ./DIT
+ 1404  [2018-11-06 14:11:00 -0800] ip l
+ 1405  [2018-11-06 14:11:04 -0800] host git hub.com
+ 1406  [2018-11-06 14:11:23 -0800] ip l
+ 1407  [2018-11-06 14:11:27 -0800] host git hub.com
+ 1408  [2018-11-06 14:11:54 -0800] ip l
+ 1409  [2018-11-06 14:11:57 -0800] host git hub.com
+ 1410  [2018-11-06 14:12:01 -0800] host github.com
+ 1411  [2018-11-06 15:35:54 -0800] cd /usr/local/src/projects/nobinaryblobs/
+ 1412  [2018-11-06 15:36:27 -0800] git clone http://review.coreboot.org/em100
+ 1413  [2018-11-06 15:38:57 -0800] cd em100/
+ 1414  [2018-11-06 15:38:58 -0800] git log
+ 1415  [2018-11-06 15:39:05 -0800] ls
+ 1416  [2018-11-06 15:39:07 -0800] make
+ 1417  [2018-11-06 15:39:53 -0800] sudo apt-get install msitools
+ 1418  [2018-11-06 15:40:20 -0800] cd ..
+ 1419  [2018-11-06 15:40:22 -0800] git clone git://git.gnome.org/msitools
+ 1420  [2018-11-06 15:42:47 -0800] ps ax | grep dpkg
+ 1421  [2018-11-06 15:42:51 -0800] sudo apt-get install msitools
+ 1422  [2018-11-06 15:43:13 -0800] cd em100/
+ 1423  [2018-11-06 15:43:14 -0800] make
+ 1424  [2018-11-06 15:43:24 -0800] ./em100 
+ 1425  [2018-11-06 15:43:27 -0800] sudo ./em100 
+ 1426  [2018-11-06 15:43:39 -0800] mkdir ~/bin
+ 1427  [2018-11-06 15:43:42 -0800] ls ~/bin
+ 1428  [2018-11-06 15:44:14 -0800] cp em100 ~/bin/
+ 1429  [2018-11-06 15:44:23 -0800] cd ../mainboards/tyan7102/
+ 1430  [2018-11-06 15:44:24 -0800] ls
+ 1431  [2018-11-06 15:44:32 -0800] sudo ~/bin/em100 -h
+ 1432  [2018-11-06 15:45:05 -0800] sudo ~/bin/em100 -c S25Q256FV
+ 1433  [2018-11-06 15:45:25 -0800] sudo ~/bin/em100 -c W25Q256FV
+ 1434  [2018-11-06 15:45:54 -0800] sudo ~/bin/em100 -c W25Q256FV -s -d tyan7102.bin -t -r
+ 1435  [2018-11-06 15:46:27 -0800] sudo ~/bin/em100 -c W25Q256FV -s -d tyan7102.bin  -r
+ 1436  [2018-11-06 16:04:27 -0800] sudo ~/bin/em100 -c W25Q256FV -s -d fail.bin -r
+ 1437  [2018-11-08 13:54:22 -0800] sudo apt-get install ansible
+ 1438  [2018-11-08 13:55:38 -0800] ip l
+ 1439  [2018-11-08 13:57:30 -0800] ansible-playbook 
+ 1440  [2018-11-08 14:05:46 -0800] cd
+ 1441  [2018-11-08 14:05:59 -0800] cd go/src/github.com/linuxboot/
+ 1442  [2018-11-08 14:06:05 -0800] git clone git@github.com:linuxboot/dut
+ 1443  [2018-11-08 14:06:10 -0800] cd dut
+ 1444  [2018-11-08 14:06:11 -0800] ls
+ 1445  [2018-11-08 14:06:13 -0800] vi dut.go
+ 1446  [2018-11-08 14:14:59 -0800] goimports -w dut.go
+ 1447  [2018-11-08 14:15:02 -0800] go build dut.go
+ 1448  [2018-11-08 14:15:05 -0800] go build
+ 1449  [2018-11-08 14:15:12 -0800] vi dut.go
+ 1450  [2018-11-08 14:15:27 -0800] ip a
+ 1451  [2018-11-08 14:15:31 -0800] fg
+ 1452  [2018-11-08 14:15:47 -0800] go build
+ 1453  [2018-11-08 14:16:07 -0800] cd ..
+ 1454  [2018-11-08 14:16:08 -0800] cd dut
+ 1455  [2018-11-08 14:16:11 -0800] mkdir uinit
+ 1456  [2018-11-08 14:16:15 -0800] cd uinit/
+ 1457  [2018-11-08 14:16:26 -0800] cp ../../../u-root/NiChrome/cmds/uinit/uinit.go .
+ 1458  [2018-11-08 14:16:28 -0800] vi uinit.go 
+ 1459  [2018-11-08 14:17:02 -0800] emacs uinit.go ../../../u-root/u-root/cmds/ip/ip.go 
+ 1460  [2018-11-08 14:17:12 -0800] vi uinit.go 
+ 1461  [2018-11-08 14:19:35 -0800] ip a a
+ 1462  [2018-11-08 14:19:36 -0800] ip a
+ 1463  [2018-11-08 14:19:44 -0800] fg
+ 1464  [2018-11-08 14:20:59 -0800] goimports -w .
+ 1465  [2018-11-08 14:21:03 -0800] vi uinit.go 
+ 1466  [2018-11-08 14:21:08 -0800] goimports -w .
+ 1467  [2018-11-08 14:21:10 -0800] go built .
+ 1468  [2018-11-08 14:21:11 -0800] go build .
+ 1469  [2018-11-08 14:21:15 -0800] vi uinit.go 
+ 1470  [2018-11-08 14:21:20 -0800] go build .
+ 1471  [2018-11-08 14:21:27 -0800] gofmt -w *.go
+ 1472  [2018-11-08 14:21:29 -0800] git commit -as
+ 1473  [2018-11-08 14:21:40 -0800] git add uinit.go 
+ 1474  [2018-11-08 14:21:42 -0800] git commit -as
+ 1475  [2018-11-08 14:21:52 -0800] git push
+ 1476  [2018-11-08 15:00:34 -0800] ip l
+ 1477  [2018-11-08 15:00:38 -0800] sudo su
+ 1478  [2018-11-08 15:03:22 -0800] history | grep em100
+ 1479  [2018-11-08 15:12:01 -0800] cd ..
+ 1480  [2018-11-08 15:12:05 -0800] vi dut.go
+ 1481  [2018-11-08 15:12:10 -0800] ./dut -d /
+ 1482  [2018-11-08 15:12:16 -0800] pgrep dut
+ 1483  [2018-11-08 15:13:32 -0800] vi ../../u-root/u-root/cmds/srvfiles/srvfiles.go 
+ 1484  [2018-11-08 15:14:19 -0800] emacs dut.go 
+ 1485  [2018-11-08 15:14:30 -0800] emacs dut.go ../../u-root/u-root/cmds/srvfiles/srvfiles.go 
+ 1486  [2018-11-08 15:14:59 -0800] go build
+ 1487  [2018-11-08 15:15:03 -0800] ./dut -d /
+ 1488  [2018-11-08 15:15:07 -0800] sudo ./dut -d /
+ 1489  [2018-11-08 15:16:40 -0800] cat dut.go
+ 1490  [2018-11-08 15:16:42 -0800] ip l
+ 1491  [2018-11-08 15:16:53 -0800] sudo su
+ 1492  [2018-11-08 15:49:19 -0800] cd uinit/
+ 1493  [2018-11-08 15:49:21 -0800] vi uinit.go 
+ 1494  [2018-11-08 15:49:31 -0800] cowsay welcome to the DUT
+ 1495  [2018-11-08 15:49:36 -0800] sudo apt-get install cowsay
+ 1496  [2018-11-08 15:54:01 -0800] cowsay welcome to the DUT
+ 1497  [2018-11-08 15:55:29 -0800] vi uinit.go 
+ 1498  [2018-11-08 15:55:31 -0800] fg
+ 1499  [2018-11-08 16:02:02 -0800] emacs dut.go ../../u-root/u-root/cmds/srvfiles/srvfiles.go 
+ 1500  [2018-11-08 16:02:27 -0800] emacs uinit.go ~/go/src/github.com/u-root/u-root/cmds/srvfiles/srvfiles.go 
+ 1501  [2018-11-08 16:08:05 -0800] goimports -w *.go
+ 1502  [2018-11-08 16:08:06 -0800] go build
+ 1503  [2018-11-08 16:08:08 -0800] cd ../
+ 1504  [2018-11-08 16:08:11 -0800] fg
+ 1505  [2018-11-08 16:21:48 -0800] vi dut.go
+ 1506  [2018-11-08 16:22:29 -0800] go build
+ 1507  [2018-11-08 16:22:30 -0800] fg
+ 1508  [2018-11-08 16:24:10 -0800] cd uinit/
+ 1509  [2018-11-08 16:24:11 -0800] vi uinit.go 
+ 1510  [2018-11-08 16:25:52 -0800] go build
+ 1511  [2018-11-08 16:30:38 -0800] fg
+ 1512  [2018-11-09 10:04:48 -0800] git diff
+ 1513  [2018-11-09 10:04:51 -0800] git commit -as
+ 1514  [2018-11-09 10:05:01 -0800] git push
+ 1515  [2018-11-09 10:05:56 -0800] vi uinit.go 
+ 1516  [2018-11-09 10:06:34 -0800] go build
+ 1517  [2018-11-09 10:15:16 -0800] fg
+ 1518  [2018-11-09 10:15:21 -0800] cd ..
+ 1519  [2018-11-09 10:15:22 -0800] go build
+ 1520  [2018-11-09 10:15:26 -0800] vi dut.go
+ 1521  [2018-11-09 10:16:08 -0800] go build
+ 1522  [2018-11-09 10:16:12 -0800] pushd uinit
+ 1523  [2018-11-09 10:16:14 -0800] vi uinit.go 
+ 1524  [2018-11-09 10:16:35 -0800] go build
+ 1525  [2018-11-09 10:16:37 -0800] cd ..
+ 1526  [2018-11-09 10:16:38 -0800] ls
+ 1527  [2018-11-09 10:16:58 -0800] cp /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/bzImage .
+ 1528  [2018-11-09 10:17:04 -0800] cd uinit/
+ 1529  [2018-11-09 10:17:05 -0800] vi uinit.go 
+ 1530  [2018-11-09 10:21:26 -0800] go build
+ 1531  [2018-11-09 10:21:29 -0800] vi uinit.go 
+ 1532  [2018-11-09 10:21:40 -0800] fg
+ 1533  [2018-11-09 10:22:14 -0800] gofmt -w *.go
+ 1534  [2018-11-09 10:22:16 -0800] go build
+ 1535  [2018-11-09 10:22:18 -0800] emacs
+ 1536  [2018-11-09 10:22:29 -0800] goimports -w *.go
+ 1537  [2018-11-09 10:22:32 -0800] emacs 
+ 1538  [2018-11-09 10:23:41 -0800] `fg
+ 1539  [2018-11-09 10:23:44 -0800] go build
+ 1540  [2018-11-09 10:24:03 -0800] emacs uinit.go 
+ 1541  [2018-11-09 10:25:52 -0800] goimports -w *.go
+ 1542  [2018-11-09 10:25:54 -0800] go build
+ 1543  [2018-11-09 10:25:58 -0800] vi uinit.go 
+ 1544  [2018-11-09 10:26:02 -0800] emacs uinit.go 
+ 1545  [2018-11-09 10:30:00 -0800] cd ..
+ 1546  [2018-11-09 10:30:02 -0800] ./dut
+ 1547  [2018-11-09 10:30:06 -0800] fg
+ 1548  [2018-11-09 10:33:19 -0800] vi dut.go
+ 1549  [2018-11-09 10:40:37 -0800] acme dut.go 
+ 1550  [2018-11-09 10:45:50 -0800] fg
+ 1551  [2018-11-09 10:45:58 -0800] go build
+ 1552  [2018-11-09 10:46:01 -0800] cat dut.go
+ 1553  [2018-11-09 10:46:03 -0800] fg
+ 1554  [2018-11-09 11:07:46 -0800] vi dut.go
+ 1555  [2018-11-09 11:12:00 -0800] cd uinit
+ 1556  [2018-11-09 11:12:05 -0800] go build 
+ 1557  [2018-11-09 11:12:16 -0800] gofmt -w uinit.go 
+ 1558  [2018-11-09 11:12:19 -0800] goimports -w *.go
+ 1559  [2018-11-09 11:12:20 -0800] gofmt -w uinit.go 
+ 1560  [2018-11-09 11:12:22 -0800] go build
+ 1561  [2018-11-09 11:12:25 -0800] vi uinit.go 
+ 1562  [2018-11-09 11:12:31 -0800] cd ..
+ 1563  [2018-11-09 11:12:32 -0800] go build
+ 1564  [2018-11-09 11:12:34 -0800] goimports -w *.go
+ 1565  [2018-11-09 11:12:36 -0800] go build
+ 1566  [2018-11-09 11:12:40 -0800] vi dut.go 
+ 1567  [2018-11-09 11:12:47 -0800] go build
+ 1568  [2018-11-09 11:12:56 -0800] vi dut.go 
+ 1569  [2018-11-09 11:13:04 -0800] go build
+ 1570  [2018-11-09 11:13:09 -0800] fg
+ 1571  [2018-11-09 11:13:14 -0800] vi dut.go 
+ 1572  [2018-11-09 11:13:55 -0800] go build
+ 1573  [2018-11-09 11:14:07 -0800] vi dut.go 
+ 1574  [2018-11-09 11:14:54 -0800] go build
+ 1575  [2018-11-09 11:14:56 -0800] vi dut.go 
+ 1576  [2018-11-09 11:15:01 -0800] go build
+ 1577  [2018-11-09 11:15:05 -0800] vi dut.go 
+ 1578  [2018-11-09 11:15:09 -0800] go build
+ 1579  [2018-11-09 11:16:08 -0800] fg
+ 1580  [2018-11-09 11:16:11 -0800] vi dut.go 
+ 1581  [2018-11-09 11:16:28 -0800] go build
+ 1582  [2018-11-09 11:16:32 -0800] fg
+ 1583  [2018-11-09 11:16:35 -0800] vi dut.go 
+ 1584  [2018-11-09 11:20:36 -0800] go build
+ 1585  [2018-11-09 11:20:42 -0800] vi dut.go
+ 1586  [2018-11-09 11:20:54 -0800] go build
+ 1587  [2018-11-09 11:22:16 -0800] fg
+ 1588  [2018-11-09 11:22:19 -0800] vi dut.go
+ 1589  [2018-11-09 11:22:38 -0800] go build
+ 1590  [2018-11-09 11:22:39 -0800] fg
+ 1591  [2018-11-09 11:22:46 -0800] go build
+ 1592  [2018-11-09 11:22:48 -0800] fg
+ 1593  [2018-11-09 11:22:51 -0800] git commit -as
+ 1594  [2018-11-09 11:22:55 -0800] gi tpush
+ 1595  [2018-11-09 11:22:56 -0800] git push
+ 1596  [2018-11-09 11:23:01 -0800] git status
+ 1597  [2018-11-09 11:26:51 -0800] cd uinit/
+ 1598  [2018-11-09 11:26:53 -0800] vi uinit.go 
+ 1599  [2018-11-09 11:27:14 -0800] go build
+ 1600  [2018-11-09 11:27:27 -0800] sudo ./dut
+ 1601  [2018-11-09 11:27:44 -0800] cd ..
+ 1602  [2018-11-09 11:27:53 -0800] sudo ./dut
+ 1603  [2018-11-20 13:48:11 -0800] fg
+ 1604  [2018-11-20 13:48:14 -0800] ps ax | grep dut
+ 1605  [2018-11-20 13:48:18 -0800] ip l
+ 1606  [2018-11-20 13:48:22 -0800] ip a
+ 1607  [2018-11-20 13:48:37 -0800] ip l
+ 1608  [2018-11-20 13:48:39 -0800] ip a a
+ 1609  [2018-11-20 13:48:41 -0800] ip l 
+ 1610  [2018-11-20 13:48:43 -0800] ip a
+ 1611  [2018-11-20 13:49:30 -0800] ip a a
+ 1612  [2018-11-20 13:49:31 -0800] ip l
+ 1613  [2018-11-20 13:55:13 -0800] ip a
+ 1614  [2018-11-20 13:55:56 -0800] sudo reboot
+ 1615  [2018-11-29 15:19:58 -0800] make
+ 1616  [2018-11-29 15:20:03 -0800] go build
+ 1617  [2018-11-29 15:20:05 -0800] make
+ 1618  [2018-11-30 09:58:57 -0800] vi ../../pkg/visitors/remove.go 
+ 1619  [2018-11-30 09:59:12 -0800] go build -x -a
+ 1620  [2018-11-30 09:59:59 -0800] make
+ 1621  [2018-11-30 10:55:29 -0800] history
+ 1622  [2018-11-30 10:55:40 -0800] make
+ 1623  [2018-12-03 07:29:39 -0800] cd
+ 1624  [2018-12-03 07:29:48 -0800] cd go/src/github.com/linuxboot/fiano/cmds/futk/
+ 1625  [2018-12-03 07:29:48 -0800] ls
+ 1626  [2018-12-03 07:30:08 -0800] cd /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/
+ 1627  [2018-12-03 07:30:08 -0800] ls
+ 1628  [2018-12-03 07:30:17 -0800] ps ax | grep futk
+ 1629  [2018-12-03 07:31:14 -0800] cd
+ 1630  [2018-12-03 07:31:51 -0800] cd go/src/github.com/linuxboot/fiano/cmds/futk/
+ 1631  [2018-12-03 07:31:51 -0800] ls
+ 1632  [2018-12-03 07:32:08 -0800] cd /usr/local/src/projects/nobinaryblobs/go/src/github.com/linuxboot/fiano/cmds/futk/
+ 1633  [2018-12-03 07:32:08 -0800] ls
+ 1634  [2018-12-03 07:32:16 -0800] ls -l /tmp/futk*
+ 1635  [2018-12-03 07:32:22 -0800] ls
+ 1636  [2018-12-03 07:32:29 -0800] grep Remove FUTK_RUN 
+ 1637  [2018-12-03 07:32:31 -0800] grep Remove FUTK_RUN |wc
+ 1638  [2018-12-03 07:32:41 -0800] grep remove FUTK_RUN |wc
+ 1639  [2018-12-03 07:33:53 -0800] tail FUTK_RUN 
+ 1640  [2018-12-03 07:34:36 -0800] ls /tmp/futk544324797/
+ 1641  [2018-12-03 07:35:57 -0800] grep remove FUTK_RUN
+ 1642  [2018-12-03 07:36:03 -0800] grep removed FUTK_RUN
+ 1643  [2018-12-03 07:36:06 -0800] grep removed FUTK_RUN|wc
+ 1644  [2018-12-03 07:36:14 -0800] grep Removed FUTK_RUN|wc
+ 1645  [2018-12-03 09:56:44 -0800] ls
+ 1646  [2018-12-03 09:56:49 -0800] ps ax | grep futk
+ 1647  [2018-12-03 09:56:52 -0800] tail FUTK_RUN 
+ 1648  [2018-12-03 09:57:11 -0800] kill futk
+ 1649  [2018-12-03 09:57:15 -0800] killall -v futk
+ 1650  [2018-12-03 09:57:19 -0800] tail FUTK_RUN 
+ 1651  [2018-12-03 09:57:24 -0800] ps ax | grep futk
+ 1652  [2018-12-03 09:57:26 -0800] ls
+ 1653  [2018-12-03 09:57:30 -0800] ps ax | grep script
+ 1654  [2018-12-03 09:57:37 -0800] killall -v script
+ 1655  [2018-12-03 09:57:39 -0800] tial FUTK_RUN 
+ 1656  [2018-12-03 09:57:41 -0800] tail FUTK_RUN
+ 1657  [2018-12-03 09:58:08 -0800] cp FUTK_RUN FUTK_RUN_REMOVE98
+ 1658  [2018-12-03 09:58:26 -0800] mkdir futk.remove.98
+ 1659  [2018-12-03 09:59:02 -0800] rsync -av /tmp/futk544324797/ futk.remove.98/
+ 1660  [2018-12-03 09:59:39 -0800] ls -l futk.remove.98/99
+ 1661  [2018-12-03 09:59:50 -0800] mv futk.remove.98/ futk.remove.99
+ 1662  [2018-12-03 10:00:01 -0800] ./futk ./futk.remove.99/99 fv
+ 1663  [2018-12-03 11:03:44 -0800] ls /sys/class/firmware/timeout 
+ 1664  [2018-12-03 11:27:33 -0800] cd
+ 1665  [2018-12-03 11:27:41 -0800] ssh v
+ 1666  [2018-12-03 11:27:52 -0800] pwd
+ 1667  [2018-12-03 11:27:56 -0800] cd /usr/local/src/projects/nobinaryblobs/go/src/github.com/linuxboot/fiano/cmds/futk/
+ 1668  [2018-12-03 11:27:56 -0800] ls
+ 1669  [2018-12-03 11:28:17 -0800] mv FUTK_RUN_REMOVE98 FUTK_RUN_REMOVE99
+ 1670  [2018-12-03 11:28:21 -0800] grep Removed FUTK_RUN_REMOVE99
+ 1671  [2018-12-03 11:28:30 -0800] grep Removed FUTK_RUN_REMOVE99 > /tmp/list
+ 1672  [2018-12-03 11:28:31 -0800] vi /tmp/list
+ 1673  [2018-12-03 11:33:45 -0800] vp futk.remove.99/99 remove99.bin
+ 1674  [2018-12-03 11:33:47 -0800] vi Makefile 
+ 1675  [2018-12-03 11:34:29 -0800] fg
+ 1676  [2018-12-03 11:35:23 -0800] tmux
+ 1677  [2018-12-04 11:52:50 -0800] eval 'set +o history' 2>/dev/null || setopt HIST_IGNORE_SPACE 2>/dev/null
+ 1678  [2018-12-04 11:53:30 -0800] git ls-remote https://chrome-internal.googlesource.com/a/chromeos/manifest-internal.git
+ 1679  [2018-12-04 11:53:44 -0800] cd chromiumos/
+ 1680  [2018-12-04 11:53:47 -0800] repo init -u https://chrome-internal.googlesource.com/chromeos/manifest-internal.git --repo-url='https://chromium.googlesource.com/external/repo.git'
+ 1681  [2018-12-04 11:55:27 -0800] repo init -u https://chromium.googlesource.com/chromiumos/manifest.git --repo-url https://chromium.googlesource.com/external/repo.git
+ 1682  [2018-12-04 11:55:45 -0800] which repo
+ 1683  [2018-12-04 11:55:57 -0800] ls -l ~/bin/repo
+ 1684  [2018-12-04 11:56:01 -0800] rm ~/bin/repo
+ 1685  [2018-12-04 11:56:18 -0800] sudo apt-get install git-core gitk git-gui curl lvm2 thin-provisioning-tools      python-pkg-resources python-virtualenv python-oauth2client
+ 1686  [2018-12-04 11:56:44 -0800] which repo
+ 1687  [2018-12-04 11:57:29 -0800] cd ..
+ 1688  [2018-12-04 11:58:37 -0800] git clone https://chromium.googlesource.com/chromium/tools/depot_tools
+ 1689  [2018-12-04 11:58:40 -0800] vi ~/.git/config
+ 1690  [2018-12-04 11:59:17 -0800] git --debug
+ 1691  [2018-12-04 11:59:39 -0800] strace -s 1024 -f git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1692  [2018-12-04 12:00:01 -0800] strace -s 1024 -f git clone http://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1693  [2018-12-04 12:00:10 -0800] strace -o shit -s 1024 -f git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1694  [2018-12-04 12:00:13 -0800] vi shit
+ 1695  [2018-12-04 12:00:47 -0800] strace -o shit -s 1024 -f git clone http://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1696  [2018-12-04 12:00:49 -0800] vi shit
+ 1697  [2018-12-04 12:01:46 -0800] strace -ttt  -s 1024 -f git clone http://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1698  [2018-12-04 12:02:02 -0800] wget http://chromium.googlesource.com/chromium/tools/depot_tools.git/
+ 1699  [2018-12-04 12:02:14 -0800] strace -ttt  -s 1024 -f git clone http://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1700  [2018-12-04 12:02:18 -0800] git clone http://chromium.googlesource.com/chromium/tools/depot_tools.git
+ 1701  [2018-12-04 12:02:27 -0800] git clone http://chromium.googlesource.com/chromium/tools/depot_tools
+ 1702  [2018-12-04 12:02:32 -0800] vi ~/.gitconfig 
+ 1703  [2018-12-04 12:03:45 -0800] vi ~/.gitcookies 
+ 1704  [2018-12-04 12:04:04 -0800] rm ~/.gitcookies 
+ 1705  [2018-12-03 11:35:30 -0800] ls
+ 1706  [2018-12-03 11:35:31 -0800] cat ma
+ 1707  [2018-12-03 11:35:34 -0800] cat Makefile 
+ 1708  [2018-12-03 11:35:38 -0800] make removefrom99
+ 1709  [2018-12-03 11:35:49 -0800] echo *99*
+ 1710  [2018-12-03 11:35:57 -0800] ls
+ 1711  [2018-12-03 11:36:05 -0800] ls -l
+ 1712  [2018-12-03 11:36:25 -0800] cp futk.remove.99/99 remove99.bin
+ 1713  [2018-12-03 11:36:29 -0800] make removefrom99
+ 1714  [2018-12-04 12:29:14 -0800] fg
+ 1715  [2018-12-04 12:29:16 -0800] history
+ 1716  [2018-12-10 13:06:19 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1717  [2018-12-10 13:06:19 -0800] ls
+ 1718  [2018-12-10 13:16:04 -0800] cd /usr/local/src/chromiumos/
+ 1719  [2018-12-10 13:16:04 -0800] ls
+ 1720  [2018-12-10 13:16:06 -0800] ls ..
+ 1721  [2018-12-10 13:16:11 -0800] grep repo ./*
+ 1722  [2018-12-10 13:16:17 -0800] grep repo *
+ 1723  [2018-12-10 13:16:20 -0800] grep repo ../*
+ 1724  [2018-12-10 13:16:29 -0800] ls ..
+ 1725  [2018-12-10 13:16:50 -0800] ls
+ 1726  [2018-12-10 13:17:14 -0800] history | grep script
+ 1727  [2018-12-10 13:20:01 -0800] ls /usr/local/sc
+ 1728  [2018-12-10 13:20:05 -0800] ls /usr/local/src
+ 1729  [2018-12-10 13:20:26 -0800] history
+ 1730  [2018-12-10 13:21:00 -0800] ls
+ 1731  [2018-12-10 13:21:02 -0800] ls ..
+ 1732  [2018-12-10 13:21:05 -0800] ls ~
+ 1733  [2018-12-10 13:21:18 -0800] more ~/L1NUXB00T 
+ 1734  [2018-12-10 13:21:28 -0800] ls /usr/local/src/projects/
+ 1735  [2018-12-10 13:21:31 -0800] ls /usr/local/src/projects/nobinaryblobs/
+ 1736  [2018-12-10 13:21:41 -0800] ls /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1737  [2018-12-10 13:25:09 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1738  [2018-12-10 13:25:10 -0800] ls
+ 1739  [2018-12-10 13:25:19 -0800] cbfstool coreboot.rom  print
+ 1740  [2018-12-10 13:28:40 -0800] cd /usr/local/src/chromiumos/
+ 1741  [2018-12-10 13:28:42 -0800] du -s *
+ 1742  [2018-12-10 13:28:45 -0800] cd ..
+ 1743  [2018-12-10 13:28:51 -0800] sudo du -s chromiumos/
+ 1744  [2018-12-10 14:02:14 -0800] cd projects/nobinaryblobs/dragonsegg/
+ 1745  [2018-12-10 14:02:15 -0800] ls
+ 1746  [2018-12-10 14:02:20 -0800] cbfstool coreboot.rom  print
+ 1747  [2018-12-11 10:23:29 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1748  [2018-12-11 10:23:30 -0800] ls
+ 1749  [2018-12-11 10:23:38 -0800] git clone git@github.com:torvalds/linux
+ 1750  [2018-12-11 10:27:56 -0800] cd linux/
+ 1751  [2018-12-11 10:28:12 -0800] cp ~/go/src/github.com/u-root/u-root/integration/testdata/CONFIG .
+ 1752  [2018-12-11 10:28:17 -0800] cp CONFIG .config
+ 1753  [2018-12-11 10:28:21 -0800] make menuconfig
+ 1754  [2018-12-11 10:29:17 -0800] grep 64 .config
+ 1755  [2018-12-11 10:29:27 -0800] make 
+ 1756  [2018-12-11 10:32:42 -0800] make -j32
+ 1757  [2018-12-11 10:33:20 -0800] ls -l arch/x86/boot/bzImage 
+ 1758  [2018-12-11 10:33:34 -0800] grep INITR .config
+ 1759  [2018-12-11 10:33:39 -0800] grep NET .config
+ 1760  [2018-12-11 10:33:44 -0800] cat CONFIG 
+ 1761  [2018-12-11 10:34:09 -0800] rm .config
+ 1762  [2018-12-11 10:34:11 -0800] make mrproper
+ 1763  [2018-12-11 10:34:23 -0800] cat > .config
+ 1764  [2018-12-11 10:34:33 -0800] make -j64
+ 1765  [2018-12-11 10:34:45 -0800] make mrproper
+ 1766  [2018-12-11 10:34:53 -0800] cat > .config
+ 1767  [2018-12-11 10:34:57 -0800] make menuconfig
+ 1768  [2018-12-11 10:35:07 -0800] make -j40
+ 1769  [2018-12-11 10:35:51 -0800] ls -l arch/x86/boot/bzImage 
+ 1770  [2018-12-11 10:36:12 -0800] make mrproper
+ 1771  [2018-12-11 10:36:22 -0800] more CONFIG 
+ 1772  [2018-12-11 10:36:46 -0800] make -j40
+ 1773  [2018-12-11 10:47:14 -0800] ls -l arch/x86/boot/bzImage 
+ 1774  [2018-12-11 10:47:48 -0800] cat >> .config
+ 1775  [2018-12-11 10:47:52 -0800] make -j40
+ 1776  [2018-12-11 10:48:23 -0800] make mrproper
+ 1777  [2018-12-11 10:51:21 -0800] make -j40
+ 1778  [2018-12-11 10:51:45 -0800] make tinyconfig
+ 1779  [2018-12-11 10:51:52 -0800] make -j40
+ 1780  [2018-12-11 10:58:31 -0800] ls -l arch/x86/boot/bzImage 
+ 1781  [2018-12-11 10:58:35 -0800] cat >> .config
+ 1782  [2018-12-11 10:58:39 -0800] make menuconfig
+ 1783  [2018-12-11 10:58:48 -0800] make -j40
+ 1784  [2018-12-11 11:03:21 -0800] ls -l arch/x86/boot/bzImage 
+ 1785  [2018-12-11 11:04:15 -0800] cd ../coreboot/
+ 1786  [2018-12-11 11:04:16 -0800] ls
+ 1787  [2018-12-11 11:05:10 -0800] cd ..
+ 1788  [2018-12-11 11:05:11 -0800] ls
+ 1789  [2018-12-11 11:05:38 -0800] cbfstool coreboot.rom  print
+ 1790  [2018-12-11 11:05:40 -0800] cbfstool coreboot.rom 
+ 1791  [2018-12-11 11:05:54 -0800] cbfstool coreboot.rom  print
+ 1792  [2018-12-11 11:06:52 -0800] cbfstool coreboot.rom  extract -n fallback/payload -f initramfs
+ 1793  [2018-12-11 11:07:19 -0800] cbfstool -m 386 coreboot.rom  extract -n fallback/payload -f initramfs
+ 1794  [2018-12-11 11:15:25 -0800] cbfstool  coreboot.rom  extract -m x86 -n fallback/payload -f initramfs
+ 1795  [2018-12-11 11:15:29 -0800] file initramfs 
+ 1796  [2018-12-11 11:16:34 -0800] (cd ~/go/src/github.com/u-root/u-root/cmds/bzimage/ && go install)
+ 1797  [2018-12-11 11:16:45 -0800] ls ~/go/bin
+ 1798  [2018-12-11 11:16:51 -0800] PATH=$PATH:~/go/bin
+ 1799  [2018-12-11 11:16:55 -0800] bzimage 
+ 1800  [2018-12-11 11:17:29 -0800] bzimage  extract initramfs i
+ 1801  [2018-12-11 11:17:39 -0800] hexdump -C initramfs |less
+ 1802  [2018-12-11 11:17:52 -0800] nm -n initramfs 
+ 1803  [2018-12-11 11:17:56 -0800] file initramfs 
+ 1804  [2018-12-11 11:18:04 -0800] readelf -l initramfs |less
+ 1805  [2018-12-11 11:23:19 -0800] pushd ~/go/src/github.com/u-root/u-root/
+ 1806  [2018-12-11 11:23:24 -0800] go build ./u-root
+ 1807  [2018-12-11 11:23:26 -0800] go build ./u-root.go 
+ 1808  [2018-12-11 11:24:25 -0800] ./u-root -build=bb minimal
+ 1809  [2018-12-11 11:24:43 -0800] popd
+ 1810  [2018-12-11 11:24:53 -0800] cp /tmp/initramfs.linux_amd64.cpio minimal.cpio
+ 1811  [2018-12-11 11:25:01 -0800] make menuconfig
+ 1812  [2018-12-11 11:25:06 -0800] cd linux/
+ 1813  [2018-12-11 11:25:09 -0800] make menuconfig
+ 1814  [2018-12-11 11:25:50 -0800] cp ../minimal.cpio .
+ 1815  [2018-12-11 11:25:52 -0800] xz minimal.cpio 
+ 1816  [2018-12-11 11:25:56 -0800] ls -l mini*
+ 1817  [2018-12-11 11:27:03 -0800] make -j40
+ 1818  [2018-12-11 11:27:33 -0800] ls -l arch/x86/boot/bzImage 
+ 1819  [2018-12-11 11:28:48 -0800] cd ..
+ 1820  [2018-12-11 11:28:56 -0800] cp coreboot.rom coreboot_minimal.rom
+ 1821  [2018-12-11 11:29:11 -0800] vi Makefile
+ 1822  [2018-12-11 11:29:33 -0800] rm coreboot_minimal.rom 
+ 1823  [2018-12-11 11:29:34 -0800] fg
+ 1824  [2018-12-11 11:30:14 -0800] make minimal 
+ 1825  [2018-12-11 11:30:38 -0800] fg
+ 1826  [2018-12-11 11:30:40 -0800] vi Makefile 
+ 1827  [2018-12-11 11:30:49 -0800] make minimal 
+ 1828  [2018-12-11 11:30:58 -0800] vi Makefile 
+ 1829  [2018-12-11 11:31:03 -0800] make minimal 
+ 1830  [2018-12-11 11:31:26 -0800] fg
+ 1831  [2018-12-11 11:31:28 -0800] vi Makefile 
+ 1832  [2018-12-11 11:31:49 -0800] make
+ 1833  [2018-12-11 11:31:54 -0800] make minimal 
+ 1834  [2018-12-11 11:32:09 -0800] cbfstool 
+ 1835  [2018-12-11 11:32:47 -0800] fg
+ 1836  [2018-12-11 11:32:50 -0800] fgh
+ 1837  [2018-12-11 11:32:52 -0800] vi Makefile 
+ 1838  [2018-12-11 11:34:10 -0800] vi ../coreboot/util/cbfstool/cbfs-payload-linux.c 
+ 1839  [2018-12-11 11:35:14 -0800] strace -f -o shit make minimal 
+ 1840  [2018-12-11 11:35:17 -0800] vi shit
+ 1841  [2018-12-11 11:36:02 -0800] cbfstool 
+ 1842  [2018-12-11 11:36:54 -0800] cbfstool minimal.rom add-payload linux/vmlinux
+ 1843  [2018-12-11 11:37:08 -0800] cbfstool minimal.rom add-payload -n fallback/payload -f linux/vmlinux
+ 1844  [2018-12-11 11:37:19 -0800] make minimal 
+ 1845  [2018-12-11 11:37:27 -0800] cbfstool minimal.rom  print
+ 1846  [2018-12-11 11:38:16 -0800] cbfstool coreboot.rom  print
+ 1847  [2018-12-11 11:39:49 -0800] pusdh
+ 1848  [2018-12-11 11:39:51 -0800] pushd
+ 1849  [2018-12-11 11:39:55 -0800] pushd ~/go/src/github.com/u-root/u-root/
+ 1850  [2018-12-11 11:40:30 -0800] ./u-root -build=bb github.com/u-root/u-root/xcmds/rush   github.com/u-root/u-root/cmds/init  github.com/u-root/u-root/cmds/{ls,cat,date}
+ 1851  [2018-12-11 11:41:01 -0800] cpio -ivt < /tmp/initramfs.linux_amd64.cpio 
+ 1852  [2018-12-11 11:41:06 -0800] pushd
+ 1853  [2018-12-11 11:41:18 -0800] cp /tmp/initramfs.linux_amd64.cpio 5commands.cpio
+ 1854  [2018-12-11 11:41:21 -0800] vi Makefile 
+ 1855  [2018-12-11 11:41:53 -0800] cbfstool
+ 1856  [2018-12-11 11:42:01 -0800] fg
+ 1857  [2018-12-11 11:44:23 -0800] ls
+ 1858  [2018-12-11 11:44:29 -0800] make 5commands
+ 1859  [2018-12-11 11:44:39 -0800] vi Makefile 
+ 1860  [2018-12-11 11:45:01 -0800] maek 5commands.
+ 1861  [2018-12-11 11:45:06 -0800] make 5commands
+ 1862  [2018-12-11 11:45:10 -0800] vi Makefile 
+ 1863  [2018-12-11 11:45:24 -0800] make 5commands
+ 1864  [2018-12-11 11:45:28 -0800] vi Makefile 
+ 1865  [2018-12-11 11:45:33 -0800] ls
+ 1866  [2018-12-11 11:45:45 -0800] rm 5commands.cpio.xz 
+ 1867  [2018-12-11 11:45:48 -0800] cp /tmp/initramfs.linux_amd64.cpio 5commands.cpio
+ 1868  [2018-12-11 11:45:49 -0800] vi Makefile 
+ 1869  [2018-12-11 11:45:51 -0800] fg
+ 1870  [2018-12-11 11:46:02 -0800] make 5commands
+ 1871  [2018-12-11 11:46:17 -0800] cd linux/
+ 1872  [2018-12-11 11:46:19 -0800] vi .config
+ 1873  [2018-12-11 11:46:30 -0800] make -j40
+ 1874  [2018-12-11 11:46:40 -0800] cd ..
+ 1875  [2018-12-11 11:46:42 -0800] make 5commands
+ 1876  [2018-12-11 11:46:52 -0800] cd linux/
+ 1877  [2018-12-11 11:46:58 -0800] ls -l arch/x86/boot/bzImage 
+ 1878  [2018-12-11 11:47:01 -0800] cd ..
+ 1879  [2018-12-11 19:54:18 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1880  [2018-12-11 19:54:18 -0800] ls
+ 1881  [2018-12-11 19:54:26 -0800] cp linux//.config /tmp
+ 1882  [2018-12-11 19:54:31 -0800] cp 5commands.cpio /tmp
+ 1883  [2018-12-11 19:55:47 -0800] cp linux/arch/x86/boot/bzImage  /tmp
+ 1884  [2018-12-11 19:57:58 -0800] cat Makefile 
+ 1885  [2018-12-11 16:18:46 -0800] make d
+ 1886  [2018-12-11 16:26:21 -0800] make i
+ 1887  [2018-12-11 16:26:35 -0800] make b
+ 1888  [2018-12-11 16:27:17 -0800] cat Makefile 
+ 1889  [2018-12-11 16:27:55 -0800] :
+ 1890  [2018-12-11 16:27:58 -0800] acme Makefile 
+ 1891  [2018-12-11 16:28:16 -0800] make d
+ 1892  [2018-12-11 16:31:21 -0800] ip a
+ 1893  [2018-12-11 16:31:29 -0800] ./uinit -
+ 1894  [2018-12-11 16:31:30 -0800] ./uinit -r
+ 1895  [2018-12-11 16:31:33 -0800] vi DXECLEANER 
+ 1896  [2018-12-11 16:31:55 -0800] ls -l ./DXECLEANER 
+ 1897  [2018-12-11 16:32:23 -0800] cat Makefile 
+ 1898  [2018-12-11 16:32:40 -0800] futk /tmp/x fv ./DXECLEANER clean
+ 1899  [2018-12-11 16:47:57 -0800] make i
+ 1900  [2018-12-11 16:48:10 -0800] make b
+ 1901  [2018-12-11 16:48:28 -0800] make d
+ 1902  [2018-12-11 16:49:20 -0800] vi Makefile 
+ 1903  [2018-12-11 16:49:26 -0800] which futk
+ 1904  [2018-12-11 16:49:55 -0800] futk /tmp/x fv ./DXECLEANER clean
+ 1905  [2018-12-12 09:20:30 -0800] cd /usr/local/src/projects/
+ 1906  [2018-12-12 09:20:48 -0800] cd nobinaryblobs/mainboards/tyan7102/
+ 1907  [2018-12-12 09:20:48 -0800] ls
+ 1908  [2018-12-12 09:20:49 -0800] git diff
+ 1909  [2018-12-12 09:21:16 -0800] git status
+ 1910  [2018-12-12 09:21:17 -0800] more LIST
+ 1911  [2018-12-12 09:21:23 -0800] more RUN3
+ 1912  [2018-12-12 09:21:28 -0800] git add RUN3
+ 1913  [2018-12-12 09:21:30 -0800] git commit -as
+ 1914  [2018-12-12 09:21:40 -0800] git push
+ 1915  [2018-12-12 09:21:54 -0800] ls resert
+ 1916  [2018-12-12 09:21:56 -0800] ls reset
+ 1917  [2018-12-12 09:22:01 -0800] ps ax | grep cat
+ 1918  [2018-12-12 09:22:09 -0800] ps ax | grep cat.*tty
+ 1919  [2018-12-12 09:22:16 -0800] ps ax | grep minicom
+ 1920  [2018-12-12 09:22:25 -0800] sudo minicom usb1
+ 1921  [2018-12-12 09:22:52 -0800] vi bin.reset
+ 1922  [2018-12-12 09:23:19 -0800] git add bin.reset 
+ 1923  [2018-12-12 09:23:25 -0800] git commit -as
+ 1924  [2018-12-12 09:23:35 -0800] git push
+ 1925  [2018-12-12 09:23:45 -0800] cat bin.reset 
+ 1926  [2018-12-12 09:25:09 -0800] cd ../../dragonsegg/
+ 1927  [2018-12-12 09:25:10 -0800] cd coreboot/
+ 1928  [2018-12-12 09:25:11 -0800] ls
+ 1929  [2018-12-12 09:25:12 -0800] git pull
+ 1930  [2018-12-12 09:27:40 -0800] cd /usr/local/src/chromiumos/
+ 1931  [2018-12-12 09:27:40 -0800] ls
+ 1932  [2018-12-12 09:27:51 -0800] PATH=$PATH:/usr/local/src/depot_tools/
+ 1933  [2018-12-12 09:27:54 -0800] cros_sdk
+ 1934  [2018-12-12 10:12:19 -0800] reset
+ 1935  [2018-12-12 10:12:39 -0800] cd ../projects/nobinaryblobs/mainboards/tyan7102/
+ 1936  [2018-12-12 10:12:40 -0800] ls
+ 1937  [2018-12-12 10:12:44 -0800] sudo minicom usb1
+ 1938  [2018-12-12 09:36:48 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/
+ 1939  [2018-12-12 09:36:48 -0800] ls
+ 1940  [2018-12-12 09:37:00 -0800] ls -l 5commands.rom 
+ 1941  [2018-12-12 09:37:06 -0800] cbfstool print 5commands.rom 
+ 1942  [2018-12-12 09:37:13 -0800] cbfstool  5commands.rom print
+ 1943  [2018-12-12 09:37:47 -0800] cbfstool 5commands.rom extract -m x86 -n fallback/payload -f 5commands.self
+ 1944  [2018-12-12 09:37:51 -0800] ls -l 5commands.self 
+ 1945  [2018-12-12 09:38:01 -0800] cat Makefile 
+ 1946  [2018-12-12 09:38:32 -0800] vi Makefile 
+ 1947  [2018-12-12 09:40:01 -0800] cbfstool
+ 1948  [2018-12-12 09:40:22 -0800] fg
+ 1949  [2018-12-12 09:41:36 -0800] ls -l /usr/local/src/chromiumos/chroot/home/rminnich/trunk 
+ 1950  [2018-12-12 09:41:56 -0800] ln -s /usr/local/src/chromiumos/chroot/home/rminnich chromehome
+ 1951  [2018-12-12 09:42:07 -0800] ls chromehome
+ 1952  [2018-12-12 09:42:22 -0800] vi Makefile 
+ 1953  [2018-12-12 09:42:50 -0800] make shelley 
+ 1954  [2018-12-12 14:40:32 -0800] cd /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102/
+ 1955  [2018-12-12 14:40:33 -0800] ls
+ 1956  [2018-12-12 14:40:36 -0800] sudo minicom usb1
+ 1957  [2018-12-12 16:54:30 -0800] ls /tmp/futk120101721/
+ 1958  [2018-12-12 15:44:15 -0800] sudo minicom 
+ 1959  [2018-12-13 10:23:22 -0800] cd /usr/local/src/projects/nobinaryblobs/dragonsegg/coreboot/
+ 1960  [2018-12-13 10:23:22 -0800] ls
+ 1961  [2018-12-13 10:23:27 -0800] ps ax | grep make
+ 1962  [2018-12-13 10:23:30 -0800] make
+ 1963  [2018-12-13 10:23:41 -0800] make iasl
+ 1964  [2018-12-13 10:23:46 -0800] make
+ 1965  [2018-12-13 10:27:38 -0800] cp ../config_dragonegg .config
+ 1966  [2018-12-13 10:27:39 -0800] make
+ 1967  [2018-12-13 10:27:58 -0800] make menuconfig
+ 1968  [2018-12-13 10:28:03 -0800] make
+ 1969  [2018-12-13 10:29:04 -0800] grep MAIN .config
+ 1970  [2018-12-13 10:36:23 -0800] mkdir -p 3rdparty/blobs/baseboard-dragonegg/fsp
+ 1971  [2018-12-13 10:36:29 -0800] cp /tmp/Fsp_M.fd 3rdparty/blobs/baseboard-dragonegg/fsp
+ 1972  [2018-12-13 10:36:30 -0800] make
+ 1973  [2018-12-13 10:37:03 -0800] cp /tmp/Fsp_S.fd 3rdparty/blobs/baseboard-dragonegg/fsp
+ 1974  [2018-12-13 10:37:07 -0800] make
+ 1975  [2018-12-13 10:38:05 -0800] cp /tmp/vbt.bin 3rdparty/blobs/baseboard-dragonegg/
+ 1976  [2018-12-13 10:38:06 -0800] make
+ 1977  [2018-12-13 10:40:36 -0800] find /usr/local/src/chromiumos/ -name dragonsegg -type d -print
+ 1978  [2018-12-13 10:42:12 -0800] cp /tmp/ucode.bin 3rdparty/blobs/baseboard-dragonegg/
+ 1979  [2018-12-13 10:42:14 -0800] make
+ 1980  [2018-12-13 10:44:26 -0800] vi .config
+ 1981  [2018-12-13 10:44:41 -0800] cp .config config+payload
+ 1982  [2018-12-13 10:44:44 -0800] make menuconfig
+ 1983  [2018-12-13 10:45:11 -0800] make
+ 1984  [2018-12-13 10:46:52 -0800] make Q= V=1
+ 1985  [2018-12-13 10:48:01 -0800] cp /tmp/descriptor.bin 3rdparty/blobs/baseboard-dragonegg/
+ 1986  [2018-12-13 10:48:01 -0800] make
+ 1987  [2018-12-13 10:48:18 -0800] make Q= V=1
+ 1988* [2018-12-13 10:49:03 -0800] 
+ 1989  [2018-12-13 10:49:04 -0800] make
+ 1990  [2018-12-13 10:49:26 -0800] history > ../IBUILTIT
+ 1991  [2018-12-13 16:43:03 -0800] make d
+ 1992  [2018-12-13 16:46:13 -0800] fgh
+ 1993  [2018-12-13 16:46:14 -0800] fg
+ 1994  [2018-12-13 16:46:19 -0800] jobs
+ 1995  [2018-12-14 15:08:31 -0800] futk /tmp/x fv ./DXECLEANER clean
+ 1996  [2018-12-14 16:39:03 -0800] dmesg
+ 1997  [2018-12-14 16:39:36 -0800] sudo dmesg -c
+ 1998  [2018-12-14 16:40:04 -0800] dmesg
+ 1999  [2018-12-20 09:52:31 -0800] ls
+ 2000  [2018-12-20 09:52:37 -0800] vi DXECLEANER 
+ 2001  [2018-12-20 09:52:51 -0800] fg
+ 2002  [2018-12-20 09:53:23 -0800] ./futk ./futk.remove.99/99 fv
+ 2003  [2018-12-20 09:53:27 -0800] futk ./futk.remove.99/99 fv
+ 2004  [2018-12-20 09:58:24 -0800] ./DXECLEANER futk.remove.99/50 
+ 2005  [2018-12-20 10:04:00 -0800] vi DXECLEANER 
+ 2006  [2018-12-20 10:04:23 -0800] ./DXECLEANER futk.remove.99/50 
+ 2007  [2018-12-20 10:09:41 -0800] ./DXECLEANER /tmp/x
+ 2008  [2018-12-20 10:19:37 -0800] ./DXECLEANER futk.remove.99/50
+ 2009  [2018-12-20 10:23:21 -0800] ./DXECLEANER futk.remove.99/98
+ 2010  [2018-12-20 10:27:06 -0800] futk futk.remove.99/98  bzImage splat 98.splat saverom
+ 2011  [2018-12-20 10:27:15 -0800] futk futk.remove.99/98  fv bzImage splat 98.splat saverom
+ 2012  [2018-12-20 10:27:40 -0800] ./DXECLEANER 
+ 2013  [2018-12-20 10:27:46 -0800] ./DXECLEANER 98.splat 
+ 2014  [2018-12-20 10:31:43 -0800] ls
+ 2015  [2018-12-20 10:31:58 -0800] more Makefile 
+ 2016  [2018-12-20 10:32:20 -0800] make i
+ 2017  [2018-12-20 10:32:36 -0800] ./uinit 
+ 2018  [2018-12-20 10:32:43 -0800] ./uinit  -r
+ 2019  [2018-12-20 10:32:54 -0800] make b
+ 2020  [2018-12-20 10:33:14 -0800] futk futk.remove.99/98  fv bzImage splat 98.splat saverom
+ 2021* [2018-12-20 10:33:33 -0800] 
+ 2022  [2018-12-20 10:37:06 -0800] ./uinit -h
+ 2023  [2018-12-20 10:37:25 -0800] ./uinit -C false & 
+ 2024  [2018-12-20 10:37:30 -0800] fg
+ 2025  [2018-12-20 10:37:41 -0800] ./uinit -r & ./uinit -C=false
+ 2026  [2018-12-20 10:38:04 -0800] more Makefile 
+ 2027  [2018-12-20 10:38:41 -0800] pushd ~/go/src/github.com/linuxboot/dut/uinit/
+ 2028  [2018-12-20 10:38:43 -0800] go build
+ 2029  [2018-12-20 10:38:51 -0800] ./uinit -r & ./uinit -C=false
+ 2030  [2018-12-20 10:39:00 -0800] fg
+ 2031  [2018-12-20 10:39:14 -0800] ps ax | grep uinit
+ 2032  [2018-12-20 10:39:40 -0800] ./uinit -C=false
+ 2033  [2018-12-20 10:40:06 -0800] popd
+ 2034  [2018-12-20 10:40:10 -0800] cat Makefile 
+ 2035  [2018-12-20 10:41:06 -0800] ls -l bzImage 
+ 2036  [2018-12-20 10:41:10 -0800] rm bzImage 
+ 2037  [2018-12-20 10:41:33 -0800] futk futk.remove.99/98  fv linux/arch/x86/boot/bzImage splat 98.splat saverom
+ 2038  [2018-12-20 10:41:54 -0800] ./DXECLEANER 98.splat 
+ 2039  [2018-12-20 10:47:58 -0800] vi Makefile 
+ 2040  [2018-12-20 10:49:28 -0800] make d98
+ 2041  [2018-12-20 11:30:35 -0800] ls /tmp/futk*
+ 2042  [2018-12-20 11:30:57 -0800] ./DXECLEANER /tmp/futk824997279/4
+ 2043* [2018-12-20 12:15:43 -0800] 
+ 2044  [2018-12-20 12:32:13 -0800] ls
+ 2045  [2018-12-20 12:32:20 -0800] vi LIST
+ 2046  [2018-12-20 12:33:02 -0800] git status .
+ 2047  [2018-12-20 12:33:05 -0800] git commit -as
+ 2048  [2018-12-20 12:33:39 -0800] pusdh
+ 2049  [2018-12-20 12:33:40 -0800] pushd
+ 2050  [2018-12-20 12:33:59 -0800] pushd ~/go/src/github.com/linuxboot/dut/uinit/
+ 2051  [2018-12-20 12:33:59 -0800] ls
+ 2052  [2018-12-20 12:34:05 -0800] vi dut.go 
+ 2053  [2018-12-20 12:34:41 -0800] pushd 
+ 2054  [2018-12-20 12:34:43 -0800] vi DXECLEANER 
+ 2055  [2018-12-20 12:35:13 -0800] pushd
+ 2056  [2018-12-20 12:35:20 -0800] vi dut.go 
+ 2057  [2018-12-20 12:35:41 -0800] go build
+ 2058  [2018-12-20 12:35:47 -0800] goimports -w *.go
+ 2059  [2018-12-20 12:35:54 -0800] go build
+ 2060  [2018-12-20 12:35:57 -0800] pushd
+ 2061  [2018-12-20 12:35:58 -0800] make i
+ 2062  [2018-12-20 12:36:51 -0800] make b
+ 2063  [2018-12-20 12:37:19 -0800] history
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ cp [Kls /tmp/*/4
+[?2004l/tmp/futk127840641/4  /tmp/futk824997279/4
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ cp tmp/futk824997279[C[C[C/tmp/futk824997279[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C/4 run[K[K[KRUN4.4.rom
+[?2004l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ vi Makefile 
+[?2004l[?2004h[?1049h[?1h=[?2004h[1;82r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[82;1H"Makefile" 326L, 9545C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1Hdefault: build
+
+build:[4;9Hecho b to build, i for initramfs, q for qemu, d to dxeclean
+
+b: buildbzimage
+
+d:[9;9Hfutk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boott[10;1H/bzImage splat drop /tmp/x saverom    ./DXECLEANER clean
+
+d98:[13;9Hfutk 98.splat fv ./DXECLEANER clean
+
+buildbzimage:[16;9H(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
+
+i:[19;9H(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)[20;9Hcp ~/go/src/github.com/linuxboot/dut/uinit/uinit .[21;9Hgo run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init githubb[22;1H.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish[23;9Hcp /tmp/initramfs.linux_amd64.cpio .[24;9Hlzma -f initramfs.linux_amd64.cpio[25;9Hls -l initramfs*[26;9Hcp *lzma linux
+
+cleanme:[29;9H~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
+
+q:[32;9Hqemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
+findit:[34;9Hjq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx[35;9Hjq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
+
+all:[38;9H~/go/bin/utk tyan7102.bin \[39;17Hremove Ip.*  \[40;17Hremove Tcp.*  \[41;17Hremove Usb.*  \[42;17Hremove Udp.*  \[43;17Hremove Dhcp.*  \[44;17Hremove .np.*  \[45;17Hremove .tftp.*  \[46;17Hremove Http.* \[47;17Hremove .*Dns.* \[48;17Hremove Arp.* \[49;17Hremove .*NetworkStackSetupScreen.*  \[50;17Hremove Iscsi.* \[51;17Hremove Scsi.* \[52;17Hremove Fat.* \[53;17Hremove Ahci.* \[54;17Hremove Partition.* \[55;17Hremove Sata.* \[56;17Hremove Disk.* \[57;17Hremove Whea.* \[58;17Hremove .*Pxe.* \[59;17Hremove Ata.* \[60;17Hreplace_pe32 FullShell bzImage \[61;17Hsave x.bin \[62;17Hremove .*Ipmi.* \[63;17Hsave ipmisucks.bin \[64;17Hremove DxeIpmiBmcInitialize \[65;17Hremove SmmBmcElog \[66;17Hremove BmcAcpi \[67;17Hremove SmmIpmiBmcInitialize \[68;17Hremove BmcElog \[69;17Hremove BmcLanConfig \[70;17Hsave removeBMCcrap.bin \[71;17Hremove SecurityStubDxe \[72;17Hsave removesomecrap.bin \[73;17Hcomment TimestampDxe \[74;17Hcomment Legacy8259 \[75;17Hcomment HiiDatabase \[76;17Hcomment DataHubDxe \[77;17Hcomment EnglishDxe \[78;17Hcomment here \[79;17Hcomment PcRtc \[80;17Hcomment FpgaDxe \[81;17Hcomment LegacyInterrupt \[82;129H1,1[11CTop]2;Makefile (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;Makefile[1;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[82;129H2,0-1[2;1H[?25h[?25l[82;129H3,1  [3;1H[?25h[?25l[82;129H4,1-8[4;8H[?25h[?25l[82;129H5,0-1[5;1H[?25h[?25l[82;129H6,1  [6;1H[?25h[?25l[82;129H7,0-1[7;1H[?25h[?25l[82;129H8,1  [8;1H[?25h[?25l[82;129H9,1-8[9;8H[?25h[?25l[82;129H10,0-1[11;1H[?25h[?25l[82;130H1,1  [12;1H[?25h[?25l[82;130H2,1-8[13;8H[?25h[?25l[82;130H3,0-1[14;1H[?25h[?25l[15;81r[15;1H[2L[1;82r[15;1Hd98:[16;9Hfutk 98.splat fv ./DXECLEANER clean[82;1H[K[82;129H14,1[10CTop]2;Makefile + (/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102) - VIM]1;Makefile[15;1H[?25h[?25l[82;130H5,1-8[16;8H[?25h[?25l[82;132H2-9[16;9H[?25h[?25l[82;132H7-14[16;14H[?25h[?25l[82;132H9-16[16;16H[?25h[?25l[82;132H7-14[16;14H[?25h[?25l8.splat fv ./DXECLEANER clean[16;43H[K[16;14H[?25h[?25l.splat fv ./DXECLEANER clean[16;42H[K[16;14H[?25h[?25lsplat fv ./DXECLEANER clean[16;41H[K[16;14H[?25h[?25lplat fv ./DXECLEANER clean[16;40H[K[16;14H[?25h[?25llat fv ./DXECLEANER clean[16;39H[K[16;14H[?25h[?25lat fv ./DXECLEANER clean[16;38H[K[16;14H[?25h[?25lt fv ./DXECLEANER clean[16;37H[K[16;14H[?25h[?25l fv ./DXECLEANER clean[16;36H[K[16;14H[?25h[?25l[82;1H[1m-- INSERT --[m[82;129H[K[82;129H15,7-14[7CTop[16;14H[?25h[?25lR fv ./DXECLEANER clean[82;132H8-15[16;15H[?25h[?25lU fv ./DXECLEANER clean[82;132H9-16[16;16H[?25h[?25lN fv ./DXECLEANER clean[82;132H10-17[16;17H[?25h[?25l4 fv ./DXECLEANER clean[82;133H1-18[16;18H[?25h[?25l. fv ./DXECLEANER clean[82;133H2-19[16;19H[?25h[?25l4 fv ./DXECLEANER clean[82;133H3-20[16;20H[?25h[?25l. fv ./DXECLEANER clean[82;133H4-21[16;21H[?25h[?25lr fv ./DXECLEANER clean[82;133H5-22[16;22H[?25h[?25lo fv ./DXECLEANER clean[82;133H6-23[16;23H[?25h[?25lm fv ./DXECLEANER clean[82;133H7-24[16;24H[?25h[82;1H[K[16;23H[?25l[82;129H15,16-23      Top[16;23H[?25h[?25l[82;1H[1m-- INSERT --[m[82;129H[K[82;129H16,1[10CTop[17;81r[17;1H[L[1;82r[82;129H[K[82;129H16,1[10CTop[17;1H[?25h[82;1H[K[17;1H[?25l[82;129H16,0-1[8CTop[17;1H[?25h[?25l[82;130H5,1-8[16;8H[?25h[?25l[82;130H4,4  [15;4H[?25h[?25l[82;132H3[15;3H[?25h[?25l[82;132H2[15;2H[?25h[?25l8:[15;4H[K[15;2H[?25h[?25l5[?25h[?25l4[?25h[?25l[82;129H[K[82;1H:[?2004h[?25hw[?25l[?25hq[?25l[?25h[?25l[?2004l"Makefile" 329L, 9589C written]2;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102]1;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102
+[?2004l[?1l>[?25h[?1049l[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ s[Kls
+[?2004l98.splat             commentsetupcrap.bin  [0m[01;32mDXECLEANER[0m      [01;32minitramfs.linux_amd64.cpio.lzma[0m  LIST      removeBMCcrap.bin    RUN3          x.bin
+bin.reset            config-4.13.0-rc7     [01;32mEATIT[0m           ipmisucks.bin                    LOG       removemorecrap.bin   RUN4.4.rom    xxx
+blacklist            [01;32mDIT[0m                   fail.bin        L                                Makefile  removesetupcrap.bin  tyan7102.bin  yyy
+commentmorecrap.bin  dxeclean.bin          [01;34mfutk.remove.99[0m  [01;34mlinux[0m                            NOTES     removesomecrap.bin   [01;32muinit[0m
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ script RUN
+RUN3        RUN4.4.rom  
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ script RUN
+RUN3        RUN4.4.rom  
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ script RUN
+RUN3        RUN4.4.rom  
+]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ script RUN4
+[?2004lScript started, file is RUN4
+[?2004h]0;rminnich@xcpu: /usr/local/src/projects/nobinaryblobs/mainboards/tyan7102rminnich@xcpu:/usr/local/src/projects/nobinaryblobs/mainboards/tyan7102$ make d4
+[?2004lfutk RUN4.4.rom fv ./DXECLEANER clean
+2018/12/20 12:38:32 Found 310 things
+2018/12/20 12:38:32 script is ./DXECLEANER
+2018/12/20 12:38:42 Try to remove 70E1A818-0BE1-4449-BFD4-9EF68C7F02A8:EFI_FV_FILETYPE_DRIVER:ReFlash (70E1A818-0BE1-4449-BFD4-9EF68C7F02A8)
+2018/12/20 12:38:42 removed [0xc000025200]
++ echo TEST /tmp/futk925337781/1
+TEST /tmp/futk925337781/1
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/1 -r
+[sudo] password for rminnich: 
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 12:41:44 Listening on 192.168.0.1:8080 at 2018-12-20 12:41:44.760413326 -0800 PST m=+0.002850707
+2018/12/20 12:44:44 Listen failed: accept tcp 192.168.0.1:8080: i/o timeout at 2018-12-20 12:44:44.760689226 -0800 PST m=+180.003126614
+2018/12/20 12:44:44 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 12:44:44 We are now done ......................
+2018/12/20 12:44:44 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 12:44:44 Try to remove 00CC581D-5687-47C8-96C3-44EB1240A9F6:EFI_FV_FILETYPE_DRIVER:TyanBoardDXE (00CC581D-5687-47C8-96C3-44EB1240A9F6)
+2018/12/20 12:44:44 removed [0xc0084f8b00]
++ echo TEST /tmp/futk925337781/2
+TEST /tmp/futk925337781/2
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/2 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 12:46:03 Listening on 192.168.0.1:8080 at 2018-12-20 12:46:03.780886704 -0800 PST m=+0.005034144
+2018/12/20 12:48:24 Accepted &{{0xc000022080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 12:50:31 Accepted &{{0xc00013a080}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 12:50:31 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 12:50:31 Removed &{00CC581D-5687-47C8-96C3-44EB1240A9F6 00CC581D-5687-47C8-96C3-44EB1240A9F6:EFI_FV_FILETYPE_DRIVER:TyanBoardDXE 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/2
+2018/12/20 12:50:31 Try to remove DE141A05-FA40-432D-9631-5E3E990F44D5:EFI_FV_FILETYPE_DRIVER:SlotDataUpdateDxeNeonCityEPRP (DE141A05-FA40-432D-9631-5E3E990F44D5)
+2018/12/20 12:50:31 removed [0xc000025c80]
++ echo TEST /tmp/futk925337781/3
+TEST /tmp/futk925337781/3
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/3 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 12:51:50 Listening on 192.168.0.1:8080 at 2018-12-20 12:51:50.227456387 -0800 PST m=+0.005158566
+2018/12/20 12:54:14 Accepted &{{0xc000148080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 12:56:20 Accepted &{{0xc000148180}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 12:56:20 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 12:56:20 Removed &{DE141A05-FA40-432D-9631-5E3E990F44D5 DE141A05-FA40-432D-9631-5E3E990F44D5:EFI_FV_FILETYPE_DRIVER:SlotDataUpdateDxeNeonCityEPRP 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/3
+2018/12/20 12:56:20 Try to remove 7C04A583-9E3E-4F1C-AD65-E05268D0B4D1:EFI_FV_FILETYPE_APPLICATION:FullShell (7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)
+2018/12/20 12:56:20 removed [0xc0081d1c80]
++ echo TEST /tmp/futk925337781/4
+TEST /tmp/futk925337781/4
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/4 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 12:57:35 Listening on 192.168.0.1:8080 at 2018-12-20 12:57:35.623116445 -0800 PST m=+0.005039982
+2018/12/20 13:00:35 Listen failed: accept tcp 192.168.0.1:8080: i/o timeout at 2018-12-20 13:00:35.623594932 -0800 PST m=+180.005518262
+2018/12/20 13:00:35 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 13:00:35 We are now done ......................
+2018/12/20 13:00:35 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 13:00:35 Try to remove 9B680FCE-AD6B-4F3A-B60B-F59899003443:EFI_FV_FILETYPE_DRIVER:DevicePathDxe (9B680FCE-AD6B-4F3A-B60B-F59899003443)
+2018/12/20 13:00:35 removed [0xc000024180]
++ echo TEST /tmp/futk925337781/5
+TEST /tmp/futk925337781/5
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/5 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:01:54 Listening on 192.168.0.1:8080 at 2018-12-20 13:01:54.539280467 -0800 PST m=+0.004759517
+2018/12/20 13:04:18 Accepted &{{0xc000136080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:06:24 Accepted &{{0xc000022100}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:06:24 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:06:24 Removed &{9B680FCE-AD6B-4F3A-B60B-F59899003443 9B680FCE-AD6B-4F3A-B60B-F59899003443:EFI_FV_FILETYPE_DRIVER:DevicePathDxe 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/5
+2018/12/20 13:06:24 Try to remove 6C160B26-E04C-4098-A6AC-C8C7B6471A86:EFI_FV_FILETYPE_DRIVER:SetupConfigUpdateDxeLightningRidgeEXECB2 (6C160B26-E04C-4098-A6AC-C8C7B6471A86)
+2018/12/20 13:06:24 removed [0xc008190280]
++ echo TEST /tmp/futk925337781/6
+TEST /tmp/futk925337781/6
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/6 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:07:42 Listening on 192.168.0.1:8080 at 2018-12-20 13:07:42.852856141 -0800 PST m=+0.004094102
+2018/12/20 13:10:06 Accepted &{{0xc000022100}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:12:12 Accepted &{{0xc000022200}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:12:12 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:12:12 Removed &{6C160B26-E04C-4098-A6AC-C8C7B6471A86 6C160B26-E04C-4098-A6AC-C8C7B6471A86:EFI_FV_FILETYPE_DRIVER:SetupConfigUpdateDxeLightningRidgeEXECB2 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/6
+2018/12/20 13:12:12 Try to remove 634E8DB5-C432-43BE-A653-9CA2922CC458:EFI_FV_FILETYPE_DRIVER:Nvme (634E8DB5-C432-43BE-A653-9CA2922CC458)
+2018/12/20 13:12:12 removed [0xc008191a80]
++ echo TEST /tmp/futk925337781/7
+TEST /tmp/futk925337781/7
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/7 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:13:31 Listening on 192.168.0.1:8080 at 2018-12-20 13:13:31.437604493 -0800 PST m=+0.004177998
+2018/12/20 13:15:54 Accepted &{{0xc000022080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:18:00 Accepted &{{0xc00014e080}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:18:00 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:18:00 Removed &{634E8DB5-C432-43BE-A653-9CA2922CC458 634E8DB5-C432-43BE-A653-9CA2922CC458:EFI_FV_FILETYPE_DRIVER:Nvme 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/7
+2018/12/20 13:18:00 Try to remove BB65942B-521F-4EC3-BAF9-A92540CF60D2:EFI_FV_FILETYPE_DRIVER:SataController (BB65942B-521F-4EC3-BAF9-A92540CF60D2)
+2018/12/20 13:18:00 removed [0xc008191380]
++ echo TEST /tmp/futk925337781/8
+TEST /tmp/futk925337781/8
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/8 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:19:19 Listening on 192.168.0.1:8080 at 2018-12-20 13:19:19.603503008 -0800 PST m=+0.004415854
+2018/12/20 13:21:43 Accepted &{{0xc000022080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:23:49 Accepted &{{0xc00013a180}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:23:49 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:23:49 Removed &{BB65942B-521F-4EC3-BAF9-A92540CF60D2 BB65942B-521F-4EC3-BAF9-A92540CF60D2:EFI_FV_FILETYPE_DRIVER:SataController 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/8
+2018/12/20 13:23:49 Try to remove 74346897-9E0C-4B41-BF1F-BAA1ECB85DA6:EFI_FV_FILETYPE_DRIVER:IioCfgUpdateDxeLightningRidgeEXRP (74346897-9E0C-4B41-BF1F-BAA1ECB85DA6)
+2018/12/20 13:23:49 removed [0xc000025d00]
++ echo TEST /tmp/futk925337781/9
+TEST /tmp/futk925337781/9
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/9 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:25:07 Listening on 192.168.0.1:8080 at 2018-12-20 13:25:07.76282306 -0800 PST m=+0.004422579
+2018/12/20 13:27:31 Accepted &{{0xc000148100}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:29:37 Accepted &{{0xc000148200}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:29:37 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:29:37 Removed &{74346897-9E0C-4B41-BF1F-BAA1ECB85DA6 74346897-9E0C-4B41-BF1F-BAA1ECB85DA6:EFI_FV_FILETYPE_DRIVER:IioCfgUpdateDxeLightningRidgeEXRP 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/9
+2018/12/20 13:29:37 Try to remove 8EEF9AD2-463E-425F-A4FE-2F6783D6F97E:EFI_FV_FILETYPE_DRIVER:GenericSio (8EEF9AD2-463E-425F-A4FE-2F6783D6F97E)
+2018/12/20 13:29:37 removed [0xc008191480]
++ echo TEST /tmp/futk925337781/10
+TEST /tmp/futk925337781/10
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/10 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:30:56 Listening on 192.168.0.1:8080 at 2018-12-20 13:30:56.15073056 -0800 PST m=+0.004445203
+2018/12/20 13:33:19 Accepted &{{0xc000022100}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:35:25 Accepted &{{0xc00018a000}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:35:25 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:35:25 Removed &{8EEF9AD2-463E-425F-A4FE-2F6783D6F97E 8EEF9AD2-463E-425F-A4FE-2F6783D6F97E:EFI_FV_FILETYPE_DRIVER:GenericSio 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/10
+2018/12/20 13:35:25 Try to remove 86CDDF93-4872-4597-8AF9-A35AE4D3725F:EFI_FV_FILETYPE_DRIVER:IScsiDxe (86CDDF93-4872-4597-8AF9-A35AE4D3725F)
+2018/12/20 13:35:25 removed [0xc008191980]
++ echo TEST /tmp/futk925337781/11
+TEST /tmp/futk925337781/11
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/11 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:36:43 Listening on 192.168.0.1:8080 at 2018-12-20 13:36:43.750202933 -0800 PST m=+0.004256668
+2018/12/20 13:39:07 Accepted &{{0xc000022180}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:41:13 Accepted &{{0xc000022280}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:41:13 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:41:13 Removed &{86CDDF93-4872-4597-8AF9-A35AE4D3725F 86CDDF93-4872-4597-8AF9-A35AE4D3725F:EFI_FV_FILETYPE_DRIVER:IScsiDxe 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/11
+2018/12/20 13:41:13 Try to remove AE587172-CC15-48E1-8BE0-29DDF05C6A1F:EFI_FV_FILETYPE_DRIVER:DxeSelStatusCode (AE587172-CC15-48E1-8BE0-29DDF05C6A1F)
+2018/12/20 13:41:13 removed [0xc0084f8500]
++ echo TEST /tmp/futk925337781/12
+TEST /tmp/futk925337781/12
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/12 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:42:32 Listening on 192.168.0.1:8080 at 2018-12-20 13:42:32.023047406 -0800 PST m=+0.003844326
+2018/12/20 13:44:55 Accepted &{{0xc00015c000}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:47:01 Accepted &{{0xc000148100}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:47:01 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:47:01 Removed &{AE587172-CC15-48E1-8BE0-29DDF05C6A1F AE587172-CC15-48E1-8BE0-29DDF05C6A1F:EFI_FV_FILETYPE_DRIVER:DxeSelStatusCode 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/12
+2018/12/20 13:47:01 Try to remove 580DD900-385D-11D7-883A-00500473D4EB:EFI_FV_FILETYPE_DRIVER:Uhcd (580DD900-385D-11D7-883A-00500473D4EB)
+2018/12/20 13:47:01 removed [0xc008190a80]
++ echo TEST /tmp/futk925337781/13
+TEST /tmp/futk925337781/13
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/13 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:48:20 Listening on 192.168.0.1:8080 at 2018-12-20 13:48:20.25521162 -0800 PST m=+0.005265737
+2018/12/20 13:50:43 Accepted &{{0xc000022180}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:52:49 Accepted &{{0xc000022280}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:52:49 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:52:49 Removed &{580DD900-385D-11D7-883A-00500473D4EB 580DD900-385D-11D7-883A-00500473D4EB:EFI_FV_FILETYPE_DRIVER:Uhcd 7 map[R:saverom r:cleaner]}: file is /tmp/futk925337781/13
+2018/12/20 13:52:49 Try to remove 43788BEB-638F-434C-8A84-46D33A589E76:EFI_FV_FILETYPE_DRIVER:BmcElog (43788BEB-638F-434C-8A84-46D33A589E76)
+2018/12/20 13:52:49 removed [0xc008191100]
++ echo TEST /tmp/futk925337781/14
+TEST /tmp/futk925337781/14
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/14 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:54:08 Listening on 192.168.0.1:8080 at 2018-12-20 13:54:08.051297567 -0800 PST m=+0.004703264
+2018/12/20 13:56:31 Accepted &{{0xc00014e000}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 13:58:37 Accepted &{{0xc000022180}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 13:58:37 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 13:58:37 Removed &{43788BEB-638F-434C-8A84-46D33A589E76 43788BEB-638F-434C-8A84-46D33A589E76:EFI_FV_FILETYPE_DRIVER:BmcElog 7 map[R:saverom r:cleaner]}: file is /tmp/futk925337781/14
+2018/12/20 13:58:37 Try to remove 9F3A0016-AE55-4288-829D-D55FD3AAC347:EFI_FV_FILETYPE_DRIVER:AmiBoardInfo2 (9F3A0016-AE55-4288-829D-D55FD3AAC347)
+2018/12/20 13:58:37 removed [0xc000025180]
++ echo TEST /tmp/futk925337781/15
+TEST /tmp/futk925337781/15
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/15 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 13:59:55 Listening on 192.168.0.1:8080 at 2018-12-20 13:59:55.875862819 -0800 PST m=+0.005233399
+2018/12/20 14:02:55 Listen failed: accept tcp 192.168.0.1:8080: i/o timeout at 2018-12-20 14:02:55.876362681 -0800 PST m=+180.005733076
+2018/12/20 14:02:55 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 14:02:55 We are now done ......................
+2018/12/20 14:02:55 accept tcp 192.168.0.1:8080: i/o timeout
+2018/12/20 14:02:55 Try to remove 24A44CAF-0BF2-4514-90C4-C794B3E778F5:EFI_FV_FILETYPE_DRIVER:MePolicyInitDxe (24A44CAF-0BF2-4514-90C4-C794B3E778F5)
+2018/12/20 14:02:55 removed [0xc000025900]
++ echo TEST /tmp/futk925337781/16
+TEST /tmp/futk925337781/16
++ echo date
++ echo ./0
++ echo ./pg
++ sudo /usr/local/google/home/rminnich/bin/em100 -c W25Q256FV -s -d /tmp/futk925337781/16 -r
+will emulate 'W25Q256FV'
+MCU version: 3.03
+FPGA version: 2.10 (3.3V)
+Serial number: DP142531
+SPI flash database: 4.3.01
+EM100Pro currently running
+EM100Pro hold pin currently low
+
+Stopped EM100Pro
+Sending flash chip configuration
+Chip set to W25Q256FV
+Sent 2097152 bytes of 33554432
+Sent 4194304 bytes of 33554432
+Sent 6291456 bytes of 33554432
+Sent 8388608 bytes of 33554432
+Sent 10485760 bytes of 33554432
+Sent 12582912 bytes of 33554432
+Sent 14680064 bytes of 33554432
+Sent 16777216 bytes of 33554432
+Sent 18874368 bytes of 33554432
+Sent 20971520 bytes of 33554432
+Sent 23068672 bytes of 33554432
+Sent 25165824 bytes of 33554432
+Sent 27262976 bytes of 33554432
+Sent 29360128 bytes of 33554432
+Sent 31457280 bytes of 33554432
+Sent 33554432 bytes of 33554432
+Transfer Succeeded
+Started EM100Pro
++ echo date
++ echo 'sleeping 50 because this piece of shit can'\''t take it'
+sleeping 50 because this piece of shit can't take it
++ sleep 50
++ echo ./0
++ sleep 5
++ echo ./1
++ sleep 10
++ ./uinit -r
+2018/12/20 14:04:14 Listening on 192.168.0.1:8080 at 2018-12-20 14:04:14.279108354 -0800 PST m=+0.004512363
+2018/12/20 14:06:38 Accepted &{{0xc000022080}}
+Command.Welcome(&{}):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+Command.Reboot(&{0s}): 
+2018/12/20 14:08:44 Accepted &{{0xc000144100}}
+Command.Welcome(<nil>):   ______________
+< welcome to DUT >
+  --------------
+         \   ^__^ 
+          \  (oo)\_______
+             (__)\       )\/\
+                 ||----w |
+                 ||     ||
+
+2018/12/20 14:08:44 We are now done ......................
++ echo 'ALL DONE'
+ALL DONE
+2018/12/20 14:08:44 Removed &{24A44CAF-0BF2-4514-90C4-C794B3E778F5 24A44CAF-0BF2-4514-90C4-C794B3E778F5:EFI_FV_FILETYPE_DRIVER:MePolicyInitDxe 7 map[r:cleaner R:saverom]}: file is /tmp/futk925337781/16
+2018/12/20 14:08:44 Try to remove E2441B64-7EF4-41FE-B3A3-8CAA
