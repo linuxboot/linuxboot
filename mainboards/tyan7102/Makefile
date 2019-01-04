@@ -20,7 +20,20 @@ buildbzimage:
 i:
 	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
 	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
-	go run $(GOPATH)/src/github.com/u-root/u-root/u-root.go -build=bb github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish  
+	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd  
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
+
+burn: bigi b
+	futk remove100.rom fv linux/arch/x86/boot/bzImage splat remove100big.rom saverom < /dev/null
+	./BURN remove100big.rom
+
+bigi:
+	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
+	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
+	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files key.pub minimal  github.com/linuxboot/dut/uinit   github.com/u-root/u-root/xcmds/sshd  
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
@@ -30,7 +43,7 @@ cleanme:
 	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
 
 q:
-	qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192
+	/usr/bin/qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192 -nographic
 findit:
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated ' < xxx
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
