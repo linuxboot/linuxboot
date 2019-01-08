@@ -20,22 +20,22 @@ buildbzimage:
 i:
 	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
 	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
-	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd  
+	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd    github.com/u-root/u-root/cmds/scp  
 	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -f initramfs.linux_amd64.cpio
+	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
 burn: bigi b
-	futk remove100.rom fv linux/arch/x86/boot/bzImage splat remove100big.rom saverom < /dev/null
+	futk remove100.rom fv linux/arch/x86/boot/bzImage splat remove100big.rom saverom  < /dev/null
 	./BURN remove100big.rom
 
 bigi:
 	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
 	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
-	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files key.pub minimal  github.com/linuxboot/dut/uinit   github.com/u-root/u-root/xcmds/sshd  
+	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files key.pub minimal  github.com/linuxboot/dut/uinit   github.com/u-root/u-root/xcmds/sshd github.com/u-root/u-root/xcmds/pox   github.com/u-root/u-root/cmds/scp   github.com/u-root/u-root/cmds/cpio
 	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -f initramfs.linux_amd64.cpio
+	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
