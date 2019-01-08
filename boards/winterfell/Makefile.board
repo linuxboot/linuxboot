@@ -36,11 +36,14 @@ $(BUILD)/rom/0x00f00000.fv \
 
 # Replace the DxeCore and SmmCore with our own
 # and add in the Linux kernel / initrd
+DXE_FFS := \
+./dxe/linuxboot.ffs \
+$(BUILD)/Linux.ffs \
+$(BUILD)/Initrd.ffs \
+
 $(BUILD)/dxe.vol: \
 	$(dxe-files) \
-	./dxe/linuxboot.ffs \
-	$(BUILD)/Linux.ffs \
-	$(BUILD)/Initrd.ffs \
+	$(DXE_FFS) \
 
 #
 # Compact the NVRAM region.  this isn't required, but makes for cleaner images.

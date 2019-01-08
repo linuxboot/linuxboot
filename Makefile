@@ -139,13 +139,11 @@ dxe/%.ffs:
 ifndef USE_UTK
 $(BUILD)/linuxboot.rom: $(FVS)
 else
-$(BUILD)/linuxboot.rom: bin/utk ./dxe/linuxboot.ffs $(BUILD)/Linux.ffs $(BUILD)/Initrd.ffs
+$(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
 	$< \
 		$(ROM) \
 		remove_dxes_except boards/$(BOARD)/image-files.txt \
-		insert_dxe ./dxe/linuxboot.ffs \
-		insert_dxe $(BUILD)/Linux.ffs \
-		insert_dxe $(BUILD)/Initrd.ffs \
+		$(foreach ffs,$(DXE_FFS), insert_dxe $(ffs)) \
 		save $@
 endif
 
