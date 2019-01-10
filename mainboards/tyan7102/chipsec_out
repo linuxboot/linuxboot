@@ -1,0 +1,190 @@
+2019/01/10 22:38:05 os.Args is [uname -p 2> /dev/null]: you need to specify which command to invoke.
+[*] Ignoring unsupported platform warning and continue execution
+################################################################
+##                                                            ##
+##  CHIPSEC: Platform Hardware Security Assessment Framework  ##
+##                                                            ##
+################################################################
+[CHIPSEC] Version 1.3.5.dev1
+[CHIPSEC] Arguments: -i
+[CHIPSEC] API mode: using OS native API (not using CHIPSEC kernel module)
+[91mERROR: Unsupported Platform: VID = 0x8086, DID = 0x2020[0m
+[91mERROR: Platform is not supported (Unsupported Platform: VID = 0x8086, DID = 0x2020).[0m
+[93mWARNING: Platform dependent functionality is likely to be incorrect[0m
+[CHIPSEC] OS      : Linux 4.13.0-rc7-onie+ #125 SMP Thu Jan 10 15:35:51 PST 2019 x86_64
+[CHIPSEC] Platform: UnknownPlatform
+[CHIPSEC]      VID: 8086
+[CHIPSEC]      DID: 2020
+ 
+[*] loading common modules from ".home.rminnich.projects.NERF.chipsec.chipsec.modules.common" ..
+[+] loaded chipsec.modules.common.spi_lock
+[+] loaded chipsec.modules.common.spi_fdopss
+[+] loaded chipsec.modules.common.spi_desc
+[+] loaded chipsec.modules.common.spi_access
+[+] loaded chipsec.modules.common.smrr
+[+] loaded chipsec.modules.common.smm
+[+] loaded chipsec.modules.common.rtclock
+[+] loaded chipsec.modules.common.ia32cfg
+[+] loaded chipsec.modules.common.bios_wp
+[+] loaded chipsec.modules.common.bios_ts
+[+] loaded chipsec.modules.common.bios_smi
+[+] loaded chipsec.modules.common.bios_kbrd_buffer
+[+] loaded chipsec.modules.common.uefi.s3bootscript
+[+] loaded chipsec.modules.common.uefi.access_uefispec
+[+] loaded chipsec.modules.common.secureboot.variables
+[*] No platform specific modules to load
+[*] loading modules from ".home.rminnich.projects.NERF.chipsec.chipsec.modules" ..
+[+] loaded chipsec.modules.smm_dma
+[+] loaded chipsec.modules.remap
+[+] loaded chipsec.modules.memconfig
+[*] running loaded modules ..
+
+[*] running module: chipsec.modules.common.spi_lock
+[94m[x][ =======================================================================
+[x][ Module: SPI Flash Controller Configuration Lock
+[x][ =======================================================================[0m
+[91mERROR: Exception occurred during chipsec.modules.common.spi_lock.run(): ''FlashLockDown''[0m
+
+[*] running module: chipsec.modules.common.spi_fdopss
+[94m[x][ =======================================================================
+[x][ Module: SPI Flash Descriptor Security Override Pin-Strap
+[x][ =======================================================================[0m
+[91mERROR: Couldn't find definition of required configuration registers (HSFS)[0m
+
+[*] running module: chipsec.modules.common.spi_desc
+[94m[x][ =======================================================================
+[x][ Module: SPI Flash Region Access Control
+[x][ =======================================================================[0m
+[91mERROR: Exception occurred during chipsec.modules.common.spi_desc.run(): ''FRAP''[0m
+
+[*] running module: chipsec.modules.common.spi_access
+[91mERROR: Exception occurred during chipsec.modules.common.spi_access.run(): ''HSFS''[0m
+
+[*] running module: chipsec.modules.common.smrr
+[94m[x][ =======================================================================
+[x][ Module: CPU SMM Cache Poisoning / System Management Range Registers
+[x][ =======================================================================[0m
+[91mERROR: Couldn't find definition of required configuration registers[0m
+
+[*] running module: chipsec.modules.common.smm
+[94m[x][ =======================================================================
+[x][ Module: Compatible SMM memory (SMRAM) Protection
+[x][ =======================================================================[0m
+[91mERROR: Couldn't find definition of required registers (PCI0.0.0_SMRAMC)[0m
+
+[*] running module: chipsec.modules.common.rtclock
+Skipping module chipsec.modules.common.rtclock since it is not supported in this platform
+
+[*] running module: chipsec.modules.common.ia32cfg
+[94m[x][ =======================================================================
+[x][ Module: IA32 Feature Control Lock
+[x][ =======================================================================[0m
+[*] Verifying IA32_Feature_Control MSR is locked on all logical CPUs..
+[91mERROR: Exception occurred during chipsec.modules.common.ia32cfg.run(): ''Ia32FeatureControlLock''[0m
+
+[*] running module: chipsec.modules.common.bios_wp
+[91mERROR: Exception occurred during chipsec.modules.common.bios_wp.run(): ''HSFS''[0m
+
+[*] running module: chipsec.modules.common.bios_ts
+[94m[x][ =======================================================================
+[x][ Module: BIOS Interface Lock (including Top Swap Mode)
+[x][ =======================================================================[0m
+[91mERROR: BiosInterfaceLockDown (BILD) control is not defined[0m
+
+[*] running module: chipsec.modules.common.bios_smi
+[94m[x][ =======================================================================
+[x][ Module: SMI Events Configuration
+[x][ =======================================================================[0m
+[91mERROR: Couldn't find definition of required configuration registers[0m
+
+[*] running module: chipsec.modules.common.bios_kbrd_buffer
+[94m[x][ =======================================================================
+[x][ Module: Pre-boot Passwords in the BIOS Keyboard Buffer
+[x][ =======================================================================[0m
+[*] Keyboard buffer head pointer = 0x1E (at 0x41A), tail pointer = 0x1E (at 0x41C)
+[*] Keyboard buffer contents (at 0x41E):
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |                 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |                 
+[*] Checking contents of the keyboard buffer..
+
+[92m[+] PASSED: Keyboard buffer looks empty. Pre-boot passwords don't seem to be exposed[0m
+
+[*] running module: chipsec.modules.common.uefi.s3bootscript
+[94m[x][ =======================================================================
+[x][ Module: S3 Resume Boot-Script Protections
+[x][ =======================================================================[0m
+[92m[+] Didn't find any S3 boot-scripts in EFI variables[0m
+[93m[!] WARNING: S3 Boot-Script was not found. Firmware may be using other ways to store/locate it[0m
+
+[*] running module: chipsec.modules.common.uefi.access_uefispec
+[94m[x][ =======================================================================
+[x][ Module: Access Control of EFI Variables
+[x][ =======================================================================[0m
+[*] Testing UEFI variables ..
+
+[91m[-] Variables with attributes that differ from UEFI spec:[0m
+
+[92m[+] PASSED: All checked EFI variables are protected according to spec.[0m
+
+[*] running module: chipsec.modules.common.secureboot.variables
+[94m[x][ =======================================================================
+[x][ Module: Attributes of Secure Boot EFI Variables
+[x][ =======================================================================[0m
+[91m[!] Secure Boot variable SecureBoot is not found[0m
+[91m[!] Secure Boot variable SetupMode is not found[0m
+[91m[!] Secure Boot variable PK is not found[0m
+[91m[!] Secure Boot variable KEK is not found[0m
+[91m[!] Secure Boot variable db is not found[0m
+[91m[!] Secure Boot variable dbx is not found[0m
+
+[*] Secure Boot appears to be disabled
+[93m[*] SKIPPED: None of required Secure Boot variables found. Secure Boot is not enabled[0m
+
+[*] running module: chipsec.modules.smm_dma
+[94m[x][ =======================================================================
+[x][ Module: SMM TSEG Range Configuration Check
+[x][ =======================================================================[0m
+[91mERROR: Exception occurred during chipsec.modules.smm_dma.run(): ''PCI0.0.0_TSEGMB''[0m
+
+[*] running module: chipsec.modules.remap
+Skipping module chipsec.modules.remap since it is not supported in this platform
+
+[*] running module: chipsec.modules.memconfig
+Skipping module chipsec.modules.memconfig since it is not supported in this platform
+
+[CHIPSEC] ***************************  SUMMARY  ***************************
+[CHIPSEC] Time elapsed          0.014
+[CHIPSEC] Modules total         18
+[CHIPSEC] Modules failed to run 11:
+[91mERROR: chipsec.modules.common.spi_lock[0m
+[91mERROR: chipsec.modules.common.spi_fdopss[0m
+[91mERROR: chipsec.modules.common.spi_desc[0m
+[91mERROR: chipsec.modules.common.spi_access[0m
+[91mERROR: chipsec.modules.common.smrr[0m
+[91mERROR: chipsec.modules.common.smm[0m
+[91mERROR: chipsec.modules.common.ia32cfg[0m
+[91mERROR: chipsec.modules.common.bios_wp[0m
+[91mERROR: chipsec.modules.common.bios_ts[0m
+[91mERROR: chipsec.modules.common.bios_smi[0m
+[91mERROR: chipsec.modules.smm_dma[0m
+[CHIPSEC] Modules passed        2:
+[92m[+] PASSED: chipsec.modules.common.bios_kbrd_buffer[0m
+[92m[+] PASSED: chipsec.modules.common.uefi.access_uefispec[0m
+[CHIPSEC] Modules failed        0:
+[CHIPSEC] Modules with warnings 1:
+[93m[!] WARNING: chipsec.modules.common.uefi.s3bootscript[0m
+[CHIPSEC] Modules skipped 4:
+[93m[*] SKIPPED: chipsec.modules.common.rtclock[0m
+[93m[*] SKIPPED: chipsec.modules.common.secureboot.variables[0m
+[93m[*] SKIPPED: chipsec.modules.remap[0m
+[93m[*] SKIPPED: chipsec.modules.memconfig[0m
+[CHIPSEC] Modules with Exceptions 6:
+[91mERROR: chipsec.modules.common.spi_lock[0m
+[91mERROR: chipsec.modules.common.spi_desc[0m
+[91mERROR: chipsec.modules.common.spi_access[0m
+[91mERROR: chipsec.modules.common.ia32cfg[0m
+[91mERROR: chipsec.modules.common.bios_wp[0m
+[91mERROR: chipsec.modules.smm_dma[0m
+[CHIPSEC] *****************************************************************
+Exception: [31;1mpython exited with 51[m
+, line 1: [1;4mpython /home/rminnich/projects/NERF/chipsec/chipsec_main.py -i[m
