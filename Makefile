@@ -30,6 +30,7 @@ $(shell \
 	mkdir -p $(BUILD) ; \
 )
 
+realinitrd := $(INITRD)
 # Bring in the board specific things
 include boards/$(BOARD)/Makefile.board
 
@@ -70,7 +71,7 @@ edk2/.git:
 	git clone --depth 1 --branch UDK2018 https://github.com/linuxboot/edk2
 
 $(BUILD)/Linux.ffs: $(KERNEL)
-$(BUILD)/Initrd.ffs: $(INITRD)
+$(BUILD)/Initrd.ffs: $(realinitrd)
 
 ifdef CUSTOM
 $(BUILD)/User.ffs: $(CUSTOM) FORCE

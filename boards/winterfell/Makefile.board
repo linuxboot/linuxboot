@@ -22,6 +22,9 @@ dxe-files := $(shell awk  \
 
 extra-size	:= 0x4E0000
 
+# extra-size - 0x108 (need to be word aligned) decimal for dd
+INITRD_SPLIT	:= 5111544
+
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other
 # images with the LinuxBoot one.  Potentially we
@@ -52,6 +55,22 @@ $(BUILD)/Initrd.ffs \
 
 $(BUILD)/extra.vol: $(EXTRA_FFS)
 
+#
+ifdef INITRD_SPLIT
+realinitrd := $(INITRD).1
+partinitrd := $(INITRD).2
+
+$(realinitrd): $(INITRD)
+	dd if=$^ of=$@ bs=1 count=$(INITRD_SPLIT)
+
+$(partinitrd): $(INITRD)
+	dd if=$^ of=$@ bs=1 skip=$(INITRD_SPLIT)
+
+$(BUILD)/Initrdpart.ffs: $(partinitrd)
+
+$(BUILD)/dxe.vol: $(BUILD)/Initrdpart.ffs
+
+endif
 #
 # Compact the NVRAM region.  this isn't required, but makes for cleaner images.
 #
