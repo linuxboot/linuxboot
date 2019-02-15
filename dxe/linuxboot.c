@@ -342,6 +342,7 @@ linuxboot_start()
 	EFI_STATUS status;
 	EFI_GUID bzimage_guid = { 0xDECAFBAD, 0x6548, 0x6461, { 0x73, 0x2d, 0x2f, 0x2d, 0x4e, 0x45, 0x52, 0x46 }};
 	EFI_GUID initrd_guid = { 0x74696e69, 0x6472, 0x632e, { 0x70, 0x69, 0x6f, 0x2f, 0x62, 0x69, 0x6f, 0x73 }};
+	EFI_GUID initrdpart_guid = { 0x74696e69, 0x6472, 0x632e, { 0x70, 0x69, 0x6f, 0x2f, 0x70, 0x61, 0x72, 0x74 }};
 
 	void * bzimage_buffer = NULL;
 	UINTN bzimage_length = 0;
@@ -389,6 +390,12 @@ linuxboot_start()
 		loaded_image->LoadOptions = cmdline;
 		loaded_image->LoadOptionsSize = sizeof(cmdline);
 
+		serial_string("LinuxBoot: Looking for a second initrd part\r\n");
+		append_read_ffs(gBS, &initrdpart_guid, &initrd_buffer, &initrd_length, EFI_SECTION_RAW);
+		serial_string("LinuxBoot: initrd buffer=");
+		serial_hex((unsigned long) initrd_buffer, 16);
+		serial_string("LinuxBoot: initrd length=");
+		serial_hex(initrd_length, 8);
 		uintptr_t hdr = (uintptr_t) loaded_image->ImageBase;
 		*(uint32_t*)(hdr + 0x218) = (uint32_t)(uintptr_t) initrd_buffer;
 		*(uint32_t*)(hdr + 0x21c) = (uint32_t)(uintptr_t) initrd_length;

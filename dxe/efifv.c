@@ -115,3 +115,88 @@ read_ffs(
 
 	return 0;
 }
+
+int
+append_read_ffs(
+	EFI_BOOT_SERVICES * gBS,
+	EFI_GUID * guid,
+	void ** buffer,
+	UINTN * size,
+	EFI_SECTION_TYPE section_type
+)
+{
+	EFI_FIRMWARE_VOLUME2_PROTOCOL * fv = find_ffs(gBS, guid);
+	if (!fv)
+		return -1;
+
+	UINT32 auth_status;
+	UINT8 ignoredbyte;
+	VOID *ignoredptr = &ignoredbyte ;
+	UINTN newsize = 0;
+	EFI_STATUS status;
+
+	status = fv->ReadSection(
+		fv,
+		guid,
+		section_type,
+		0,
+		&ignoredptr,
+		&newsize,
+		&auth_status
+	);
+	if (status != EFI_WARN_BUFFER_TOO_SMALL) {
+		return -2;
+	}
+	serial_string("LinuxBoot: FFS length=");
+	serial_hex(newsize, 8);
+
+	VOID* newbuffer = NULL;
+	status = gBS->AllocatePool(
+		EfiBootServicesData,
+		*size + newsize,
+		&newbuffer
+	);
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: alloc rc=");
+		serial_hex(status, 8);
+		return -1;
+	}
+
+	gBS->CopyMem(newbuffer, *buffer, *size);
+
+	status = gBS->FreePool(*buffer);
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: free rc=");
+		serial_hex(status, 8);
+		return -1;
+	}
+
+	*buffer = newbuffer;
+	newbuffer = *buffer + *size;
+
+	status = fv->ReadSection(
+		fv,
+		guid,
+		section_type,
+		0,
+		&newbuffer,
+		&newsize,
+		&auth_status
+	);
+	if (status != 0)
+	{
+		serial_string("LinuxBoot: read section rc=");
+		serial_hex(status, 8);
+		return -1;
+	}
+	*size += newsize;
+
+	serial_string("LinuxBoot: append FFS buffer=");
+	serial_hex((unsigned long) *buffer, 16);
+	serial_string("LinuxBoot: append FFS length=");
+	serial_hex(*size, 8);
+
+	return 0;
+}

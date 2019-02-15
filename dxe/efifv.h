@@ -88,4 +88,13 @@ read_ffs(
 	EFI_SECTION_TYPE section_type
 );
 
+int
+append_read_ffs(
+	EFI_BOOT_SERVICES * gBS,
+	EFI_GUID * guid,
+	void ** buffer,
+	UINTN * size,
+	EFI_SECTION_TYPE section_type
+);
+
 #endif
