@@ -3,7 +3,7 @@ default: build
 build:
 	echn getstuff, uroot, kernel, or image.bin
 
-image.bin:
+image.bin: kernel
 	cp linux/arch/x86/boot/bzImage kernel
 	~/go/bin/utk tyan7106.bin \
 	        remove Ip.*  \
