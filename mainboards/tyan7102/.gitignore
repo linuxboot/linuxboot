@@ -3,4 +3,5 @@
 /bzImage
 *.bin
 /linux
+/chipsec.cpio
 
