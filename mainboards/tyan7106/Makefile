@@ -1,6 +1,39 @@
 default: build
 
 build:
+	echn getstuff, uroot, kernel, or image.bin
+
+image.bin: kernel
+	~/go/bin/ForthUTK tyan7106.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  kernel splat drop drop image.bin saverom
+
+kernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage kernel
+
+uroot:
+	go run github.com/u-root/u-root -build=bb minimal 
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
+
+bzImage: 
+	(cd linux && make oldconfig && make -j32)
+
+getstuff:
+	rm -rf linux
+	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
+	xzcat kernel.xz | tar x
+	mv linux-4.14.111 linux
+	cp config-4.14.111 linux/.config
+	go get github.com/linuxboot/mainboards
+	go get -u github.com/linuxboot/ForthUTK
+	go install github.com/linuxboot/ForthUTK
+	wget ftp://ftp.tyan.com/bios/S7106GM2NR-L2_v204.zip
+	unzip S7106GM2NR-L2_v204.zip 
+	cp 7106V204.ROM tyan7106.bin
+
+# everything from here below was part of an experiment and can be ignored.
+experiment:
 	echo b to build, i for initramfs, q for qemu, d to dxeclean
 
 b: buildbzimage
