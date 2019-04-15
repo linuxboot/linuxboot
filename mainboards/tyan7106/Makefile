@@ -42,6 +42,7 @@ uroot:
 	cp *lzma linux
 
 bzImage:
+	cp config-4.14.111 linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 getstuff:
@@ -49,8 +50,6 @@ getstuff:
 	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
 	xzcat kernel.xz | tar x
 	mv linux-4.14.111 linux
-	cp config-4.14.111 linux/.config
-	go get github.com/linuxboot/mainboards
 	go install github.com/linuxboot/fiano/cmds/utk
 	wget ftp://ftp.tyan.com/bios/S7106GM2NR-L2_v204.zip
 	unzip S7106GM2NR-L2_v204.zip
