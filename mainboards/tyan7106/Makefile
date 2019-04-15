@@ -6,7 +6,7 @@ build:
 b: buildbzimage
 
 d:
-	ForthUTK tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+	ForthUTK tyan7106.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
 
 d98:
 	ForthUTK 98.splat fv ./DXECLEANER clean
@@ -49,7 +49,7 @@ findit:
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
 
 all:
-	~/go/bin/utk tyan7102.bin \
+	~/go/bin/utk tyan7106.bin \
 		remove Ip.*  \
 		remove Tcp.*  \
 		remove Usb.*  \
