@@ -6,13 +6,13 @@ build:
 b: buildbzimage
 
 d:
-	futk tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
+	ForthUTK tyan7102.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  /tmp/x saverom /tmp/x fv linux/arch/x86/boot/bzImage splat drop /tmp/x saverom	./DXECLEANER clean
 
 d98:
-	futk 98.splat fv ./DXECLEANER clean
+	ForthUTK 98.splat fv ./DXECLEANER clean
 
 d4:
-	futk RUN4.4.rom fv ./DXECLEANER clean
+	ForthUTK RUN4.4.rom fv ./DXECLEANER clean
 
 buildbzimage:
 	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
@@ -27,7 +27,7 @@ i:
 	cp *lzma linux
 
 burn: bigi b
-	futk remove100.rom fv linux/arch/x86/boot/bzImage splat remove100big.rom saverom  < /dev/null
+	ForthUTK remove100.rom fv linux/arch/x86/boot/bzImage splat remove100big.rom saverom  < /dev/null
 	./BURN remove100big.rom
 
 bigi:
