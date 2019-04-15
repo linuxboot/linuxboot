@@ -3,20 +3,45 @@ default: build
 build:
 	echn getstuff, uroot, kernel, or image.bin
 
-image.bin: kernel
-	~/go/bin/ForthUTK tyan7106.bin fv 'AMITSE|Ata.*|Disk.*|.*Ftp.*|.*Dhcp.*|Tcp.*|.*Pxe.*|.*Udp.*' ix r r tag  kernel splat drop drop image.bin saverom
+image.bin:
+	cp linux/arch/x86/boot/bzImage kernel
+	~/go/bin/utk tyan7106.bin \
+	        remove Ip.*  \
+                remove Tcp.*  \
+                remove Usb.*  \
+                remove Udp.*  \
+                remove Dhcp.*  \
+                remove .np.*  \
+                remove .tftp.*  \
+                remove Http.* \
+                remove .*Dns.* \
+                remove Arp.* \
+                remove .*NetworkStackSetupScreen.*  \
+                remove Iscsi.* \
+                remove Scsi.* \
+                remove Fat.* \
+                remove Ahci.* \
+                remove Partition.* \
+                remove Sata.* \
+                remove Disk.* \
+                remove Whea.* \
+                remove .*Pxe.* \
+                remove Ata.* \
+		remove AMITSE \
+		replace_pe32 FullShell kernel  \
+	save image.bin
 
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 uroot:
-	go run github.com/u-root/u-root -build=bb minimal 
+	go run github.com/u-root/u-root -build=bb minimal
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
-bzImage: 
+bzImage:
 	(cd linux && make oldconfig && make -j32)
 
 getstuff:
@@ -26,10 +51,9 @@ getstuff:
 	mv linux-4.14.111 linux
 	cp config-4.14.111 linux/.config
 	go get github.com/linuxboot/mainboards
-	go get -u github.com/linuxboot/ForthUTK
-	go install github.com/linuxboot/ForthUTK
+	go install github.com/linuxboot/fiano/cmds/utk
 	wget ftp://ftp.tyan.com/bios/S7106GM2NR-L2_v204.zip
-	unzip S7106GM2NR-L2_v204.zip 
+	unzip S7106GM2NR-L2_v204.zip
 	cp 7106V204.ROM tyan7106.bin
 
 # everything from here below was part of an experiment and can be ignored.
@@ -53,7 +77,7 @@ buildbzimage:
 i:
 	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
 	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
-	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd    github.com/u-root/u-root/cmds/scp  
+	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd    github.com/u-root/u-root/cmds/scp
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
@@ -72,7 +96,7 @@ bigi:
 	ls -l initramfs*
 	cp *lzma linux
 
-cleanme: 
+cleanme:
 	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
 
 q:
@@ -372,4 +396,4 @@ all:
 		comment AMITSESetupData \
 		comment OPAPlatConfigSkt0 \
 		comment OPAPlatConfigSkt1 \
-		comment PeiCore 
+		comment PeiCore
