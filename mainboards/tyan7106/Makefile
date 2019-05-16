@@ -1,3 +1,5 @@
+GOPATH ?= $(HOME)/go
+
 default: build
 
 build:
@@ -5,7 +7,7 @@ build:
 
 image.bin: kernel
 	cp linux/arch/x86/boot/bzImage kernel
-	~/go/bin/utk tyan7106.bin \
+	$(GOPATH)/bin/utk tyan7106.bin \
 	        remove Ip.*  \
                 remove Tcp.*  \
                 remove Usb.*  \
@@ -73,10 +75,10 @@ d4:
 
 buildbzimage:
 	(cd linux && make -j32 && ls -l arch/x86/boot/bzImage)
-	
+
 i:
-	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
-	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
+	(cd $(GOPATH)/src/github.com/linuxboot/dut/uinit/&&go build)
+	cp $(GOPATH)/src/github.com/linuxboot/dut/uinit/uinit .
 	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files id_rsa.pub github.com/linuxboot/dut/uinit github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd    github.com/u-root/u-root/cmds/scp
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
@@ -88,8 +90,8 @@ burn: bigi b
 	./BURN remove100big.rom
 
 bigi:
-	(cd ~/go/src/github.com/linuxboot/dut/uinit/&&go build)
-	cp ~/go/src/github.com/linuxboot/dut/uinit/uinit .
+	(cd $(GOPATH)/src/github.com/linuxboot/dut/uinit/&&go build)
+	cp $(GOPATH)/src/github.com/linuxboot/dut/uinit/uinit .
 	go run $(GOPATH)/src/github.com/u-root/u-root -build=bb -files key.pub minimal  github.com/linuxboot/dut/uinit   github.com/u-root/u-root/xcmds/sshd github.com/u-root/u-root/xcmds/pox   github.com/u-root/u-root/cmds/scp   github.com/u-root/u-root/cmds/cpio
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
@@ -97,7 +99,7 @@ bigi:
 	cp *lzma linux
 
 cleanme:
-	~/go/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
+	$(GOPATH)/bin/utk dxeclean.bin dxecleaner_blacklist ./DXECLEANER ./blacklist
 
 q:
 	/usr/bin/qemu-system-x86_64 -kernel linux/arch/x86/boot/bzImage  -serial stdio -monitor /dev/null -m 8192 -nographic
@@ -106,7 +108,7 @@ findit:
 	jq -c 'to_entries[] | .value | select(.Type == "EFI_FV_FILETYPE_DRIVER") | .Sections [] | .Encapsulated[1] | [.Value.Name]'< xxx
 
 all:
-	~/go/bin/utk tyan7106.bin \
+	$(GOPATH)/bin/utk tyan7106.bin \
 		remove Ip.*  \
 		remove Tcp.*  \
 		remove Usb.*  \
