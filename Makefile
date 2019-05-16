@@ -16,7 +16,7 @@ BOARD		?= qemu
 KERNEL		?= bzImage
 INITRD		?= initrd.cpio.xz
 BUILD		:= build/$(BOARD)
-
+EXFW_OPT	?=
 # Make sure that we have a board file for the user
 $(shell \
 	if [ ! -r boards/$(BOARD)/Makefile.board ]; then \
@@ -115,6 +115,7 @@ $(BUILD)/$(BOARD).txt: $(ROM)
 	( \
 	cd $(BUILD) ; \
 	$(pwd)/bin/extract-firmware \
+		$(EXFW_OPT) \
 		-o rom \
 	) < $^ \
 	> $@.tmp

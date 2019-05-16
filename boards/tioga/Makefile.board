@@ -18,7 +18,13 @@ dxe-files := $(shell awk  \
 	boards/$(BOARD)/image-files.txt \
 )
 
+Linux-depex := \
+	$(RuntimeArchProtocolGuid) \
+	$(AcpiTableProtocolGuid) \
+	$(EfiMpServiceProtocolGuid) \
+	$(EfiPciEnumerationCompleteProtocolGuid) \
 
+EXFW_OPT = --repack
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other
 # images with the LinuxBoot one.  Potentially we
@@ -37,6 +43,6 @@ $(BUILD)/rom/0x01c00000.fv \
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
-	$(BUILD)/Linux.ffs \
-	$(BUILD)/Initrd.ffs \
 	$(dxe-files) \
+	$(BUILD)/Linux.ffs \
+	
