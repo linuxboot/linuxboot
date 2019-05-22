@@ -10,17 +10,21 @@
  * systems.
  *
  */
-// #define VOLUME_ADDRESS 0xFF840000 // Winterfell
-// #define VOLUME_LENGTH  0x20000
+#define VOLUME_ADDRESS 0xFF840000 // Winterfell
+#define VOLUME_LENGTH  0x20000
 
-#define VOLUME_ADDRESS	0xFF500000
-#define VOLUME_LENGTH	0x00400000
+#define VOLUME2_ADDRESS 0xFF320000 // Winterfell resize ME
+#define VOLUME2_LENGTH  0x4E0000
+
+// #define VOLUME_ADDRESS	0xFF500000
+// #define VOLUME_LENGTH	0x00400000
 
 #include "serial.h"
 #include <efi/efi.h>
 #include "efidxe.h"
 #include "efifv.h"
 #include <asm/bootparam.h>
+#include <efi/pci22.h>
 
 EFI_HANDLE gImage;
 EFI_SYSTEM_TABLE * gST;
@@ -158,6 +162,7 @@ efi_visit_handles(
 		//serial_hex((uint64_t) handle_buffer[i], 16);
 		callback(handle_buffer[i], priv);
 	}
+	gBS->FreePool (handle_buffer);
 }
 
 
@@ -175,7 +180,96 @@ efi_connect_controllers(
 	);
 }
 
+#define EFI_PCI_DEVICE_ENABLE                     (EFI_PCI_IO_ATTRIBUTE_IO | EFI_PCI_IO_ATTRIBUTE_MEMORY | EFI_PCI_IO_ATTRIBUTE_BUS_MASTER)
 
+#define IS_CLASS1(_p, c)              ((_p)->Hdr.ClassCode[2] == (c))
+#define IS_CLASS2(_p, c, s)           (IS_CLASS1 (_p, c) && ((_p)->Hdr.ClassCode[1] == (s)))
+#define IS_CLASS3(_p, c, s, p)        (IS_CLASS2 (_p, c, s) && ((_p)->Hdr.ClassCode[0] == (p)))
+
+
+#define IS_PCI_LPC(_p)                IS_CLASS3 (_p, PCI_CLASS_BRIDGE, PCI_CLASS_ISA, 0)
+#define IS_PCI_ISA_PDECODE(_p)        IS_CLASS3 (_p, PCI_CLASS_BRIDGE, PCI_CLASS_ISA_POSITIVE_DECODE, 0)
+
+
+EFI_GUID pci_io_protocol = EFI_PCI_IO_PROTOCOL_GUID;
+EFI_PCI_IO_PROTOCOL * LpcPciIo;
+
+static void EFIAPI
+efi_search_lpc(
+	EFI_HANDLE handle,
+	void * priv
+)
+{
+	EFI_PCI_IO_PROTOCOL * PciIo;
+	PCI_TYPE00 Pci;
+
+	priv = priv; // unused
+
+	EFI_STATUS status = gBS->HandleProtocol (handle, &pci_io_protocol, (VOID *)&PciIo);
+	if (EFI_ERROR (status)) {
+		return;
+	}
+
+	status = PciIo->Pci.Read (
+		PciIo,
+		EfiPciIoWidthUint32,
+		0,
+		sizeof (Pci) / sizeof (UINT32),
+		&Pci
+	);
+	if (EFI_ERROR (status)) {
+		return;
+	}
+	status = PciIo->Attributes (
+		PciIo,
+		EfiPciIoAttributeOperationEnable,
+		EFI_PCI_DEVICE_ENABLE,
+		NULL
+	);
+	if (EFI_ERROR (status)) {
+		return;
+	}
+	if ((IS_PCI_LPC (&Pci)) || ((IS_PCI_ISA_PDECODE (&Pci)) && (Pci.Hdr.VendorId == 0x8086))) {
+		serial_string("Found LPC Bridge device\r\n");
+		LpcPciIo = PciIo;
+		return;
+	}
+}
+
+#define BIOS_SEL1	0xD0
+#define BIOS_SEL2	0xD4
+#define BIOS_DEC_EN1	0xD8
+static void
+lpc_update_flash_access(void)
+{
+	UINT32 reg32;
+	UINT16 reg16;
+
+	EFI_STATUS status = LpcPciIo->Pci.Read(LpcPciIo, EfiPciIoWidthUint32, BIOS_SEL1, 1, &reg32);
+	serial_string("BIOS_SEL1=");
+	if (EFI_ERROR (status)) {
+		serial_string("status=");
+		serial_hex(status, 8);
+		return;
+	}
+	serial_hex(reg32, 8);
+
+	status = LpcPciIo->Pci.Read(LpcPciIo, EfiPciIoWidthUint16, BIOS_SEL2, 1, &reg16);
+	serial_string("BIOS_SEL2=");
+	serial_hex(reg16, 4);
+
+
+	reg16 = 0xFFCF;
+	status = LpcPciIo->Pci.Write(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
+	if (EFI_ERROR (status)) {
+		serial_string("status=");
+		serial_hex(status, 8);
+		return;
+	}
+	status = LpcPciIo->Pci.Read(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
+	serial_string("BIOS_DEC_EN1=");
+	serial_hex(reg16, 4);
+}
 
 static void
 efi_final_init(void)
@@ -183,9 +277,18 @@ efi_final_init(void)
 	// equivilant to PlatformBootManagerBeforeConsole
 
 	// connect all the pci root bridges
-	serial_string("LinuxBoot: connect pci root brdiges\r\n");
+	serial_string("LinuxBoot: connect pci root bridges\r\n");
 	EFI_GUID pci_protocol = EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID;
 	efi_visit_handles(&pci_protocol, efi_connect_controllers, (void*) 0);
+
+	// search LPC and update flash access
+	serial_string("LinuxBoot: search LPC device\r\n");
+	efi_visit_handles(&pci_io_protocol, efi_search_lpc, (void*) 0);
+
+	lpc_update_flash_access();
+
+	if (VOLUME2_ADDRESS)
+		process_fv(VOLUME2_ADDRESS, VOLUME2_LENGTH);
 
 	// signal the acpi platform driver that it can download the ACPI tables
 	serial_string("LinuxBoot: signal root bridges connected\r\n");
@@ -261,7 +364,7 @@ linuxboot_start()
 		serial_string("LinuxBoot: unable to load bzImage image\r\n");
 		return -1;
 	}
-	
+
 	EFI_GUID loaded_image_guid = LOADED_IMAGE_PROTOCOL;
 	EFI_LOADED_IMAGE_PROTOCOL * loaded_image = NULL;
 	status = gBS->HandleProtocol(
@@ -290,9 +393,6 @@ linuxboot_start()
 		*(uint32_t*)(hdr + 0x218) = (uint32_t)(uintptr_t) initrd_buffer;
 		*(uint32_t*)(hdr + 0x21c) = (uint32_t)(uintptr_t) initrd_length;
 	}
-
-
-
 
 	// attempt to load the kernel
 	UINTN exit_data_len = 0;
@@ -362,6 +462,7 @@ efi_main(
 
 	// update the PCH to map the entire flashchip
 	// BIOS_SEL1 and BIOS_SEL2
+	// moved to efi_final_init as PCI is needed
 
 	// create any new volumes
 	if (VOLUME_ADDRESS)
