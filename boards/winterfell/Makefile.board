@@ -20,13 +20,16 @@ dxe-files := $(shell awk  \
 )
 
 
+extra-size	:= 0x4E0000
+
 # The Intel firmware has lots of small pieces.
 # We replace the DXE recovery image and one of the other
 # images with the LinuxBoot one.  Potentially we
 # can clean up more space.
 FVS := \
 $(BUILD)/rom/0x00000000.ifd \
-$(BUILD)/rom/0x00010000.bin \
+$(BUILD)/0x00010000-cut.bin \
+$(BUILD)/extra.vol \
 $(BUILD)/nvram1.vol \
 $(BUILD)/nvram2.vol \
 $(BUILD)/rom/0x00840000.bin \
@@ -39,11 +42,15 @@ $(BUILD)/rom/0x00f00000.fv \
 DXE_FFS := \
 ./dxe/linuxboot.ffs \
 $(BUILD)/Linux.ffs \
-$(BUILD)/Initrd.ffs \
 
 $(BUILD)/dxe.vol: \
 	$(dxe-files) \
 	$(DXE_FFS) \
+
+EXTRA_FFS := \
+$(BUILD)/Initrd.ffs \
+
+$(BUILD)/extra.vol: $(EXTRA_FFS)
 
 #
 # Compact the NVRAM region.  this isn't required, but makes for cleaner images.
@@ -63,6 +70,12 @@ $(BUILD)/nvram1.ffs: $(NVRAM1_FFS)
 	./bin/nvram-compact < $< > $@
 $(BUILD)/nvram2.ffs: $(NVRAM2_FFS)
 	./bin/nvram-compact < $< > $@
+
+# Make sure the firmware is extracted before
+$(BUILD)/rom/0x00010000.bin: $(BUILD)/$(BOARD).txt
+
+$(BUILD)/0x00010000-cut.bin: $(BUILD)/rom/0x00010000.bin
+	dd if=$< of=$@ bs=4096 count=784
 
 #
 # UTK Compact the NVRAM region
