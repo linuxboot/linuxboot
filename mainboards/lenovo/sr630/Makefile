@@ -29,7 +29,7 @@ image.bin:  kernel
                 remove .*Pxe.* \
                 remove Ata.* \
 		remove AMITSE \
-		comment 'replace_pe32 FullShell kernel'  \
+		replace_pe32 FullShell kernel  \
 	save image.bin
 
 kernel: uroot bzImage
@@ -44,7 +44,7 @@ writerom: image.bin
 	sudo flashrom -p dediprog -w sr630.bin
 
 uroot:
-	go run github.com/u-root/u-root -build=bb github.com/u-root/u-root/cmds/init github.com/u-root/u-root/xcmds/rush github.com/u-root/u-root/cmds/ls github.com/u-root/u-root/cmds/ip   github.com/u-root/u-root/cmds/elvish    github.com/u-root/u-root/xcmds/sshd    github.com/u-root/u-root/cmds/scp
+	go run github.com/u-root/u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/exp/rush github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
