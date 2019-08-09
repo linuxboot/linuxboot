@@ -37,7 +37,7 @@ kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 uroot:
-	go run github.com/u-root/u-root -build=bb minimal
+	go run github.com/u-root/u-root -build=bb -files key.pub:key.pub -files key.pub:authorized_keys -files ssh_host_rsa_key:id_rsa github.com/u-root/u-root/cmds/core/*  github.com/u-root/u-root/cmds/exp/cpu 
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
