@@ -1,7 +1,10 @@
 default: build
 
 build:
-	echo getstuff or kernel
+	echo getstuff, kernel, or qemu
+
+qemu: kernel
+	qemu-system-x86_64 -kernel kernel -serial stdio -monitor /dev/null
 
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
