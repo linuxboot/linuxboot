@@ -3,6 +3,7 @@
 ## Winwynn version
 ##
 fc510ee7-ffdc-11d4-bd41-0080c73c8881 DXE Apriori
+8f4b8f82-9b91-4028-86e6-f4db7d4c1dff Bds
 ab7ed12e-1d78-4635-ab87-23f00a911ec7 RomLayoutDxe
 53bcc14f-c24f-434c-b294-8ed2d4cc1860 DataHubDxe
 9b680fce-ad6b-4f3a-b60b-f59899003443 DevicePathDxe
@@ -24,6 +25,9 @@ fc1b7640-3466-4c06-b1cc-1c935394b5c2 PchSerialGpio
 e052d8a6-224a-4c32-8d37-2e0ae162364d PchSmbusDxe
 5aab83e5-f027-4ca7-bfd0-16358cc9e453 WdtDxe
 55e76644-78a5-4a82-a900-7126a5798892 HeciInitDxe
+e8f6a75c-3cda-4b00-9837-8ca2a1f34eac SpsDxe
+921cd783-3e22-4579-a71f-00d74197fcc9 SpsSmm
+9f3a0016-ae55-4288-829d-d55fd3aac347 AmiBoardInfo2
 16d0a23e-c09c-407d-a14a-ad058fdd0ca1 ACPI
 4e82091e-32a1-4689-8a00-cde41ed63cdd SioDxeInit
 1830a6dd-e03d-4bc0-b115-94d91950fe4a SioDynamicSetup
@@ -31,7 +35,6 @@ e052d8a6-224a-4c32-8d37-2e0ae162364d PchSmbusDxe
 502b04f3-71ab-47b4-beae-4736ea190aa4 PciDxeInit
 dcb2ce8e-73a7-4962-b2fd-95688b5a5bdd RuntimeMemoryHoleVar
 271b424e-a4cc-4e0e-90a2-7ea4841f12f3 ExportHiiDb
-9f3a0016-ae55-4288-829d-d55fd3aac347 AmiBoardInfo2
 e0471a15-76dc-4203-8b27-6db4f8ba644a UbaConfigDatabaseDxe
 b7ee4835-84ce-4b15-bf52-2d11574ce470 HardwareSignatureEntry
 87ab821c-79b8-4ef6-a913-21d22063f55f AcpiPlatform
@@ -45,17 +48,24 @@ e2441b64-7ef4-41fe-b3a3-8caa7f8d3017 PciPlatform
 6b6fd380-2c55-42c6-98bf-cbbc5a9aa666 SocketSetup
 00b46ec9-2712-486b-a6a4-e2933581c28b HstiPlatformDxe
 60740cf3-d428-4500-80e6-04a5798241ed HstiIhvProviderDxe
+24a44caf-0bf2-4514-90c4-c794b3e778f5 MePolicyInitDxe
+7adbad98-7fe1-4774-9260-747327435e6d SpsAcpiHooks
 abbce13d-e25a-4d9f-a1f9-2f7710786892 Platform
 788dd6a1-f1ee-4bba-a925-c0e7d66271bd SystemBoardDxe
 69e6dd6d-f09e-485f-9627-eb70e9cfc82a UbaInitDxe
-b32fb884-5756-4aa5-b478-e0e3b50d6474 SetupConfigUpdateDxeCrescentCity
-7bb1b506-71da-4c2a-bef2-e34a3cdec326 StaticSkuDataDxeCrescentCity
-7c64a4b9-a1eb-4012-b3df-bbb7d218d48b UsbOcUpdateDxeCrescentCity
-cca7e1f2-ce8b-4d38-a3f8-342dc4515446 IioCfgUpdateDxeCrescentCity
-cc141a05-fa40-432d-9631-5e3e990f44d5 SlotDataUpdateDxeCrescentCity
+52c877fd-c27c-4779-b750-7880b28b4306 SetupConfigUpdateDxeNeonCityEPRP
+45055a79-b385-4705-a3ac-11ce99a1cb47 StaticSkuDataDxeNeonCityEPRP
+ef0e795c-749a-4b41-b994-7ddc6b594388 UsbOcUpdateDxeNeonCityEPRP
+4fa7e1f2-ce8b-4d38-a3f8-342dc4515446 IioCfgUpdateDxeNeonCityEPRP
+de141a05-fa40-432d-9631-5e3e990f44d5 SlotDataUpdateDxeNeonCityEPRP
 b13edd38-684c-41ed-a305-d7b7e32497df Smbios
 cef68c66-06ab-4fb3-a3ed-5ffa885b5725 SmbiosBoard
 b7d19491-e55a-470d-8508-85a5dfa41974 SBDXE
+6b38f7b4-ad98-40e9-9093-aca2b5a253c4 DiskIoDxe
+1fa1f39e-feff-4aae-bd7b-38a070a3b609 PartitionDxe
+bb65942b-521f-4ec3-baf9-a92540cf60d2 SataController
+8f5a2e02-538c-4d59-b920-c4786acbc552 Ahci
+3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
 c8339973-a563-4561-b858-d8476f9defc4 Metronome
 f099d67f-71ae-4c36-b2a3-dceb0eb2b7d8 WatchdogTimer
 bae7599f-3c6b-43b7-bdf0-9ce07aa91aa6 CpuIoDxe
@@ -71,7 +81,6 @@ a0bad9f7-ab78-491b-b583-c52b7f84b9e0 SmmControl
 253e85e9-993b-439b-b74c-6120f77b4723 PlatformReset
 34fb5a1b-e3cd-4893-9403-0a39ba62fda0 SvSmmSupport
 bb8c2cf3-a5e3-49ef-941b-4a01fac6fd5f SmiFlashDxe
-3c1de39f-d207-408a-aacc-731cfb7f1dd7 PciBus
 0c375a90-4c4c-4428-8ea0-531be8959bf7 FlashDriverSmm
 447a1b58-8f3e-4658-abaa-9e7b2280b90a NvramSmm
 a47ee2d8-f60e-42fd-8e58-7bd65ee4c29b CpuIo2Smm
@@ -89,7 +98,12 @@ e954929c-5bac-4494-b963-3b23d4a13ad2 QuiesceSupport
 d7b10d4e-67e6-4c74-83e9-f9af0acc33cc PchInitSmm
 b0d6ed53-b844-43f5-bd2f-61095264e77e PchSmiDispatcher
 59287178-59b2-49ca-bc63-532b12ea2c53 PchSmbusSmm
+921cd783-3e22-4579-a71f-00d74197fcc8 HeciSmm
+69735520-da83-444a-93dc-bddd59e59182 Heci3Smm
+bc3245bd-b982-4f55-9f79-056ad7e987c5 AhciSmm
 f3331de6-4a55-44e4-b767-7453f7a1a021 MicrocodeUpdate
+e8c729fe-fb0a-4344-ad7e-48784116c9ef SmmIpmiBmcInitialize
+15ccacbe-2a4a-45ed-9ec2-53135f98ab24 BmcAcpi
 37a01080-2346-4a54-9900-d22b7b687c22 SmmPciRbIo
 9921f5a3-d2d7-4c1a-b6b4-5ffa37d377e6 RuntimeMemoryHoleSmm
 be216ba8-38c4-4535-a6ca-5dca5b43addf SmiVariable
@@ -113,6 +127,7 @@ db08f6ca-3048-4cd8-9b1f-20bed33ecfe7 StatusCodeSmm
 cbc59c4a-383a-41eb-a8ee-4498aea567e4 FlashDriver
 1807040d-5934-41a2-a088-8e0f777f71ab NvramDxe
 80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe
+6372357a-06d7-43ef-b55c-1964f3dd6916 DxeIpmiBmcInitialize
 a59a0056-3341-44b5-9c9c-6d76f7673817 FREEFORM
 7b9a0a12-42f8-4d4c-82b6-32f0ca1953f4 FREEFORM
 3237418a-478c-4700-b59f-768e2ccbc726 CmosDxe
