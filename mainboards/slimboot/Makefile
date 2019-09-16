@@ -1,7 +1,7 @@
 default: build
 
 build:
-	echo getstuff, kernel, or qemu
+	echo fetch, kernel, or qemu
 
 qemu: kernel
 	qemu-system-x86_64 -kernel kernel -serial stdio -monitor /dev/null
@@ -20,7 +20,7 @@ bzImage:
 	cp config-4.14.111 linux/.config
 	(cd linux && make oldconfig && make -j32)
 
-getstuff: getkernel geturoot 
+fetch: getkernel geturoot 
 getkernel:
 	rm -rf linux
 	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz

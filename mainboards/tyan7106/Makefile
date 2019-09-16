@@ -3,7 +3,7 @@ GOPATH ?= $(HOME)/go
 default: build
 
 build:
-	echn getstuff, uroot, kernel, or image.bin
+	echo fetch, uroot, kernel, or image.bin
 
 image.bin: kernel
 	cp linux/arch/x86/boot/bzImage kernel
@@ -47,7 +47,7 @@ bzImage:
 	cp config-4.14.111 linux/.config
 	(cd linux && make oldconfig && make -j32)
 
-getstuff:
+fetch:
 	rm -rf linux
 	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
 	xzcat kernel.xz | tar x
