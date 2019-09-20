@@ -56,3 +56,12 @@ uinit
 *.rom
 *.lzma
 *.pub
+
+# files specific to this project
+apu.bin
+apuorigin.bin
+cpuapu.bin
+image.bin
+initramfs.*.cpio
+kernel
+kernel.xz

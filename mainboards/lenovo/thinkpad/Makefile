@@ -22,7 +22,7 @@ writerom: image.bin
 	sudo flashrom -p internal -w image.bin
 
 uroot:
-	go run github.com/u-root/u-root -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
+	go run github.com/u-root/u-root -initcmd=/bbin/cpu -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
 	-files /bin/fusermount \
 	all \
 	github.com/u-root/u-root/cmds/exp/cpu 
