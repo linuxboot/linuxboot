@@ -33,11 +33,21 @@ qemu: kernel
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
+netbootkernel: netbooturoot bzImage
+	cp linux/arch/x86/boot/bzImage kernel
+
 readrom:
 	sudo flashrom -p internal -r coreboot.bin
 
 writerom: image.bin
 	sudo flashrom -p internal -w image.bin
+
+netbooturoot:
+	go run github.com/u-root/u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
 
 uroot:
 	go run github.com/u-root/u-root -initcmd=/bbin/cpu -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
