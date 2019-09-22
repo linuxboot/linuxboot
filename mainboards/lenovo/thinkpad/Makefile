@@ -11,6 +11,24 @@ image.bin:  kernel coreboot.bin
 	cbfstool image.bin remove -n genroms/pxe.rom
 	cbfstool image.bin add-payload -n img/nerf -f kernel
 	cbfstool image.bin print
+qemu: kernel
+	sudo /usr/bin/qemu-system-x86_64 -kernel kernel \
+		-cpu  max \
+		-s   \
+		-m 1024m \
+		-machine q35  \
+		-object rng-random,filename=/dev/urandom,id=rng0 \
+		-device virtio-rng-pci,rng=rng0 \
+		-device e1000,netdev=n1 \
+		-netdev user,id=n1,hostfwd=tcp:127.0.0.1:23-:2222,net=192.168.1.0/24,host=192.168.1.1 \
+		-serial stdio  \
+		-append earlyprintk=ttyS0,115200\ console=ttyS0 \
+		-monitor /dev/null  \
+
+
+# add the following line to qemu if you want to snoop packets.
+	-object filter-dump,id=f1,netdev=n1,file=/tmp/vm0.pcap \
+
 
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -23,9 +41,8 @@ writerom: image.bin
 
 uroot:
 	go run github.com/u-root/u-root -initcmd=/bbin/cpu -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-files /bin/fusermount \
 	all \
-	github.com/u-root/u-root/cmds/exp/cpu 
+	github.com/u-root/cpu/cmds/cpu 
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
