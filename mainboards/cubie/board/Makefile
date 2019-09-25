@@ -11,8 +11,15 @@ image.bin:  kernel coreboot.bin
 	cbfstool image.bin remove -n genroms/pxe.rom
 	cbfstool image.bin add-payload -n img/nerf -f kernel
 	cbfstool image.bin print
-qemu: kernel
-	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio^C
+
+uCore: uroot
+	mkimage -A arm -n 'u-root for Allwinner A10' -d initramfs.linux_arm.cpio -T ramdisk uCore
+
+qemu: uCore
+	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyS0'
+	echo NO
+	exit 0
+	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio -initrd initramfs.linux_arm.cpio
 	echo NO
 	exit 0
 	sudo /usr/bin/qemu-system-x86_64 -kernel kernel \
@@ -47,8 +54,8 @@ writerom: image.bin
 
 netbooturoot:
 	GOARCH=arm u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
+	cp /tmp/initramfs.linux_arm.cpio .
+	lzma -k -f initramfs.linux_arm.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
@@ -56,8 +63,8 @@ uroot:
 	GOARCH=arm u-root -initcmd=/bbin/cpu -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
 	all \
 	github.com/u-root/cpu/cmds/cpu 
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
+	cp /tmp/initramfs.linux_arm.cpio .
+	lzma -k -f initramfs.linux_arm.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
