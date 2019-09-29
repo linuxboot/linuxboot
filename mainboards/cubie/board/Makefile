@@ -12,7 +12,7 @@ image.bin:  kernel coreboot.bin
 	cbfstool image.bin add-payload -n img/nerf -f kernel
 	cbfstool image.bin print
 
-uCore: uroot
+uCore: netbooturoot
 	mkimage -A arm -n 'u-root for Allwinner A10' -d initramfs.linux_arm.cpio -T ramdisk uCore
 
 qemu: uCore
@@ -53,7 +53,13 @@ writerom: image.bin
 	sudo flashrom -p internal -w image.bin
 
 netbooturoot:
-	GOARCH=arm u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
+	echo do not do GOARCH=arm u-root -build=bb all
+	GOARCH=arm u-root -build=bb \
+		-files ~/.ssh/cpu_rsa.pub:key.pub \
+		-files ~/.ssh/cpu_rsa:id_rsa \
+		-files ~/.ssh/authorized_keys:authorized_keys \
+		all \
+		github.com/u-root/u-root/cmds/boot/uinit
 	cp /tmp/initramfs.linux_arm.cpio .
 	lzma -k -f initramfs.linux_arm.cpio
 	ls -l initramfs*
