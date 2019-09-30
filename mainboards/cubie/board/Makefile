@@ -1,3 +1,4 @@
+VER=3.16.74
 default: build
 
 build:
@@ -75,15 +76,15 @@ uroot:
 	cp *lzma linux
 
 bzImage:
-	cp config-4.14.111 linux/.config
-	(cd linux && make oldconfig && make -j32)
+	cp config-$(VER) linux/.config
+	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
+	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-$(VER).tar.xz
 	xzcat kernel.xz | tar x
-	mv linux-4.14.111 linux
+	mv linux-$(VER) linux
 getrom:
 	echo you create the kernel
 	echo on the APU2: flashrom -r coreboot.bin -p internal
