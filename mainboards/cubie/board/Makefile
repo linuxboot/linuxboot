@@ -16,8 +16,8 @@ image.bin:  kernel coreboot.bin
 uCore: netbooturoot
 	mkimage -A arm -n 'u-root for Allwinner A10' -d initramfs.linux_arm.cpio -T ramdisk uCore
 
-qemu: uCore
-	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyS0'
+qemu: uCore kernel
+	qemu-system-arm -kernel kernel -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyS0 earlyprintk=ttyS0,115200,keep'
 	echo NO
 	exit 0
 	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio -initrd initramfs.linux_arm.cpio
@@ -41,11 +41,8 @@ qemu: uCore
 	-object filter-dump,id=f1,netdev=n1,file=/tmp/vm0.pcap \
 
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
-
 netbootkernel: netbooturoot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+	cp linux/arch/arm/boot/bzImage kernel
 
 readrom:
 	sudo flashrom -p internal -r coreboot.bin
@@ -75,9 +72,10 @@ uroot:
 	ls -l initramfs*
 	cp *lzma linux
 
-bzImage:
+kernel:linux/arch/arm/boot/Image  config-3.16.74
 	cp config-$(VER) linux/.config
 	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
+	mkimage -C none -A arm -n 'kernel for Allwinner A10' -d $< -T kernel -a 0x40008000 -e 0x40008000 kernel
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
