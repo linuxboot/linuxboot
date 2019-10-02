@@ -1,4 +1,4 @@
-VER=3.16.74
+VER=5.4.0
 default: build
 
 build:
@@ -72,17 +72,19 @@ uroot:
 	ls -l initramfs*
 	cp *lzma linux
 
-kernel:linux/arch/arm/boot/Image  config-3.16.74
+kernel:
 	cp config-$(VER) linux/.config
 	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
-	mkimage -C none -A arm -n 'kernel for Allwinner A10' -d $< -T kernel -a 0x40008000 -e 0x40008000 kernel
+	mkimage -C none -A arm -n 'kernel for Allwinner A10' -d linux/arch/arm/boot/zImage -T kernel -a 0x40008000 -e 0x40008000 kernel
+	cp linux/arch/arm/boot/zImage kernel
 
 fetch: getkernel geturoot getfiano getrom
+
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-$(VER).tar.xz
-	xzcat kernel.xz | tar x
-	mv linux-$(VER) linux
+	git clone git://github.com/linux-sunxi/linux-sunxi.git -b sunxi-next --depth=1 linux
+	(cd linux && make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- sunxi_defconfig)
+
 getrom:
 	echo you create the kernel
 	echo on the APU2: flashrom -r coreboot.bin -p internal
