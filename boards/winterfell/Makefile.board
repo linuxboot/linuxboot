@@ -68,7 +68,8 @@ $(partinitrd): $(INITRD)
 
 $(BUILD)/Initrdpart.ffs: $(partinitrd)
 
-$(BUILD)/dxe.vol: $(BUILD)/Initrdpart.ffs
+DXE_FFS += \
+$(BUILD)/Initrdpart.ffs
 
 endif
 #
@@ -101,5 +102,12 @@ $(BUILD)/0x00010000-cut.bin: $(BUILD)/rom/0x00010000.bin
 #
 
 nvram-nvar-keep := boards/$(BOARD)/nvar-keep.txt
-
 UTK_EXTRA_OPS := invalidate_nvar_except $(nvram-nvar-keep) nvram-compact
+
+# UTK create fv
+EXTRA_FV_GUID := e10864aa-9088-512e-970f-0a454d0aeb6a
+
+UTK_EXTRA_DEPS := $(EXTRA_FFS)
+UTK_EXTRA_OPS += tighten_me create-fv 0x320000 $(extra-size) $(EXTRA_FV_GUID) \
+		 $(foreach ffs,$(EXTRA_FFS), insert_end $(EXTRA_FV_GUID) $(ffs))
+
