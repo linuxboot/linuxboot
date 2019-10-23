@@ -43,7 +43,7 @@ $(BUILD)/rom/0x00f00000.fv \
 # Replace the DxeCore and SmmCore with our own
 # and add in the Linux kernel / initrd
 DXE_FFS := \
-./dxe/linuxboot.ffs \
+$(BUILD)/dxe/linuxboot.ffs \
 $(BUILD)/Linux.ffs \
 
 $(BUILD)/dxe.vol: \

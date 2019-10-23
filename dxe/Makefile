@@ -23,7 +23,7 @@ FORCE:
 %.exe:
 	$(CROSS)ld \
 		$(LDFLAGS) \
-		-T elf_x86_64_efi.lds \
+		-T $(SRCDIR)elf_x86_64_efi.lds \
 		-o $@ \
 		$^
 
@@ -39,7 +39,7 @@ FORCE:
 	/usr/bin/printf '\x2E\x00' | dd of=$@ conv=notrunc bs=1 seek=150 status=none
 
 %.ffs: %.efi
-	../bin/create-ffs \
+	$(SRCDIR)../bin/create-ffs \
 		-o $@ \
 		--type DRIVER \
 		--version 1.0 \
@@ -59,8 +59,8 @@ CFLAGS += \
 	-O3 \
 	-W \
 	-Wall \
-	-I . \
-	-I efi/x86_64 \
+	-I $(SRCDIR). \
+	-I $(SRCDIR)efi/x86_64 \
 	-MMD \
 	-MF .$(notdir $@).d \
 
@@ -76,5 +76,7 @@ NO_LFLAGS += \
 	-L $(LIB) \
 	$(EFI_CRT_OBJS)  \
 
+%.o: $(SRCDIR)%.c
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 -include .*.d

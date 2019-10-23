@@ -10,21 +10,25 @@
  * systems.
  *
  */
-#define VOLUME_ADDRESS 0xFF840000 // Winterfell
-#define VOLUME_LENGTH  0x20000
-
-#define VOLUME2_ADDRESS 0xFF320000 // Winterfell resize ME
-#define VOLUME2_LENGTH  0x4E0000
-
-// #define VOLUME_ADDRESS	0xFF500000
-// #define VOLUME_LENGTH	0x00400000
-
 #include "serial.h"
 #include <efi/efi.h>
 #include "efidxe.h"
 #include "efifv.h"
 #include <asm/bootparam.h>
 #include <efi/pci22.h>
+
+// Places the extra volume configuration in "volume_config.h"
+// examples:
+// #define VOLUME_ADDRESS	0xFF500000
+// #define VOLUME_LENGTH	0x00400000
+// Or for Winterfell:
+// #define VOLUME_ADDRESS 0xFF840000
+// #define VOLUME_LENGTH  0x20000
+// #define VOLUME2_ADDRESS 0xFF320000
+// #define VOLUME2_LENGTH  0x4E0000
+#ifdef VOLUME_CONFIG_INCLUDE
+#include "volume_config.h"
+#endif
 
 EFI_HANDLE gImage;
 EFI_SYSTEM_TABLE * gST;
@@ -49,6 +53,8 @@ process_fv(
 {
 	serial_string("FvLoader: adding firmware volume 0x");
 	serial_hex(ptr, 8);
+	serial_string("                            size 0x");
+	serial_hex(len, 8);
 
 	EFI_HANDLE handle;
 	int rc = gDXE->ProcessFirmwareVolume(
@@ -64,6 +70,8 @@ process_fv(
 	} else {
 		serial_string("FvLoader: error rc="); serial_hex(rc, 8);
 		hexdump(ptr, 128);
+		serial_string("...\r\n");
+		hexdump(ptr+len-128, 128);
 	}
 
         return rc;
@@ -281,14 +289,16 @@ efi_final_init(void)
 	EFI_GUID pci_protocol = EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID;
 	efi_visit_handles(&pci_protocol, efi_connect_controllers, (void*) 0);
 
-	// search LPC and update flash access
-	serial_string("LinuxBoot: search LPC device\r\n");
-	efi_visit_handles(&pci_io_protocol, efi_search_lpc, (void*) 0);
+#ifdef VOLUME2_ADDRESS
+	if (VOLUME2_ADDRESS) {
+		// search LPC and update flash access
+		serial_string("LinuxBoot: search LPC device\r\n");
+		efi_visit_handles(&pci_io_protocol, efi_search_lpc, (void*) 0);
 
-	lpc_update_flash_access();
-
-	if (VOLUME2_ADDRESS)
+		lpc_update_flash_access();
 		process_fv(VOLUME2_ADDRESS, VOLUME2_LENGTH);
+	}
+#endif
 
 	// signal the acpi platform driver that it can download the ACPI tables
 	serial_string("LinuxBoot: signal root bridges connected\r\n");
@@ -348,7 +358,10 @@ linuxboot_start()
 	UINTN bzimage_length = 0;
 	serial_string("LinuxBoot: Looking for bzimage\r\n");
 	if (read_ffs(gBS, &bzimage_guid, &bzimage_buffer, &bzimage_length, EFI_SECTION_PE32) < 0)
+	{
+		serial_string("LinuxBoot: no bzimage found\r\n");
 		return -1;
+	}
 
 	// convert the RAM image of the kernel into a loaded image
 	EFI_HANDLE bzimage_handle = NULL;
@@ -472,8 +485,10 @@ efi_main(
 	// moved to efi_final_init as PCI is needed
 
 	// create any new volumes
+#ifdef VOLUME_ADDRESS
 	if (VOLUME_ADDRESS)
 		process_fv(VOLUME_ADDRESS, VOLUME_LENGTH);
+#endif
 
 	// register the BDS callback
 	efi_bds_arch_protocol.bds_main = efi_bds_main;

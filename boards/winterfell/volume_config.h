@@ -1,0 +1,7 @@
+// User
+// #define VOLUME_ADDRESS 0xFF840000
+// #define VOLUME_LENGTH  0x20000
+// Extra
+#define VOLUME2_ADDRESS 0xFF320000
+#define VOLUME2_LENGTH  0x4E0000
+

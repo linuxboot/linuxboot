@@ -147,6 +147,21 @@ $(dxe-files): $(BUILD)/$(BOARD).txt
 dxe/%.ffs:
 	$(MAKE) -C dxe $(notdir $@)
 
+# Alternatively DXE modules can be build in $(BUILD)/dxe
+$(BUILD)/dxe/%.ffs: $(BUILD)/dxe/Makefile
+	$(MAKE) -C $(BUILD)/dxe $(notdir $@)
+
+
+$(BUILD)/dxe/Makefile: $(BUILD)/dxe/volume_config.h
+	@mkdir -p $(dir $@)
+	@echo "SRCDIR := $(realpath dxe)/" > $@
+	@echo "include $$""(SRCDIR)Makefile" >> $@
+	@echo "CFLAGS += -I . -DVOLUME_CONFIG_INCLUDE" >> $@
+
+$(BUILD)/dxe/volume_config.h: boards/$(BOARD)/volume_config.h
+	@mkdir -p $(dir $@)
+	@cp $^ $@
+
 ifndef USE_UTK
 $(BUILD)/linuxboot.rom: $(FVS)
 else
