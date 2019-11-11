@@ -56,6 +56,21 @@ netbooturoot:
 uroot:
 	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
 	-files /bin/fusermount \
+	-defaultsh rush \
+	github.com/u-root/u-root/cmds/exp/cpu \
+		github.com/u-root/u-root/cmds/core/dhclient \
+		github.com/u-root/u-root/cmds/exp/rush \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/shutdown 
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
+
+alluroot:
+	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
+	-files /bin/fusermount \
 	github.com/u-root/u-root/cmds/exp/cpu \
 		all 
 	cp /tmp/initramfs.linux_amd64.cpio .
