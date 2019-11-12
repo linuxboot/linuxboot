@@ -48,25 +48,17 @@ writerom: image.bin
 
 netbooturoot:
 	go run github.com/u-root/u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
-	ls -l initramfs*
-	cp *lzma linux
+	cp /tmp/initramfs.linux_amd64.cpio linux
 
 uroot:
 	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
 	-files /bin/fusermount \
-	-defaultsh rush \
+	-defaultsh="" \
 	github.com/u-root/u-root/cmds/exp/cpu \
 		github.com/u-root/u-root/cmds/core/dhclient \
-		github.com/u-root/u-root/cmds/exp/rush \
 		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/shutdown 
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
-	ls -l initramfs*
-	cp *lzma linux
+	cp /tmp/initramfs.linux_amd64.cpio linux
 
 alluroot:
 	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
