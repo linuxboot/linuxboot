@@ -84,7 +84,14 @@ bzImage:
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
+
 getkernel:
+	rm -rf linux
+	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.10.tar.xz
+	xzcat kernel.xz | tar x
+	mv linux-5.3.10 linux
+
+upgetkernel:
 	rm -rf linux
 	git clone --depth=1 https://github.com/emutex/ubilinux-kernel.git -b upboard-4.9 linux
 
