@@ -52,7 +52,6 @@ netbooturoot:
 
 uroot:
 	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-files /bin/fusermount \
 	-defaultsh="" \
 	github.com/u-root/u-root/cmds/exp/cpu \
 		github.com/u-root/u-root/cmds/core/dhclient \
