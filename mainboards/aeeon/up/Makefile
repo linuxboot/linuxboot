@@ -53,10 +53,7 @@ netbooturoot:
 uroot:
 	go run github.com/u-root/u-root -build=bb -initcmd=cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
 	-defaultsh="" \
-	github.com/u-root/u-root/cmds/exp/cpu \
-		github.com/u-root/u-root/cmds/core/dhclient \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/shutdown 
+	github.com/u-root/u-root/cmds/exp/cpu 
 	cp /tmp/initramfs.linux_amd64.cpio linux
 
 alluroot:
