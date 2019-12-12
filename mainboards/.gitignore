@@ -65,3 +65,9 @@ image.bin
 initramfs.*.cpio
 kernel
 kernel.xz
+*.bin
+amitse
+AMITSE
+amitse*
+AMITSE*
+

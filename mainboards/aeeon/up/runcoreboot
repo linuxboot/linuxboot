@@ -1,0 +1,5 @@
+rm build/coreboot.rom
+make
+cp build/coreboot.rom .
+dd if=initramfs.linux_amd64.cpio.lzma of=coreboot.rom conv=notrunc bs=4096 seek=634
+/usr/bin/qemu-system-x86_64 -machine q35 -bios coreboot.rom -serial /dev/tty -nographic 
