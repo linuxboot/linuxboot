@@ -77,9 +77,14 @@ getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
 getrom:
-	echo you can put a wget here
-	echo and unxip it 
-	echo and cp it to sr630.bin
+	@echo If you plan to flash to hardware,
+	@echo you will need to get a rom imagei
+	@echo and put it in rom.bin
+	@echo you can get it via wget, flashrom, whatever.
+	@echo If you are not targeting hardware, you can
+	@echo make kernel
+	@echo and run that kernel via qemu
+
 geturoot:
 	go get -u github.com/u-root/u-root
 
