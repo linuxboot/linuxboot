@@ -53,6 +53,13 @@ image.bin:
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
+install:
+	sudo mkdir -p /var/lib/tftpboot/grub
+	sudo cp grub.cfg /var/lib/tftpboot/grub
+	sudo cp grubnetx64.efi.signed /var/lib/tftpboot
+	@echo you can put dhcpd.conf in /etc/dhcp
+	@echo but check what is there first.
+
 netboot: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
