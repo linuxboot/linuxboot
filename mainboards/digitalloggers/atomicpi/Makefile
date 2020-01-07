@@ -21,6 +21,8 @@ xxx.bin: imageinitramfs.bin
 		remove EbcDxe \
 		remove Ish.* \
 		remove IntelIsh.* \
+		remove IntelGop.* \
+		remove Logo.* \
 	save $@
 	utk $@ table | guid2english | grep Free
 	echo -n need 
