@@ -3,6 +3,27 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
+xxx.bin: imageinitramfs.bin
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+                remove Iscsi.* \
+                remove Scsi.* \
+                remove Fat.* \
+                remove Ahci.* \
+                remove Partition.* \
+                remove Sata.* \
+                remove Disk.* \
+                remove Whea.* \
+                remove Ata.* \
+		remove Mouse.* \
+		remove .*Keyboard.* \
+		remove EbcDxe \
+	save $@
+	utk $@ table | guid2english | grep Free
+	echo -n need 
+	stat -c %s kernel
+
 dxeremove.bin: imageinitramfs.bin
 	utk \
 		  -xzPath  /usr/bin/xz \
