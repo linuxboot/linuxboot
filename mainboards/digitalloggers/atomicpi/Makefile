@@ -3,10 +3,10 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
-dxeremove.bin:  
+dxeremove.bin: imageinitramfs.bin
 	utk \
 		  -xzPath  /usr/bin/xz \
-		image.bin \
+		$< \
 		remove Nb.* \
 		remove IntelIsh.* \
 	        remove Ip.*  \
@@ -44,11 +44,13 @@ dxeremove.bin:
 		remove Tcg.* \
 		remove Ish.* \
 		remove Setup \
-	save dxeremove.bin
-	utk dxeremove.bin table | guid2english | grep Free
+	save $@
+	utk $@ table | guid2english | grep Free
 	echo \
 		remove AmiTc.* \
-	echo need 0x16b4a0
+	echo need
+	stat -c %s kernel
+	echo bytes
 
 imagex.bin: image.bin
 	utk image.bin tighten_me save imagex.bin
@@ -105,6 +107,9 @@ alluroot:
 
 bzImage:
 	cp linuxboot-linux.config linux/.config
+	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
+	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
+	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' kernel >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 stablebzImage:
