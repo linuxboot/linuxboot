@@ -3,10 +3,10 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
-image.bin:  
+dxeremove.bin:  
 	utk \
 		  -xzPath  /usr/bin/xz \
-		ROM.bin \
+		image.bin \
 		remove Nb.* \
 		remove IntelIsh.* \
 	        remove Ip.*  \
@@ -44,16 +44,25 @@ image.bin:
 		remove Tcg.* \
 		remove Ish.* \
 		remove Setup \
-	save image.bin
-	utk image.bin table | guid2english | grep Free
+	save dxeremove.bin
+	utk dxeremove.bin table | guid2english | grep Free
 	echo \
 		remove AmiTc.* \
 	echo need 0x16b4a0
 
+imagex.bin: image.bin
+	utk image.bin tighten_me save imagex.bin
+	me_cleaner.py -s imagex.bin
+	@echo flash, for example cpu u8 flashrom -w imagex.bin -p internal
+
+imageinitramfs.bin: imagex.bin
+	cp imagex.bin $@
+	dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
+
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
-install: kernel
+install:
 	sudo mkdir -p /var/lib/tftpboot/grub
 	sudo cp grub.cfg /var/lib/tftpboot/grub
 	sudo cp grubnetx64.efi.signed /var/lib/tftpboot
@@ -107,7 +116,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 git@github.com:linuxboot/linux
+	git clone --depth=1 -b linuxboot --single-branch git@github.com:linuxboot/linux
 
 getstablekernel:
 	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.10.tar.xz
