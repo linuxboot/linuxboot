@@ -19,6 +19,8 @@ xxx.bin: imageinitramfs.bin
 		remove Mouse.* \
 		remove .*Keyboard.* \
 		remove EbcDxe \
+		remove Ish.* \
+		remove IntelIsh.* \
 	save $@
 	utk $@ table | guid2english | grep Free
 	echo -n need 
