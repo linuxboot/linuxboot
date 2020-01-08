@@ -129,6 +129,10 @@ $(patsubst %.fv,,$(FVS)): $(BUILD)/$(BOARD).txt
 $(dxe-files): $(BUILD)/$(BOARD).txt
 	@true
 
+# Any of the DXE modules are produced by running make in the dxe subdir
+dxe/%.ffs:
+	$(MAKE) -C dxe $(notdir $@)
+
 $(BUILD)/linuxboot.rom: $(FVS)
 
 

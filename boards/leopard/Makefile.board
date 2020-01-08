@@ -39,4 +39,5 @@ $(BUILD)/dxe.vol: \
 	$(BUILD)/PiSmmCore.ffs \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
+	./dxe/linuxboot.ffs \
 	$(dxe-files) \

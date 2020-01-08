@@ -37,6 +37,7 @@ $(BUILD)/rom/0x01c00000.fv \
 $(BUILD)/dxe.vol: \
 	$(BUILD)/DxeCore.ffs \
 	$(BUILD)/PiSmmCore.ffs \
+	./dxe/linuxboot.ffs \
 	$(BUILD)/Linux.ffs \
 	$(BUILD)/Initrd.ffs \
 	$(dxe-files) \

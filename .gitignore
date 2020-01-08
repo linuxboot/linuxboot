@@ -88,3 +88,5 @@ boards/*/volume-*
 *.raw
 *.pad
 *.hop
+*.efi
+.*
