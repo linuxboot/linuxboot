@@ -13,6 +13,9 @@ Supported server mainboards
 
 Build instructions
 ===
+Make sure you have installed the dependencies `uuid-dev`, `nasm`, and
+`acpica-tools` (or equivalent for your distribution).
+
 You need to provide:
 * The vendor UEFI firmware for the mainboard
 * A Linux kernel built with the `CONFIG_EFI_BDS` option enabled
