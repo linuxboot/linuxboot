@@ -3,6 +3,40 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
+# was imageinitramfs.bin
+flashkernel.bin: pxeshell.bin flashkernel Makefile
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+                remove Iscsi.* \
+                remove Scsi.* \
+                remove Fat.* \
+                remove Ahci.* \
+                remove Partition.* \
+                remove Sata.* \
+                remove Disk.* \
+                remove Whea.* \
+                remove Ata.* \
+		remove Mouse.* \
+		remove .*Keyboard.* \
+		remove EbcDxe \
+		remove Ish.* \
+		remove IntelIsh.* \
+		remove Logo.* \
+		remove Ip6Dxe \
+		remove Udp6Dxe \
+		remove Dhcp6Dxe \
+		remove Mtftp6Dxe \
+	save /tmp/$@
+	utk /tmp/$@ table | guid2english | grep Free
+	echo -n need 
+	stat -c %s Shell.efi
+	utk \
+		  -xzPath  /usr/bin/xz \
+		/tmp/$@ \
+		replace_pe32 UefiPxeBcDxe flashkernel \
+		save $@
+
 xxx.bin: imageinitramfs.bin
 	utk \
 		  -xzPath  /usr/bin/xz \
@@ -132,6 +166,13 @@ alluroot:
 
 bzImage:
 	cp linuxboot-linux.config linux/.config
+	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
+	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
+	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' kernel >> linux/.config
+	(cd linux && make oldconfig && make -j32)
+
+flashbzImage:
+	cp linuxboot-linux.tiny.config linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
 	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' kernel >> linux/.config
