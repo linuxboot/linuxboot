@@ -5,7 +5,17 @@ build:
 
 # was imageinitramfs.bin
 # utk up2image.bin remove Bds insert_dxe up2bds.ffs insert_dxe up2shellfull.ffs save upimagewithup2dxe.bin
-upimagewithup2dxe.bin: up2image.bin Makefile
+upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+		remove IntelGopV.* \
+		remove AMITSE.* \
+		remove Ip4.* \
+		replace_pe32 Shell_Full flashkernel \
+		save $@
+
+upimagewithup2dxe.bin: image.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		$< \
