@@ -4,6 +4,39 @@ build:
 	echo fetch, uroot, kernel, or image.bin
 
 # was imageinitramfs.bin
+# utk up2image.bin remove Bds insert_dxe up2bds.ffs insert_dxe up2shellfull.ffs save upimagewithup2dxe.bin
+upimagewithup2dxe.bin: up2image.bin Makefile
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+                remove Iscsi.* \
+                remove Scsi.* \
+                remove Fat.* \
+                remove Ahci.* \
+                remove Partition.* \
+                remove Sata.* \
+                remove Disk.* \
+                remove Whea.* \
+                remove Ata.* \
+		remove Mouse.* \
+		remove .*Keyboard.* \
+		remove EbcDxe \
+		remove Ish.* \
+		remove IntelIsh.* \
+		remove Logo.* \
+		remove Ip6Dxe \
+		remove Udp6Dxe \
+		remove Dhcp6Dxe \
+		remove Mtftp6Dxe \
+		remove Bds \
+	save /tmp/$@
+	utk /tmp/$@ table | guid2english | grep Free
+	utk \
+		  -xzPath  /usr/bin/xz \
+		/tmp/$@ \
+		insert_dxe up2bds.ffs insert_dxe up2shellfull.ffs \
+		save $@
+
 flashkernel.bin: pxeshell.bin flashkernel Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
