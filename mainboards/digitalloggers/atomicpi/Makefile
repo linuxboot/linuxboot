@@ -18,8 +18,8 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove .*Dhcp.* \
 		remove Arp.* \
 		remove Tcp.* \
-		comment Maxim.* \
-		comment Xpower.* \
+		remove Maxim.* \
+		remove Xpower.* \
 		comment FlashDriver \
 		remove SoftKbd \
 		remove ReFlash \
