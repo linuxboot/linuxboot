@@ -9,7 +9,7 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		$< \
-		comment IntelGopV.* \
+		remove IntelGopV.* \
 		remove Ip4.* \
 		remove .*harging.* \
 		remove TcpDxe \
@@ -20,7 +20,7 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove Tcp.* \
 		remove Maxim.* \
 		remove Xpower.* \
-		comment FlashDriver \
+		comment FlashDriver_do_not_remove_efi_panics  \
 		remove SoftKbd \
 		remove ReFlash \
 		save $@
