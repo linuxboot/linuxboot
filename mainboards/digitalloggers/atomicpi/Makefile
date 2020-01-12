@@ -24,7 +24,17 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove SoftKbd \
 		remove ReFlash \
 		remove AMITSE.* \
-		replace_pe32 Shell_Full flashkernel \
+		remove UefiPxe.* \
+		remove Usb.* \
+		remove .*ftp.* \
+		remove Udp.* \
+		remove Uhcd \
+		remove CryptoD.* \
+		remove Button.* \
+		remove Mmc.* \
+		remove S3Save \
+		remove I2c.* \
+		replace_pe32 Shell_Full kernel \
 		save $@
 
 upimagewithup2dxe.bin: image.bin Makefile
