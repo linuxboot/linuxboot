@@ -9,11 +9,22 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		$< \
-		remove IntelGopV.* \
-		remove AMITSE.* \
+		comment IntelGopV.* \
 		remove Ip4.* \
-		replace_pe32 Shell_Full flashkernel \
+		remove .*harging.* \
+		remove TcpDxe \
+		remove SnpDxe \
+		remove MnpDxe \
+		remove .*Dhcp.* \
+		remove Arp.* \
+		remove Tcp.* \
+		comment Maxim.* \
+		comment Xpower.* \
+		comment FlashDriver \
+		remove SoftKbd \
+		remove ReFlash \
 		save $@
+		echo nreplace_pe32 Shell_Full flashkernel \
 
 upimagewithup2dxe.bin: image.bin Makefile
 	utk \
