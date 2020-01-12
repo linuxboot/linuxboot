@@ -32,10 +32,14 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove CryptoD.* \
 		remove Button.* \
 		remove Mmc.* \
-		remove S3Save \
+		comment S3Save_do_not_remove_gets_error \
 		remove I2c.* \
+		remove NetworkStackSetupScreen \
+		remove RandomNumberGen \
 		replace_pe32 Shell_Full kernel \
+		tighten_me \
 		save $@
+		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
 upimagewithup2dxe.bin: image.bin Makefile
 	utk \
