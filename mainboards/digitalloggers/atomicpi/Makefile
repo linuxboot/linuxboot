@@ -23,6 +23,7 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		comment FlashDriver_do_not_remove_efi_panics  \
 		remove SoftKbd \
 		remove ReFlash \
+		remove AMITSE.* \
 		save $@
 		echo nreplace_pe32 Shell_Full flashkernel \
 
