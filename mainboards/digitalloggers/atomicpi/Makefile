@@ -24,8 +24,8 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove SoftKbd \
 		remove ReFlash \
 		remove AMITSE.* \
+		replace_pe32 Shell_Full flashkernel \
 		save $@
-		echo nreplace_pe32 Shell_Full flashkernel \
 
 upimagewithup2dxe.bin: image.bin Makefile
 	utk \
