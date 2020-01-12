@@ -5,7 +5,21 @@ build:
 
 # was imageinitramfs.bin
 # utk up2image.bin remove Bds insert_dxe up2bds.ffs insert_dxe up2shellfull.ffs save upimagewithup2dxe.bin
-upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
+upimagewithup2dxesmallkernel.bin: upimagewithup2dxeremovemore.bin Makefile
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+		replace_pe32 Shell_Full flashkernel \
+		save $@
+
+upimagewithup2dxekernel.bin: upimagewithup2dxeremovemore.bin Makefile
+	utk \
+		  -xzPath  /usr/bin/xz \
+		$< \
+		replace_pe32 Shell_Full kernel \
+		save $@
+
+upimagewithup2dxeremovemore.bin: upimagewithup2dxe.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		$< \
@@ -36,7 +50,6 @@ upimagewithup2dxekernel.bin: upimagewithup2dxe.bin Makefile
 		remove I2c.* \
 		remove NetworkStackSetupScreen \
 		remove RandomNumberGen \
-		replace_pe32 Shell_Full kernel \
 		tighten_me \
 		save $@
 		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
