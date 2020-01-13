@@ -1,0 +1,3 @@
+#!/bin/bash
+utk /mnt/hgfs/rminnich/Downloads/OVMF.fd replace  BdsDxe up2bds.ffs replace Shell up2shellfull.ffs save /tmp/xxx.bin
+/usr/bin/qemu-system-x86_64 -nographic -net none -bios /tmp/xxx.fd
