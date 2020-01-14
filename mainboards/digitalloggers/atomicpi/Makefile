@@ -50,6 +50,7 @@ upimagewithup2dxeremovemore.bin: upimagewithup2dxe.bin Makefile
 		remove I2c.* \
 		remove NetworkStackSetupScreen \
 		remove RandomNumberGen \
+		remove TimestampDxe \
 		tighten_me \
 		save $@
 		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
