@@ -202,7 +202,7 @@ imageinitramfs.bin: imagex.bin
 	cp imagex.bin $@
 	dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
-kernel: uroot bzImage
+kernel: uroot.lzma bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 install:
@@ -246,11 +246,11 @@ alluroot:
 	ls -l initramfs*
 	cp *lzma linux
 
-bzImage:
+bzImage: uroot.lzma
 	cp linuxboot-linux.config linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' kernel >> linux/.config
+	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' initramfs.linux_amd64.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 flashbzImage:
@@ -281,12 +281,13 @@ upgetkernel:
 	git clone --depth=1 https://github.com/emutex/ubilinux-kernel.git -b upboard-4.9 linux
 
 getfiano:
-	go get github.com/linuxboot/fiano/cmds/utk
+	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
 getrom:
 	echo you can put a wget here
 	echo and unxip it 
 	echo and cp it to sr630.bin
 geturoot:
-	go get github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
+	go get -u github.com/u-root/cpu
 

@@ -88,6 +88,11 @@ SECTS:
 	dd  0xc0100040
 
 section .text follows=.header align=0x200
+a:
+	mov rax, 48
+	mov rdx, 1016
+	db 0xee
+	jmp a
 	sub rsp, 40
 
 	mov rcx, [rdx+64]         
