@@ -27,5 +27,5 @@ getkernel:
 	xzcat kernel.xz | tar x
 	mv linux-4.14.111 linux
 geturoot:
-	go get github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 

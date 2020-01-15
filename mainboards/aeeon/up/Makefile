@@ -109,12 +109,12 @@ upgetkernel:
 	git clone --depth=1 https://github.com/emutex/ubilinux-kernel.git -b upboard-4.9 linux
 
 getfiano:
-	go get github.com/linuxboot/fiano/cmds/utk
+	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
 getrom:
 	echo you can put a wget here
 	echo and unxip it 
 	echo and cp it to sr630.bin
 geturoot:
-	go get github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 

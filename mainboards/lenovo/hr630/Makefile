@@ -61,14 +61,14 @@ getkernel:
 	xzcat kernel.xz | tar x
 	mv linux-4.14.111 linux
 getfiano:
-	go get github.com/linuxboot/fiano/cmds/utk
+	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
 getrom:
 	echo you can put a wget here
 	echo and unxip it 
 	echo and cp it to sr630.bin
 geturoot:
-	go get github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 
 # everything from here below was part of an experiment and can be ignored.
 experiment:

@@ -56,5 +56,5 @@ getrom:
 	echo copy that file here and for safety:
 	echo chmod a-w apu.bin
 geturoot:
-	go get github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 
