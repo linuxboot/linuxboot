@@ -97,7 +97,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 git@github.com:linuxboot/linux
+	git clone --depth=1 https://github.com/linuxboot/linux
 
 getstablekernel:
 	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.3.10.tar.xz
