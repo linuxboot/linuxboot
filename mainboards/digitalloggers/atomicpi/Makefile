@@ -290,5 +290,5 @@ getrom:
 	echo and cp it to sr630.bin
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu
+	go get -u github.com/u-root/cpu/...
 
