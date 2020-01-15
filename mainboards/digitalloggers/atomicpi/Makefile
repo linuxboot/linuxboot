@@ -247,18 +247,18 @@ alluroot:
 	ls -l initramfs*
 	cp *lzma linux
 
+# This image is intended to be net-booted
 bzImage: uroot.lzma
 	cp linuxboot-linux.config linux/.config
-	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
-	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' initramfs.linux_amd64.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 
+# This image is intended to be net-booted but using an initramfs burned into SPI
+# It should also be possible to burn it into SPI
 flashbzImage:
 	cp linuxboot-linux.tiny.config linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' kernel >> linux/.config
+	stat -c 'CONFIG_CMDLINE="ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' initramfs.linux_amd64.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 stablebzImage:
