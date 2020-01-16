@@ -310,6 +310,7 @@ upgetkernel:
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/guid2english
 getrom:
 	echo you can put a wget here
 	echo and unxip it 
