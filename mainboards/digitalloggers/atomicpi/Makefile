@@ -52,6 +52,17 @@ upimagewithup2dxeremovemore.bin: upimagewithup2dxe.bin Makefile
 		remove RandomNumberGen \
 		remove TimestampDxe \
 		tighten_me \
+		comment testremove \
+		remove TcgMor \
+		remove AmiTcgNvflagSample \
+		remove AmiTcgPlatformDxe \
+		remove TcgDxeplatform \
+		remove Tpm20PlatformDxe \
+		remove CrbTpm20Acpi \
+		remove TcgSmm \
+		remove TcgDxe \
+		remove Tcg2Dxe \
+		remove TcgPlatformSetupPolicy \
 		save $@
 		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
