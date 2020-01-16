@@ -200,8 +200,11 @@ imagex.bin: image.bin
 	@echo flash, for example cpu u8 flashrom -w imagex.bin -p internal
 
 imageinitramfs.bin: imagex.bin
+	rm -f $@
 	cp imagex.bin $@
+	chmod +w $@
 	dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
+	chmod a-w $@
 
 kernel: uroot.lzma bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -228,15 +231,27 @@ writerom: image.bin
 	echo sudo flashrom -p dediprog -w image.bin
 
 netbooturoot:
-	go run github.com/u-root/u-root  -o linux/initramfs.linux_amd64.cpio -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
+	go run github.com/u-root/u-root  -o linux/initramfs.linux_amd64.cpio -build=bb \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/u-root/cmds/core/sshd \
+		github.com/u-root/u-root/cmds/core/scp \
+		github.com/u-root/u-root/cmds/boot/*
 
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
 
 uroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-defaultsh="" \
-	github.com/u-root/cpu/cmds/cpuserver
+		github.com/u-root/u-root/cmds/core/cat \
+		github.com/u-root/u-root/cmds/core/dhclient \
+		github.com/u-root/u-root/cmds/core/mount \
+		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/cpu/cmds/cpuserver
 
 alluroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
