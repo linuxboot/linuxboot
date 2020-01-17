@@ -3,7 +3,7 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
-upimagewithup2dxekernel.bin: upimagewithup2dxeremovemore.bin flashbzImage Makefile
+lbur.bin: upimagewithup2dxeremovemore.bin flashbzImage Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		$< \
@@ -238,8 +238,7 @@ netbooturoot:
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/sshd \
-		github.com/u-root/u-root/cmds/core/scp \
+		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/boot/*
 
 uroot.lzma: uroot
