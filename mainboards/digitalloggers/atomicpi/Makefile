@@ -244,15 +244,18 @@ netbooturoot:
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
 
+# don't bring in the commands for now, it messes up cpu and i don't know why.
 uroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
+		-defaultsh="" \
+		github.com/u-root/cpu/cmds/cpuserver
+		echo you can bring these in but it breaks cpu \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/mount \
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/cpu/cmds/cpuserver
 
 alluroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
