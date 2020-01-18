@@ -68,6 +68,20 @@ tiny.bin: upimagewithup2dxe.bin tinykernel
 		replace_pe32 Shell_Full tinykernel \
 		save $@
 
+netboot.bin: upimagewithup2dxe.bin netbootkernel
+	utk \
+		-xzPath  /usr/bin/xz \
+		$< \
+		remove Ip4.* \
+		remove .*PxeDxe.* \
+		remove Mtftp4Dxe \
+		remove Udp4.* \
+		remove Ish.* \
+		remove IntelIsh.* \
+		remove IntelGop.* \
+		replace_pe32 Shell_Full netbootkernel \
+		save $@
+
 upimagewithup2dxe.bin: image.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
@@ -278,6 +292,11 @@ alluroot:
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
+
+netbootkernel: linuxboot-linux.netboot.config
+	cp $< linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
 
 tinykernel: linuxboot-linux.tiny.config
 	cp $< linux/.config
