@@ -61,7 +61,10 @@ tiny.bin: upimagewithup2dxe.bin tinykernel
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		remove .*Gop.* \
+		remove Ip4.* \
+		remove .*PxeDxe.* \
+		remove Mtftp4Dxe \
+		remove Udp4.* \
 		replace_pe32 Shell_Full tinykernel \
 		save $@
 
@@ -89,6 +92,8 @@ upimagewithup2dxe.bin: image.bin Makefile
 		remove Dhcp6Dxe \
 		remove Mtftp6Dxe \
 		remove Bds \
+		remove AMITSE \
+		remove AMITSE.* \
 	save /tmp/$@
 	utk /tmp/$@ table | guid2english | grep Free
 	utk \
