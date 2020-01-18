@@ -57,6 +57,14 @@ upimagewithup2dxeremovemore.bin: upimagewithup2dxe.bin uroot.lzma Makefile
 		save $@
 		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
+tiny.bin: upimagewithup2dxe.bin tinykernel
+	utk \
+		-xzPath  /usr/bin/xz \
+		$< \
+		remove .*Gop.* \
+		replace_pe32 Shell_Full tinykernel \
+		save $@
+
 upimagewithup2dxe.bin: image.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
@@ -265,6 +273,14 @@ alluroot:
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
+
+tinykernel: linuxboot-linux.tiny.config
+	cp $< linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
+
+testtinykernel: tinykernel
+	qemu-system-x86_64 -kernel tinykernel -nographic -serial /dev/tty
 
 # This image is intended to be net-booted
 bzImage: uroot.lzma
