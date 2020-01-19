@@ -328,7 +328,7 @@ netbootkernel: linuxboot-linux.netboot.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma
+tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
