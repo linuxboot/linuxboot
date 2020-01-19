@@ -61,6 +61,13 @@ tiny.bin: upimagewithup2dxe.bin tinykernel
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
+		remove .*harging.* \
+		remove TcpDxe \
+		remove SnpDxe \
+		remove MnpDxe \
+		remove .*Dhcp.* \
+		remove Arp.* \
+		remove Tcp.* \
 		remove Ip4.* \
 		remove .*PxeDxe.* \
 		remove Mtftp4Dxe \
