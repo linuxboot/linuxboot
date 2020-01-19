@@ -44,20 +44,20 @@ upimagewithup2dxeremovemore.bin: upimagewithup2dxe.bin uroot.lzma Makefile
 		remove TimestampDxe \
 		tighten_me \
 		comment testremove \
-		remove TcgMor \
-		remove AmiTcgNvflagSample \
-		remove AmiTcgPlatformDxe \
-		remove TcgDxeplatform \
-		remove Tpm20PlatformDxe \
-		remove CrbTpm20Acpi \
-		remove TcgSmm \
-		remove TcgDxe \
-		remove Tcg2Dxe \
-		remove TcgPlatformSetupPolicy \
+		comment TcgMor \
+		comment AmiTcgNvflagSample \
+		comment AmiTcgPlatformDxe \
+		comment TcgDxeplatform \
+		comment Tpm20PlatformDxe \
+		comment CrbTpm20Acpi \
+		comment TcgSmm \
+		comment TcgDxe \
+		comment Tcg2Dxe \
+		comment TcgPlatformSetupPolicy \
 		save $@
 		dd if=initramfs.linux_amd64.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
-tiny.bin: upimagewithup2dxe.bin tinykernel
+tiny.bin: upimagewithup2dxeremovemore.bin tinykernel
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
