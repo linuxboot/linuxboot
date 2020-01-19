@@ -74,6 +74,7 @@ tiny.bin: upimagewithup2dxeremovemore.bin tinykernel
 		remove Udp4.* \
 		replace_pe32 Shell_Full tinykernel \
 		save $@
+		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
 netboot.bin: upimagewithup2dxe.bin netbootkernel
 	utk \
@@ -266,14 +267,18 @@ writerom: image.bin
 	echo Here is where you would do the flashrom, e.g.
 	echo sudo flashrom -p dediprog -w image.bin
 
-netbooturoot:
-	go run github.com/u-root/u-root  -o linux/initramfs.linux_amd64.cpio -build=bb \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/ip \
+flashinitramfs.cpio.lzma: flashinitramfs.cpio
+	lzma -f -k $<
+
+flashinitramfs.cpio:
+	go run github.com/u-root/u-root  -o $@ -build=bb \
+		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/boot/*
+		github.com/u-root/u-root/cmds/core/dhclient
 
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
@@ -305,8 +310,11 @@ netbootkernel: linuxboot-linux.netboot.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-tinykernel: linuxboot-linux.tiny.config
+tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma
 	cp $< linux/.config
+	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
+	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
+	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200 initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
