@@ -14,6 +14,9 @@
 #
 # Confusing, but with luck, we can clean up this
 # Makefile to make it less so.
+# For now
+# make kernel # kernel is netbootable, initramfs.linux_amd64.cpio.lzma is cpu ramfs
+# make tiny.bin # ram image but tinykernel and flashinitramfs.cpio.lzma can be netbooted
 default: build
 
 build:
