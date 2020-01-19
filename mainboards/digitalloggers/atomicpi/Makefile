@@ -319,7 +319,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run github.com/u-root/u-root  -o $@ -build=bb -files /usr/bin/strace \
+	go run github.com/u-root/u-root  -o $@ -build=bb \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
@@ -328,7 +328,7 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/kexec \
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/core/wget \
-		github.com/u-root/u-root/cmds/boot/pxeboot
+		github.com/u-root/u-root/cmds/boot/pxeboot \
 
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio

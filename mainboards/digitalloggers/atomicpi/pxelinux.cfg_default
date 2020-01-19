@@ -1,0 +1,12 @@
+prompt 0
+timeout 300
+ONTIMEOUT local
+DEFAULT NERF
+
+MENU TITLE PXE Menu
+
+LABEL NERF
+        MENU LABEL NERF
+        kernel kernel
+        append initrd=/initramfs.linux_amd64.cpio.lzma ip=dhcp earlyprintk=ttyS0,115200 console=ttyS0,115200
+
