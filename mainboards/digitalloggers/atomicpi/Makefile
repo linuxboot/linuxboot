@@ -1,3 +1,19 @@
+# TODO: clean up
+# There are lots of targets in here and it's confusing.
+# They are artifacts of figuring out what works. 
+# Eventually, there will be two targets: netboot and flash
+#
+# netboot produces a kernel and initramfs for netboot
+# The netboot image uses a cpuserver as its init, and you
+# can cpu to it to run commands, including flashrom -p internal
+# to flash the flash image.
+#
+# flash produces a flash image to be burned.
+# flash also produces a kernel and initramfs that can be
+# netbooted for testing purposes.
+#
+# Confusing, but with luck, we can clean up this
+# Makefile to make it less so.
 default: build
 
 build:
@@ -270,15 +286,17 @@ writerom: image.bin
 flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
-flashinitramfs.cpio:
-	go run github.com/u-root/u-root  -o $@ -build=bb \
+flashinitramfs.cpio: Makefile
+	go run github.com/u-root/u-root  -o $@ -build=bb -files /usr/bin/strace \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/kexec \
 		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/dhclient
+		github.com/u-root/u-root/cmds/core/wget \
+		github.com/u-root/u-root/cmds/boot/pxeboot
 
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
