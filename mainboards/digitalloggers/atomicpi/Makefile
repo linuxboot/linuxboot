@@ -1,23 +1,52 @@
 # TODO: clean up
 # There are lots of targets in here and it's confusing.
 # They are artifacts of figuring out what works. 
-# Eventually, there will be two targets: netboot and flash
+# You need only worry about the first four targets;
+# over time, we can clean up this Makefile but those targets
+# remain the same.
+#
+# the default target depens on netboot and flash
 #
 # netboot produces a kernel and initramfs for netboot
 # The netboot image uses a cpuserver as its init, and you
 # can cpu to it to run commands, including flashrom -p internal
 # to flash the flash image.
 #
+# When you have made netboot you can, e.g.,
+# sudo cp kernel initramfs.linux_amd64.lzma /var/lib/tftpboot
+# Once the node boots, you can cpu to it. Assume it has IP
+# a.b.c.d:
+# cpu a.b.c.d 
+# will get you a bash, and
+# cpu a.b.c.d flashrom -r file -o internal
+# will read the file into 'file' in your current directory
+# All your files and programs from your host node are visible
+# to you in the remote node.
+#
 # flash produces a flash image to be burned.
 # flash also produces a kernel and initramfs that can be
-# netbooted for testing purposes.
+# tested independent of the flash image.
 #
-# Confusing, but with luck, we can clean up this
-# Makefile to make it less so.
-# For now
-# make kernel # kernel is netbootable, initramfs.linux_amd64.cpio.lzma is cpu ramfs
-# make tiny.bin # ram image but tinykernel and flashinitramfs.cpio.lzma can be netbooted
-default: build
+# You can test the netboot kernel with qemu
+# make flashtest
+#
+# Or you can netboot the flash kernel
+# e.g.
+# sudo cp flashinitramfs.cpio.lzma /var/lib/tftpboot/initramfs.linux_amd64.cpio.lzma
+# sudo cp tinykernel /var/lib/tftpboot/kernel
+#
+# This makefile needs a lot of cleanup, but if you stick with the first 4 targets
+# a lot of the kludgery won't be so visible.
+
+default: netboot flash
+
+netboot: kernel
+
+flash: tiny.bin
+
+flashtest: testtinykernel
+
+#### here there be dragons
 
 build:
 	echo fetch, uroot, kernel, or image.bin
@@ -275,7 +304,7 @@ install:
 	@echo but check what is there first.
 	@echo you may want to copy 50-cloud-init.yaml to /etc/netplan
 
-netboot: netbooturoot bzImage
+oldnetboot: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 readrom:
