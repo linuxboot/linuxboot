@@ -314,12 +314,12 @@ tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200 initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
+	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200  initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
 testtinykernel: tinykernel
-	qemu-system-x86_64 -kernel tinykernel -nographic -serial /dev/tty
+	qemu-system-x86_64 -kernel tinykernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
 
 # This image is intended to be net-booted
 bzImage: uroot.lzma
