@@ -120,7 +120,7 @@ tiny.bin: upimagewithup2dxeremovemore.bin tinykernel
 		remove .*PxeDxe.* \
 		remove Mtftp4Dxe \
 		remove Udp4.* \
-		replace_pe32 Shell_Full tinykernel \
+		replace_pe32 Shell tinykernel \
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
@@ -191,7 +191,7 @@ upimagewithup2dxe.bin: image.bin Makefile
 	utk \
 		  -xzPath  /usr/bin/xz \
 		/tmp/$@ \
-		insert_dxe up2bds.ffs insert_dxe up2shellfull.ffs \
+		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
 		save $@
 
 flashkernel.bin: pxeshell.bin flashkernel Makefile
