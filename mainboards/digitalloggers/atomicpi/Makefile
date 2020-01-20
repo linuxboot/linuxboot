@@ -124,6 +124,28 @@ tiny.bin: upimagewithup2dxeremovemore.bin tinykernel
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
+gan.bin: upimagewithup2dxeremovemore.bin tinykernel
+	utk \
+		-xzPath  /usr/bin/xz \
+		$< \
+		remove .*harging.* \
+		remove TcpDxe \
+		remove SnpDxe \
+		remove MnpDxe \
+		remove .*Dhcp.* \
+		remove Arp.* \
+		remove Tcp.* \
+		remove Ip4.* \
+		remove .*PxeDxe.* \
+		remove Mtftp4Dxe \
+		remove Udp4.* \
+		remove Bds \
+		remove Shell_Full \
+		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
+		replace_pe32 Shell tinykernel  \
+		save $@
+		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
+
 netboot.bin: upimagewithup2dxe.bin netbootkernel
 	utk \
 		-xzPath  /usr/bin/xz \
