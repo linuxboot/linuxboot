@@ -267,14 +267,17 @@ lpc_update_flash_access(void)
 	serial_hex(reg16, 4);
 
 
-	reg16 = 0xFFCF;
-	status = LpcPciIo->Pci.Write(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
-	if (EFI_ERROR (status)) {
-		serial_string("status=");
-		serial_hex(status, 8);
-		return;
-	}
 	status = LpcPciIo->Pci.Read(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
+	if (reg16 != 0xFFCF) {
+		reg16 = 0xFFCF;
+		status = LpcPciIo->Pci.Write(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
+		if (EFI_ERROR (status)) {
+			serial_string("status=");
+			serial_hex(status, 8);
+			return;
+		}
+		status = LpcPciIo->Pci.Read(LpcPciIo, EfiPciIoWidthUint16, BIOS_DEC_EN1, 1, &reg16);
+	}
 	serial_string("BIOS_DEC_EN1=");
 	serial_hex(reg16, 4);
 }
