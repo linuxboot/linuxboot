@@ -172,6 +172,8 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 
 flashinitramfs.cpio: Makefile
 	go run github.com/u-root/u-root  -o $@ -build=bb \
+		-uinitcmd=/bbin/pxeboot \
+		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
@@ -180,7 +182,6 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/kexec \
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/core/wget \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
 
 uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
@@ -202,7 +203,7 @@ tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200  initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
+	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
