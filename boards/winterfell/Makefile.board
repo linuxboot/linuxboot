@@ -64,3 +64,10 @@ $(BUILD)/nvram1.ffs: $(NVRAM1_FFS)
 $(BUILD)/nvram2.ffs: $(NVRAM2_FFS)
 	./bin/nvram-compact < $< > $@
 
+#
+# UTK Compact the NVRAM region
+#
+
+nvram-nvar-keep := boards/$(BOARD)/nvar-keep.txt
+
+UTK_EXTRA_OPS := invalidate_nvar_except $(nvram-nvar-keep) nvram-compact

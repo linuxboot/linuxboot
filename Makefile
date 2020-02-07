@@ -144,6 +144,7 @@ $(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
 		$(ROM) \
 		remove_dxes_except boards/$(BOARD)/image-files.txt \
 		$(foreach ffs,$(DXE_FFS), insert_dxe $(ffs)) \
+		$(UTK_EXTRA_OPS) \
 		save $@
 endif
 
