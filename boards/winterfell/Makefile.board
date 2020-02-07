@@ -36,11 +36,14 @@ $(BUILD)/rom/0x00f00000.fv \
 
 # Replace the DxeCore and SmmCore with our own
 # and add in the Linux kernel / initrd
+DXE_FFS := \
+./dxe/linuxboot.ffs \
+$(BUILD)/Linux.ffs \
+$(BUILD)/Initrd.ffs \
+
 $(BUILD)/dxe.vol: \
 	$(dxe-files) \
-	./dxe/linuxboot.ffs \
-	$(BUILD)/Linux.ffs \
-	$(BUILD)/Initrd.ffs \
+	$(DXE_FFS) \
 
 #
 # Compact the NVRAM region.  this isn't required, but makes for cleaner images.
@@ -61,3 +64,10 @@ $(BUILD)/nvram1.ffs: $(NVRAM1_FFS)
 $(BUILD)/nvram2.ffs: $(NVRAM2_FFS)
 	./bin/nvram-compact < $< > $@
 
+#
+# UTK Compact the NVRAM region
+#
+
+nvram-nvar-keep := boards/$(BOARD)/nvar-keep.txt
+
+UTK_EXTRA_OPS := invalidate_nvar_except $(nvram-nvar-keep) nvram-compact

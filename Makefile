@@ -3,7 +3,7 @@
 #
 # This requires the vendor firmware image, a Linux kernel and an initrd.cpio.xz file.
 #
-# 
+#
 all: linuxboot
 
 -include .config
@@ -36,6 +36,10 @@ include boards/$(BOARD)/Makefile.board
 # If they don't define a vendor ROM file
 ROM ?= boards/$(BOARD)/$(BOARD).rom
 
+ifdef USE_UTK
+include Makefile.utk
+endif
+
 linuxboot: $(BUILD)/linuxboot.rom
 
 # Create a .config file based on the current parameters
@@ -63,7 +67,6 @@ edk2.force: edk2/.git
 # and build the various Dxe/Smm files
 edk2/.git:
 	git clone --depth 1 --branch UDK2018 https://github.com/linuxboot/edk2
-
 
 $(BUILD)/Linux.ffs: $(KERNEL)
 $(BUILD)/Initrd.ffs: $(INITRD)
@@ -133,8 +136,18 @@ $(dxe-files): $(BUILD)/$(BOARD).txt
 dxe/%.ffs:
 	$(MAKE) -C dxe $(notdir $@)
 
+ifndef USE_UTK
 $(BUILD)/linuxboot.rom: $(FVS)
-
+else
+$(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
+	$< \
+		$(ROM) \
+		remove_dxes_except boards/$(BOARD)/image-files.txt \
+		$(foreach ffs,$(DXE_FFS), insert_dxe $(ffs)) \
+		$(UTK_EXTRA_OPS) \
+		save $@
+endif
 
 clean:
 	$(RM) $(BUILD)/{*.ffs,*.rom,*.vol,*.tmp}
+	$(RM) ./bin/utk

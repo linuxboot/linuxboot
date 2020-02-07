@@ -1,0 +1,28 @@
+#
+# Rules for using UTK to manipulate the flash image
+#
+
+# Check go version. We need go 1.11 or newer
+GOVERSION:=$(shell go version | grep ^go | cut -d ' ' -f 3 | cut -c 3-)
+GOMAJOR:=$(shell echo $(GOVERSION) | cut -d '.' -f 1)
+GOMINOR:=$(shell echo $(GOVERSION) | cut -d '.' -f 2)
+GOVERSIONREQ:=1.11
+GOMAJORREQ:=1
+GOMINORREQ:=11
+
+$(shell \
+	if [ "$(GOMAJOR)" -lt "$(GOMAJORREQ)" ]; then \
+		echo >&2 "Go version $(GOVERSION) too old, please install go $(GOVERSIONREQ) or newer"; \
+		exit 1; \
+	elif [ "$(GOMAJOR)" -eq "$(GOMAJORREQ)" ]; then \
+		if [ "$(GOMINOR)" -lt "$(GOMINORREQ)" ]; then \
+			echo >&2 "Go version $(GOVERSION) too old, please install go $(GOVERSIONREQ) or newer"; \
+			exit 1; \
+		fi; \
+	fi; \
+)
+
+bin/utk:
+	go get github.com/linuxboot/fiano/cmds/utk
+	cp $(GOPATH)/bin/utk $@
+
