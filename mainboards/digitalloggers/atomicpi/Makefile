@@ -194,6 +194,20 @@ uroot:
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpuserver
 
+# this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
+# the intent is  to demonstrate the capability of http loading.
+# It depends on the kernel setting the IP address.
+# You need ip=dhcp OR ip=fixed.ip.address.here in the command line
+biguroot.cpio.lzma: tiny.bin
+	go run github.com/u-root/u-root -o biguroot.cpio -build=bb \
+		-files /usr/bin/emacs \
+		-files /usr/bin/vi \
+		-files /bin/bash \
+		-files /usr/sbin/flashrom \
+		-files tiny.bin
+	lzma -f -k biguroot.cpio
+	ls -l biguroot.cpio.*
+
 netbootkernel: linuxboot-linux.netboot.config
 	cp $< linux/.config
 	(cd linux && make oldconfig && make -j32)
