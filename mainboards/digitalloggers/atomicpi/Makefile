@@ -32,11 +32,13 @@
 # This makefile needs a lot of cleanup, but if you stick with the first 4 targets
 # a lot of the kludgery won't be so visible.
 
-default: netboot flash
+default: netboot flash reflash
 
 netboot: kernel
 
 flash: tiny.bin
+
+reflash: biguroot.cpio.lzma
 
 flashtest: testtinykernel
 
@@ -204,6 +206,7 @@ biguroot.cpio.lzma: tiny.bin
 		-files /usr/bin/vi \
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
+		-files /usr/bin/xz \
 		-files tiny.bin
 	lzma -f -k biguroot.cpio
 	ls -l biguroot.cpio.*

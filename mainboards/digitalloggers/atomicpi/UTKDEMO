@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+echo "Make sure me_cleaner.py is in our path"
+which me_cleaner.py
+echo "Make sure utk is in our path"
+which utk
+echo "Make sure guid2english is in our path"
+which guid2english
+echo "Let's go!"
+touch image.bin
+utk image.bin table | guid2english | less
+echo "Cut the ME area down to a smaller area"
+make tighten.bin
+read -p "hit return to continue" i
+utk tighten.bin table | guid2english | less
+read -p "hit return to continue" i
+echo "Set HAP bit"
+chmod +w hap.bin
+make hap.bin
+read -p "hit return to continue" i
+# utk hap.bin table | guid2english | less
+read -p "hit return to continue" i
+echo "Remove DXEs"
+chmod +w dxeremove.bin
+make dxeremove.bin
+read -p "hit return to continue" i
+# utk dxeremove.bin table | guid2english | less
+read -p "hit return to continue" i
+echo "Add BdsDxe and UEFIShellDxe built from source"
+make edk2.bin
+read -p "hit return to continue" i
+utk edk2.bin table | guid2english | less
+read -p "hit return to continue" i
+echo "Replace shell binary with kernel and add initramfs"
+make tiny.bin
+read -p "hit return to continue" i
+utk tiny.bin table | guid2english | less
