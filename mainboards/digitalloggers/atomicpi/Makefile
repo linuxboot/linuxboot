@@ -202,8 +202,9 @@ uroot:
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 biguroot.cpio.lzma: tiny.bin
 	go run github.com/u-root/u-root -o biguroot.cpio -build=bb \
-		-files /usr/bin/emacs \
 		-files /usr/bin/vi \
+		-files /usr/share/vim \
+		-files /usr/share/terminfo \
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
