@@ -265,3 +265,5 @@ geturoot:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
 
+ssh:
+	ssh -i class_key -p 2022 root@up
