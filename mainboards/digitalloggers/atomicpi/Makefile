@@ -202,13 +202,16 @@ uroot:
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 biguroot.cpio.lzma: tiny.bin
 	go run github.com/u-root/u-root -o biguroot.cpio -build=bb \
+		-files class_key.pub:authorized_keys \
+		-files classhostkey:id_rsa \
 		-files /usr/bin/vi \
 		-files /usr/share/vim \
 		-files /usr/share/terminfo \
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
-		-files tiny.bin
+		-files tiny.bin \
+		all 
 	lzma -f -k biguroot.cpio
 	ls -l biguroot.cpio.*
 
