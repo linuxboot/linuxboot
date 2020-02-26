@@ -265,5 +265,10 @@ geturoot:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
 
+pxeserver:
+	echo Disabling any system services ...
+	sudo systemctl  stop tftpd-hpa.service
+	sudo systemctl stop isc-dhcp-server
+	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename grubnetx64.efi.signed -http-dir . -interface $(NETWORK)
 ssh:
 	ssh -i class_key -p 2022 root@up

@@ -1,0 +1,27 @@
+prompt 0
+timeout 300
+ONTIMEOUT local
+DEFAULT reflash
+
+MENU TITLE PXE Menu
+
+LABEL flash
+      MENU LABEL flash
+        kernel http://192.168.0.1/tinykernel
+        append initrd=http://192.168.0.1/flashinitramfs.cpio.lzma ip=dhcp earlyprintk=ttyS0,115200 console=ttyS0,115200 memmap=256M!1G netconsole=6666@192.168.0.2/,6666@192.168.0.1/
+
+LABEL reflash
+        MENU LABEL reflash
+        kernel http://192.168.0.1/kernel
+        append initrd=http://192.168.0.1/biguroot.cpio.lzma ip=dhcp earlyprintk=ttyS0,115200 console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ intel-spi.writeable=1 debug loglevel=8
+
+LABEL reflashslow
+        MENU LABEL reflash
+        kernel kernel
+        append initrd=/biguroot.cpio.lzma ip=dhcp earlyprintk=ttyS0,115200 console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ intel-spi.writeable=1 debug loglevel=8
+
+LABEL cpu
+        MENU LABEL cpu
+        kernel http://192.168.0.1/kernel
+        append initrd=http://192.168.0.1/initramfs.linux_amd64.cpio.lzma ip=dhcp earlyprintk=ttyS0,115200 console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ intel-spi.writeable=1 debug loglevel=8
+
