@@ -148,7 +148,9 @@ hap.bin: tighten.bin
 tighten.bin: image.bin
 	utk $< tighten_me save $@
 
-kernel: uroot.lzma bzImage
+kernel: biguroot.cpio.lzma linuxboot-linux.config
+	cp linuxboot-linux.config linux/.config
+	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage kernel
 
 install:
@@ -200,7 +202,7 @@ uroot:
 # the intent is  to demonstrate the capability of http loading.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-biguroot.cpio.lzma: tiny.bin
+biguroot.cpio.lzma: 
 	go run github.com/u-root/u-root -o biguroot.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
@@ -211,7 +213,6 @@ biguroot.cpio.lzma: tiny.bin
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
-		-files tiny.bin \
 		all 
 	lzma -f -k biguroot.cpio
 	ls -l biguroot.cpio.*
