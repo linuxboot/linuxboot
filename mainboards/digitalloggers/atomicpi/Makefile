@@ -267,9 +267,9 @@ geturoot:
 	go get -u github.com/u-root/cpu/...
 
 pxeserver:
-	echo Disabling any system services ...
-	sudo systemctl  stop tftpd-hpa.service
-	sudo systemctl stop isc-dhcp-server
+	echo Consider Disabling any system services ...
+	echo e.g. sudo systemctl  stop tftpd-hpa.service
+	echo e.g. sudo systemctl stop isc-dhcp-server
 	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename kernel  -http-dir . -interface $(NETWORK)
 ssh:
 	ssh -i class_key -p 2022 root@up
