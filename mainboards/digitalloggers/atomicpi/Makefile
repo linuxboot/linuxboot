@@ -1,57 +1,52 @@
-# This is the makefile for a netbootable image and a flashable image.
-# The default target depends on netboot and flash
+# This is the makefile for a flash image, a netbootable sshd image,
+# and a netbootable cpu image.
 #
-# netboot produces a kernel and initramfs for netboot
-# The netboot image uses a cpuserver as its init, and you
+# sshdkernel produces a kernel with a built-in initramfs for netboot
+# It provides (and starts) an sshd, and also has flashrom.
+# Hence you can ssh to a node, flashrom -r on it, scp the
+# image back, process it, scp the new image to the node, and
+# write with flashrom.
+# e.g.
+# ssh -i class_key -p 2022 board flashrom -r image.bin -p internal
+# scp -i class_key -P 2022 board:/image.bin image.bin
+# make tiny.bin
+# scp -i class_key -P 2022 tiny.bin board:/tiny.bin
+# ssh -i class_key -p 2022 board flashrom -w tiny.bin -p internal
+#
+# The cpu image uses a cpuserver as its init, and you
 # can cpu to it to run commands, including flashrom -p internal
 # to flash the flash image.
-#
-# When you have made netboot you can, e.g.,
-# sudo cp kernel initramfs.linux_amd64.lzma /var/lib/tftpboot
-# Once the node boots, you can cpu to it. Assume it has IP
-# a.b.c.d:
-# cpu a.b.c.d 
-# will get you a bash, and
-# cpu a.b.c.d flashrom -r file -o internal
-# will read the file into 'file' in your current directory
-# All your files and programs from your host node are visible
-# to you in the remote node.
-#
-# flash produces a flash image to be burned.
-# flash also produces a kernel and initramfs that can be
-# tested independent of the flash image.
-#
-# You can test the netboot kernel with qemu
-# make flashtest
-#
-# Or you can netboot the flash kernel
 # e.g.
-# sudo cp flashinitramfs.cpio.lzma /var/lib/tftpboot/initramfs.linux_amd64.cpio.lzma
-# sudo cp tinykernel /var/lib/tftpboot/kernel
+# cpu board flashrom -r image.bin -p internal
+# Note this writes image image.bin to the host directoy; no scp needed
+# make tiny.bin
+# cpu board flashrom -w tiny.bin -p internal
+# cpu is way more convenient than ssh/scp if you can learn it.
+# you can also just
+# cpu board
+# and once you are in:
+# flashrom -r image.bin -p internal
+# make tiny.bin
+# flashrom -w tiny.bin -p internal
+# NOTE: those commands are running on the board, and they all work
 #
-# This makefile needs a lot of cleanup, but if you stick with the first 4 targets
-# a lot of the kludgery won't be so visible.
+# You can test the flash image kernel with qemu
+# make flashtest
 
-default: netboot flash reflash
-
-netboot: kernel
+default: sshdkernel flash cpukernel
 
 flash: tiny.bin
 
-reflash: biguroot.cpio.lzma
+flashtest: testflashkernel
 
-flashtest: testtinykernel
-
-#### here there be dragons
-
-build:
+usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-tiny.bin: edk2.bin tinykernel flashinitramfs.cpio.lzma
+tiny.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 Shell tinykernel \
+		replace_pe32 Shell flashkernel \
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
@@ -148,20 +143,15 @@ hap.bin: tighten.bin
 tighten.bin: image.bin
 	utk $< tighten_me save $@
 
-kernel: biguroot.cpio.lzma linuxboot-linux.config
-	cp linuxboot-linux.config linux/.config
+sshdkernel: sshd.cpio.lzma sshd-linux.config
+	cp sshd-linux.config linux/.config
 	(cd linux && make oldconfig && make -j32)
-	cp linux/arch/x86/boot/bzImage kernel
+	cp linux/arch/x86/boot/bzImage $@
 
-install:
-	sudo mkdir -p /var/lib/tftpboot/grub
-	sudo cp grub.cfg /var/lib/tftpboot/grub
-	sudo cp grubnetx64.efi.signed /var/lib/tftpboot
-	lzma -k -f initramfs.linux_amd64.cpio
-	sudo cp kernel initramfs.linux_amd64.cpio.lzma /var/lib/tftpboot
-	@echo you can put dhcpd.conf in /etc/dhcp
-	@echo but check what is there first.
-	@echo you may want to copy 50-cloud-init.yaml to /etc/netplan
+cpukernel: cpu.cpio.lzma cpu-linux.config
+	cp cpu-linux.config linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -187,23 +177,21 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/core/wget \
 
-uroot.lzma: uroot
-	lzma -f -k initramfs.linux_amd64.cpio
-
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-uroot:
-	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
+cpu.cpio.lzma: Makefile
+	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpuserver
+	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
 # the intent is  to demonstrate the capability of http loading.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-biguroot.cpio.lzma: 
-	go run github.com/u-root/u-root -o biguroot.cpio -build=bb \
+sshd.cpio.lzma:  Makefile
+	go run github.com/u-root/u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
@@ -214,15 +202,10 @@ biguroot.cpio.lzma:
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
 		all 
-	lzma -f -k biguroot.cpio
-	ls -l biguroot.cpio.*
+	lzma -f -k sshd.cpio
+	ls -l sshd.cpio.*
 
-netbootkernel: linuxboot-linux.netboot.config
-	cp $< linux/.config
-	(cd linux && make oldconfig && make -j32)
-	cp linux/arch/x86/boot/bzImage $@
-
-tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
+flashkernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
@@ -230,22 +213,8 @@ tinykernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-testtinykernel: tinykernel
-	qemu-system-x86_64 -kernel tinykernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
-
-# This image is intended to be net-booted
-bzImage: uroot.lzma
-	cp linuxboot-linux.config linux/.config
-	(cd linux && make oldconfig && make -j32)
-
-# This image is intended to be net-booted but using an initramfs burned into SPI
-# It should also be possible to burn it into SPI
-flashbzImage: uroot.lzma
-	cp linuxboot-linux.config linux/.config
-	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
-	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' initramfs.linux_amd64.cpio.lzma >> linux/.config
-	(cd linux && make oldconfig && make -j32)
+testflashkernel: flashkernel
+	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
 
 # These stanzas fetch code.
 fetch: getkernel geturoot getfiano getrom
@@ -266,10 +235,18 @@ geturoot:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
 
-pxeserver:
+# Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
+sshd-pxeserver:
 	echo Consider Disabling any system services ...
 	echo e.g. sudo systemctl  stop tftpd-hpa.service
 	echo e.g. sudo systemctl stop isc-dhcp-server
-	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename kernel  -http-dir . -interface $(NETWORK)
+	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename sshdkernel  -http-dir . -interface $(NETWORK)
+
+# Serve the combined cpu-kernel and cpu-initramfs image.
+cpu-pxeserver:
+	echo Consider Disabling any system services ...
+	echo e.g. sudo systemctl  stop tftpd-hpa.service
+	echo e.g. sudo systemctl stop isc-dhcp-server
+	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename sshdkernel  -http-dir . -interface $(NETWORK)
 ssh:
 	ssh -i class_key -p 2022 root@up
