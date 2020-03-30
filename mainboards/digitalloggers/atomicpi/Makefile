@@ -201,7 +201,7 @@ sshd.cpio.lzma:  Makefile
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
-		all 
+		all
 	lzma -f -k sshd.cpio
 	ls -l sshd.cpio.*
 
@@ -209,12 +209,15 @@ flashkernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
-	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrd=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
+	stat -c 'CONFIG_CMDLINE="noefi ip=dhcp earlyprintk=ttyS0,115200,keep console=ttyS0,115200 netconsole=6666@192.168.0.2/,6666@192.168.0.1/ initrdmem=0xff968000,%s"' flashinitramfs.cpio.lzma >> linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
 testflashkernel: flashkernel
 	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
+
+testcpukernel: cpukernel
+	qemu-system-x86_64 -kernel cpukernel -nographic -serial /dev/tty
 
 # These stanzas fetch code.
 fetch: getkernel geturoot getfiano getrom
@@ -229,7 +232,7 @@ getfiano:
 	go install github.com/linuxboot/fiano/cmds/guid2english
 getrom:
 	echo you can put a wget here
-	echo and unxip it 
+	echo and unxip it
 	echo and cp it to image.bin
 geturoot:
 	go get -u github.com/u-root/u-root
@@ -247,6 +250,7 @@ cpu-pxeserver:
 	echo Consider Disabling any system services ...
 	echo e.g. sudo systemctl  stop tftpd-hpa.service
 	echo e.g. sudo systemctl stop isc-dhcp-server
-	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename sshdkernel  -http-dir . -interface $(NETWORK)
+	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename cpukernel  -http-dir . -interface $(NETWORK)
+
 ssh:
 	ssh -i class_key -p 2022 root@up
