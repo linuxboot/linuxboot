@@ -13,7 +13,7 @@
 # scp -i ../../class_key -P 2022 tiny.bin board:/tiny.bin
 # ssh -i ../../class_key -p 2022 board flashrom -w tiny.bin -p internal
 #
-# The cpu image uses a cpuserver as its init, and you
+# The cpu image uses a cpud as its init, and you
 # can cpu to it to run commands, including flashrom -p internal
 # to flash the flash image.
 # e.g.
@@ -54,7 +54,7 @@ edk2.bin: dxeremove.bin
 	echo Note, this inserts the edk2 bds and shell
 	echo Only flash this image if you have an sf100.
 	echo It will not be able to boot anything.
-	utk \
+	echo utk \
 		-xzPath  /usr/bin/xz \
 		$< \
 		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
@@ -181,9 +181,9 @@ flashinitramfs.cpio: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
+	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpuserver
+		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc

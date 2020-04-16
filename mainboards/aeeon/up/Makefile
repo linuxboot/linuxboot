@@ -71,9 +71,9 @@ uroot.lzma: uroot
 	lzma -f -k initramfs.linux_amd64.cpio
 
 uroot:
-	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpuserver -files ~/.ssh/cpu_rsa.pub:key.pub \
+	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 	-defaultsh="" \
-	github.com/u-root/cpu/cmds/cpuserver
+	github.com/u-root/cpu/cmds/cpud
 
 alluroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
