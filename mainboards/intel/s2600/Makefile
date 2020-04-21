@@ -42,23 +42,13 @@ flashtest: testflashkernel
 usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-tiny.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
+tiny.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
 		replace_pe32 Shell flashkernel \
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
-
-edk2.bin: dxeremove.bin
-	echo Note, this inserts the edk2 bds and shell
-	echo Only flash this image if you have an sf100.
-	echo It will not be able to boot anything.
-	echo utk \
-		-xzPath  /usr/bin/xz \
-		$< \
-		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
-		save $@
 
 dxeremove.bin: hap.bin
 	echo note, we remove DXE to the point the image is not viable
@@ -221,7 +211,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 --single-branch https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux
+	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
