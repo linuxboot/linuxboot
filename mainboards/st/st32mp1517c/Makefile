@@ -92,7 +92,7 @@ flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp linux/arch/arm/boot/zImage $@
 
 testflashkernel: flashkernel
-	echo fix me qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
+	qemu-system-arm -machine ast2600-evb -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
 
 # These stanzas fetch code.
 fetch: getkernel geturoot 
