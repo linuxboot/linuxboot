@@ -125,7 +125,7 @@ dxeremove.bin: hap.bin
 		save $@
 		chmod a-w $@
 
-hap.bin: tighten.bin
+hap.bin: image.bin
 	cp $< $@
 	me_cleaner.py -s $@
 	chmod a-w $@
