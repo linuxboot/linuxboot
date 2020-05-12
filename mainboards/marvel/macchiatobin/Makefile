@@ -65,7 +65,7 @@ sd:
 flashtest: testflashkernel
 
 usefultargets:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, kernel, apt (for crossbuild) or image.bin
 
 tiny.bin: flashkernel flashinitramfs.cpio.xz
 
@@ -161,6 +161,9 @@ fetchblobs:
 	rm -rf mv-ddr-marvell binaries-marvell
 	git clone --branch mv_ddr-armada-atf-mainline $(MARVELL_GIT)/mv-ddr-marvell.git
 	git clone --branch binaries-marvell-armada-17.10 $(MARVELL_GIT)/binaries-marvell
+
+apt:
+	sudo apt install gcc-aarch64-linux-gnu
 
 # Serve the combined cpu-kernel and cpu-initramfs image.
 cpu-pxeserver:
