@@ -37,15 +37,16 @@
 MARVELL_GIT?=https://github.com/MarvellEmbeddedProcessors
 TOOLCHAIN?=aarch64-linux-gnu-
 
-default: sdimage 
+default: flash-image.bin
 
 u-root:
 	go install github.com/u-root/u-root
-	echo Make sure $(GOPATH)/bin is in your PATH
+	@echo Make sure $(GOPATH)/bin is in your PATH
+	@echo if GOPATH is empty, then put ~/go/bin in your PATH
 
 todo: sshdkernel flash cpukernel
 
-sdimage: flashkernel flashinitramfs.cpio sd
+flash-image.bin: flashkernel sd
 
 sd:
 	(cd tfa && make \
@@ -78,9 +79,9 @@ sshdkernel: sshd.cpio.xz netbootkernel.config
 cpukernel: sshdkernel
 	cp sshdkernel $@
 
-writerom: image.bin
-	echo Here is where you would do the flashrom, e.g.
-	echo sudo flashrom -p dediprog -w image.bin
+writerom: flash-image.bin
+	@echo Use this command. It will not be run from this Makefile
+	@echo dd if=flash-image.bin of=/dev/null skip=1
 
 flashinitramfs.cpio.xz: flashinitramfs.cpio
 	xz --check=crc32  -f -k $<
@@ -122,11 +123,11 @@ sshd.cpio.xz:  u-root Makefile
 		-files /bin/bash \
 		-files /usr/sbin/flashrom \
 		-files /usr/bin/xz \
-		all 
+		all
 	xz --check=crc32  -f -k sshd.cpio
 	ls -l sshd.cpio.*
 
-flashkernel: config-5.6.3
+flashkernel: config-5.6.3 flashinitramfs.cpio.xz
 	cp $< linux/.config
 	(cd linux && CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 make oldconfig && CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 make -j32)
 
