@@ -45,9 +45,11 @@ geturoot:
 	go get -u github.com/u-root/cpu/...
 
 testflashkernel: flashkernel
-	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
+	echo ^C will exit qemu! be careful!
+	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma -monitor /dev/null
 
 housekeeping:
 	rm -rf flashinitramfs.cpio \
 	       flashinitramfs.cpio.lzma \
 	       flashkernel \
+
