@@ -22,9 +22,8 @@ writerom: image.bin
 	sudo flashrom -p internal -w image.bin
 
 uroot:
-	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-files /bin/fusermount \
-	github.com/u-root/u-root/cmds/exp/cpu \
+	go run github.com/u-root/u-root -build=bb -initcmd=/bbin/cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+		github.com/u-root/cpu/cmds/cpud \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/elvish \
@@ -57,4 +56,5 @@ getrom:
 	echo chmod a-w apu.bin
 geturoot:
 	go get -u github.com/u-root/u-root
+	go get -u github.com/u-root/cpu
 

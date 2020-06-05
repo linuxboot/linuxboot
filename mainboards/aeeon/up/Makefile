@@ -72,14 +72,13 @@ uroot.lzma: uroot
 
 uroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-defaultsh="" \
-	github.com/u-root/cpu/cmds/cpud
+		-defaultsh="" \
+		github.com/u-root/cpu/cmds/cpud
 
 alluroot:
-	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpu -files ~/.ssh/cpu_rsa.pub:key.pub \
-	-files /bin/fusermount \
-	github.com/u-root/u-root/cmds/exp/cpu \
-		all 
+	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+		github.com/u-root/cpu/cmds/cpud \
+		all
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
@@ -117,4 +116,5 @@ getrom:
 	echo and cp it to sr630.bin
 geturoot:
 	go get -u github.com/u-root/u-root
+	go get -u github.com/u-root/cpu
 
