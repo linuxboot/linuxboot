@@ -64,7 +64,7 @@ sshd.cpio.lzma:  Makefile
 flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make oldconfig && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j32)
-	cp linux/arch/arm/boot/zImage $@
+	cp linux/arch/arm64/boot/Image $@
 
 testflashkernel: flashkernel
 	qemu-system-arm -machine ast2600-evb -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
@@ -74,7 +74,7 @@ fetch: getkernel geturoot
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+	git clone --depth=1 -b v5.7 --single-branch https://github.com/torvalds/linux
 	(cd linux && make mrproper)
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
 
