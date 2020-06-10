@@ -21,17 +21,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=arm64 u-root  -o $@ -build=bb \
-		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
+	GOARCH=arm64 u-root  -o $@ -build=bb all
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
