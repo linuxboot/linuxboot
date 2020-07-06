@@ -78,14 +78,32 @@ writerom: image.bin
 	echo sudo flashrom -p dediprog -w image.bin
 
 netbooturoot:
-	u-root -build=bb -uinitcmd="hostname gen360Gen10" github.com/u-root/u-root/cmds/core/hostname github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp github.com/u-root/u-root/cmds/boot/*
+	u-root -build=bb -uinitcmd="hostname dl360Gen10" \ 
+		github.com/u-root/u-root/cmds/core/hostname \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/ip \ 
+		github.com/u-root/u-root/cmds/core/elvish \   
+		github.com/u-root/u-root/cmds/core/sshd \   
+		github.com/u-root/u-root/cmds/core/scp \
+		github.com/u-root/u-root/cmds/boot/*
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
 	cp *lzma linux
 
 uroot:
-	u-root -build=bb -uinitcmd="hostname dl360Gen10" github.com/u-root/u-root/cmds/core/hostname github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/exp/rush github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp
+	u-root -build=bb -uinitcmd="hostname dl360Gen10" \
+		github.com/u-root/u-root/cmds/core/hostname \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/u-root/cmds/core/sshd \
+		github.com/u-root/u-root/cmds/core/scp \
+		github.com/u-root/u-root/cmds/core/dmesg \
+		github.com/u-root/u-root/cmds/core/grep \
+		github.com/u-root/u-root/cmds/boot/*
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
