@@ -99,6 +99,8 @@ uroot:
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/u-root/cmds/core/more \
+		github.com/u-root/u-root/cmds/core/mount \
 		github.com/u-root/u-root/cmds/core/sshd \
 		github.com/u-root/u-root/cmds/core/scp \
 		github.com/u-root/u-root/cmds/core/dmesg \
