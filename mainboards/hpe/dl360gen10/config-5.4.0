@@ -2202,8 +2202,8 @@ CONFIG_FUSE_FS=y
 #
 # CD-ROM/DVD Filesystems
 #
-# CONFIG_ISO9660_FS is not set
-# CONFIG_UDF_FS is not set
+CONFIG_ISO9660_FS=y
+CONFIG_UDF_FS=y
 # end of CD-ROM/DVD Filesystems
 
 #
