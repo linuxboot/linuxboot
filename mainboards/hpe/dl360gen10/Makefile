@@ -86,6 +86,7 @@ netbooturoot:
 		github.com/u-root/u-root/cmds/core/elvish \   
 		github.com/u-root/u-root/cmds/core/sshd \   
 		github.com/u-root/u-root/cmds/core/scp \
+		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/boot/*
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
@@ -105,6 +106,7 @@ uroot:
 		github.com/u-root/u-root/cmds/core/scp \
 		github.com/u-root/u-root/cmds/core/dmesg \
 		github.com/u-root/u-root/cmds/core/grep \
+		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/boot/*
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
