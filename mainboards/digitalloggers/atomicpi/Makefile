@@ -9,9 +9,9 @@
 # e.g.
 # ssh -i class_key -p 2022 board flashrom -r image.bin -p internal
 # scp -i class_key -P 2022 board:/image.bin image.bin
-# make tiny.bin
-# scp -i class_key -P 2022 tiny.bin board:/tiny.bin
-# ssh -i class_key -p 2022 board flashrom -w tiny.bin -p internal
+# make flashpxeboot.bin
+# scp -i class_key -P 2022 flashpxeboot.bin board:/tiny.bin
+# ssh -i class_key -p 2022 board flashrom -w flashpxeboot.bin -p internal
 #
 # The cpu image uses a cpud as its init, and you
 # can cpu to it to run commands, including flashrom -p internal
@@ -19,36 +19,47 @@
 # e.g.
 # cpu board flashrom -r image.bin -p internal
 # Note this writes image image.bin to the host directoy; no scp needed
-# make tiny.bin
-# cpu board flashrom -w tiny.bin -p internal
+# make flashpxeboot.bin
+# cpu board flashrom -w flashpxeboot.bin -p internal
 # cpu is way more convenient than ssh/scp if you can learn it.
 # you can also just
 # cpu board
 # and once you are in:
 # flashrom -r image.bin -p internal
-# make tiny.bin
-# flashrom -w tiny.bin -p internal
+# make flashpxeboot.bin
+# flashrom -w flashpxeboot.bin -p internal
 # NOTE: those commands are running on the board, and they all work
+#
+# flashpxeboot.bin produces a flash image which will pxeboot.
+# cpu.bin produces a flash image that starts a cpu daemon.
 #
 # You can test the flash image kernel with qemu
 # make flashtest
 
 default: sshdkernel flash cpukernel
 
-flash: tiny.bin
+flash: flashpxeboot.bin
 
 flashtest: testflashkernel
 
 usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-tiny.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
+flashpxeboot.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
 		replace_pe32 Shell flashkernel \
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
+
+cpu.bin: edk2.bin cpuflashkernel cpu.cpio.lzma
+	utk \
+		-xzPath  /usr/bin/xz \
+		$< \
+		replace_pe32 Shell cpuflashkernel \
+		save $@
+		NOT GOING dd if=cpu.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
 edk2.bin: dxeremove.bin
 	echo Note, this inserts the edk2 bds and shell
@@ -143,13 +154,18 @@ hap.bin: tighten.bin
 tighten.bin: image.bin
 	utk $< tighten_me save $@
 
-sshdkernel: sshd.cpio.lzma sshd-linux.config
-	cp sshd-linux.config linux/.config
+sshdkernel: sshd.cpio.lzma sshd.config
+	cp sshd.config linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-cpukernel: cpu.cpio.lzma cpu-linux.config
-	cp cpu-linux.config linux/.config
+cpukernel: cpu.cpio.lzma cpu.config
+	cp cpu.config linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
+
+cpuflashkernel: cpu.cpio.lzma cpuflash.config
+	cp cpuflash.config linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
@@ -165,7 +181,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run github.com/u-root/u-root  -o $@ -build=bb \
+		u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
@@ -181,7 +197,7 @@ flashinitramfs.cpio: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
@@ -191,7 +207,7 @@ cpu.cpio.lzma: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	go run github.com/u-root/u-root -o sshd.cpio -build=bb \
+	u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
@@ -205,7 +221,7 @@ sshd.cpio.lzma:  Makefile
 	lzma -f -k sshd.cpio
 	ls -l sshd.cpio.*
 
-flashkernel: linuxboot-linux.tiny.config flashinitramfs.cpio.lzma Makefile
+flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config

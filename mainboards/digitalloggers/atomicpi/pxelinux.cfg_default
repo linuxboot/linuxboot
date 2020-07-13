@@ -1,7 +1,7 @@
 prompt 0
 timeout 300
 ONTIMEOUT local
-DEFAULT reflash
+DEFAULT cpu
 
 MENU TITLE PXE Menu
 
