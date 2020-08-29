@@ -33,7 +33,10 @@
 # You can test the flash image kernel with qemu
 # make flashtest
 
-default: sshdkernel flash cpukernel
+# sshdkernel and cpukernel are very similar,
+# so doing builds in this order minimizes kernel
+# change between them.
+default: flash sshdkernel cpukernel
 
 flash: tiny.bin
 
@@ -42,25 +45,16 @@ flashtest: testflashkernel
 usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-tiny.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
+tiny.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 Shell flashkernel \
+		replace_pe32 FullShell flashkernel \
 		save $@
-		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
+	echo DO NOT  \
+		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=2560 conv=notrunc
 
-edk2.bin: dxeremove.bin
-	echo Note, this inserts the edk2 bds and shell
-	echo Only flash this image if you have an sf100.
-	echo It will not be able to boot anything.
-	utk \
-		-xzPath  /usr/bin/xz \
-		$< \
-		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
-		save $@
-
-dxeremove.bin: hap.bin
+dxeremove.bin: image.bin Makefile
 	echo note, we remove DXE to the point the image is not viable
 	echo until you put a kernel in it in place of the shell.
 	utk $< \
@@ -71,11 +65,11 @@ dxeremove.bin: hap.bin
 	comment S3Save_do_not_remove_gets_error \
 	comment testremove \
 	remove Ahci.* \
-	remove AMITSE \
-	remove AMITSE.* \
+	comment AMITSE \
+	comment AMITSE.* \
 	remove Arp.* \
 	remove Ata.* \
-	remove Bds \
+	comment Bds \
 	remove Button.* \
 	remove CryptoD.* \
 	remove .*Dhcp.* \
@@ -89,6 +83,7 @@ dxeremove.bin: hap.bin
 	remove IntelGopV.* \
 	remove IntelIsh.* \
 	remove Ip4.* \
+	remove Ip.* \
 	remove Ip6Dxe \
 	remove Iscsi.* \
 	remove Ish.* \
@@ -107,6 +102,7 @@ dxeremove.bin: hap.bin
 	remove ReFlash \
 	remove Sata.* \
 	remove Scsi.* \
+	remove Shell_Full \
 	remove SnpDxe \
 	remove SoftKbd \
 	remove Tcp.* \
@@ -120,7 +116,8 @@ dxeremove.bin: hap.bin
 	remove Usb.* \
 	remove Whea.* \
 	remove Xpower.* \
-	comment S3Save_do_not_remove_gets_error \
+	remove DxeIpm.* \
+	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
 		comment AmiTcgNvflagSample \
@@ -133,15 +130,6 @@ dxeremove.bin: hap.bin
 		comment Tcg2Dxe \
 		comment TcgPlatformSetupPolicy \
 		save $@
-		chmod a-w $@
-
-hap.bin: tighten.bin
-	cp $< $@
-	me_cleaner.py -s $@
-	chmod a-w $@
-
-tighten.bin: image.bin
-	utk $< tighten_me save $@
 
 sshdkernel: sshd.cpio.lzma sshd-linux.config
 	cp sshd-linux.config linux/.config
@@ -166,15 +154,8 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 
 flashinitramfs.cpio: Makefile
 	u-root  -o $@ \
-		-files /usr/bin/lsusb \
-		-files /usr/bin/lspci \
-		-files /var/lib/usbutils/usb.ids \
-		-uinitcmd=/bbin/console \
-		all \
-		github.com/u-root/u-root/cmds/exp/console \
-
-		echo not bringing by hand \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
+		github.com/u-root/u-root/cmds/boot/boot \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
@@ -241,7 +222,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+	git clone --depth=1 -b v5.5-rc3 --single-branch https://github.com/torvalds/linux
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
