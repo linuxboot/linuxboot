@@ -137,6 +137,11 @@ dxeremove.bin: image.bin Makefile
 	remove DebugPortTableDxe \
 	remove AmdIdsDebugPrintDxe \
 	comment end_debug_shock_and_awe \
+	comment config_shock_and_awe \
+	remove AmdFwConfigSmmSsp \
+	remove TlsAuthConfigDxe \
+	remove AmdFwConfigDxe \
+	comment end_config_shock_and_awe \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -203,7 +208,6 @@ dxeremove.bin: image.bin Makefile
 	comment SlinkManager \
 	comment SlinkEndpointDriver \
 	comment AmdBoardIdDxe \
-	comment AmdFwConfigDxe \
 	comment AmdCpmGpioInitDxe \
 	comment AmdSpiLockDxe \
 	comment AmdI2cMasterDxe \
@@ -224,7 +228,6 @@ dxeremove.bin: image.bin Makefile
 	comment PciDxeInit \
 	comment ExportHiiDb \
 	comment DpcDxe \
-	comment TlsAuthConfigDxe \
 	comment CsmDxe \
 	comment EventLogsSetupPage \
 	comment SmbiosElogSetupScreen \
@@ -301,7 +304,6 @@ dxeremove.bin: image.bin Makefile
 	comment AmdRasSspSmm \
 	comment JedecNvdimm \
 	comment BctBaseSmmSSP \
-	comment AmdFwConfigSmmSsp \
 	comment AmdCpmGpioInitSmm \
 	comment AmdSpiLockSmm \
 	comment AmdPlatformRasZpSmm \
