@@ -125,12 +125,18 @@ dxeremove.bin: image.bin Makefile
 	remove SmmSmbiosElog \
 	remove SmmHddSecurity \
 	comment testing \
-	comment shock_and_awe_undo_later \
+	comment huashan_shock_and_awe_undo_later \
 	remove FchHuashanMultiFchSmm \
 	remove FchHuashanSmmInit \
 	remove FchHuashanMultiFchDxe \
 	comment FchHuashanDxe \
-	comment end_shock_and_awe
+	comment end_huashan_shock_and_awe \
+	comment misc_shock_and_awe \
+	comment end_misc_shock_and_awe \
+	comment debug_shock_and_awe \
+	remove DebugPortTableDxe \
+	remove AmdIdsDebugPrintDxe \
+	comment end_debug_shock_and_awe \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -162,7 +168,6 @@ dxeremove.bin: image.bin Makefile
 	comment NbDxe \
 	comment SbDxe \
 	comment SmBusSmm \
-	comment AmdIdsDebugPrintDxe \
 	comment AmdMemSspSp3Dxe \
 	comment AmdMemSmbiosV2RvDxe \
 	comment AmdMemRestoreDxe \
@@ -221,7 +226,6 @@ dxeremove.bin: image.bin Makefile
 	comment DpcDxe \
 	comment TlsAuthConfigDxe \
 	comment CsmDxe \
-	comment DebugPortTableDxe \
 	comment EventLogsSetupPage \
 	comment SmbiosElogSetupScreen \
 	comment HardwareSignatureEntry \
