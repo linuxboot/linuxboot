@@ -113,6 +113,17 @@ dxeremove.bin: image.bin Makefile
 	remove .*Tcg.* \
 	remove NvmeInt13 \
 	remove Aint13 \
+	remove LegacyRegion \
+	remove xGbEI2cMasterDxe \
+	remove NvmeSmm \
+	remove KbcEmul \
+	remove IdeBusBoard \
+	remove Setup \
+	remove SerialMuxControl \
+	remove BmcLanConfig \
+	remove SecureBootDXE \
+	remove SmmSmbiosElog \
+	remove SmmHddSecurity \
 	comment testing \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
@@ -143,7 +154,6 @@ dxeremove.bin: image.bin Makefile
 	comment CpuDxe \
 	comment CpuSmbiosDriver \
 	comment NbDxe \
-	comment LegacyRegion \
 	comment SbDxe \
 	comment SmBusSmm \
 	comment AmdIdsDebugPrintDxe \
@@ -190,19 +200,14 @@ dxeremove.bin: image.bin Makefile
 	comment AmdI2cMasterDxe \
 	comment AmdCpmPcieInitDxe \
 	comment ApicInfoDataDxe \
-	comment xGbEI2cMasterDxe \
 	comment AmdPlatformRasZpDxe \
 	comment AmdPlatformRasSspDxe \
 	comment AmdCpmInitDxe \
-	comment Setup \
-	comment SerialMuxControl \
-	comment BmcLanConfig \
 	comment ServerMgmtSetup \
 	comment ACPI \
 	comment S3SaveStateDxe \
 	comment BootScriptExecutorDxe \
 	comment AcpiS3SaveDxe \
-	comment IdeBusBoard \
 	comment LegacySredir \
 	comment OA3 \
 	comment PciRootBridge \
@@ -310,16 +315,11 @@ dxeremove.bin: image.bin Makefile
 	comment SmmPciRbIo \
 	comment SmiVariable \
 	comment RuntimeSmm \
-	comment SmmSmbiosElog \
-	comment SmmHddSecurity \
-	comment KbcEmul \
-	comment NvmeSmm \
 	comment Ofbd \
 	comment SecSMIFlash \
 	comment SmbiosDmiEdit \
 	comment SmiFlash \
 	comment TpmClearOnRollbackSmm \
-	comment FullShell \
 	comment StatusCodeDxe \
 	comment StatusCodeSmm \
 	comment FlashDriver \
@@ -331,10 +331,11 @@ dxeremove.bin: image.bin Makefile
 	comment DxeSelStatusCode \
 	comment DxeFrb \
 	comment CmosDxe \
-	comment SecureBootDXE \
 	comment CrbSpiOpCode \
 	comment tested_fails_if_removed \
 	comment Bds \
+	comment needed_for_linuxboot_dont_remove \
+	comment FullShell \
 		save $@
 
 sshdkernel: sshd.cpio.lzma sshd-linux.config
