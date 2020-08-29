@@ -125,6 +125,12 @@ dxeremove.bin: image.bin Makefile
 	remove SmmSmbiosElog \
 	remove SmmHddSecurity \
 	comment testing \
+	comment shock_and_awe_undo_later \
+	remove FchHuashanMultiFchSmm \
+	remove FchHuashanSmmInit \
+	remove FchHuashanMultiFchDxe \
+	comment FchHuashanDxe \
+	comment end_shock_and_awe
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -173,10 +179,8 @@ dxeremove.bin: image.bin Makefile
 	comment SmuV11Dxe \
 	comment AmdNbioPcieDxe \
 	comment AmdNbioIOMMUDxe \
-	comment FchHuashanDxe \
 	comment FchSmbusDxe \
 	comment AmdLegacyInterrupt \
-	comment FchHuashanMultiFchDxe \
 	comment AmdSmbiosDxe \
 	comment AmdAcpiDxe \
 	comment AmdVersionDxe \
@@ -288,9 +292,7 @@ dxeremove.bin: image.bin Makefile
 	comment AmdPspSmmV2Ssp \
 	comment AmdCcxVhSmm \
 	comment AmdFabricSspSmm \
-	comment FchHuashanSmmInit \
 	comment FchSmmDispatcher \
-	comment FchHuashanMultiFchSmm \
 	comment AmdSmmCommunication \
 	comment AmdRasSspSmm \
 	comment JedecNvdimm \
