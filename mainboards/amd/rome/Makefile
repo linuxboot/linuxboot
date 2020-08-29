@@ -122,7 +122,6 @@ dxeremove.bin: image.bin Makefile
 	remove SerialMuxControl \
 	remove BmcLanConfig \
 	remove SecureBootDXE \
-	remove SmmSmbiosElog \
 	remove SmmHddSecurity \
 	comment testing \
 	comment huashan_shock_and_awe_undo_later \
@@ -184,12 +183,23 @@ dxeremove.bin: image.bin Makefile
 	comment end_smm_shock_and_awe \
 	comment tpm_shock_and_awe \
 	remove TpmClearOnRollbackSmm \
-	remove TpmSmbiosDxe \
 	remove Tpm20Acpi \
 	remove Tpm20PlatformDxe \
 	remove CrbTpm20Acpi \
 	remove Tpm20PlatformDxe \
+	remove TpmSmbiosDxe \
 	remove end_tpm_shock_and_awe \
+	comment smbios_shock_and_awe \
+	remove SmmSmbiosElog \
+	remove Smbios \
+	remove SmbiosDmiEdit \
+	remove SmbiosElog \
+	remove SmbiosBoard \
+	remove SmbiosElogSetupScreen \
+	remove AmdSmbiosDxe \
+	remove AmdMemSmbiosV2RvDxe \
+	remove CpuSmbiosDriver \
+	comment end_smbios_shock_and_awe \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -214,11 +224,9 @@ dxeremove.bin: image.bin Makefile
 	comment SecurityStubDxe \
 	comment CpuIo2Dxe \
 	comment CpuDxe \
-	comment CpuSmbiosDriver \
 	comment NbDxe \
 	comment SbDxe \
 	comment AmdMemSspSp3Dxe \
-	comment AmdMemSmbiosV2RvDxe \
 	comment AmdMemRestoreDxe \
 	comment AmdApcbDxeV3 \
 	comment AmdPspDxeV2Ssp \
@@ -235,7 +243,6 @@ dxeremove.bin: image.bin Makefile
 	comment AmdNbioIOMMUDxe \
 	comment FchSmbusDxe \
 	comment AmdLegacyInterrupt \
-	comment AmdSmbiosDxe \
 	comment AmdAcpiDxe \
 	comment AmdVersionDxe \
 	comment AmdRasSspApeiDxe \
@@ -274,7 +281,6 @@ dxeremove.bin: image.bin Makefile
 	comment DpcDxe \
 	comment CsmDxe \
 	comment EventLogsSetupPage \
-	comment SmbiosElogSetupScreen \
 	comment HardwareSignatureEntry \
 	comment HddSecurity \
 	comment KbcEmulDxe \
@@ -288,7 +294,6 @@ dxeremove.bin: image.bin Makefile
 	comment RsdpPlus \
 	comment AmiRedFishApi \
 	comment AmiDeviceGuardApi \
-	comment SmbiosBoard \
 	comment PspPlatform \
 	comment PspDxe \
 	comment AcpiUpdateCpuInfo \
@@ -299,7 +304,6 @@ dxeremove.bin: image.bin Makefile
 	comment SbRun \
 	comment Cf9Reset \
 	comment BmcElog \
-	comment SmbiosElog \
 	comment SecFlashUpdDXE \
 	comment SmiFlashDxe \
 	comment PCIePTCPkg \
@@ -332,7 +336,6 @@ dxeremove.bin: image.bin Makefile
 	comment SmiVariable \
 	comment Ofbd \
 	comment SecSMIFlash \
-	comment SmbiosDmiEdit \
 	comment SmiFlash \
 	comment StatusCodeDxe \
 	comment FlashDriver \
@@ -340,7 +343,6 @@ dxeremove.bin: image.bin Makefile
 	comment PcdDxe \
 	comment SbCmos \
 	comment SmBusDxe \
-	comment Smbios \
 	comment DxeSelStatusCode \
 	comment DxeFrb \
 	comment CmosDxe \
