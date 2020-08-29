@@ -65,8 +65,8 @@ dxeremove.bin: image.bin Makefile
 	comment S3Save_do_not_remove_gets_error \
 	comment testremove \
 	remove Ahci.* \
-	comment AMITSE \
-	comment AMITSE.* \
+	remove AMITSE \
+	remove AMITSE.* \
 	remove Arp.* \
 	remove Ata.* \
 	comment Bds \
