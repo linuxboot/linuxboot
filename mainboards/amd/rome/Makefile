@@ -58,18 +58,11 @@ dxeremove.bin: image.bin Makefile
 	echo note, we remove DXE to the point the image is not viable
 	echo until you put a kernel in it in place of the shell.
 	utk $< \
-	comment FlashDriver_do_not_remove_efi_panics  \
-	comment S3Save_do_not_remove_gets_error \
-	comment testremove \
-	comment FlashDriver_do_not_remove_efi_panics  \
-	comment S3Save_do_not_remove_gets_error \
-	comment testremove \
 	remove Ahci.* \
 	remove AMITSE \
 	remove AMITSE.* \
 	remove Arp.* \
 	remove Ata.* \
-	comment Bds \
 	remove Button.* \
 	remove CryptoD.* \
 	remove .*Dhcp.* \
@@ -130,6 +123,216 @@ dxeremove.bin: image.bin Makefile
 		comment TcgDxe \
 		comment Tcg2Dxe \
 		comment TcgPlatformSetupPolicy \
+	comment FlashDriver_do_not_remove_efi_panics  \
+	comment S3Save_do_not_remove_gets_error \
+	comment testremove \
+	comment FlashDriver_do_not_remove_efi_panics  \
+	comment S3Save_do_not_remove_gets_error \
+	comment testremove \
+	comment RomLayoutDxe \
+	comment DxeCore \
+	comment Bds \
+	comment DataHubDxe \
+	comment DevicePathDxe \
+	comment EnglishDxe \
+	comment HiiDatabase \
+	comment SecurityStubDxe \
+	comment CpuIo2Dxe \
+	comment CpuDxe \
+	comment CpuSmbiosDriver \
+	comment NbDxe \
+	comment LegacyRegion \
+	comment SbDxe \
+	comment SmBusSmm \
+	comment Aint13 \
+	comment AmdIdsDebugPrintDxe \
+	comment AmdMemSspSp3Dxe \
+	comment AmdMemSmbiosV2RvDxe \
+	comment AmdMemRestoreDxe \
+	comment AmdApcbDxeV3 \
+	comment AmdPspDxeV2Ssp \
+	comment AmdHstiV2 \
+	comment ApobSspDxe \
+	comment AmdCcxVhDxe \
+	comment AmdFabricSspDxe \
+	comment AmdSocSp3RmDxe \
+	comment AmdErrorLogDxe \
+	comment AmdNbioAlibDxe \
+	comment AmdNbioBaseSspDxe \
+	comment SmuV11Dxe \
+	comment AmdNbioPcieDxe \
+	comment AmdNbioIOMMUDxe \
+	comment FchHuashanDxe \
+	comment FchSmbusDxe \
+	comment AmdLegacyInterrupt \
+	comment FchHuashanMultiFchDxe \
+	comment AmdSmbiosDxe \
+	comment AmdAcpiDxe \
+	comment AmdVersionDxe \
+	comment AmdRasSspApeiDxe \
+	comment AmdRasSspDxe \
+	comment JedecNvdimmDxe \
+	comment CbsSetupDxeSSP \
+	comment CbsBaseDxeSSP \
+	comment AmdPbsSetupDxe \
+	comment RasOemDimmMap \
+	comment ServerHotplugDxe \
+	comment Pca9535aDxe \
+	comment Pca9545aDxe \
+	comment Sff8472Dxe \
+	comment SlinkManager \
+	comment SlinkEndpointDriver \
+	comment AmdBoardIdDxe \
+	comment AmdFwConfigDxe \
+	comment AmdCpmGpioInitDxe \
+	comment AmdSpiLockDxe \
+	comment AmdI2cMasterDxe \
+	comment AmdCpmPcieInitDxe \
+	comment ApicInfoDataDxe \
+	comment xGbEI2cMasterDxe \
+	comment AmdPlatformRasZpDxe \
+	comment AmdPlatformRasSspDxe \
+	comment AmdCpmInitDxe \
+	comment Setup \
+	comment SerialMuxControl \
+	comment BmcLanConfig \
+	comment ServerMgmtSetup \
+	comment ACPI \
+	comment S3SaveStateDxe \
+	comment BootScriptExecutorDxe \
+	comment AcpiS3SaveDxe \
+	comment IdeBusBoard \
+	comment LegacySredir \
+	comment OA3 \
+	comment PciRootBridge \
+	comment PciDynamicSetup \
+	comment PciDxeInit \
+	comment ExportHiiDb \
+	comment DpcDxe \
+	comment TlsAuthConfigDxe \
+	comment CsmDxe \
+	comment DebugPortTableDxe \
+	comment EventLogsSetupPage \
+	comment SmbiosElogSetupScreen \
+	comment HardwareSignatureEntry \
+	comment HddSecurity \
+	comment KbcEmulDxe \
+	comment EsrtDxe \
+	comment NvmeInt13 \
+	comment NvmeDynamicSetup \
+	comment AmiBoardInfo2 \
+	comment AmiSerialUart0 \
+	comment AmiSerialUart1 \
+	comment OpalSecurity \
+	comment CsmRt32 \
+	comment RsdpPlus \
+	comment AmiRedFishApi \
+	comment AmiDeviceGuardApi \
+	comment SmbiosBoard \
+	comment Tpm20PlatformDxe \
+	comment Tpm20Acpi \
+	comment TpmSmbiosDxe \
+	comment PspPlatform \
+	comment PspDxe \
+	comment AcpiUpdateCpuInfo \
+	comment CheckCrbVsRom \
+	comment CapsuleRuntimeDxe \
+	comment RuntimeDxe \
+	comment PiSmmIpl \
+	comment CpuIoDxe \
+	comment SbRun \
+	comment Cf9Reset \
+	comment AmdSmmControl \
+	comment BmcElog \
+	comment SmbiosElog \
+	comment SecFlashUpdDXE \
+	comment SmiFlashDxe \
+	comment PCIePTCPkg \
+	comment ConSplitter \
+	comment GraphicsConsole \
+	comment SlinkRootBridgeDriver \
+	comment IdeBusSrc \
+	comment PciBus \
+	comment PlatformToDriver \
+	comment TerminalSrc \
+	comment SerialIo \
+	comment HttpBootDxe \
+	comment HttpDxe \
+	comment DnsDxe \
+	comment HttpUtilitiesDxe \
+	comment TlsDxe \
+	comment CsmBlockIo \
+	comment CsmVideo \
+	comment Nvme \
+	comment PiSmmCore \
+	comment FlashDriverSmm \
+	comment NvramSmm \
+	comment CpuIo2Smm \
+	comment SmmLockBox \
+	comment SbRunSmm \
+	comment ResetSmi \
+	comment PeriodicSmiControl \
+	comment PowerButton \
+	comment AcpiModeEnable \
+	comment SmmChildDispatcher2 \
+	comment PiSmmCommunicationSmm \
+	comment AmdMemPprSmmDriverSsp \
+	comment AmdApcbSmmV3 \
+	comment AmdPspP2CmboxV2Ssp \
+	comment AmdPspP2CmboxV2SspSmmBuffer \
+	comment AmdPspSmmV2Ssp \
+	comment AmdCcxVhSmm \
+	comment AmdFabricSspSmm \
+	comment FchHuashanSmmInit \
+	comment FchSmmDispatcher \
+	comment FchHuashanMultiFchSmm \
+	comment AmdSmmCommunication \
+	comment AmdRasSspSmm \
+	comment JedecNvdimm \
+	comment BctBaseSmmSSP \
+	comment AmdFwConfigSmmSsp \
+	comment AmdCpmGpioInitSmm \
+	comment AmdSpiLockSmm \
+	comment AmdPlatformRasZpSmm \
+	comment AmdPlatformRasSspSmm \
+	comment AmdHotPlugSspSmm \
+	comment AmdPlatformJedecNvdimmSmm \
+	comment BiosCfgTool \
+	comment AmdCpmInitSmm \
+	comment CpuSmm \
+	comment CryptoSMM \
+	comment SmmIpmiBmcInitialize \
+	comment BmcAcpi \
+	comment SmmBmcElog \
+	comment SmmS3SaveState \
+	comment LegacySmmSredir \
+	comment OA3_SMM \
+	comment SmmPciRbIo \
+	comment SmiVariable \
+	comment RuntimeSmm \
+	comment SmmSmbiosElog \
+	comment SmmHddSecurity \
+	comment KbcEmul \
+	comment NvmeSmm \
+	comment Ofbd \
+	comment SecSMIFlash \
+	comment SmbiosDmiEdit \
+	comment SmiFlash \
+	comment TpmClearOnRollbackSmm \
+	comment FullShell \
+	comment StatusCodeDxe \
+	comment StatusCodeSmm \
+	comment FlashDriver \
+	comment NvramDxe \
+	comment PcdDxe \
+	comment SbCmos \
+	comment SmBusDxe \
+	comment Smbios \
+	comment DxeSelStatusCode \
+	comment DxeFrb \
+	comment CmosDxe \
+	comment SecureBootDXE \
+	comment CrbSpiOpCode \
 		save $@
 
 sshdkernel: sshd.cpio.lzma sshd-linux.config
@@ -155,6 +358,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 
 flashinitramfs.cpio: Makefile
 	u-root  -o $@ \
+		-uinitcmd=/bbin/console \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/boot/boot \
 		github.com/u-root/u-root/cmds/core/cat \
@@ -165,6 +369,7 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/kexec \
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/core/wget \
+		github.com/u-root/u-root/cmds/exp/console \
 
 oflashinitramfs.cpio: Makefile
 	u-root  -o $@ -build=bb \
