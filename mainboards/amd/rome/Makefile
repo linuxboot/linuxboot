@@ -123,6 +123,13 @@ dxeremove.bin: image.bin Makefile
 	remove BmcLanConfig \
 	remove SecureBootDXE \
 	remove SmmHddSecurity \
+	remove HttpBootDxe \
+	remove HttpDxe \
+	remove DnsDxe \
+	remove HttpUtilitiesDxe \
+	remove TlsDxe \
+	remove CsmBlockIo \
+	remove CsmVideo \
 	comment testing \
 	comment huashan_shock_and_awe_undo_later \
 	remove FchHuashanMultiFchSmm \
@@ -315,13 +322,6 @@ dxeremove.bin: image.bin Makefile
 	comment PlatformToDriver \
 	comment TerminalSrc \
 	comment SerialIo \
-	comment HttpBootDxe \
-	comment HttpDxe \
-	comment DnsDxe \
-	comment HttpUtilitiesDxe \
-	comment TlsDxe \
-	comment CsmBlockIo \
-	comment CsmVideo \
 	comment Nvme \
 	comment ResetSmi \
 	comment PeriodicSmiControl \
