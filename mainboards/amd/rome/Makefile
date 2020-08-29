@@ -117,6 +117,7 @@ dxeremove.bin: image.bin Makefile
 	remove Whea.* \
 	remove Xpower.* \
 	remove DxeIpm.* \
+	remove .*Tcg.* \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
