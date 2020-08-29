@@ -142,15 +142,60 @@ dxeremove.bin: image.bin Makefile
 	remove TlsAuthConfigDxe \
 	remove AmdFwConfigDxe \
 	comment end_config_shock_and_awe \
+	comment smm_shock_and_awe \
+	comment remove_all_it_warm_resets_continuously \
+	comment StatusCodeSmm \
+	comment RuntimeSmm \
+	comment SmmPciRbIo \
+	comment LegacySmmSredir \
+	comment SmmS3SaveState \
+	comment SmmBmcElog \
+	comment SmmIpmiBmcInitialize \
+	comment CpuSmm \
+	comment AmdCpmInitSmm \
+	comment AmdPlatformJedecNvdimmSmm \
+	comment AmdHotPlugSspSmm \
+	comment AmdPlatformRasSspSmm \
+	comment AmdPlatformRasZpSmm \
+	comment AmdSpiLockSmm \
+	comment AmdCpmGpioInitSmm \
+	comment BctBaseSmmSSP \
+	comment AmdRasSspSmm \
+	comment AmdSmmCommunication \
+	comment FchSmmDispatcher \
+	comment AmdFabricSspSmm \
+	comment AmdCcxVhSmm \
+	comment AmdPspSmmV2Ssp \
+	comment AmdPspP2CmboxV2SspSmmBuffer \
+	comment AmdApcbSmmV3 \
+	comment AmdMemPprSmmDriverSsp \
+	comment PiSmmCommunicationSmm \
+	comment SmmChildDispatcher2 \
+	comment SbRunSmm \
+	comment SmmLockBox \
+	comment CpuIo2Smm \
+	comment NvramSmm \
+	comment FlashDriverSmm \
+	comment PiSmmCore \
+	comment AmdSmmControl \
+	comment PiSmmIpl \
+	comment SmBusSmm \
+		comment TcgSmm \
+	comment end_smm_shock_and_awe \
+	comment tpm_shock_and_awe \
+	remove TpmClearOnRollbackSmm \
+	remove TpmSmbiosDxe \
+	remove Tpm20Acpi \
+	remove Tpm20PlatformDxe \
+	remove CrbTpm20Acpi \
+	remove Tpm20PlatformDxe \
+	remove end_tpm_shock_and_awe \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
 		comment AmiTcgNvflagSample \
 		comment AmiTcgPlatformDxe \
 		comment TcgDxeplatform \
-		comment Tpm20PlatformDxe \
-		comment CrbTpm20Acpi \
-		comment TcgSmm \
 		comment TcgDxe \
 		comment Tcg2Dxe \
 		comment TcgPlatformSetupPolicy \
@@ -172,7 +217,6 @@ dxeremove.bin: image.bin Makefile
 	comment CpuSmbiosDriver \
 	comment NbDxe \
 	comment SbDxe \
-	comment SmBusSmm \
 	comment AmdMemSspSp3Dxe \
 	comment AmdMemSmbiosV2RvDxe \
 	comment AmdMemRestoreDxe \
@@ -245,20 +289,15 @@ dxeremove.bin: image.bin Makefile
 	comment AmiRedFishApi \
 	comment AmiDeviceGuardApi \
 	comment SmbiosBoard \
-	comment Tpm20PlatformDxe \
-	comment Tpm20Acpi \
-	comment TpmSmbiosDxe \
 	comment PspPlatform \
 	comment PspDxe \
 	comment AcpiUpdateCpuInfo \
 	comment CheckCrbVsRom \
 	comment CapsuleRuntimeDxe \
 	comment RuntimeDxe \
-	comment PiSmmIpl \
 	comment CpuIoDxe \
 	comment SbRun \
 	comment Cf9Reset \
-	comment AmdSmmControl \
 	comment BmcElog \
 	comment SmbiosElog \
 	comment SecFlashUpdDXE \
@@ -280,56 +319,22 @@ dxeremove.bin: image.bin Makefile
 	comment CsmBlockIo \
 	comment CsmVideo \
 	comment Nvme \
-	comment PiSmmCore \
-	comment FlashDriverSmm \
-	comment NvramSmm \
-	comment CpuIo2Smm \
-	comment SmmLockBox \
-	comment SbRunSmm \
 	comment ResetSmi \
 	comment PeriodicSmiControl \
 	comment PowerButton \
 	comment AcpiModeEnable \
-	comment SmmChildDispatcher2 \
-	comment PiSmmCommunicationSmm \
-	comment AmdMemPprSmmDriverSsp \
-	comment AmdApcbSmmV3 \
 	comment AmdPspP2CmboxV2Ssp \
-	comment AmdPspP2CmboxV2SspSmmBuffer \
-	comment AmdPspSmmV2Ssp \
-	comment AmdCcxVhSmm \
-	comment AmdFabricSspSmm \
-	comment FchSmmDispatcher \
-	comment AmdSmmCommunication \
-	comment AmdRasSspSmm \
 	comment JedecNvdimm \
-	comment BctBaseSmmSSP \
-	comment AmdCpmGpioInitSmm \
-	comment AmdSpiLockSmm \
-	comment AmdPlatformRasZpSmm \
-	comment AmdPlatformRasSspSmm \
-	comment AmdHotPlugSspSmm \
-	comment AmdPlatformJedecNvdimmSmm \
 	comment BiosCfgTool \
-	comment AmdCpmInitSmm \
-	comment CpuSmm \
 	comment CryptoSMM \
-	comment SmmIpmiBmcInitialize \
 	comment BmcAcpi \
-	comment SmmBmcElog \
-	comment SmmS3SaveState \
-	comment LegacySmmSredir \
 	comment OA3_SMM \
-	comment SmmPciRbIo \
 	comment SmiVariable \
-	comment RuntimeSmm \
 	comment Ofbd \
 	comment SecSMIFlash \
 	comment SmbiosDmiEdit \
 	comment SmiFlash \
-	comment TpmClearOnRollbackSmm \
 	comment StatusCodeDxe \
-	comment StatusCodeSmm \
 	comment FlashDriver \
 	comment NvramDxe \
 	comment PcdDxe \
