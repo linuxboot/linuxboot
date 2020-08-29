@@ -111,6 +111,9 @@ dxeremove.bin: image.bin Makefile
 	remove Xpower.* \
 	remove DxeIpm.* \
 	remove .*Tcg.* \
+	remove NvmeInt13 \
+	remove Aint13 \
+	comment testing \
 	comment S3Save_do_not_comment_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -131,7 +134,6 @@ dxeremove.bin: image.bin Makefile
 	comment testremove \
 	comment RomLayoutDxe \
 	comment DxeCore \
-	comment Bds \
 	comment DataHubDxe \
 	comment DevicePathDxe \
 	comment EnglishDxe \
@@ -144,7 +146,6 @@ dxeremove.bin: image.bin Makefile
 	comment LegacyRegion \
 	comment SbDxe \
 	comment SmBusSmm \
-	comment Aint13 \
 	comment AmdIdsDebugPrintDxe \
 	comment AmdMemSspSp3Dxe \
 	comment AmdMemSmbiosV2RvDxe \
@@ -218,7 +219,6 @@ dxeremove.bin: image.bin Makefile
 	comment HddSecurity \
 	comment KbcEmulDxe \
 	comment EsrtDxe \
-	comment NvmeInt13 \
 	comment NvmeDynamicSetup \
 	comment AmiBoardInfo2 \
 	comment AmiSerialUart0 \
@@ -333,6 +333,8 @@ dxeremove.bin: image.bin Makefile
 	comment CmosDxe \
 	comment SecureBootDXE \
 	comment CrbSpiOpCode \
+	comment tested_fails_if_removed \
+	comment Bds \
 		save $@
 
 sshdkernel: sshd.cpio.lzma sshd-linux.config
