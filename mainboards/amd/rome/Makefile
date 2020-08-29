@@ -149,7 +149,7 @@ dxeremove.bin: image.bin Makefile
 	remove AmdFwConfigDxe \
 	comment end_config_shock_and_awe \
 	comment smm_shock_and_awe \
-	comment remove_all_it_warm_resets_continuously \
+	comment remove_all_smm_it_warm_resets_continuously \
 	comment StatusCodeSmm \
 	comment RuntimeSmm \
 	comment SmmPciRbIo \
@@ -161,12 +161,12 @@ dxeremove.bin: image.bin Makefile
 	comment AmdCpmInitSmm \
 	comment AmdPlatformJedecNvdimmSmm \
 	comment AmdHotPlugSspSmm \
-	comment AmdPlatformRasSspSmm \
-	comment AmdPlatformRasZpSmm \
+	remove AmdPlatformRasSspSmm \
+	remove AmdPlatformRasZpSmm \
 	comment AmdSpiLockSmm \
 	comment AmdCpmGpioInitSmm \
 	comment BctBaseSmmSSP \
-	comment AmdRasSspSmm \
+	remove AmdRasSspSmm \
 	comment AmdSmmCommunication \
 	comment FchSmmDispatcher \
 	comment AmdFabricSspSmm \
@@ -252,13 +252,13 @@ dxeremove.bin: image.bin Makefile
 	comment AmdLegacyInterrupt \
 	comment AmdAcpiDxe \
 	comment AmdVersionDxe \
-	comment AmdRasSspApeiDxe \
-	comment AmdRasSspDxe \
+	remove AmdRasSspApeiDxe \
+	remove AmdRasSspDxe \
 	comment JedecNvdimmDxe \
 	comment CbsSetupDxeSSP \
 	comment CbsBaseDxeSSP \
 	comment AmdPbsSetupDxe \
-	comment RasOemDimmMap \
+	remove RasOemDimmMap \
 	comment ServerHotplugDxe \
 	comment Pca9535aDxe \
 	comment Pca9545aDxe \
@@ -271,8 +271,8 @@ dxeremove.bin: image.bin Makefile
 	comment AmdI2cMasterDxe \
 	comment AmdCpmPcieInitDxe \
 	comment ApicInfoDataDxe \
-	comment AmdPlatformRasZpDxe \
-	comment AmdPlatformRasSspDxe \
+	remove AmdPlatformRasZpDxe \
+	remove AmdPlatformRasSspDxe \
 	comment AmdCpmInitDxe \
 	comment ServerMgmtSetup \
 	comment ACPI \
