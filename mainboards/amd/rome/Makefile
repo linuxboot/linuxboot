@@ -382,6 +382,7 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/io \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/kexec \
