@@ -305,7 +305,6 @@ dxeremove.bin: image.bin Makefile
 	comment PspDxe \
 	comment AcpiUpdateCpuInfo \
 	comment CheckCrbVsRom \
-	comment CapsuleRuntimeDxe \
 	comment RuntimeDxe \
 	comment CpuIoDxe \
 	comment SbRun \
@@ -348,6 +347,7 @@ dxeremove.bin: image.bin Makefile
 	remove CmosDxe \
 	comment CrbSpiOpCode \
 	comment tested_fails_if_removed \
+	comment CapsuleRuntimeDxe \
 	comment Bds \
 	comment needed_for_linuxboot_dont_remove \
 	comment FullShell \
