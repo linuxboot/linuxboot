@@ -317,35 +317,35 @@ dxeremove.bin: image.bin Makefile
 	comment ConSplitter \
 	comment GraphicsConsole \
 	comment SlinkRootBridgeDriver \
-	comment IdeBusSrc \
-	comment PciBus \
-	comment PlatformToDriver \
-	comment TerminalSrc \
-	comment SerialIo \
-	comment Nvme \
+	remove IdeBusSrc \
+	remove PciBus \
+	remove PlatformToDriver \
+	remove TerminalSrc \
+	remove SerialIo \
+	remove Nvme \
 	comment ResetSmi \
 	comment PeriodicSmiControl \
-	comment PowerButton \
+	remove PowerButton \
 	comment AcpiModeEnable \
 	comment AmdPspP2CmboxV2Ssp \
-	comment JedecNvdimm \
-	comment BiosCfgTool \
-	comment CryptoSMM \
-	comment BmcAcpi \
+	remove JedecNvdimm \
+	remove BiosCfgTool \
+	remove CryptoSMM \
+	remove BmcAcpi \
 	comment OA3_SMM \
 	comment SmiVariable \
 	comment Ofbd \
-	comment SecSMIFlash \
-	comment SmiFlash \
+	remove SecSMIFlash \
+	remove SmiFlash \
 	comment StatusCodeDxe \
 	comment FlashDriver \
 	comment NvramDxe \
 	comment PcdDxe \
-	comment SbCmos \
-	comment SmBusDxe \
-	comment DxeSelStatusCode \
+	remove SbCmos \
+	remove SmBusDxe \
+	remove DxeSelStatusCode \
 	comment DxeFrb \
-	comment CmosDxe \
+	remove CmosDxe \
 	comment CrbSpiOpCode \
 	comment tested_fails_if_removed \
 	comment Bds \
