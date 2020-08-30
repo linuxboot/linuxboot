@@ -249,7 +249,7 @@ dxeremove.bin: image.bin Makefile
 	comment AmdNbioPcieDxe \
 	comment AmdNbioIOMMUDxe \
 	comment FchSmbusDxe \
-	comment AmdLegacyInterrupt \
+	remove AmdLegacyInterrupt \
 	comment AmdAcpiDxe \
 	comment AmdVersionDxe \
 	remove AmdRasSspApeiDxe \
