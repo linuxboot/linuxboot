@@ -158,13 +158,13 @@ dxeremove.bin: image.bin Makefile
 	comment SmmBmcElog \
 	comment SmmIpmiBmcInitialize \
 	comment CpuSmm \
-	comment AmdCpmInitSmm \
+	remove AmdCpmInitSmm \
 	comment AmdPlatformJedecNvdimmSmm \
 	comment AmdHotPlugSspSmm \
 	remove AmdPlatformRasSspSmm \
 	remove AmdPlatformRasZpSmm \
 	comment AmdSpiLockSmm \
-	comment AmdCpmGpioInitSmm \
+	remove AmdCpmGpioInitSmm \
 	comment BctBaseSmmSSP \
 	remove AmdRasSspSmm \
 	comment AmdSmmCommunication \
@@ -266,14 +266,14 @@ dxeremove.bin: image.bin Makefile
 	comment SlinkManager \
 	comment SlinkEndpointDriver \
 	comment AmdBoardIdDxe \
-	comment AmdCpmGpioInitDxe \
+	remove AmdCpmGpioInitDxe \
 	comment AmdSpiLockDxe \
 	comment AmdI2cMasterDxe \
-	comment AmdCpmPcieInitDxe \
+	remove AmdCpmPcieInitDxe \
 	comment ApicInfoDataDxe \
 	remove AmdPlatformRasZpDxe \
 	remove AmdPlatformRasSspDxe \
-	comment AmdCpmInitDxe \
+	remove AmdCpmInitDxe \
 	comment ServerMgmtSetup \
 	comment ACPI \
 	comment S3SaveStateDxe \
