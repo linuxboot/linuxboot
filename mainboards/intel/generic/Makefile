@@ -35,6 +35,19 @@ image.bin:  kernel
 		replace_pe32 FullShell kernel  \
 	save image.bin
 
+cpukernel: cpu.cpio.lzma cpu.config
+	cp cpu.config linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
+# this target builds an initramfs with only one program, the cpu server.
+# It depends on the kernel setting the IP address.
+# You need ip=dhcp OR ip=fixed.ip.address.here in the command line
+cpu.cpio.lzma: Makefile
+	u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+		-defaultsh="" \
+		github.com/u-root/cpu/cmds/cpud
+	lzma -f -k cpu.cpio
+
 kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
