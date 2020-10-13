@@ -1,3 +1,5 @@
+Copyright 2020 Hewlett Packard Enterprise Development LP.
+
 Initial support for DL360 Gen 10
 Maintainer: jean-marie.verdun@hpe.com / vejmarie
 
