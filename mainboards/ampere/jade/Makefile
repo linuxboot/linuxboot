@@ -57,7 +57,7 @@ flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp linux/arch/arm64/boot/Image $@
 
 testflashkernel: flashkernel
-	qemu-system-arm -machine ast2600-evb -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
+	qemu-system-aarch64 -machine virt -cpu cortex-a57 -kernel flashkernel -nographic -initrd flashinitramfs.cpio.lzma -append "console=ttyAMA0,115200 keep_bootcon"
 
 # These stanzas fetch code.
 fetch: getkernel geturoot 
