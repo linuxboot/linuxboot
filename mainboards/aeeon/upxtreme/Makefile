@@ -45,7 +45,7 @@ flashtest: testflashkernel
 usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-flashpxeboot.bin: edk2.bin flashkernel flashinitramfs.cpio.lzma
+flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
@@ -71,7 +71,7 @@ edk2.bin: dxeremove.bin
 		insert_dxe edk2bdsdxe.ffs insert_dxe edk2shell.ffs \
 		save $@
 
-dxeremove.bin: hap.bin
+dxeremove.bin: image.bin
 	echo note, we remove DXE to the point the image is not viable
 	echo until you put a kernel in it in place of the shell.
 	utk $< \
