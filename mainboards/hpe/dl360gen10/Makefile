@@ -1,6 +1,8 @@
 MAJOR ?= 5
 STABLE = $(MAJOR).4
 CONFIG ?= $(MAJOR).4.0
+KEYPATH ?= ""
+
 default: build
 
 build:
@@ -63,7 +65,7 @@ image.bin:  kernel
 		replace_pe32 Shell kernel  \
 	save image.bin
 
-kernel: uroot bzImage
+kernel: uroot injectkeys bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 netboot: netbooturoot bzImage
@@ -81,6 +83,8 @@ netbooturoot:
 	u-root -build=bb -uinitcmd="hostname dl360Gen10" \ 
 		github.com/u-root/u-root/cmds/core/hostname \
 		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/id \
+		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/ip \ 
 		github.com/u-root/u-root/cmds/core/elvish \   
@@ -98,7 +102,10 @@ netbooturoot:
 uroot:
 	u-root -build=bb -uinitcmd="hostname dl360Gen10" \
 		github.com/u-root/u-root/cmds/core/hostname \
+		github.com/u-root/u-root/cmds/core/dd \
 		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/id \
+		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/ls \
 		github.com/u-root/u-root/cmds/core/ip \
 		github.com/u-root/u-root/cmds/core/elvish \
@@ -140,5 +147,9 @@ getrom:
 	@echo and run that kernel via qemu
 
 geturoot:
-	go get -u github.com/u-root/u-root
+	go get -v -u github.com/u-root/u-root
+	ls /home/linuxboot/mainboards/hpe/dl360gen10
+	cp -rf /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/vejmarie/* /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/u-root
+	ls -l /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/u-root/u-root/pkg/boot/grub/grub.go
+	ls -l /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/vejmarie/u-root/pkg/boot/grub/grub.go
 
