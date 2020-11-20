@@ -148,8 +148,4 @@ getrom:
 
 geturoot:
 	go get -v -u github.com/u-root/u-root
-	ls /home/linuxboot/mainboards/hpe/dl360gen10
-	cp -rf /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/vejmarie/* /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/u-root
-	ls -l /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/u-root/u-root/pkg/boot/grub/grub.go
-	ls -l /home/linuxboot/mainboards/hpe/dl360gen10/src/github.com/vejmarie/u-root/pkg/boot/grub/grub.go
 
