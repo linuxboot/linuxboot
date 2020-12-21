@@ -35,8 +35,13 @@
 #
 # You can test the flash image kernel with qemu
 # make flashtest
+# This now includes a uinit as an example of how to write them.
+# We also show an example of using the em100
 
 default: flash
+
+em100: flash
+	em100 -p float --stop --set MX25L25635F -d flashpxeboot.bin --start
 
 flash: flashpxeboot.bin
 
@@ -181,9 +186,11 @@ writerom: image.bin
 flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
-flashinitramfs.cpio: Makefile
-		u-root  -o $@ -build=bb \
+flashinitramfs.cpio: Makefile src/uinit/main.go
+		GOPATH=`go env GOPATH`:$(PWD) u-root  -o $@ -build=bb \
+		uinit \
 		github.com/u-root/u-root/cmds/boot/boot \
+		github.com/u-root/u-root/cmds/boot/fitboot \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
@@ -193,6 +200,7 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/mount \
 		github.com/u-root/u-root/cmds/core/unmount \
 		github.com/u-root/u-root/cmds/core/pci \
+		github.com/u-root/u-root/cmds/exp/fixrsdp \
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
