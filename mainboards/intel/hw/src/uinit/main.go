@@ -27,18 +27,19 @@ import (
 )
 
 var (
-	bootcmd = flag.String("cmd", "/mnt/boot/bootcmds", "File containing boot command line")
+	bootcmd = flag.String("bootcmd", "/mnt/boot/bootcmds", "File containing boot command line")
 	debug   = flag.Bool("d", true, "Print debug statement")
 	v       = func(string, ...interface{}) {}
 )
 
 func main() {
+	flag.Parse()
 	if *debug {
 		v = log.Printf
 	}
 	var bootcmds = []*exec.Cmd{
 		exec.Command("fixrsdp"),
-		exec.Command("mount", "/dev/sda5", "/mnt"),
+		exec.Command("mount", "/dev/sda6", "/mnt"),
 	}
 
 	for _, c := range bootcmds {
@@ -49,6 +50,7 @@ func main() {
 		}
 	}
 
+	log.Print("-----> Hit ^C within 10 seconds to stop booting")
 	time.Sleep(10 * time.Second)
 	if cmds, err := ioutil.ReadFile(*bootcmd); err != nil {
 		log.Printf("Can not open %q: %v; will not attempt to boot", *bootcmd, err)
