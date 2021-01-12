@@ -5,7 +5,7 @@
 // This is an example uinit for a board which has special requirements.
 // First, it fixes the RSDP so that it will be found by whatever
 // kernel comes next. Next, it mounts in this case (e.g.) /dev/sda5.
-// Finally, it read /mnt/boot/bootcmds, a file which contains 0 or more
+// Finally, it reads /bootcmds, a file which contains 0 or more
 // commands, one per line.
 // debug prints are on by default but can be turned off via
 // -d=false
@@ -25,7 +25,7 @@ import (
 )
 
 var (
-	bootcmd = flag.String("bootcmd", "/mnt/boot/bootcmds", "File containing boot command line")
+	bootcmd = flag.String("bootcmd", "/bootcmds", "File containing boot command line")
 	debug   = flag.Bool("d", true, "Print debug statement")
 	v       = func(string, ...interface{}) {}
 )
