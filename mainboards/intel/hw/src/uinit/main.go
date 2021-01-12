@@ -7,10 +7,6 @@
 // kernel comes next. Next, it mounts in this case (e.g.) /dev/sda5.
 // Finally, it read /mnt/boot/bootcmds, a file which contains 0 or more
 // commands, one per line.
-// As we do not wish to implement shell-like parsing, we separate arguments
-// on each line by a :.
-// e.g.
-// fitboot:-c:arg0 arg1 arg2 arg:/mnt/boot/someuImage
 // debug prints are on by default but can be turned off via
 // -d=false
 // The location of the command file is controlled by -cmd switch.
@@ -24,6 +20,8 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/u-root/u-root/pkg/shlex"
 )
 
 var (
@@ -58,7 +56,10 @@ func main() {
 		bootcmds = []*exec.Cmd{}
 		lines := strings.Split(string(cmds), "\n")
 		for _, l := range lines {
-			f := strings.Split(l, ":")
+			if len(l) == 0 {
+				break
+			}
+			f := shlex.Argv(l)
 			var args []string
 			if len(f) > 1 {
 				args = f[1:]
