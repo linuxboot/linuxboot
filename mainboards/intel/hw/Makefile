@@ -192,6 +192,7 @@ flashinitramfs.cpio: Makefile src/uinit/main.go
 		github.com/u-root/u-root/cmds/boot/boot \
 		github.com/u-root/u-root/cmds/boot/fitboot \
 		github.com/u-root/u-root/cmds/core/cat \
+		github.com/u-root/u-root/cmds/core/cp \
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
