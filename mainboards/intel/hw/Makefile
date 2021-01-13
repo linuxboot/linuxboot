@@ -50,13 +50,13 @@ flashtest: testflashkernel
 usefultargets:
 	echo fetch, uroot, kernel, or image.bin
 
-flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
+flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma insert.go
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
 		replace_pe32 .*Shell flashkernel \
 		save $@
-		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=680 conv=notrunc
+		go run insert.go flashpxeboot.bin flashinitramfs.cpio.lzma 2785280 5603328
 
 cpu.bin: edk2.bin cpuflashkernel cpu.cpio.lzma
 	utk \
