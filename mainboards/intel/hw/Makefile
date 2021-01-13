@@ -189,6 +189,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		GOPATH=`go env GOPATH`:$(PWD) u-root  -o $@ -build=bb \
 		-files bootcmds \
+		-files etc \
 		uinit \
 		github.com/u-root/u-root/cmds/boot/boot \
 		github.com/u-root/u-root/cmds/boot/fitboot \
