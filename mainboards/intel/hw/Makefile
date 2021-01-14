@@ -196,6 +196,7 @@ flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/cp \
 		github.com/u-root/u-root/cmds/core/dhclient \
+		github.com/u-root/u-root/cmds/core/echo \
 		github.com/u-root/u-root/cmds/core/elvish \
 		github.com/u-root/u-root/cmds/core/init \
 		github.com/u-root/u-root/cmds/core/ip \
