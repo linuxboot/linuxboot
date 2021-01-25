@@ -208,6 +208,29 @@ flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/exp/fixrsdp \
 
+cbinitramfs.cpio.lzma: cbinitramfs.cpio
+	lzma -f -k $<
+
+cbinitramfs.cpio: Makefile src/uinit/main.go bootcmds
+		GOPATH=`go env GOPATH`:$(PWD) u-root  -o $@ -build=bb \
+		uinit \
+		github.com/u-root/u-root/cmds/boot/boot \
+		github.com/u-root/u-root/cmds/boot/fitboot \
+		github.com/u-root/u-root/cmds/core/cat \
+		github.com/u-root/u-root/cmds/core/cp \
+		github.com/u-root/u-root/cmds/core/dhclient \
+		github.com/u-root/u-root/cmds/core/echo \
+		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/ip \
+		github.com/u-root/u-root/cmds/core/ls \
+		github.com/u-root/u-root/cmds/core/kexec \
+		github.com/u-root/u-root/cmds/core/mkdir \
+		github.com/u-root/u-root/cmds/core/mount \
+		github.com/u-root/u-root/cmds/core/unmount \
+		github.com/u-root/u-root/cmds/core/pci \
+		github.com/u-root/u-root/cmds/exp/fixrsdp \
+
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
