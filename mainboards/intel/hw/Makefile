@@ -54,7 +54,7 @@ flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma insert.go
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 .*Shell flashkernel \
+		replace_pe32 7C04A583-9E3E-4F1C-AD65-E05268D0B4D1 flashkernel \
 		save $@
 		go run insert.go flashpxeboot.bin flashinitramfs.cpio.lzma 2785280 5603328
 
