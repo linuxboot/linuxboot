@@ -54,16 +54,15 @@ flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 De.*BdsDxe flashkernel \
+		replace_pe32 7C04A583-9E3E-4F1C-AD65-E05268D0B4D1 flashkernel \
 		save $@
 
-cpu.bin: edk2.bin cpuflashkernel cpu.cpio.lzma
+cpu.bin: dxeremove.bin cpukernel
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 Shell cpuflashkernel \
+		replace_pe32 7C04A583-9E3E-4F1C-AD65-E05268D0B4D1 cpukernel \
 		save $@
-		NOT GOING dd if=cpu.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
 edk2.bin: dxeremove.bin
 	echo Note, this inserts the edk2 bds and shell
