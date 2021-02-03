@@ -272,6 +272,7 @@ testcpukernel: cpukernel
 
 # These stanzas fetch code.
 fetch: getkernel geturoot getfiano getrom
+	touch bootcmds
 
 getkernel:
 	rm -rf linux
