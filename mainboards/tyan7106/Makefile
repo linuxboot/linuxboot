@@ -37,7 +37,7 @@ kernel: uroot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
 
 uroot:
-	go run github.com/u-root/u-root -build=bb -files key.pub:key.pub -files key.pub:authorized_keys -files ssh_host_rsa_key:id_rsa github.com/u-root/u-root/cmds/core/*  github.com/u-root/u-root/cmds/exp/cpu 
+	u-root -files key.pub:key.pub -files key.pub:authorized_keys -files ssh_host_rsa_key:id_rsa github.com/u-root/u-root/cmds/core/*  github.com/u-root/cpu/cmds/cpu 
 	cp /tmp/initramfs.linux_amd64.cpio .
 	lzma -k -f initramfs.linux_amd64.cpio
 	ls -l initramfs*
@@ -57,6 +57,7 @@ fetch:
 	unzip S7106GM2NR-L2_v204.zip
 	cp 7106V204.ROM tyan7106.bin
 	go get -u github.com/u-root/u-root
+	go get -u github.com/u-root/cpu/...
 
 # everything from here below was part of an experiment and can be ignored.
 experiment:
