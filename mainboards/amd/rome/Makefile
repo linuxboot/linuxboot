@@ -447,6 +447,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
+	echo TODO get 5.10
 	git clone --depth=1 -b v5.5-rc3 --single-branch https://github.com/torvalds/linux
 
 getfiano:
