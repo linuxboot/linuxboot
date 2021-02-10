@@ -192,7 +192,9 @@ flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		-files etc \
 		uinit \
 		github.com/u-root/u-root/cmds/boot/boot \
+		github.com/u-root/u-root/cmds/boot/fbnetboot \
 		github.com/u-root/u-root/cmds/boot/fitboot \
+		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
 		github.com/u-root/u-root/cmds/core/cp \
 		github.com/u-root/u-root/cmds/core/dhclient \
