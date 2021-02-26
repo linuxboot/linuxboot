@@ -37,8 +37,26 @@
 # make flashtest
 # This now includes a uinit as an example of how to write them.
 # We also show an example of using the em100
-
+#
+# New to this board class, uniquely, is coreboot support. To use coreboot,
+# make coreboot
+# To fire up the em100
+# make em100
+#
+# you need to supply the coreboot.rom anda  corebootem100.map
 default: flash
+
+coreboot: coreboot2x.rom
+
+coreboot.rom: corebootflashkernel coreboot.rom
+	- cbfstool coreboot.rom  remove -n fallback/payload
+	cbfstool coreboot.rom  add-payload -n fallback/payload -f corebootflashkernel
+
+coreboot2x.rom: coreboot.rom
+	cat coreboot.rom  coreboot.rom  > coreboot2x.rom
+
+corebootem100: coreboot
+	em100 -p float --stop --set MX25L25635F --start -Tt -b -M corebootem100.map  -d coreboot2x.rom
 
 em100: flash
 	em100 -p float --stop --set MX25L25635F -d flashpxeboot.bin --start
@@ -80,26 +98,25 @@ dxeremove.bin: tighten.bin
 	echo note, we remove DXE to the point the image is not viable
 	echo until you put a kernel in it in place of the shell.
 	utk $< \
-	comment FlashDriver_do_not_remove_efi_panics  \
-	comment S3Save_do_not_remove_gets_error \
-	comment testremove \
-	comment FlashDriver_do_not_remove_efi_panics  \
-	comment S3Save_do_not_remove_gets_error \
-	comment leavefornow \
+	remove Ahci.* \
+	comment AmiTcgNvflagSample \
+	comment AmiTcgPlatformDxe \
 	comment AMITSE \
 	comment AMITSE.* \
-	comment Bds \
-	comment testremove \
-	remove Ahci.* \
 	remove Arp.* \
 	remove Ata.* \
+	comment Bds \
+	comment below_still_unknown \
 	remove Button.* \
+	comment CrbTpm20Acpi \
 	remove CryptoD.* \
 	remove .*Dhcp.* \
 	remove Dhcp6Dxe \
 	remove Disk.* \
 	remove EbcDxe \
 	remove Fat.* \
+	comment FlashDriver_do_not_remove_efi_panics  \
+	comment FlashDriver_do_not_remove_efi_panics  \
 	remove .*ftp.* \
 	remove .*harging.* \
 	remove I2c.* \
@@ -110,6 +127,7 @@ dxeremove.bin: tighten.bin
 	remove Iscsi.* \
 	remove Ish.* \
 	remove .*Keyboard.* \
+	comment leavefornow \
 	remove Logo.* \
 	remove Maxim.* \
 	remove Mmc.* \
@@ -122,13 +140,25 @@ dxeremove.bin: tighten.bin
 	remove .*PxeDxe.* \
 	remove RandomNumberGen \
 	remove ReFlash \
+	comment S3Save_do_not_remove_gets_error \
+	comment S3Save_do_not_remove_gets_error \
+	comment S3Save_do_not_remove_gets_error \
 	remove Sata.* \
 	remove Scsi.* \
 	remove SnpDxe \
 	remove SoftKbd \
+	comment Tcg2Dxe \
+	comment TcgDxe \
+	comment TcgDxeplatform \
+	comment TcgMor \
+	comment TcgPlatformSetupPolicy \
+	comment TcgSmm \
 	remove Tcp.* \
 	remove TcpDxe \
+	comment testremove \
+	comment testremove \
 	remove TimestampDxe \
+	comment Tpm20PlatformDxe \
 	remove Udp.* \
 	remove Udp4.* \
 	remove Udp6Dxe \
@@ -137,18 +167,6 @@ dxeremove.bin: tighten.bin
 	remove Usb.* \
 	remove Whea.* \
 	remove Xpower.* \
-	comment S3Save_do_not_remove_gets_error \
-		comment below_still_unknown \
-		comment TcgMor \
-		comment AmiTcgNvflagSample \
-		comment AmiTcgPlatformDxe \
-		comment TcgDxeplatform \
-		comment Tpm20PlatformDxe \
-		comment CrbTpm20Acpi \
-		comment TcgSmm \
-		comment TcgDxe \
-		comment Tcg2Dxe \
-		comment TcgPlatformSetupPolicy \
 		save $@
 		chmod a-w $@
 
@@ -190,6 +208,7 @@ flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		GOPATH=`go env GOPATH`:$(PWD) u-root  -o $@ -build=bb \
 		-files bootcmds \
 		-files etc \
+		-files ~/.ssh/cpu_rsa.pub:key.pub \
 		uinit \
 		github.com/u-root/u-root/cmds/boot/boot \
 		github.com/u-root/u-root/cmds/boot/fbnetboot \
@@ -209,6 +228,7 @@ flashinitramfs.cpio: Makefile src/uinit/main.go bootcmds
 		github.com/u-root/u-root/cmds/core/unmount \
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/exp/fixrsdp \
+		github.com/u-root/cpu/cmds/cpud
 
 cbinitramfs.cpio.lzma: cbinitramfs.cpio
 	lzma -f -k $<
@@ -262,6 +282,11 @@ sshd.cpio.lzma:  Makefile
 	ls -l sshd.cpio.*
 
 flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
+	cp $< linux/.config
+	(cd linux && make oldconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
+
+corebootflashkernel: corebootflash.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
