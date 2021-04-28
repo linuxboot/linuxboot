@@ -31,12 +31,13 @@ sshdkernel: sshd.cpio.lzma sshd.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.lzma
+cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.gz
 	echo Now copy these things to the stick.
 
 cpukernel: cpu.config Makefile
 	cp cpu.config linux/.config
-	(cd linux && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=boot zinstall)
+	(cd linux && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
+	cp /tmp/vmlinuz-5.10.6+ vmlinuz
 	cp linux/arch/riscv/boot/Image.gz .
 
 readrom:
@@ -79,14 +80,13 @@ flashinitramfs.cpio: Makefile
 		github.com/u-root/u-root/cmds/core/pci \
 		github.com/u-root/u-root/cmds/core/wget \
 
-# this target builds an initramfs with only one program, the cpu server.
-# It depends on the kernel setting the IP address.
+# This target builds a full-featured initramfs INCLUDING cpud.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-cpu.cpio.lzma: Makefile
-	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
-		-defaultsh="" \
+cpu.cpio.gz: Makefile
+	GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
+		all \
 		github.com/u-root/cpu/cmds/cpud
-	lzma -f -k cpu.cpio
+	gzip -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
 # the intent is  to demonstrate the capability of http loading.
