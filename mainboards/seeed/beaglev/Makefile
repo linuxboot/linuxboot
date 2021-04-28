@@ -33,6 +33,8 @@ sshdkernel: sshd.cpio.lzma sshd.config
 
 cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.gz
 	echo Now copy these things to the stick.
+	echo e.g. assuming it is mounted at /mnt
+	echo sudo cp u-boot.* Image.gz cpu.cpio.gz  BOOT /mnt
 
 cpukernel: cpu.config Makefile
 	cp cpu.config linux/.config
