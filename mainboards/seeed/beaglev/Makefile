@@ -169,7 +169,7 @@ packages:
 		unzip \
 		zlib1g-dev \
 		device-tree-compiler
-	sudo apt install gcc-riscv64-linux-gnu
+	sudo apt install gcc-riscv64-linux-gnu u-boot-tools
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
