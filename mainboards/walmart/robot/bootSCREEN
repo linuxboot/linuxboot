@@ -1,5 +1,12 @@
 #!/bin/sh
 
+insmod /tmp/r/8188fu.ko.lzma
+mkdir /tmp/var
+# PATH="/bak/ap:$PATH" /bak/ap/start-ap.sh gokewifi
+ifconfig -a
+TERM=screen
+/tmp/r/bbin/stty rows 24 cols 80
+PATH=$PATH:/tmp/r/bbin:/tmp/r
 /tmp/r/wifi
 mount -o bind /dev /tmp/r/dev
 mount -o bind /sys /tmp/r/sys

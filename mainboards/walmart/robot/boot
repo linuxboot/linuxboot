@@ -1,23 +1,22 @@
 # u root
+echo screen fucks up the boot args, do this first step in minicom.
 # setenv bootargs 'console=ttySGK0,115200 mem=36M rootfstype=squashfs root=/dev/mtdblock2 init=linuxrc mtdparts=gk_flash:320K(U),1664K(K),1152K(R),384K(C),-(A) single'
 # fatload mmc 0 0xc1000000 uimage-goke-g1702s-9p
 # bootm
+cat >/dev/null << EOF
 mount /dev
 mount /sys
 mount /tmp
 mount /proc
 mdev -s
-mount -t vfat /dev/mmcblk0p1 /tmp/m
-insmod /tmp/m/8188fu.ko.lzma
-mkdir /tmp/var
-# PATH="/bak/ap:$PATH" /bak/ap/start-ap.sh gokewifi
-ifconfig -a
 mkdir /tmp/r
 mkdir /tmp/m
+mount -t vfat /dev/mmcblk0p1 /tmp/m
 mount -t squashfs /tmp/m/netbooturoot.sfs /tmp/r
-TERM=screen
-/tmp/r/bbin/stty rows 24 cols 80
-PATH=$PATH:/tmp/r/bbin:/tmp/r
+EOF
+
+# Now the script
+# just run /tmp/r/boot
 echo EXIT and run SCREEN
 exit 0
 
@@ -31,7 +30,6 @@ cpud -d -init&
 ###
 
 HERE
-mount -t squashfs /tmp/m/u-root-victure.sfs /tmp/r
 modprobe /bak/drv/gkptz-2823.ko.lzma 
 insmod !$
 insmod /bak/drv/gkptz-2823.ko.lzma 

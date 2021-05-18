@@ -78,6 +78,7 @@ netbooturoot.cpio: Makefile
 		-files  ~/arm/usr:usr \
 		-files bak/drv/8188fu.ko.lzma:8188fu.ko.lzma \
 		-files boot:boot \
+		-files bootSCREEN \
 		-files wifi \
 		-files webboot \
 		all \
