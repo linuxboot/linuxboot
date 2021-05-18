@@ -1,0 +1,9 @@
+#!/bin/sh
+
+/tmp/r/wifi
+mount -o bind /dev /tmp/r/dev
+mount -o bind /sys /tmp/r/sys
+mount -o bind /proc /tmp/r/proc
+/tmp/r/bbin/chroot /tmp/r/ /init
+cpud -d -init&
+
