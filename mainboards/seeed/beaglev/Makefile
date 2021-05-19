@@ -17,6 +17,8 @@
 # You can test the flash image kernel with qemu
 # make flashtest
 
+LINUX=linux-teknoraver
+
 default: cpu
 	echo you can add any of these targets to the beaglev image.
 	echo as img/nerf. You can also set priority.
@@ -27,20 +29,26 @@ usefultargets:
 	echo fetch, sshdkernel, flashkernel, cpukernel, etc.
 
 sshdkernel: sshd.cpio.lzma sshd.config
-	cp sshd.config linux/.config
-	(cd linux && make oldconfig && make -j32)
-	cp linux/arch/x86/boot/bzImage $@
+	cp sshd.config $(LINUX)/.config
+	(cd $(LINUX) && make oldconfig && make -j32)
+	cp $(LINUX)/arch/x86/boot/bzImage $@
+
+cp: cpukernel cpu.cpio.gz
+	sudo mount /dev/sdb1 /mnt
+	sudo cp u-boot.* Image.gz cpu.cpio.gz  BOOTCMDS /mnt
+	sudo umount /mnt
 
 cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.gz
 	echo Now copy these things to the stick.
 	echo e.g. assuming it is mounted at /mnt
-	echo sudo cp u-boot.* Image.gz cpu.cpio.gz  BOOT /mnt
+	echo sudo cp u-boot.* Image.gz cpu.cpio.gz  BOOTCMDS /mnt
 
 cpukernel: cpu.config Makefile
-	cp cpu.config linux/.config
-	(cd linux && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
-	cp /tmp/vmlinuz-5.10.6+ vmlinuz
-	cp linux/arch/riscv/boot/Image.gz .
+	cp cpu.config $(LINUX)/.config
+	(cd $(LINUX) && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
+	echo NOT cp /tmp/vmlinuz-5.10.6+ vmlinuz
+	cp $(LINUX)/arch/riscv/boot/Image.gz .
+	cp $(LINUX)/arch/riscv/boot/Image .
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -110,9 +118,9 @@ sshd.cpio.lzma:  Makefile
 	ls -l sshd.cpio.*
 
 flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
-	cp $< linux/.config
-	(cd linux && make oldconfig && make -j32)
-	cp linux/arch/x86/boot/bzImage $@
+	cp $< $(LINUX)/.config
+	(cd $(LINUX) && make oldconfig && make -j32)
+	cp $(LINUX)/arch/x86/boot/bzImage $@
 
 testflashkernel: flashkernel
 	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
@@ -124,9 +132,9 @@ testcpukernel: cpukernel
 fetch: getkernel geturoot getrom getuboot
 
 getkernel:
-	rm -rf linux
-	git clone https://github.com/starfive-tech/beagle_kernel_5.10 linux
-	(cd linux && git checkout -b starfive origin/starfive)
+	rm -rf $(LINUX)
+	git clone https://github.com/starfive-tech/beagle_kernel_5.10 $(LINUX)
+	(cd $(LINUX) && git checkout -b starfive origin/starfive)
 # fyi: make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv starfive_vic7100_evb_sd_net_fedora_defconfig
 # Change to taste
 
