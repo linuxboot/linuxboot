@@ -17,7 +17,7 @@
 # You can test the flash image kernel with qemu
 # make flashtest
 
-LINUX=linux-teknoraver
+LINUX=linux-esmil
 
 default: cpu
 	echo you can add any of these targets to the beaglev image.
