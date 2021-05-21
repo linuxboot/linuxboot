@@ -407,9 +407,13 @@ oflashinitramfs.cpio: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
-		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+	u-root -o cpu.cpio -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
+		-defaultsh="rush" \
+		github.com/u-root/u-root/cmds/exp/rush \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/pci \
+		github.com/u-root/u-root/cmds/core/io \
+		github.com/u-root/u-root/cmds/core/cat 
 	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
