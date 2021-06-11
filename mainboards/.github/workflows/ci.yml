@@ -24,5 +24,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Make pcengines/apu2 kernel
         run: |
-          cd $GITHUB_WORKSPACE/mainboards/pcengines/apu2
+          cd $GITHUB_WORKSPACE/pcengines/apu2
+          make fetch
           make flashkernel
