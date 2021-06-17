@@ -40,7 +40,7 @@ flash: tiny.bin
 flashtest: testflashkernel
 
 usefultargets:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
 flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<

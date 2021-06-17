@@ -73,7 +73,7 @@ uroot.lzma: uroot
 uroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+		github.com/u-root/cpu/cmds/cpud/...
 
 alluroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \

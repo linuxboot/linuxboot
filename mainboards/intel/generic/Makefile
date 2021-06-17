@@ -6,7 +6,7 @@ default: build
 build:
 	echo fetch, uroot, kernel, or image.bin
 
-image.bin:  kernel
+image.bin: flashkernel
 	utk \
 		  -xzPath  /usr/bin/xz \
 		ROM.bin \
@@ -32,7 +32,7 @@ image.bin:  kernel
                 remove .*Pxe.* \
                 remove Ata.* \
 		remove AMITSE \
-		replace_pe32 FullShell kernel  \
+		replace_pe32 FullShell flashkernel  \
 	save image.bin
 
 cpukernel: cpu.cpio.lzma cpu.config
@@ -48,8 +48,8 @@ cpu.cpio.lzma: Makefile
 		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 netboot: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -95,7 +95,7 @@ getrom:
 	@echo and put it in rom.bin
 	@echo you can get it via wget, flashrom, whatever.
 	@echo If you are not targeting hardware, you can
-	@echo make kernel
+	@echo make flashkernel
 	@echo and run that kernel via qemu
 
 geturoot:

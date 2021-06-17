@@ -1,18 +1,18 @@
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin:  kernel coreboot.bin
+image.bin:  flashkernel coreboot.bin
 	cp coreboot.bin image.bin
 	chmod +w image.bin
 	cbfstool image.bin print
 	cbfstool image.bin remove -n img/nerf
 	cbfstool image.bin remove -n genroms/pxe.rom
-	cbfstool image.bin add-payload -n img/nerf -f kernel
+	cbfstool image.bin add-payload -n img/nerf -f flashkernel
 	cbfstool image.bin print
-qemu: kernel
-	sudo /usr/bin/qemu-system-x86_64 -kernel kernel \
+qemu: flashkernel
+	sudo /usr/bin/qemu-system-x86_64 -kernel flashkernel \
 		-cpu  max \
 		-s   \
 		-m 1024m \
@@ -30,8 +30,8 @@ qemu: kernel
 	-object filter-dump,id=f1,netdev=n1,file=/tmp/vm0.pcap \
 
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 netbootkernel: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -69,7 +69,7 @@ getkernel:
 	xzcat kernel.xz | tar x
 	mv linux-4.14.111 linux
 getrom:
-	echo you create the kernel
+	echo you create the flashkernel
 	echo on the APU2: flashrom -r coreboot.bin -p internal
 	echo copy that file here and for safety:
 	echo chmod a-w coreboot.bin

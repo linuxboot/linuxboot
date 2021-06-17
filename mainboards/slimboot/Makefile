@@ -1,13 +1,13 @@
 default: build
 
 build:
-	echo fetch, kernel, or qemu
+	echo fetch, flashkernel, or qemu
 
-qemu: kernel
-	qemu-system-x86_64 -kernel kernel -serial stdio -monitor /dev/null
+qemu: flashkernel
+	qemu-system-x86_64 -kernel flashkernel -serial stdio -monitor /dev/null
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 uroot:
 	go run github.com/u-root/u-root -build=bb all   

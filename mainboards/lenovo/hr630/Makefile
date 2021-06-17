@@ -1,9 +1,9 @@
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin:  kernel
+image.bin: flashkernel
 	utk \
 		  -xzPath  /usr/bin/xz \
 		sr630.bin \
@@ -29,11 +29,11 @@ image.bin:  kernel
                 remove .*Pxe.* \
                 remove Ata.* \
 		remove AMITSE \
-		replace_pe32 FullShell kernel  \
+		replace_pe32 FullShell flashkernel  \
 	save image.bin
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 readrom:
 	echo note: for this to work you need to plug in power

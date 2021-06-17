@@ -3,10 +3,10 @@ GOPATH ?= $(HOME)/go
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin: kernel
-	cp linux/arch/x86/boot/bzImage kernel
+image.bin: flashkernel
+	cp linux/arch/x86/boot/bzImage flashkernel
 	$(GOPATH)/bin/utk tyan7106.bin \
 	        remove Ip.*  \
                 remove Tcp.*  \
@@ -30,11 +30,11 @@ image.bin: kernel
                 remove .*Pxe.* \
                 remove Ata.* \
 		remove AMITSE \
-		replace_pe32 FullShell kernel  \
+		replace_pe32 FullShell flashkernel  \
 	save image.bin
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 uroot:
 	u-root -files key.pub:key.pub -files key.pub:authorized_keys -files ssh_host_rsa_key:id_rsa github.com/u-root/u-root/cmds/core/*  github.com/u-root/cpu/cmds/cpu 

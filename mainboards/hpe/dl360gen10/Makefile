@@ -6,9 +6,9 @@ KEYPATH ?= ""
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin:  kernel
+image.bin:  flashkernel
 	utk \
 		  -xzPath  /usr/bin/xz \
 		ROM.bin \
@@ -62,11 +62,11 @@ image.bin:  kernel
                 remove LegacyBiosPlatform \
                 remove HpPostCodeWorkerDxe \
                 remove HpPostCodeWorkerSmm \
-		replace_pe32 Shell kernel  \
+		replace_pe32 Shell flashkernel  \
 	save image.bin
 
-kernel: uroot injectkeys bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot injectkeys bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 netboot: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -143,7 +143,7 @@ getrom:
 	@echo and put it in rom.bin
 	@echo you can get it via wget, flashrom, whatever.
 	@echo If you are not targeting hardware, you can
-	@echo make kernel
+	@echo make flashkernel
 	@echo and run that kernel via qemu
 
 geturoot:
