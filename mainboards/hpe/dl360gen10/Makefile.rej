@@ -1,0 +1,11 @@
+diff a/mainboards/hpe/dl360gen10/Makefile b/mainboards/hpe/dl360gen10/Makefile	(rejected hunks)
+@@ -122,6 +122,9 @@ uroot:
+ 		github.com/u-root/u-root/cmds/boot/*
+ 
+ 	cp /tmp/initramfs.linux_amd64.cpio .
++	lzma -k -f initramfs.linux_amd64.cpio
++	ls -l initramfs*
++	cp *lzma linux/
+ 
+ injectkeys: 
+ ifneq ($(KEYPATH),"")

@@ -68,7 +68,7 @@ jobs:
       - name: Install dependent packages
         run: |
           sudo apt-get update
-          sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} libelf-dev
+          sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} libelf-dev u-boot-tools
 
       # Runs a set of commands using the runners shell
       - name: Make ${{ matrix.mainboard }} kernel

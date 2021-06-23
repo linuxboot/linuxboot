@@ -1,7 +1,7 @@
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
 image.bin:  
 	utk \
@@ -50,8 +50,8 @@ image.bin:
 		remove AmiTc.* \
 	echo need 0x16b4a0
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 netboot: netbooturoot bzImage
 	cp linux/arch/x86/boot/bzImage kernel
@@ -73,7 +73,7 @@ uroot.lzma: uroot
 uroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud/...
+		github.com/u-root/cpu/cmds/cpud
 
 alluroot:
 	go run github.com/u-root/u-root -o initramfs.linux_amd64.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
@@ -116,5 +116,5 @@ getrom:
 	echo and cp it to sr630.bin
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu
+	go get -u github.com/u-root/cpu/...
 

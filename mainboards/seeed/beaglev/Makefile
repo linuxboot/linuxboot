@@ -145,7 +145,7 @@ fetch: getkernel geturoot getrom getuboot
 getkernel:
 	rm -rf $(LINUX)
 	git clone https://github.com/starfive-tech/beagle_kernel_5.10 $(LINUX)
-	(cd $(LINUX) && git checkout -b starfive origin/starfive)
+	(cd $(LINUX) && git checkout -b starfive origin/beaglev)
 # fyi: make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv starfive_vic7100_evb_sd_net_fedora_defconfig
 # Change to taste
 

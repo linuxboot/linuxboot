@@ -9,28 +9,28 @@ cp:netbooturoot.sfs
 	sudo umount /mnt
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin:  kernel coreboot.bin
+image.bin: flashkernel coreboot.bin
 	cp coreboot.bin image.bin
 	chmod +w image.bin
 	cbfstool image.bin print
 	cbfstool image.bin remove -n img/nerf
 	cbfstool image.bin remove -n genroms/pxe.rom
-	cbfstool image.bin add-payload -n img/nerf -f kernel
+	cbfstool image.bin add-payload -n img/nerf -f flashkernel
 	cbfstool image.bin print
 
 uCore: netbooturoo.cpio
 	mkimage -A arm -n 'u-root for Allwinner A10' -d netbooturoot.cpio -T ramdisk uCore
 
-qemu: uCore kernel
-	qemu-system-arm -kernel kernel -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyS0 earlyprintk=ttyS0,115200,keep'
+qemu: uCore flashkernel
+	qemu-system-arm -kernel flashkernel -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyS0 earlyprintk=ttyS0,115200,keep'
 	echo NO
 	exit 0
 	qemu-system-arm -kernel uImage -machine cubieboard -serial  stdio -initrd initramfs.linux_arm.cpio
 	echo NO
 	exit 0
-	sudo /usr/bin/qemu-system-x86_64 -kernel kernel \
+	sudo /usr/bin/qemu-system-x86_64 -kernel flashkernel \
 		-cpu  max \
 		-s   \
 		-m 1024m \
@@ -97,10 +97,10 @@ uroot:
 	github.com/u-root/cpu/cmds/cpu 
 	cp /tmp/initramfs.linux_arm.cpio cpu.cpio
 
-kernel: Makefile
+flashkernel: Makefile
 	cp config-$(CONFIG) linux/.config
 	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
-	mkimage -C none -A arm -n 'walmart robot' -d linux/arch/arm/boot/zImage -T kernel -a 0xc1000000 -e 0xc1000000 kernel
+	mkimage -C none -A arm -n 'walmart robot' -d linux/arch/arm/boot/zImage -T flashkernel -a 0xc1000000 -e 0xc1000000 flashkernel
 	cp linux/arch/arm/boot/zImage kernel
 
 fetch: getkernel geturoot getfiano getrom getpackages

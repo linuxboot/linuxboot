@@ -75,4 +75,8 @@ getrom:
 	echo chmod a-w coreboot.bin
 geturoot:
 	go get -u github.com/u-root/u-root
-
+	go get -u github.com/u-root/cpu/...
+getfiano:
+	go get -u github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/guid2english

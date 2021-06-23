@@ -1,19 +1,19 @@
 default: build
 
 build:
-	echo fetch, uroot, kernel, or image.bin
+	echo fetch, uroot, flashkernel, or image.bin
 
-image.bin:  kernel apu.bin
+image.bin: flashkernel apu.bin
 	cp apu.bin image.bin
 	chmod +w image.bin
 	cbfstool image.bin print
 	cbfstool image.bin remove -n img/nerf
 	cbfstool image.bin remove -n genroms/pxe.rom
-	cbfstool image.bin add-payload -n img/nerf -f kernel
+	cbfstool image.bin add-payload -n img/nerf -f flashkernel
 	cbfstool image.bin print
 
-kernel: uroot bzImage
-	cp linux/arch/x86/boot/bzImage kernel
+flashkernel: uroot bzImage
+	cp linux/arch/x86/boot/bzImage flashkernel
 
 readrom:
 	sudo flashrom -p internal -r apu.bin
@@ -57,4 +57,8 @@ getrom:
 geturoot:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
+getfiano:
+	go get -u github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/guid2english
 

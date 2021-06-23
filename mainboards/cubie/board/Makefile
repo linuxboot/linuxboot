@@ -1,7 +1,7 @@
 VER=5.4.0
 default: build
 
-build: uCore kernel
+build: uCore flashkernel
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
@@ -14,8 +14,8 @@ cpu.cpio:
 uCore: netbooturoot
 	mkimage -A arm -n 'u-root for Allwinner A10' -d uroot.cpio -T ramdisk uCore
 
-qemu: uCore kernel
-	qemu-system-arm -kernel kernel -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyAM0 earlyprintk=ttyAM0,115200,keep' -display none
+qemu: uCore flashkernel
+	qemu-system-arm -kernel flashkernel -machine cubieboard -serial  stdio -initrd uCore -append  'console=ttyAM0 earlyprintk=ttyAM0,115200,keep' -display none
 	echo NO
 	exit 0
 
@@ -27,11 +27,11 @@ netbooturoot:
 		-files ~/.ssh/authorized_keys:authorized_keys \
 		all
 
-kernel:
+flashkernel:
 	cp config-$(VER) linux/.config
 	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
 	mkimage -C none -A arm -n 'kernel for Allwinner A10' -d linux/arch/arm/boot/zImage -T kernel -a 0x40008000 -e 0x40008000 kernel
-	cp linux/arch/arm/boot/zImage kernel
+	cp linux/arch/arm/boot/zImage flashkernel
 
 fetch: getkernel geturoot
 
