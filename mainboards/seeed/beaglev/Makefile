@@ -17,7 +17,11 @@
 # You can test the flash image kernel with qemu
 # make flashtest
 
-LINUX=linux-esmil
+MAJOR ?= 5
+STABLE = $(MAJOR).14
+CONFIG ?= $(MAJOR).14.esmil
+LINUX=linux-$(CONFIG)
+KERNCONFIG=$(CONFIG).config
 
 default: cpu
 	echo you can add any of these targets to the beaglev image.
@@ -46,7 +50,6 @@ cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.gz
 cpukernel: cpu.config Makefile
 	cp cpu.config $(LINUX)/.config
 	(cd $(LINUX) && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
-	echo NOT cp /tmp/vmlinuz-5.10.6+ vmlinuz
 	cp $(LINUX)/arch/riscv/boot/Image.gz .
 	cp $(LINUX)/arch/riscv/boot/Image .
 
@@ -63,6 +66,9 @@ u-boot.dtb: ubootconfig
 	cp uboot/u-boot.dtb $@
 
 ubootconfig: Makefile
+	(cd uboot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv starfive_vic7100_beagle_v_smode_defconfig)
+
+OLDubootconfig: Makefile
 	echo This is idempotent
 	sed -i 's/CONFIG_SYS_TEXT_BASE=.*/CONFIG_SYS_TEXT_BASE=0x80020000/p' uboot/configs/starfive_vic7100_beagle_v_smode_defconfig
 	(cd uboot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv starfive_vic7100_beagle_v_smode_defconfig)
@@ -78,17 +84,8 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run github.com/u-root/u-root  -o $@ -build=bb \
-		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
+	GOARCH=riscv GO111MODULE=off u-root -defaultsh=rush -o $@ \
+		github.com/u-root/u-root/cmds/exp/rush \
 
 # This target builds a full-featured initramfs INCLUDING cpud.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
@@ -118,9 +115,10 @@ sshd.cpio.lzma:  Makefile
 	ls -l sshd.cpio.*
 
 flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
-	cp $< $(LINUX)/.config
-	(cd $(LINUX) && make oldconfig && make -j32)
-	cp $(LINUX)/arch/x86/boot/bzImage $@
+	cp flash-$(KERNCONFIG) $(LINUX)/.config
+	(cd $(LINUX) && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
+	cp $(LINUX)/arch/riscv/boot/Image.gz flashImage.gz
+	cp $(LINUX)/arch/riscv/boot/Image flashImage
 
 testflashkernel: flashkernel
 	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
