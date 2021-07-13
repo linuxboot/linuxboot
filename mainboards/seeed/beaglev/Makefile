@@ -47,11 +47,11 @@ cpu: cpukernel u-boot.bin u-boot.dtb cpu.cpio.gz
 	echo e.g. assuming it is mounted at /mnt
 	echo sudo cp u-boot.* Image.gz cpu.cpio.gz  BOOTCMDS /mnt
 
-cpukernel: cpu.config Makefile
+cpukernel: cpu.config cpu.cpio Makefile
 	cp cpu.config $(LINUX)/.config
 	(cd $(LINUX) && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
-	cp $(LINUX)/arch/riscv/boot/Image.gz .
-	cp $(LINUX)/arch/riscv/boot/Image .
+	cp $(LINUX)/arch/riscv/boot/Image.gz cpuImage.gz
+	cp $(LINUX)/arch/riscv/boot/Image cpuImage
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -84,8 +84,8 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=riscv GO111MODULE=off u-root -defaultsh=rush -o $@ \
-		github.com/u-root/u-root/cmds/exp/rush \
+	GOARCH=riscv64 GO111MODULE=off u-root -o $@ \
+		github.com/u-root/u-root/cmds/core/elvish \
 
 # This target builds a full-featured initramfs INCLUDING cpud.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
