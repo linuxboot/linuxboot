@@ -84,13 +84,16 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=riscv64 GO111MODULE=off u-root -o $@ \
-		github.com/u-root/u-root/cmds/core/elvish \
+	GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
+		    -defaultsh="" \
+	       -uinitcmd /bbin/cpud \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/cpu/cmds/cpud
 
 # This target builds a full-featured initramfs INCLUDING cpud.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.gz: Makefile
-	GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GO111MODULE=off GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
 		all \
 		github.com/u-root/cpu/cmds/cpud
 	gzip -f -k cpu.cpio
