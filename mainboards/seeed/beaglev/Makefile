@@ -23,9 +23,11 @@ CONFIG ?= $(MAJOR).14.esmil
 LINUX=linux-$(CONFIG)
 KERNCONFIG=$(CONFIG).config
 
-default: cpu
+default: flash
 	echo you can add any of these targets to the beaglev image.
 	echo as img/nerf. You can also set priority.
+
+flash: flashkernel
 
 flashtest: testflashkernel
 
@@ -84,19 +86,26 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
+	echo NO  GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
 		    -defaultsh="" \
 	       -uinitcmd /bbin/cpud \
 		github.com/u-root/u-root/cmds/core/init \
 		github.com/u-root/cpu/cmds/cpud
+	GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
+	       -uinitcmd /bbin/cpud \
+		github.com/u-root/u-root/cmds/core/init \
+		github.com/u-root/u-root/cmds/core/elvish \
+		github.com/u-root/cpu/cmds/cpud
 
 # This target builds a full-featured initramfs INCLUDING cpud.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-cpu.cpio.gz: Makefile
+cpu.cpio.gz: cpu.cpio Makefile
+	gzip -f -k cpu.cpio
+
+cpu.cpio:
 	GO111MODULE=off GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
 		all \
 		github.com/u-root/cpu/cmds/cpud
-	gzip -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
 # the intent is  to demonstrate the capability of http loading.
