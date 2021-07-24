@@ -131,6 +131,7 @@ flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	(cd $(LINUX) && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 oldconfig && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv -j4 && mkdir -p boot && make CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv INSTALL_PATH=/tmp zinstall)
 	cp $(LINUX)/arch/riscv/boot/Image.gz flashImage.gz
 	cp $(LINUX)/arch/riscv/boot/Image flashImage
+	ls -l flashImage*
 
 testflashkernel: flashkernel
 	qemu-system-x86_64 -kernel flashkernel -nographic -serial /dev/tty -initrd flashinitramfs.cpio.lzma
