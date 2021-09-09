@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [master]
 
+  # Triggers the workflow every day at 23:00.
+  schedule:
+    - cron: '0 23 * * *'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -77,3 +81,12 @@ jobs:
           cd ${{ matrix.mainboard }}
           make fetch
           make flashkernel
+      - name: 'Upload Artifact'
+          uses: actions/upload-artifact@v2
+          with:
+            name: Kernel and Initramfs
+            path: |
+              **/flashkernel
+              **/flashinitramfs.cpio
+            retention-days: 30
+
