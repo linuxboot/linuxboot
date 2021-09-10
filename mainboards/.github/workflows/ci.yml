@@ -81,12 +81,12 @@ jobs:
           cd ${{ matrix.mainboard }}
           make fetch
           make flashkernel
-      - name: 'Upload Artifact'
-          uses: actions/upload-artifact@v2
-          with:
-            name: Kernel and Initramfs
-            path: |
-              **/flashkernel
-              **/flashinitramfs.cpio
-            retention-days: 30
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Kernel and Initramfs
+          path: |
+            **/flashkernel
+            **/flashinitramfs.cpio
+          retention-days: 30
 
