@@ -58,6 +58,7 @@ jobs:
           - slimboot
           - st-st32mp1517c
           - tyan7106
+          - qemu-x86_64
           - walmart-robot
 
       # Do not cancel all jobs steps if a single one fails.
