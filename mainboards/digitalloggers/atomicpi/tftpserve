@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+echo https://wiki.up-community.org/Enable_PXE_boot
+sudo netplan apply
+ip a
+sudo service isc-dhcp-server restart
+sudo systemctl restart tftpd-hpa
+echo Serving IP4 but you can get ip6 via other means
+echo dont forget to get this
+echo http://archive.ubuntu.com/ubuntu/dists/trusty/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
+
+exit 0
+mkdir -p /tmp/kea
+sudo kea-dhcp6 -d -d -d -c ~/bin/kea6.conf 
+
+
+echo sudo tar xvf /mnt/hgfs/rminnich/Downloads/netboot.tar.gz

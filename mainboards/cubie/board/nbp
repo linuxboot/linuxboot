@@ -1,0 +1,4 @@
+#!ipxe
+kernel http://[2001:db8:0:1::128]:80/uImage
+initrd http://[2001:db8:0:1::128]:80/uCore
+boot

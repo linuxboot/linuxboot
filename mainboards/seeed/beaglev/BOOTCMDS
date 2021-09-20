@@ -1,0 +1,7 @@
+fatls mmc 0:1
+fatload mmc 0:1 ${kernel_addr_r} Image.gz 
+fatload mmc 0:1 ${kernel_addr_r} Image
+fatload mmc 0:1 ${fdt_addr_r} u-boot.dtb
+fatload mmc 0:1 ${ramdisk_addr_r} cpu.cpio.gz
+booti ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+

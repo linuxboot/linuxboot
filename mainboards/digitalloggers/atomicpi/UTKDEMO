@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+echo "Make sure me_cleaner.py is in our path"
+which me_cleaner.py
+echo "Make sure utk is in our path"
+which utk
+echo "Make sure guid2english is in our path"
+which guid2english
+echo "Let's go!"
+touch image.bin
+read -p "Hit return to see the original UEFI image structure"
+utk image.bin table | guid2english | less
+echo "Cut the ME area down to a smaller area"
+make tighten.bin
+read -p "hit to see the changed UEFI structure" i
+utk tighten.bin table | guid2english | less
+read -p "hit return to continue to setting HAP bit" i
+chmod +w hap.bin
+make hap.bin
+# read -p "hit return to continue" i
+# utk hap.bin table | guid2english | less
+read -p "hit return to remove DXEs" i
+chmod +w dxeremove.bin
+make dxeremove.bin
+# read -p "hit return to see the post-removal table" i
+# utk dxeremove.bin table | guid2english | less
+read -p "Hit return to add BdsDxe and UEFIShellDxe built from source" i
+make edk2.bin
+read -p "hit return to see the new UEFI image" i
+utk edk2.bin table | guid2english | less
+read -p "hit return to Replace shell binary with kernel and add initramfs" i
+make tiny.bin
+read -p "hit return to see the final image" i
+utk tiny.bin table | guid2english | less
+read -p "to see how the kernel finds the initrd hit return" i
+grep initrd= linux/.config

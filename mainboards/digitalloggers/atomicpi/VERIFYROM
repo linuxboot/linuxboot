@@ -1,0 +1,1 @@
+sudo flashrom -p dediprog:voltage=1.8 -v $*

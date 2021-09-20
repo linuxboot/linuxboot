@@ -1,0 +1,7 @@
+/*.bin
+/*.lzma
+/*.cpio
+/flashkernel
+/linux
+/bootcmds
+/etc
