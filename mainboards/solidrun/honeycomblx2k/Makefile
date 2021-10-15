@@ -34,7 +34,7 @@
 # make flashtest
 
 
-default: netboot.bin
+default: netbootkernel
 
 u-root:
 	GO111MODULE=off go install github.com/u-root/u-root
@@ -42,7 +42,7 @@ u-root:
 	@echo if GOPATH is empty, then put ~/go/bin in your PATH
 
 usefultargets:
-	echo fetch, uroot, netboot.bin
+	echo fetch, uroot, netbootkernel
 
 flashinitramfs.cpio: u-root Makefile
 	GO111MODULE=off GOARCH=arm64 u-root -o $@ -build=bb \
@@ -53,6 +53,7 @@ flashinitramfs.cpio: u-root Makefile
 netbootkernel: config-5.4.47 flashinitramfs.cpio
 	cp $< linux/.config
 	(cd linux && CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 make oldconfig && CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 make -j32)
+	cp linux/arch/arm64/boot/Image $@
 
 # These stanzas fetch code.
 fetch: getkernel geturoot 
