@@ -40,7 +40,7 @@ TOOLCHAIN?=aarch64-linux-gnu-
 default: flash-image.bin
 
 u-root:
-	go install github.com/u-root/u-root
+	GO111MODULE=off go install github.com/u-root/u-root
 	@echo Make sure $(GOPATH)/bin is in your PATH
 	@echo if GOPATH is empty, then put ~/go/bin in your PATH
 
@@ -87,7 +87,7 @@ flashinitramfs.cpio.xz: flashinitramfs.cpio
 	xz --check=crc32  -f -k $<
 
 flashinitramfs.cpio: u-root Makefile
-	GOARCH=arm64 u-root -o $@ -build=bb \
+	GO111MODULE=off GOARCH=arm64 u-root -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
@@ -103,7 +103,7 @@ flashinitramfs.cpio: u-root Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.xz: u-root Makefile
-	GOARCH=arm64 u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GO111MODULE=off GOARCH=arm64 u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpud
 	xz --check=crc32  -f -k cpu.cpio
@@ -113,7 +113,7 @@ cpu.cpio.xz: u-root Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.xz:  u-root Makefile
-	GOARCH=arm64 u-root -o sshd.cpio -build=bb \
+	GO111MODULE=off GOARCH=arm64 u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files ../../class_key.pub:authorized_keys \
 		-files ../../classhostkey:id_rsa \
@@ -147,8 +147,8 @@ getkernel:
 	git clone --depth=1 -b v5.6 --single-branch https://github.com/torvalds/linux
 
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	GO111MODULE=off go get -u github.com/u-root/u-root
+	GO111MODULE=off go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
