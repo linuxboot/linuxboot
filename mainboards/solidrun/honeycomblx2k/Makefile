@@ -46,7 +46,8 @@ usefultargets:
 
 flashinitramfs.cpio: u-root Makefile
 	GO111MODULE=off GOARCH=arm64 u-root -o $@ -build=bb \
-		-uinitcmd=/bbin/pxeboot \
+		-files ~/.ssh/cpu_rsa.pub:key.pub \
+		github.com/u-root/cpu/cmds/cpud \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		core \
 
