@@ -1,8 +1,8 @@
 mmc read 0x80d00000 0x6800 0x800
 dhcp
 tftpboot ${kernel_addr_r} netbootkernel
-fsl_mc apply DPL 0x80d00000
 tftpboot ${fdt_addr_r} fsl-lx2160a-cex7.dtb
+fsl_mc apply DPL 0x80d00000
 bootefi ${kernel_addr_r} ${fdt_addr_r}
 
 tftpboot ${kernel_addr_r} lxSDK
