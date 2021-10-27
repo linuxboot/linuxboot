@@ -24,7 +24,9 @@ Hit any key to stop autoboot:
 
 and hit any key.
 
+```
 run netboot
+```
 
 The kernel will boot. You will need to get an IP address:
 ```
