@@ -152,5 +152,6 @@ $(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
 endif
 
 clean:
+	$(MAKE) -C dxe clean
 	$(RM) $(BUILD)/{*.ffs,*.rom,*.vol,*.tmp}
 	$(RM) ./bin/utk
