@@ -1,15 +1,15 @@
 fc510ee7-ffdc-11d4-bd41-0080c73c8881 DXE Apriori
-# d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
+d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
 d93ce3d8-a7eb-4730-8c8e-cc466a9ecc3c ReportStatusCodeRouterRuntimeDxe
 6c2004ef-4e0e-4be4-b14c-340eb4aa5891 StatusCodeHandlerRuntimeDxe
 80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe
 b601f8c4-43b7-4784-95b1-f4226cb40cee RuntimeDxe
 f80697e9-7fd6-4665-8646-88e33ef71dfc SecurityStubDxe
 13ac6dd0-73d0-11d4-b06b-00aa00bd6de7 EbcDxe
-79ca4208-bba1-4a9a-8456-e1e66a81484e Legacy8259
+245CB4DA-8E15-4A1B-87E3-9878FFA07520 Legacy8259
 a19b1fe7-c1bc-49f8-875f-54a5d542443f CpuIo2Dxe
 1a1e4886-9517-440e-9fde-3be44cee2136 CpuDxe
-f2765dec-6b41-11d5-8e71-00902707b35e Timer
+C190FE35-44AA-41A1-8AEA-4947BC60E09D Timer
 f6697ac4-a776-4ee1-b643-1feff2b615bb IncompatiblePciDeviceSupportDxe
 11a6edf6-a9be-426d-a6cc-b22fe51d9224 PciHotPlugInitDxe
 128fb770-5e79-4176-9e51-9bb268a17dd1 PciHostBridgeDxe
@@ -29,6 +29,7 @@ f9d88642-0737-49bc-81b5-6889cd57d9ea SmbiosDxe
 49970331-e3fa-4637-9abc-3b7868676970 AcpiPlatform
 7e374e25-8e01-4fee-87f2-390c23c606cd ACPI data
 bdce85bb-fbaa-4f4e-9264-501a2c249581 S3SaveStateDxe
+7C04A583-9E3E-4F1C-AD65-E05268D0B4D1 Shell
 d9dcc5df-4007-435e-9098-8970935504b2 PlatformDxe
 2ec9da37-ee35-4de9-86c5-6d9a81dc38a7 AmdSevDxe
 8657015b-ea43-440d-949a-af3be365c0fc IoMmuDxe
