@@ -139,6 +139,9 @@ dxe/%.ffs:
 ifndef USE_UTK
 $(BUILD)/linuxboot.rom: $(FVS)
 else
+DXE_FFS += dxe/linuxboot.ffs
+DXE_FFS += $(BUILD)/Linux.ffs
+DXE_FFS += $(BUILD)/Initrd.ffs
 $(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
 	$< \
 		$(ROM) \
