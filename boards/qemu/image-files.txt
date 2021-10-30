@@ -1,5 +1,5 @@
 fc510ee7-ffdc-11d4-bd41-0080c73c8881 DXE Apriori
-d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
+# d6a2cb7f-6a18-4e2f-b43b-9920a733700a DxeCore
 d93ce3d8-a7eb-4730-8c8e-cc466a9ecc3c ReportStatusCodeRouterRuntimeDxe
 6c2004ef-4e0e-4be4-b14c-340eb4aa5891 StatusCodeHandlerRuntimeDxe
 80cf7257-87ab-47f9-a3fe-d50b76d89541 PcdDxe

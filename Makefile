@@ -142,10 +142,16 @@ else
 DXE_FFS += dxe/linuxboot.ffs
 DXE_FFS += $(BUILD)/Linux.ffs
 DXE_FFS += $(BUILD)/Initrd.ffs
+
+# The Perl way of building replaces DxeCore with a custom version but
+# UTK needs the original DxeCore, so uncomment DxeCore in image-files.txt
+# on-the-fly before passing it to UTK.
 $(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
 	$< \
 		$(ROM) \
-		remove_dxes_except boards/$(BOARD)/image-files.txt \
+		remove_dxes_except \
+		  <(sed 's|^#[[:space:]]\+\(d6a2cb7f-6a18-4e2f-b43b-9920a733700a\)[[:space:]]\+\(DxeCore\)|\1 \2|' \
+		    boards/$(BOARD)/image-files.txt) \
 		$(foreach ffs,$(DXE_FFS), insert_dxe $(ffs)) \
 		$(UTK_EXTRA_OPS) \
 		save $@
