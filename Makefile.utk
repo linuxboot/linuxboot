@@ -26,3 +26,6 @@ bin/utk:
 	go get github.com/linuxboot/fiano/cmds/utk
 	cp $(GOPATH)/bin/utk $@
 
+bin/create-ffs.utk:
+	go get github.com/linuxboot/fiano/cmds/create-ffs
+	cp $(GOPATH)/bin/create-ffs $@

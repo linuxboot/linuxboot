@@ -81,6 +81,7 @@ clean
 *.bin
 *.bad
 blobs/*/volume*
+bin/create-ffs.utk
 bin/utk
 edk2
 bzImage
