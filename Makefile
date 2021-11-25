@@ -101,7 +101,7 @@ $(BUILD)/%.vol:
 		$(filter-out $(BUILD)/$(BOARD).txt,$^)
 
 create-ffs = \
-	./bin/create-ffs \
+	./bin/create-ffs$(if $(USE_UTK),.utk,) \
 		-o $@ \
 		--name $(basename $(notdir $@)) \
 		--version 1.0 \
@@ -139,15 +139,25 @@ dxe/%.ffs:
 ifndef USE_UTK
 $(BUILD)/linuxboot.rom: $(FVS)
 else
-$(BUILD)/linuxboot.rom: bin/utk $(DXE_FFS)
+DXE_FFS += dxe/linuxboot.ffs
+DXE_FFS += $(BUILD)/Linux.ffs
+DXE_FFS += $(BUILD)/Initrd.ffs
+
+# The Perl way of building replaces DxeCore with a custom version but
+# UTK needs the original DxeCore, so uncomment DxeCore in image-files.txt
+# on-the-fly before passing it to UTK.
+$(BUILD)/linuxboot.rom: bin/utk bin/create-ffs.utk $(DXE_FFS)
 	$< \
 		$(ROM) \
-		remove_dxes_except boards/$(BOARD)/image-files.txt \
+		remove_dxes_except \
+		  <(sed 's|^#[[:space:]]\+\(d6a2cb7f-6a18-4e2f-b43b-9920a733700a\)[[:space:]]\+\(DxeCore\)|\1 \2|' \
+		    boards/$(BOARD)/image-files.txt) \
 		$(foreach ffs,$(DXE_FFS), insert_dxe $(ffs)) \
 		$(UTK_EXTRA_OPS) \
 		save $@
 endif
 
 clean:
+	$(MAKE) -C dxe clean
 	$(RM) $(BUILD)/{*.ffs,*.rom,*.vol,*.tmp}
-	$(RM) ./bin/utk
+	$(RM) ./bin/utk ./bin/create-ffs.utk

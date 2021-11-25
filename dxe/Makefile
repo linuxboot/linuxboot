@@ -39,7 +39,7 @@ FORCE:
 	/usr/bin/printf '\x2E\x00' | dd of=$@ conv=notrunc bs=1 seek=150 status=none
 
 %.ffs: %.efi
-	../bin/create-ffs \
+	../bin/create-ffs$(if $(USE_UTK),.utk,) \
 		-o $@ \
 		--type DRIVER \
 		--version 1.0 \
