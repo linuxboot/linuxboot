@@ -164,6 +164,11 @@ cpukernel: cpu.cpio.lzma cpu.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
+cpukernel-5.4: cpu.cpio.lzma cpu.config-5.4
+	cp cpu.config-5.4 linux-5.4/.config
+	(cd linux-5.4 && make oldconfig && make -j32)
+	cp linux-5.4/arch/x86/boot/bzImage $@
+
 cpuflashkernel: cpu.cpio.lzma cpuflash.config
 	cp cpuflash.config linux/.config
 	(cd linux && make oldconfig && make -j32)
@@ -241,6 +246,14 @@ fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
 	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+
+getlinux-5.4:
+	rm -rf linux-5.4
+	git clone --depth=1 -b v5.4 --single-branch https://github.com/torvalds/linux linux-5.4
+
+getlinux-5.10:
+	rm -rf linux-5.10
+	git clone --depth=1 -b v5.10 --single-branch https://github.com/torvalds/linux linux-5.10
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
