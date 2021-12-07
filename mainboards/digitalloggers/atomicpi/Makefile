@@ -169,6 +169,11 @@ cpukernel-5.4: cpu.cpio.lzma cpu.config-5.4
 	(cd linux-5.4 && make oldconfig && make -j32)
 	cp linux-5.4/arch/x86/boot/bzImage $@
 
+cpukernel-5.10: cpu.cpio.lzma cpu.config-5.10
+	cp cpu.config-5.10 linux-5.10/.config
+	(cd linux-5.10 && make oldconfig && make -j32)
+	cp linux-5.10/arch/x86/boot/bzImage $@
+
 cpuflashkernel: cpu.cpio.lzma cpuflash.config
 	cp cpuflash.config linux/.config
 	(cd linux && make oldconfig && make -j32)
