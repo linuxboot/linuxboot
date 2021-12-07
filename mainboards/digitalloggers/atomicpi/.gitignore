@@ -2,3 +2,7 @@
 /*.lzma
 /linux
 /*kernel
+cpukernel-5.10
+cpukernel-5.4
+linux-5.10
+linux-5.4
