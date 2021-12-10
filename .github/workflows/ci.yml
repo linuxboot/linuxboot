@@ -3,9 +3,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the
   # master branch.
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
   # Triggers the workflow every day at 23:00.
   schedule:
@@ -79,6 +79,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Make ${{ matrix.mainboard }} kernel
         run: |
+          cd mainboards
           PATH=$PATH:$GOPATH/bin
           cd $(echo ${{ matrix.mainboard }} | tr '-' '/')
           make fetch

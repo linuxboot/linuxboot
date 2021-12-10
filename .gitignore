@@ -91,4 +91,3 @@ boards/*/volume-*
 *.pad
 *.hop
 *.efi
-.*
