@@ -53,12 +53,15 @@ flashpxeboot.bin: dxeremove.bin flashkernel flashinitramfs.cpio.lzma
 		save $@
 		dd if=flashinitramfs.cpio.lzma of=$@ bs=4096 seek=360 conv=notrunc
 
-cpu.bin: dxeremove.bin cpuflashkernel cpu.cpio.lzma
+# cpu.bin: dxeremove.bin cpuflashkernel cpu.cpio.lzma
+cpu.bin: dxeremove.bin  cpuflashkernel
 	utk \
 		-xzPath  /usr/bin/xz \
 		$< \
-		replace_pe32 Shell cpuflashkernel \
+		replace_pe32 Shell cpuflashkernel  \
 		save $@
+		echo NO replace_pe32 Shell cpuflashkernel \
+		echo NO save $@
 
 edk2.bin: dxeremove.bin
 	echo Note, this inserts the edk2 bds and shell
@@ -95,6 +98,7 @@ dxeremove.bin: image.bin
 	remove Fat.* \
 	remove .*ftp.* \
 	remove .*harging.* \
+	remove Http.* \
 	remove I2c.* \
 	remove IntelGopV.* \
 	remove IntelIsh.* \
@@ -130,6 +134,9 @@ dxeremove.bin: image.bin
 	remove Usb.* \
 	remove Whea.* \
 	remove Xpower.* \
+	remove IntelGig.* \
+	remove FmpDxe.* \
+	remove FlashUcAcmDxe \
 	comment S3Save_do_not_remove_gets_error \
 		comment below_still_unknown \
 		comment TcgMor \
@@ -143,7 +150,7 @@ dxeremove.bin: image.bin
 		comment Tcg2Dxe \
 		comment TcgPlatformSetupPolicy \
 		save $@
-		chmod a-w $@
+		echo NOT DOING chmod a-w $@
 
 hap.bin: tighten.bin
 	cp $< $@
