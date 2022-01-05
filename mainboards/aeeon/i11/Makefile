@@ -207,10 +207,11 @@ cpu.cpio.lzma: cpu.cpio
 
 cpu.cpio: Makefile
 	u-root -build=bb -o cpu.cpio \
-		-uinitcmd=/bbin/cpud \
 	-files ~/.ssh/cpu_rsa.pub:key.pub \
+	-uinitcmd=/bbin/console \
 			github.com/u-root/cpu/cmds/cpud \
 		github.com/u-root/u-root/cmds/exp/console \
+		github.com/u-root/u-root/cmds/exp/ed \
 		core
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
