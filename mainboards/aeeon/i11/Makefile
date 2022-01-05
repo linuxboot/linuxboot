@@ -170,10 +170,10 @@ cpukernel: cpu.cpio.lzma cpu.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
-cpuflashkernel: cpu.cpio.lzma cpuflash.config
-	cp cpuflash.config linux/.config
-	(cd linux && make oldconfig && make -j32)
-	cp linux/arch/x86/boot/bzImage $@
+cpuflashkernel: cpu.cpio cpuflash.config
+	cp cpuflash.config ubuntu-bionic-up/.config
+	(cd ubuntu-bionic-up && make oldconfig && make -j32)
+	cp ubuntu-bionic-up/arch/x86/boot/bzImage $@
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -202,11 +202,16 @@ flashinitramfs.cpio: Makefile
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-cpu.cpio.lzma: Makefile
-	u-root -build=bb -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
-		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+cpu.cpio.lzma: cpu.cpio
 	lzma -f -k cpu.cpio
+
+cpu.cpio: Makefile
+	u-root -build=bb -o cpu.cpio \
+		-uinitcmd=/bbin/cpud \
+	-files ~/.ssh/cpu_rsa.pub:key.pub \
+			github.com/u-root/cpu/cmds/cpud \
+		github.com/u-root/u-root/cmds/exp/console \
+		core
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
 # the intent is  to demonstrate the capability of http loading.
@@ -246,7 +251,8 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+	git clone https://github.com/emutex/ubilinux-kernel.git -b upboard-4.9 linux
+	echo UP SUCKS git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
