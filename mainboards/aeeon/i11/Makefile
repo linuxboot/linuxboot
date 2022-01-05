@@ -170,10 +170,12 @@ cpukernel: cpu.cpio.lzma cpu.config
 	(cd linux && make oldconfig && make -j32)
 	cp linux/arch/x86/boot/bzImage $@
 
+# KERNEL=ubuntu-bionic-up
+KERNEL=linux
 cpuflashkernel: cpu.cpio cpuflash.config
-	cp cpuflash.config ubuntu-bionic-up/.config
-	(cd ubuntu-bionic-up && make oldconfig && make -j32)
-	cp ubuntu-bionic-up/arch/x86/boot/bzImage $@
+	cp cpuflash.config $(KERNEL)/.config
+	(cd $(KERNEL) && make oldconfig && make -j32)
+	cp $(KERNEL)/arch/x86/boot/bzImage $@
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -252,8 +254,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone https://github.com/emutex/ubilinux-kernel.git -b upboard-4.9 linux
-	echo UP SUCKS git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
