@@ -100,7 +100,7 @@ uroot:
 flashkernel: Makefile
 	cp config-$(CONFIG) linux/.config
 	(cd linux && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make oldconfig && ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make -j32)
-	mkimage -C none -A arm -n 'walmart robot' -d linux/arch/arm/boot/zImage -T flashkernel -a 0xc1000000 -e 0xc1000000 flashkernel
+	mkimage -C none -A arm -n 'walmart robot' -d linux/arch/arm/boot/zImage -T kernel -a 0xc1000000 -e 0xc1000000 flashkernel
 	cp linux/arch/arm/boot/zImage kernel
 
 fetch: getkernel geturoot getfiano getrom getpackages
