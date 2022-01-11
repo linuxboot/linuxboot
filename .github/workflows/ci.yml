@@ -70,17 +70,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
       # access it.
       - uses: actions/checkout@v2
-
+      # We need this newer version of Go.
+      - name: Go version
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.17.6'
       - name: Install dependent packages
         run: |
           set -ex
           sudo apt-get update
           sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} libelf-dev u-boot-tools
-          # We need this newer version of Go.
-          wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
-          sudo rm -rf /usr/local/go
-          sudo tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
-
       # Runs a set of commands using the runners shell
       - name: Make ${{ matrix.mainboard }} kernel
         run: |
