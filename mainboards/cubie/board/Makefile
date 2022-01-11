@@ -37,7 +37,7 @@ fetch: getkernel geturoot
 
 getkernel:
 	rm -rf linux
-	git clone git://github.com/linux-sunxi/linux-sunxi.git -b sunxi-next --depth=1 linux
+	git clone https://github.com/linux-sunxi/linux-sunxi.git -b sunxi-next --depth=1 linux
 	(cd linux && make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- sunxi_defconfig)
 
 geturoot:
