@@ -9,5 +9,5 @@ debian-packages:
 getmecleaner:
 	go get -u github.com/u-root/u-root
 	go get -u github.com/u-root/cpu/...
-	git clone git://github.com/corna/me_cleaner
+	git clone https://github.com/corna/me_cleaner
 	@echo Now add $(PWD)/me_cleaner to PATH
