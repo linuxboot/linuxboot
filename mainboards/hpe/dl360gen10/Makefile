@@ -124,6 +124,9 @@ uroot:
 	ls -l initramfs*
 	cp *lzma linux
 
+injectkeys:
+	echo "FIXME: 'injectkeys' got lost; see Makefile.rej!"
+
 bzImage:
 	cp config-$(CONFIG) linux/.config
 	(cd linux && make oldconfig && make -j32)
