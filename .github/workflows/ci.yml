@@ -54,7 +54,7 @@ jobs:
           - opentitanpilot-dresden
           - pcengines-apu
           - pcengines-apu2
-          - seeed-beaglev
+            # - seeed-beaglev # FIXME: broken due to upstream sources gone
           - slimboot
           - st-st32mp1517c
           - tyan7106
