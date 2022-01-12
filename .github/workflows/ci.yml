@@ -80,6 +80,12 @@ jobs:
           set -ex
           sudo apt-get update
           sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} libelf-dev u-boot-tools
+      # TODO: This is a temporary workaround, need to streamline key handling
+      - name: Fake SSH keys to pass builds
+        run: |
+          mkdir ~/.ssh && touch ~/.ssh/cpu_rsa.pub
+          touch mainboards/tyan7106/key.pub
+          touch mainboards/tyan7106/ssh_host_rsa_key
       # Runs a set of commands using the runners shell
       - name: Make ${{ matrix.mainboard }} kernel
         run: |
