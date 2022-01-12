@@ -79,7 +79,7 @@ jobs:
         run: |
           set -ex
           sudo apt-get update
-          sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} libelf-dev u-boot-tools
+          sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} gcc-riscv64-linux-gnu libelf-dev u-boot-tools
       # TODO: This is a temporary workaround, need to streamline key handling
       - name: Fake SSH keys to pass builds
         run: |
