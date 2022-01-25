@@ -172,10 +172,18 @@ cpukernel: cpu.cpio.lzma cpu.config
 
 # KERNEL=ubuntu-bionic-up
 KERNEL=linux
-cpuflashkernel: cpu.cpio cpuflash.config
-	cp cpuflash.config $(KERNEL)/.config
+#CONFIG=cpuflash-5.17.0.config
+#CONFIG=cpuflash-5.4.0.config
+CONFIG=cpuflash.config
+cpuflashkernel: cpu.cpio $(CONFIG)
+	cp $(CONFIG) $(KERNEL)/.config
 	(cd $(KERNEL) && make oldconfig && make -j32)
 	cp $(KERNEL)/arch/x86/boot/bzImage $@
+
+5.4.65.cpuflashkernel: cpu.cpio cpuflash-5.4.65.config
+	cp cpuflash-5.4.65.config linux-5.4.65/.config
+	(cd linux-5.4.65 && make oldconfig && make -j32)
+	cp linux-5.4.65/arch/x86/boot/bzImage $@
 
 readrom:
 	echo You need to get a ROM image from *somewhere*
@@ -254,7 +262,11 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
+	git clone --depth=1 -b v5.15 --single-branch git@github.com:torvalds/linux
+
+getkernel-5.4.65:
+	rm -rf linux-5.4.65
+	git clone --depth=1 -b hwe-5.4-upboard --single-branch git@github.com:AaeonCM/ubuntu-bionic-up linux-5.4.65
 
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
