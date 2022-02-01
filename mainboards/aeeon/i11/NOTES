@@ -1,0 +1,1058 @@
+ 1401  make getkernel-5.4.65 
+ 1402  ls
+ 1403  fg
+ 1404  emacs
+ 1405  cd linux-5.4/
+ 1406  history | grep tar
+ 1407  ls
+ 1408  ls ..
+ 1409  ls ~/
+ 1410  cd ..
+ 1411  vi Makefile 
+ 1412  make getkernel-5.4.65 
+ 1413  vi Makefile 
+ 1414  make getkernel-5.4.65 
+ 1415  make cpuflashkernel 5.4.65.cpuflashkernel 
+ 1416  more linux/Makefile 
+ 1417  make cpuflashkernel 5.4.65.cpuflashkernel 
+ 1418  ls -l *kernel
+ 1419  cpu i11 cp cpuflashkernel /x
+ 1420  cpu i11 kexec /x
+ 1421  cpu i11 date
+ 1422  cpu i11 cp 5.4.65.cpuflashkernel /x
+ 1423  cpu i11 kexec /x
+ 1424  cpu i11 cp 5.4.65.cpuflashkernel /x
+ 1425  cpu i11 kexec -r /x
+ 1426  cpu i11 lspci
+ 1427  ls
+ 1428  cpu i11 date
+ 1429  grep cpu.*kernel Makefile 
+ 1430  make cpuflashkernel 
+ 1431  cpu i11 cp cpuflashkernel  /x
+ 1432  cpu i11 kexec -e
+ 1433  cpu i11 cp cpuflashkernel  /x
+ 1434  cpu i11 kexec -r  '0000:01:00.0  0000:01:00.1' -e
+ 1435  cpu i11 kexec --pcireset   '0000:01:00.0  0000:01:00.1' -e
+ 1436  cpu i11 ls /sys/bus/pci/devices/0000:01:00.0/reset
+ 1437  cpu i11 kexec --pcireset   '0000:01:00.0  0000:01:00.1' -e
+ 1438  cpu i11 kexec --pcireset   '0000:01:00.1  0000:01:00.1' -e
+ 1439  cpu i11
+ 1440  cpu i11 ls /sys/bus/pci/devices
+ 1441  cpu i11 /bin/sh
+ 1442  strace -o shit -f -v -s 1024 cpu i11 /bin/sh
+ 1443  /usr/bin/strace -o shit -f -v -s 1024 cpu i11 /bin/sh
+ 1444  vi shit
+ 1445  cpu i11 dmesg
+ 1446  cpu i11 kexec cpuflashkernel 
+ 1447  cpu -h
+ 1448  cpu i11 -dbg9p -dump kexec cpuflashkernel 
+ 1449  ls
+ 1450  ls /tmp
+ 1451  ls -l kexec
+ 1452  cpu i11 -dbg9p kexec cpuflashkernel 
+ 1453  cpu i11 -dbg9p 8 kexec cpuflashkernel 
+ 1454  cpu i11 -dump  kexec cpuflashkernel 
+ 1455  cpu -dumnp i11   kexec cpuflashkernel 
+ 1456  cpu -dump i11   kexec cpuflashkernel 
+ 1457  vi /tmp/cpu029385184 
+ 1458  cpu -dump i11   
+ 1459  vi /tmp/cpu585843260 
+ 1460  fg
+ 1461  file /usr/bin/lesspipe 
+ 1462  more /usr/bin/lesspipe
+ 1463  fg
+ 1464  cpu i11 lesspipe
+ 1465  cpu i11 basename x x
+ 1466  fg
+ 1467  cpu i11 /usr/bin/strace date
+ 1468  cpu i11 lsof
+ 1469  cd linux
+ 1470  git grep EBUSY
+ 1471  git grep EBUSY kernel/
+ 1472  git grep EBUSY fs
+ 1473  git grep EBUSY fs | grep exec
+ 1474  git grep EBUSY fs | grep proc
+ 1475  git grep EBUSY fs/9p
+ 1476  git grep EBUSY fs/p9
+ 1477  git grep EBUSY fs/9p/
+ 1478  git grep exec kerne
+ 1479  git grep exec kernel
+ 1480  git grep EBUSY kernel/*exec*
+ 1481  git grep EBUSY fs/*.c
+ 1482  cpu i11 cat README 
+ 1483  cpu i11 dd of=README
+ 1484  cpu i11 /usr/bin/strace date
+ 1485  cd ..
+ 1486  cpu i11 strace date
+ 1487  cpu i11 strace kexec cpuflashkernel 
+ 1488  cpu -dump i11 strace kexec cpuflashkernel 
+ 1489  script xyz
+ 1490  vi xyz
+ 1491  cpu i11 strace date
+ 1492  cpu i11 date
+ 1493  cpu i11 sh -c date
+ 1494  cpu i11 strace sh -c date
+ 1495  grep -r EBUSY linux/net/9p/
+ 1496  vi linux/net/9p/error.c 
+ 1497  vi linux/net/9p/trans_virtio.c 
+ 1498  grep -ri busy linux/fs/9p/
+ 1499  grep -ri busy linux/fs/*open*
+ 1500  vi linux/fs/fsopen.c 
+ 1501  girt grep EBUSY linux/fs/
+ 1502  grep -r EBUSY linux/fs/
+ 1503  grep -r EBUSY linux//fs/namei.c 
+ 1504  /BUSY
+ 1505  vi /BUSY
+ 1506  grep -r EBUSY linux//fs/namei.c 
+ 1507  vi linux//fs/namei.c
+ 1508  vi linux/Documentation/filesystems/9p.rst 
+ 1509  fg
+ 1510  make cpukernel 
+ 1511  make cpuflashkernel
+ 1512  rm cpu.cpio
+ 1513  make cpuflashkernel
+ 1514  cpu i11 cp cpuflashkernel  /x
+ 1515  cpu i11 kexec -e /x
+ 1516  cpu i11 kexec -e 
+ 1517  cpu i11 kexec /x
+ 1518  cpu i11 kexec cpuflash
+ 1519  cpu i11 kexec cpuflashkernel 
+ 1520  cpu i11 dmesg -c
+ 1521  cpu i11 cat /proc/mounts
+ 1522  vi linux/Documentation/filesystems/9p.rst 
+ 1523  rm cpu.cpio
+ 1524  make cpuflashkernel 
+ 1525  cpu i11 cp cpuflashkernel  /x
+ 1526  cpu i11 kexec /x
+ 1527  cpu i11 date
+ 1528  cpu i11 dmesg
+ 1529  cd linux
+ 1530  make menuconfig
+ 1531  diff .config ../cpuflash-5.4.65.config 
+ 1532  more Makefile
+ 1533  diff .config ../cpuflash.config 
+ 1534  cp .config ../cpuflash.config 
+ 1535  cd ..
+ 1536  make cpuflashkernel 
+ 1537  cpu i11 cp cpuflashkernel  /x
+ 1538  cpu i11 kexec /x
+ 1539  cpu i11 date
+ 1540  cpu i11 dmesg
+ 1541  cpu i11 dmesg -c
+ 1542  cpu i11 kexec cpuflash
+ 1543  cpu i11 dmesg -c > xxx
+ 1544  vi xxx
+ 1545  more xxx
+ 1546  which dmesg
+ 1547  cpu i11 /bbin/demsg -c
+ 1548  cpu i11 kexec cpuflash
+ 1549  cpu i11 kexec cpuflashkernel 
+ 1550  cpu i11 cat /xyz
+ 1551  vi xyz
+ 1552  cpu i11 cp /xyz .
+ 1553  vi xyz
+ 1554  rm xyz
+ 1555  cpu i11 cp /xyz .
+ 1556  vi xyz
+ 1557  cpu i11 kexec -l cpuflashkernel 
+ 1558  rm cpu.cpio
+ 1559  make cpuflashkernel 
+ 1560  cpu i11 cp cpuflashkernel  /x
+ 1561  cpu i11 kexec /x
+ 1562  cpu i11 date
+ 1563  cpu i11 kexec cpuflashkernel 
+ 1564  rm xyz
+ 1565  cpu i11 cp /xyz xyz
+ 1566  vi xyz
+ 1567  cpu i11 strace date
+ 1568  cp 11 /usr/bin/strace date
+ 1569  cpu i11 /usr/bin/strace date
+ 1570  cpu i11 cp /xyz /tmp/faileddatestrace
+ 1571  vi /tmp/faileddatestrace
+ 1572  cpu i11 cp /xyz faileddatestrace
+ 1573  vi faileddatestrace 
+ 1574  strace /usr/bin/strace x
+ 1575  grep CLUNK faileddatestrace 
+ 1576  vi faileddatestrace 
+ 1577  fg
+ 1578  vi linux/Documentation/filesystems/9p.rst 
+ 1579  cd linux
+ 1580  git log
+ 1581  cd ..
+ 1582  cpu i11
+ 1583  rm xyz
+ 1584  cpu i11 cp /xyz .
+ 1585  vi xyz
+ 1586  fg
+ 1587  cpu i11 /bbin/dmesg -c
+ 1588  cpu i11 kexec -l cpuflashkernel 
+ 1589  cpu i11 /bbin/dmesg -c > xyz
+ 1590  vi xyz
+ 1591  man 2 open
+ 1592  grep O_ /usr/include/fcntl.h 
+ 1593  grep -r define.*O_CL /usr/include
+ 1594  vi /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+ 1595  gdb
+ 1596  fg
+ 1597  strace -o shit kexec -l cpuflashkernel 
+ 1598  vi shit
+ 1599  cpu i11 strace kexec -l cpuflashkernel
+ 1600  cpu i11 strace -o strfail kexec -l cpuflashkernel
+ 1601  grep open strfail 
+ 1602  vi x.c
+ 1603  man 2 open
+ 1604  fg
+ 1605  cc -o x x.c
+ 1606  vi x.c
+ 1607  cc -o x x.c
+ 1608  vi x.c
+ 1609  cc -o x x.c
+ 1610  vi x.c
+ 1611  fg
+ 1612  cc -o x x.c
+ 1613  ./x
+ 1614  cpu i11 ./x cpuflashkernel 
+ 1615  vi x.c
+ 1616  cc -o x x.c
+ 1617  man printf
+ 1618  man 3 printf
+ 1619  vi x.c
+ 1620  cc -o x x.c
+ 1621  cpu i11 ./x cpuflashkernel 
+ 1622  vi x.c
+ 1623  cc -o x x.c
+ 1624  vi x.c
+ 1625  cc -o x x.c
+ 1626  cpu i11 ./x cpuflashkernel 
+ 1627  ./x
+ 1628  vi x.c
+ 1629  ./x cpuflashkernel 
+ 1630  vi x.c
+ 1631  cc -o x x.c
+ 1632  ./x cpuflashkernel 
+ 1633  cpu i11 ./x cpuflashkernel 
+ 1634  ./x cpuflashkernel 
+ 1635  vi linux/fs/9p/vfs_file.c 
+ 1636  git grep CLOE linux/fs//9p
+ 1637  more x.c
+ 1638  git grep CLOE linux/fs
+ 1639  git grep CLOE linux
+ 1640  grep -r CLOE linux/fs/9p
+ 1641  vi linux/fs/9p/vfs_inode_dotl.c
+ 1642  grep -r CLOEXEC linux
+ 1643  vi linux/fs/file.c
+ 1644  cd linux
+ 1645  git grep set.close.on
+ 1646  vi fs/file.c 
+ 1647  git grep EBUSY fs
+ 1648  git grep EBUSY fs/*.c
+ 1649  git grep CLOEX fs/*.c
+ 1650  cat x.c
+ 1651  cat ../x.c
+ 1652  cd ..
+ 1653  vi x.c
+ 1654  cc -o x x.c
+ 1655  cpu i11 ./x cpuflashkernel 
+ 1656  cat x.c
+ 1657  vi x.c
+ 1658  cc -o x x.c
+ 1659  cpu i11 ./x cpuflashkernel 
+ 1660  cat x.c
+ 1661  vi x.c
+ 1662  cc -o x x.c
+ 1663  cpu i11 ./x cpuflashkernel 
+ 1664  vi x.c
+ 1665  go build
+ 1666  cc -o x x.c
+ 1667  cpu i11 ./x cpuflashkernel 
+ 1668  cat x.c
+ 1669  cpu i11 ./x /bbin/date
+ 1670  vi x.c
+ 1671  cc -o x x.c
+ 1672  vi x.c
+ 1673  cc -o x x.c
+ 1674  cpu i11 ./x /bbin/date
+ 1675  cpu i11 ./x cpuflashkernel
+ 1676  cpu i11
+ 1677  grep clone
+ 1678  grep clone Makefile 
+ 1679  rm -rf linux
+ 1680  git clone -b v5.15  git@github.com:torvalds/linux
+ 1681  cd linux
+ 1682  git grep 8259 Documentation/
+ 1683  vi Documentation/core-api/irq/concepts.rst
+ 1684  pwd
+ 1685  git branch
+ 1686  git log
+ 1687  git branch -a
+ 1688  git checkout master
+ 1689  more Makefile 
+ 1690  cd ..
+ 1691  cp cpuflash-5.17.0.config
+ 1692  cp cpuflash.config cpuflash-5.17.0.config 
+ 1693  vi Makefile 
+ 1694  fg
+ 1695  make cpuflashkernel
+ 1696  cd linux
+ 1697  make menuconfig
+ 1698  make
+ 1699  cp .config ../cpuflash-5.17.0.config 
+ 1700  cd ..
+ 1701  make cpuflashkernel
+ 1702  grep INIT cpuflash-5.17.0.config 
+ 1703  cpu i11 cp cpuflashkernel /x
+ 1704  cpu i11 kexec /x
+ 1705  cpu i11
+ 1706  cpu i11 cat /proc/version
+ 1707  cpu i11 ./x cpuflashkernel 
+ 1708  cd linux
+ 1709  git branch
+ 1710  git log
+ 1711  git branch -a
+ 1712  git tag -h
+ 1713  git tag -l
+ 1714  git bisect start
+ 1715  git tag -l | grep 5.4
+ 1716  git bisect bad
+ 1717  git checkout v5.4
+ 1718  cp ../cpuflash-5.4.65.config .config
+ 1719  make menuconfig
+ 1720  make -j32
+ 1721  make menuconfig
+ 1722  make
+ 1723  grep KAS .config
+ 1724  git log
+ 1725  more Makefile 
+ 1726  cp .config ../cpuflash-5.4.0.config
+ 1727  make mrproper
+ 1728  cd ..
+ 1729  vi Makefile 
+ 1730  make cpuflashkernel 
+ 1731  git checkout v5.5
+ 1732  git checkout v5.5.0
+ 1733  git tag -l
+ 1734  cd linux
+ 1735  git checkout v5.5.0
+ 1736  git checkout v5.5
+ 1737  make menuconfig
+ 1738  make clean
+ 1739  make -j32
+ 1740  make menuconfig
+ 1741  cp ../cpuflash-5.4.65.config 
+ 1742  cp ../cpuflash-5.4.65.config  .config
+ 1743  make -j32
+ 1744  git grep __force_order
+ 1745  vi arch/x86/boot/compressed/Makefile 
+ 1746  vi .config
+ 1747  make
+ 1748  pwd
+ 1749  cp i11 cp arch/x86/boot/bzImage /x
+ 1750  cpu i11 cp arch/x86/boot/bzImage /x
+ 1751  cpu x cp arch/x86/boot/bzImage /x
+ 1752  cpu x kexec /x
+ 1753  cpu i11 date
+ 1754  cpu x date
+ 1755  sudo dmesg -c
+ 1756  sudo fsck /dev/sdb1
+ 1757  sudo mount /dev/sdb1 /mnt
+ 1758  sudo cp arch/x86/boot/bzImage /mnt/v5.5
+ 1759  vi /boot/grub/grub.cfg 
+ 1760  grep -r IP /mnt
+ 1761  vi /boot/grub/grub.cfg 
+ 1762  vi /boot/efi/EFI/ubuntu/grub.cfg 
+ 1763  cd /mnt/boot/
+ 1764  ls
+ 1765  vi grub/grub.cfg 
+ 1766  sudo vi grub/grub.cfg 
+ 1767  ls /mnt
+ 1768  cd
+ 1769  sudo umount /mnt
+ 1770  ls
+ 1771  pwd
+ 1772  cd linuxboot/mainboards/aeeon/i11/
+ 1773  ls
+ 1774  cp cpuflash.config cpuflash-5.6.0.config
+ 1775  cd linux
+ 1776  make mrproer
+ 1777  make mrproper
+ 1778  cp ../cpuflash-5.6.0.config .config
+ 1779  git checkout v5.6
+ 1780  make
+ 1781  cpu i11 date
+ 1782  cpu i11 cp arch/x86/boot/bzImage /xxx
+ 1783  cpu i11 kexec /xxx
+ 1784  cd ..
+ 1785  more cpu.config 
+ 1786  more Makefile 
+ 1787  git diff
+ 1788  grep CONFIG Makefile 
+ 1789  git diff
+ 1790  vi Makefile 
+ 1791  cd linux
+ 1792  more ../cpuflash.config 
+ 1793  git checkout v5.15
+ 1794  make mrproper
+ 1795  cd ..
+ 1796  make cpuflashkernel 
+ 1797  cpu i11 date
+ 1798  cpu i11 cp cpuflashkernel /xxx
+ 1799  cpu i11 kexec /xxx
+ 1800  cpu i11 cat /proc/version
+ 1801  cpu i11 ./x cpuflashkernel 
+ 1802  cd linux
+ 1803  git log
+ 1804  git checkout v5.14
+ 1805  cd ..
+ 1806  make cpuflashkernel
+ 1807  rm cpuflashkernel 
+ 1808  cd linux
+ 1809  make mrproper
+ 1810  git log
+ 1811  cd ..
+ 1812  make cpuflashkernel 
+ 1813  more linux/Makefile 
+ 1814  cp linux/.config cpu-5.14.config
+ 1815  git add *.config
+ 1816  git status
+ 1817  git add Makefile 
+ 1818  git commit -as
+ 1819  cpu i11 cp cpuflashkernel  /xxx
+ 1820  cpu i11 kexec /xxx
+ 1821  cpu i11 date
+ 1822  cpu x date
+ 1823  cpu i11 date
+ 1824  cd linux
+ 1825  git log
+ 1826  git bisect bad
+ 1827  cd ..
+ 1828  cd linux
+ 1829  git log
+ 1830  git status
+ 1831  git bisect step
+ 1832  git bisect next
+ 1833  more ../cpu.config 
+ 1834  ls ..
+ 1835  more ../cpuflash.config 
+ 1836  cd ..
+ 1837  cp cpuflash.config cpu-5.15.config
+ 1838  cd linux
+ 1839  git checkout v5.15
+ 1840  git bisect good
+ 1841  git checkout v5.15
+ 1842  git bisect reset
+ 1843  git bisect start
+ 1844  git checkout v5.14
+ 1845  cd ..
+ 1846  cpu i11 date
+ 1847  cpu i11 cat /proc/version
+ 1848  make cpuflashkernel 
+ 1849  cp cpuflashkernel cpuflashkernel-5.15
+ 1850  more linux/.config
+ 1851  make cpuflashkernel 
+ 1852  rm cpuflashkernel
+ 1853  vi Makefile 
+ 1854  ls *5.14*
+ 1855  fg
+ 1856  make cpuflashkernel 
+ 1857  cpu i11 cp cpuflashkernel  /xxx
+ 1858  cpu i11 kexec /xxx
+ 1859  cd linux
+ 1860  git bisect bad
+ 1861  git status
+ 1862  git log
+ 1863  git log v5.14..v5.15
+ 1864  git bisect reset
+ 1865  git log
+ 1866  git checkout v5.14
+ 1867  git bisect start
+ 1868  git bisect goot
+ 1869  git bisect good
+ 1870  git checkout v5.14
+ 1871  git bisect bad
+ 1872  git bisect reset
+ 1873  git checkout v5.15
+ 1874  git bisect stop
+ 1875  git bisect start
+ 1876  git bisect good
+ 1877  git checkout v5.14
+ 1878  git bisect bad
+ 1879  git checkout v5.15
+ 1880  git log
+ 1881  git log v5.14..v5.15
+ 1882  git log v5.14
+ 1883  git log v5.15
+ 1884  git log v5.14
+ 1885  git log v5.15
+ 1886  git log --pretty=online v5.14..v5.15
+ 1887  git log --pretty=oneline v5.14..v5.15
+ 1888  git log --pretty=oneline v5.14..v5.15|wc
+ 1889  git log --pretty=oneline v5.14..v5.15|tail -4
+ 1890  git log
+ 1891  git log --pretty=oneline v5.14..v5.15|tail -4
+ 1892  git log --pretty=oneline v5.14..v5.15|
+ 1893  git log --pretty=oneline v5.14..v5.15
+ 1894  git log --pretty=oneline v5.14..v5.15|tail -5
+ 1895  git checkout f49fd6d3c070d08c4ae9696876c7098320e48dab
+ 1896  git bisect bad
+ 1897  git checkout v5.15
+ 1898  git bisect reset
+ 1899  git log
+ 1900  git checkout 75fcbd38608c3ce9f4dc784f2ac8916add64c9a8
+ 1901  git bisect start
+ 1902  git bisect good
+ 1903  git checkout 75fcbd38608c3ce9f4dc784f2ac8916add64c9a8
+ 1904  git bisect bad
+ 1905  git status
+ 1906  git bisect reset
+ 1907  git branch
+ 1908  git checkout master
+ 1909  git log
+ 1910  git bisect start
+ 1911  git bisect good
+ 1912  git checkout 75fcbd38608c3ce9f4dc784f2ac8916add64c9a8
+ 1913  git show
+ 1914  git checkout v5.14
+ 1915  git log
+ 1916  git bisect bad
+ 1917  git checkout v.5.15
+ 1918  git checkout v5.15
+ 1919  git log
+ 1920  git log --pretty=oneline | head -1000 | tail -4
+ 1921  git checkout b2d70c0dbf2731a37d1c7bcc86ab2387954d5f56
+ 1922  make -j32
+ 1923  cpu i11 date
+ 1924  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1925  cpu i11 kexec /xxx
+ 1926  cpu i11 date
+ 1927  cpu i11 cat /proc/version
+ 1928  date
+ 1929  git log
+ 1930  git log --pretty=oneline | head -1000 | tail -4
+ 1931  git log --pretty=oneline | head -8000 | tail -4
+ 1932  git checkout 26c22cfde5dd6e63f25c48458b0185dcb0fbb2fd
+ 1933  make -j32
+ 1934  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1935  cpu i11 kexec /xxx
+ 1936  git bisect bad
+ 1937  git log HEAD..v5.15
+ 1938  git log -pretty=oneline HEAD..v5.15
+ 1939  git log --pretty=oneline HEAD..v5.15
+ 1940  git log --pretty=oneline HEAD..v5.15|wc
+ 1941  git checkout v5.15
+ 1942  git log --pretty=oneline HEAD..v5.15 | head -5000 | tail -4
+ 1943  git log --pretty=oneline v5.15 | head -5000 | tail -4
+ 1944  git checkout 18fc1a922e2416998c5d37c26c69aab940c07ffb
+ 1945  make mrproper
+ 1946  cp ../cpu-5.15.config .config
+ 1947  make -j32
+ 1948  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1949  cpu i11 kexec /xxx
+ 1950  cpu i11 date
+ 1951  cpu i11 cat /proc/version
+ 1952  git show
+ 1953  git log
+ 1954  git log --pretty=oneline | head -5000 | tail -4
+ 1955  git checkout e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b
+ 1956  make -j32
+ 1957  cpu i11 date
+ 1958  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1959  cpu i11 kexec /xxx
+ 1960  cpu i11 date
+ 1961  cpu x date
+ 1962  git bisect bad
+ 1963  history
+ 1964  git bisect reset
+ 1965  git checkout 18fc1a922e2416998c5d37c26c69aab940c07ffb
+ 1966  git bisect start
+ 1967  git bisect good
+ 1968  git checkout e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b
+ 1969  git bisect bad
+ 1970  git log e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b..18fc1a922e2416998c5d37c26c69aab940c07ffb
+ 1971  git log --pretty=oneline e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b..18fc1a922e2416998c5d37c26c69aab940c07ffb 
+ 1972  git log --pretty=oneline e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b..18fc1a922e2416998c5d37c26c69aab940c07ffb |wc
+ 1973  git log --pretty=oneline e3a5f40c5809a2ffc5fb9f8d2d659733fc6a3c3b..18fc1a922e2416998c5d37c26c69aab940c07ffb |head -800 | tail -4
+ 1974  git checkout 5313a37b881e57767bc37185bef2873862be8d47
+ 1975  make -j32
+ 1976  cpu i11 date
+ 1977  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1978  cpu i11 kexec /xxx
+ 1979  cpu i11 date
+ 1980  cpu i11 cat /proc/version
+ 1981  git log
+ 1982  history
+ 1983  git bisect start
+ 1984  git bisect good
+ 1985  git checkout e3a5f40c5809a2ffc5fb9f8
+ 1986  git bisect bad
+ 1987  git log e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | wc
+ 1988  git log --pretty=oneline e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | wc
+ 1989  git log --pretty=oneline e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | head -8000 | tail -4
+ 1990  git checkout ce87d936889bdb183590647b9827bb2ae7f674c7
+ 1991  make -j32
+ 1992  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 1993  cpu i11 kexec /xxx
+ 1994  history
+ 1995  vi BISECT
+ 1996  cd linuxboot/mainboards/aeeon/up
+ 1997  cd ../i11/
+ 1998  grep -r max.*cpu linux/Documentation/
+ 1999  grep -r nbr.*cpu linux/Documentation/
+ 2000  grep -r nr.*cpu linux/Documentation/
+ 2001  pushd ~/AMD64/linux/
+ 2002  git log
+ 2003  git branch
+ 2004  git log nastyhacksforlapic 
+ 2005  git show nastyhacksforlapic 
+ 2006  cpu i11 dmesg
+ 2007  cpu i11 /bbin/dmesg > /tmp/fail
+ 2008  vi /tmp/fail
+ 2009  git barnch
+ 2010  bit diff master
+ 2011  git diff master
+ 2012  vi arch/x86/kernel/apic/apic.c
+ 2013  popd
+ 2014  cd linux
+ 2015  git show
+ 2016  git checkout v5.15
+ 2017  git bisect start
+ 2018  git show
+ 2019  git branch
+ 2020  more Makefile 
+ 2021  git bisect reset
+ 2022  git log
+ 2023  git checkout v5.15^
+ 2024  git show
+ 2025  git bisect start
+ 2026  more Makefile 
+ 2027  git bisect good
+ 2028  git log --pretty=oneline e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | less
+ 2029  git show ce87d936889bdb183590647b9827bb2ae7f674c7
+ 2030  git checkout ce87d936889bdb183590647b9827bb2ae7f674c7
+ 2031  make -j32
+ 2032  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2033  cpu i11 kexec /xxx
+ 2034  git log
+ 2035  git log v5.14^
+ 2036  git log --pretty=oneline |less
+ 2037  git log
+ 2038  git log --pretty=oneline |less
+ 2039  git checkout 5497bc2a2bff777ce6d176650377362c0269b5eb
+ 2040  make -j32
+ 2041  git log
+ 2042  git log v5.12^
+ 2043  cpu i11 date
+ 2044  git log --pretty=oneline |less
+ 2045  git checkout cd81acc600a9684ea4b4d25a47900d38a3890eab
+ 2046  make -j32
+ 2047  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2048  cpu i11 kexec /xxx
+ 2049  git log --pretty=oneline |less
+ 2050  git checkout cad14885a8d32c1c0d8eaa7bf5c0152a22b6080e
+ 2051  make -j32
+ 2052  vi .config
+ 2053  make -j32
+ 2054  more Makefile 
+ 2055  more .config
+ 2056  cp .config ../cpuflash-5.4.0-rc6.config
+ 2057  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2058  cpu i11 kexec /xxx
+ 2059  git bisect bad
+ 2060  git bisect good v5.15
+ 2061  it bisect bad
+ 2062  git bisect bad
+ 2063  history
+ 2064  ls -lR .git
+ 2065  rm .git/refs/bisect/*
+ 2066  git bisect good v5.15
+ 2067  git bisect bad HEAD
+ 2068  ls .git/refs/bisect/
+ 2069  cat .git/refs/bisect//*
+ 2070  history
+ 2071  git bisect good ce87d936889bdb183590647b9827bb2ae7f674c7
+ 2072  git bisect resert
+ 2073  git bisect reset
+ 2074  ls .git/bisect
+ 2075  ls .git
+ 2076  git bisect good
+ 2077  git bisect bad v5.4
+ 2078  git bisect log
+ 2079  git bisect next
+ 2080  git log
+ 2081  git bisect reset
+ 2082  more BISECT
+ 2083  git log ce87d936889bdb183590647b9827bb2ae7f674c7
+ 2084  more ../BI
+ 2085  ls
+ 2086  mv BISECT  ..
+ 2087  make clean
+ 2088  git log
+ 2089  cat ../BISECT 
+ 2090  git checkout ce87d936889bdb183590647b9827bb2ae7f674c7
+ 2091  history
+ 2092  make -j32
+ 2093  more Makefile 
+ 2094  cp ../cpu-5.14.config .config
+ 2095  make oldconfig
+ 2096  make -j32
+ 2097  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2098  cpu i11 kexec /xxx
+ 2099  more Makefile 
+ 2100  git bisect bad
+ 2101  more Makefile 
+ 2102  git checkout v5.15
+ 2103  git bisect good
+ 2104  ls .git/bisect
+ 2105  ls .git
+ 2106  ls -R .git
+ 2107  ls
+ 2108  more Makefile 
+ 2109  git bisect log
+ 2110  git checkout v5.14
+ 2111  make mrproper
+ 2112  cp ../cpu-5.14.config .config
+ 2113  make -j32
+ 2114  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2115  cpu i11 kexec /xxx
+ 2116  more Makefile 
+ 2117  git bisect bad
+ 2118  git log v5.14..v5.15
+ 2119  git log --pretty=oneline v5.14..v5.15 |wc
+ 2120  git log --pretty=oneline v5.14..v5.15 | head -7000 | tail -4
+ 2121  git checkout fad7cd3310db3099f95dd34312c77740fbc455e5
+ 2122  git log --pretty=oneline HEAD..v5.15 |wc
+ 2123  git log --pretty=oneline fad7cd3310db..v5.15 |wc
+ 2124  git log --pretty=oneline v5.14..v5.15 | head -4000 | tail -4
+ 2125  git checkout f35715a6574707ecfeac795d451fccd751e614b5
+ 2126  git log --pretty=oneline HEAD..v5.15 |wc
+ 2127  make mrproper
+ 2128  cp ../cpu-5.15.config .config
+ 2129  make -j32
+ 2130  cpu i11 date
+ 2131  more Makefile 
+ 2132  cpu i11 date
+ 2133  more Makefile 
+ 2134  cpu i11 kexec /xxx
+ 2135  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2136  cpu i11 kexec /xxx
+ 2137  git branch -a
+ 2138  git tag -l
+ 2139  git checkout v5.14-rc7
+ 2140  make mrproper
+ 2141  cp ../cpu-5.15.config .config
+ 2142  make -j32
+ 2143  cpu i11 date
+ 2144  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2145  cpu i11 kexec /xxx
+ 2146  git tag -l
+ 2147  git bisect bad
+ 2148  git checkout v5.15-rc1
+ 2149  make mrproper
+ 2150  cp ../cpu-5.15.config .config
+ 2151  make -j32
+ 2152  cpu i11 date
+ 2153  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2154  cpu i11 kexec /xxx
+ 2155  cpu i11 date
+ 2156  git bisect good
+ 2157  git log --pretty=oneline v5.14..v5.15-rc1 
+ 2158  git log --pretty=oneline v5.14..v5.15-rc1 |wc
+ 2159  git log --pretty=oneline v5.14..v5.15-rc1 |grep 5.15-rc
+ 2160  git log --pretty=oneline v5.14..v5.15-rc1 |grep 5.15-rc | wc
+ 2161  git log --pretty=oneline v5.14..v5.15-rc1 |grep 5.15-rc | less
+ 2162* 
+ 2163  make mrproper
+ 2164  cp ../cpu-5.15.config .config
+ 2165  make -j32
+ 2166  cpu i11 date
+ 2167  more Makefile 
+ 2168  git log
+ 2169  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2170  cpu i11 kexec /xxx
+ 2171  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2172  cpu i11 kexec /xxx
+ 2173  git bisect bad
+ 2174  git log --pretty=oneline v5.14..v5.15-rc1 |grep 5.15-rc | less
+ 2175  git checkout c6c3c5704ba70820f6b632982abde06661b7222a
+ 2176  git log
+ 2177  make mrproper
+ 2178  cp ../cpu-5.15.config .config
+ 2179  make -j32
+ 2180  make
+ 2181  grep ACPI .config
+ 2182  git grep acpi.table.upgrade
+ 2183  vi drivers/acpi/Makefile 
+ 2184  fg
+ 2185  make menuconfig
+ 2186  make
+ 2187  git grep acpi.mps.check
+ 2188  make menuconfig
+ 2189  make -j32
+ 2190  make
+ 2191  vi arch/x86/kernel/setup.c
+ 2192  git grep acpi.mps.check
+ 2193  vi arch/x86/kernel/acpi/boot.c
+ 2194  grep APIC .config
+ 2195  grep MPS .config
+ 2196  make menuconfig
+ 2197  git grep MPS
+ 2198  git grep select.*MPS
+ 2199  git grep if.*MPP
+ 2200  git grep if.*MPS
+ 2201  git grep if.*MPS.*PARSE
+ 2202  git grep if.*MP.*PARSE
+ 2203  git grep select.*MPP
+ 2204  vi .config
+ 2205  make
+ 2206  git grep acpi.mps.check
+ 2207  vi include/linux/acpi.h
+ 2208  fg
+ 2209  vi arch/x86/kernel/setup.c
+ 2210  git grep acpi.boot.init
+ 2211  vi vi arch//x86//kernel/acpi/Makefile 
+ 2212  grep ACPI .config
+ 2213  grep CONFIG_ACPI .config
+ 2214  grep CONFIG_ACPI= .config
+ 2215  make clena
+ 2216  make clean
+ 2217  make
+ 2218  git log --pretty=oneline v5.14..v5.15-rc1 |grep 5.15-rc | less
+ 2219  git checkout 34c59da47329ac50b9700035e0c3a829e6c3c183
+ 2220  make
+ 2221  more Makefile 
+ 2222  git log
+ 2223  cpu i11 date
+ 2224  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2225  cpu i11 kexec /xxx
+ 2226  history
+ 2227  git bisect bad
+ 2228  git log --pretty=oneline v5.14..HEAD |grep 5.15-rc | less
+ 2229  history | grep checkout
+ 2230  git log --pretty=oneline v5.14..HEAD |grep 5.15-rc | less
+ 2231  git show
+ 2232  git log
+ 2233  git show
+ 2234  git log --pretty=oneline v5.14..HEAD |grep 5.15-rc | less
+ 2235  git checkout 7c314bdfb64e4bb8d2f829376ed56ce663483752
+ 2236  make mrproper
+ 2237  cp ../cpu-5.15.config .config
+ 2238  make -j32
+ 2239  make
+ 2240  grep MPP .config
+ 2241  vi .config
+ 2242  make
+ 2243  grep MPP .config
+ 2244  make clean
+ 2245  make -j32
+ 2246  git bisect reset
+ 2247  git bisect bad v5.15
+ 2248  git bisect good v5.14
+ 2249  make mrproper
+ 2250  cp ../cpu-5.14.config  .config
+ 2251  make
+ 2252  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2253  cpu i11 kexec /xxx
+ 2254  history
+ 2255  git bisect good
+ 2256  more Makefile 
+ 2257  git log
+ 2258  cp .config config-626bf91a292e2035af5b9d9cce35c5c138dfe06d
+ 2259  make mrproper
+ 2260  cp config-626bf91a292e2035af5b9d9cce35c5c138dfe06d .config
+ 2261  make -j32
+ 2262  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2263  cpu i11 kexec /xxx
+ 2264  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2265  cpu i11 kexec /xxx
+ 2266  git bisect good
+ 2267  git reflog
+ 2268  cp .config config-626bf91a292e2035af5b9d9cce35c5c138dfe06d
+ 2269  make mrproper
+ 2270  ls
+ 2271  cp config-626bf91a292e2035af5b9d9cce35c5c138dfe06d .config
+ 2272  make
+ 2273  make -j32
+ 2274  cpu i11 date
+ 2275  git log
+ 2276  git ref
+ 2277  cp .config config-a3b397b4fffb799d25658defafd962f0fb3e9fe0
+ 2278  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2279  cpu i11 kexec /xxx
+ 2280  git bisect good
+ 2281  make mrproper
+ 2282  cp config-a3b397b4fffb799d25658defafd962f0fb3e9fe0 .config
+ 2283  make -j32
+ 2284  cpu i11 date
+ 2285  cpu i11 cat /proc/version
+ 2286  ls
+ 2287  git log
+ 2288  cp .config config-3ff6d64e68abc231955d216236615918797614ae
+ 2289  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2290  cpu i11 kexec /xxx
+ 2291  history
+ 2292  git bisect good
+ 2293  make mrproper
+ 2294  ls
+ 2295  history
+ 2296  cp config-3ff6d64e68abc231955d216236615918797614ae .config
+ 2297  make -j32
+ 2298  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2299  cpu i11 date
+ 2300  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2301  cpu i11 kexec /xxx
+ 2302  git bisect good
+ 2303  cp .config xxx
+ 2304  make mrproper
+ 2305  cp xxx .config
+ 2306  make -j32
+ 2307  cpu i11 date
+ 2308  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2309  cpu i11 kexec /xxx
+ 2310  git log
+ 2311  cp .config config-79516af3497a5b89acb09f4a644f61d6c69e5f16
+ 2312  git bisect good
+ 2313  make mrproper
+ 2314  cp config-79516af3497a5b89acb09f4a644f61d6c69e5f16 .config
+ 2315  make -j32
+ 2316  cpu i11 date
+ 2317  git log
+ 2318  cp .config config-411a44c24a561e449b592ff631b7ae321f1eb559
+ 2319  cpu i11 kexec /xxx
+ 2320  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2321  cpu i11 kexec /xxx
+ 2322  git bisect good
+ 2323  make mrproper
+ 2324  cp  config-411a44c24a561e449b592ff631b7ae321f1eb559 .config
+ 2325  make -j32
+ 2326  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2327  cpu i11 kexec /xxx
+ 2328  ping x
+ 2329  cpu x cate
+ 2330  more ~/.ssh/config
+ 2331  host sx1
+ 2332  host i11
+ 2333  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2334  cpu i11 kexec /xxx
+ 2335  more Makefile 
+ 2336  more .config
+ 2337  grep upboard *
+ 2338  grep upboard .config
+ 2339  history | grep checkout
+ 2340  history
+ 2341  git log
+ 2342  echo REF 17d50f89410c5f71142657d9a012cbabcaadb134 has working i11 ethernet but not working display
+ 2343  ls
+ 2344  git checkout 626bf91a292e2035af5b9d9cce35c5c138dfe06d
+ 2345  cp config-626bf91a292e2035af5b9d9cce35c5c138dfe06d 
+ 2346  make mrproper
+ 2347  cp config-626bf91a292e2035af5b9d9cce35c5c138dfe06d .config
+ 2348  make -j32
+ 2349  cpu i11 date
+ 2350  git log
+ 2351  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2352  kexec -h
+ 2353  which kexec
+ 2354  /usr/sbin/kexec 
+ 2355  /usr/sbin/kexec --entry-32bit /xxx
+ 2356  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2357  cpu i11 /usr/sbin/kexec --entry-32bit /xxx
+ 2358  cpu i11 /usr/sbin/kexec -f --entry-32bit /xxx
+ 2359  cpu i11 date
+ 2360  git checkout v5.4
+ 2361  make mrproper
+ 2362  cp ../cpuflash-5.4.0.config .config
+ 2363  make -j32
+ 2364  git grep force.order
+ 2365  vi arch/x86//boot/compressed/Makefile 
+ 2366  git grep force.order
+ 2367  vi .config
+ 2368  make -j32
+ 2369  git log
+ 2370  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2371  cpu i11 /usr/sbin/kexec -f --entry-32bit /xxx
+ 2372  git bisect reset
+ 2373  git log
+ 2374  git bisect start
+ 2375  git bisect bad
+ 2376  git checkout v5.4
+ 2377  git bisect good
+ 2378  cpu i11 date
+ 2379  git bisect good
+ 2380  cpu i11 date
+ 2381  pwd
+ 2382  git log
+ 2383  make mrproper
+ 2384  git log
+ 2385  git log v5.4
+ 2386  cp ../cpu-5.15.config .config
+ 2387  make -j32
+ 2388  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2389  cpu i11 /usr/sbin/kexec -f --entry-32bit /xxx
+ 2390  git log
+ 2391  git bisect bad
+ 2392  cp .config config-9ff9b0d392ea08090cd1780fb196f36dbb586529
+ 2393  make mrproper
+ 2394  cp config-9ff9b0d392ea08090cd1780fb196f36dbb586529 .config
+ 2395  make -j32
+ 2396  cpu i11 cp arch/x86/boot/bzImage  /xxx
+ 2397  cpu i11 /usr/sbin/kexec -f --entry-32bit /xxx
+ 2398  git log
+ 2399  vi NOTES
+ 2400  history > NOTES
+
+9ff9b0d392ea08090cd1780fb196f36dbb586529  usb eth ok, other eth no, had to dhclient manually, display works
+16e811fe0fc6b8344785feb2ab8c927685dca08e  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+ea6ec774372740b024a6c27caac0d0af8960ea15  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+25d8d4eecace9de5a6a2193e4df1917afbdd3052  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c0c419c04557117258d184876d94091d29bbd9a6  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c7fabbc51352f50cc58242a6dc3b9c1a3599849b  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+bdd0c277d9846977ec3f175341d4e7475ed26ef7  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+824186fbf73499adad545a3ae30b0a3feef4f05a  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+e348cf543426762d7babea49712534f95d0779b9  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c42d8c17a9523a4f28b6f6be3920a6674e50c5d3  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+b7a742cff3f618d848e62e5a1ade0ff816e93092  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c9015a1723373f2c8f8ac994f59470f4fb852623  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+7a3a7671fa6c7e90aff5f4242add2a40587b85ef  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c01db8b00d35d398fa8264d8d0d2031e8d512318  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+17212e7188783de75d2a1226c32d3fd7af96ad5d  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+40e2c465894e5b79b49f55d9574dbcda4ac0f08f nothing. no display anyway. not sure what else is wrong.
+
+git bisect good 40e2c465894e5b79b49f55d9574dbcda4ac0f08f
+Bisecting: a merge base must be tested
+[4036d05c38ca2f73c2ca182c3ebf0dfd066593a6] Merge series "ASoC: topology: fix use-after-free when removing components" from Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>:
+fuck
+git bisect good
+Bisecting: a merge base must be tested
+[b3a9e3b9622ae10064826dccb4f7a52bd88c7407] Linux 5.8-rc1
+NOPE
+commit b3a9e3b9622ae10064826dccb4f7a52bd88c7407 (HEAD, tag: v5.8-rc1) usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+
+git bisect bad
+The merge base 9ab9bc5115c9a1a57ed83a143c601c31488eadd9 is bad.
+This means the bug has been fixed between 9ab9bc5115c9a1a57ed83a143c601c31488eadd9 and [219d54332a09e8d8741c1e1982f5eae56099de85 4036d05c38ca2f73c2ca182c3ebf0dfd066593a6 40e2c465894e5b79b49f55d9574dbcda4ac0f08f 9ab9bc5115c9a1a57ed83a143c601c31488eadd9].
+
+5.7 works. fuck.
+
+lets' go with new and old now.
+ 2060  git bisect reset
+ 2061  git bisect new 9ab9bc5115c9a1a57ed83a143c601c31488eadd9
+ 2062  history
+ 2063  git bisect old 40e2c465894e5b79b49f55d9574dbcda4ac0f08f
+ 2064  history
+
+new == good
+try to avoid make mrproper ... 
+will speed it up considerably, cross fingers
+80ef846e9909f22ccdc2a4a6d931266cecce8b2c  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+2e63f6ce7ed2c4ff83ba30ad9ccad422289a6c63usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c2b0fc847f3122e5a4176c3772626a7a8facced0  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+539d39ad0c61b35f69565a037d7586deaf6d6166 bad no graphics
+729ea4e064202aeec149b034b459501ef0a5060e  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+183be6f967fe37c3154bfac39e913c3bafe89d1b  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+97076ea41a093e67db20d0e40f728a054b799630  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+26b089a7fc3301d8f53f99dd3607513d7700b505  bad no graphics
+b48397cb75ac17a5c6f99b3b41fab0ab1f879826  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+c4e0e4ab4cf3ec2b3f0b628ead108d677644ebd9  bad no graphics
+befc42e5dd4977b63dd3b0c0db05e21d56f13c2e  bad no graphics
+5a9ffb954a3933d7867f4341684a23e008d6839b  bad no graphics
+43567139f5f3808cda4f61c956576f8a4f2232cb  usb eth ok, other eth no, had to dhclient manually, display works, 9p works
+a9a3ed1eff3601b63aea4fb462d8b3b92c7c1e7e  usb eth ok, other eth no, had to dhclient manually, display works, 9p works

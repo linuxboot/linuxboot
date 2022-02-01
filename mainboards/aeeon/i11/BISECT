@@ -1,0 +1,7 @@
+ 2613  git log e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | wc
+ 2614  git log --pretty=oneline e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | wc
+ 2615  git log --pretty=oneline e3a5f40..5313a37b881e57767bc37185bef2873862be8d47 | head -8000 | tail -4
+ 2616  git checkout ce87d936889bdb183590647b9827bb2ae7f674c7
+
+
+last one is bad, try 4000 later

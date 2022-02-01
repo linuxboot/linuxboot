@@ -174,7 +174,8 @@ cpukernel: cpu.cpio.lzma cpu.config
 KERNEL=linux
 #CONFIG=cpuflash-5.17.0.config
 #CONFIG=cpuflash-5.4.0.config
-CONFIG=cpuflash.config
+#CONFIG=cpuflash.config
+CONFIG=cpu-5.14.config
 cpuflashkernel: cpu.cpio $(CONFIG)
 	cp $(CONFIG) $(KERNEL)/.config
 	(cd $(KERNEL) && make oldconfig && make -j32)
