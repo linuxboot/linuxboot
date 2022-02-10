@@ -1,7 +1,10 @@
 OVMF_BIN ?= /usr/share/qemu/OVMF.fd
 
-flashinitramfs.cpio:
+flashinitramfs.cpio: flashkernel core.cpio
 	GO111MODULE=off u-root -o $@ \
+		    -files flashkernel \
+		    -files core.cpio \
+		    -files /usr/bin/gzip \
 	github.com/u-root/u-root/cmds/boot/pxeboot \
 	github.com/u-root/u-root/cmds/core/cat \
 	github.com/u-root/u-root/cmds/core/elvish \
@@ -12,7 +15,10 @@ flashinitramfs.cpio:
 	github.com/u-root/u-root/cmds/core/pci \
 	github.com/u-root/u-root/cmds/core/wget
 
-flashkernel: flash.config
+core.cpio: flash.config Makefile
+	GO111MODULE=off u-root -o $@
+
+flashkernel: flash.config core.cpio
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
 	echo CONFIG_CMDLINE_OVERRIDE=y >> linux/.config
@@ -30,7 +36,7 @@ efikernel: flash.config
 	cp linux/arch/x86/boot/bzImage $@
 
 testflashkernel: flashkernel flashinitramfs.cpio
-	qemu-system-x86_64 -kernel flashkernel -nographic -initrd flashinitramfs.cpio
+	qemu-system-x86_64 -m 8192 -kernel flashkernel -nographic -serial stdio -initrd flashinitramfs.cpio -monitor $(MONITOR) $(EXTRA)
 
 testefikernel: efikernel flashinitramfs.cpio
 	qemu-system-x86_64 -bios $(OVMF_BIN) -nographic \
@@ -43,4 +49,4 @@ getkernel:
 	git clone --depth=1 -b v5.15 https://github.com/torvalds/linux
 
 geturoot:
-	go get -u github.com/u-root/u-root
+	GO111MODULE=off go get -u github.com/u-root/u-root
