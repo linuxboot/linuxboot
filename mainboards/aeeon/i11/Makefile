@@ -263,7 +263,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.15 --single-branch git@github.com:torvalds/linux
+	git clone --depth=1 -b 5.17-rc3 --single-branch git@github.com:torvalds/linux
 
 getkernel-5.4.65:
 	rm -rf linux-5.4.65
