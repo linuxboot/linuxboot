@@ -1,0 +1,32 @@
+From faeb3868d9b8b8fd693134e5f1e17facaf06f127 Mon Sep 17 00:00:00 2001
+From: Tam Chi Nguyen <tamng@amperecomputing.com>
+Date: Wed, 17 Nov 2021 11:18:29 +0700
+Subject: [PATCH] efistub: Workaround Linuxboot for Ubuntu 20.04
+
+Apply: Ubuntu kernel patch: "arm64: Allow locking down the kernel under EFI secure boot"
+   https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/focal/commit/drivers/firmware/efi?id=36ca37871ad2a7d208636725c9465695b2780fee
+
+Signed-off-by: Tam Chi Nguyen <tamng@amperecomputing.com>
+---
+ drivers/firmware/efi/libstub/fdt.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/firmware/efi/libstub/fdt.c b/drivers/firmware/efi/libstub/fdt.c
+index 46cffac7a..738bd14a9 100644
+--- a/drivers/firmware/efi/libstub/fdt.c
++++ b/drivers/firmware/efi/libstub/fdt.c
+@@ -136,6 +136,11 @@ static efi_status_t update_fdt(void *orig_fdt, unsigned long orig_fdt_size,
+ 	if (status)
+ 		goto fdt_set_fail;
+ 
++	fdt_val32 = cpu_to_fdt32(efi_get_secureboot());
++	status = fdt_setprop_var(fdt, node, "linux,uefi-secure-boot", fdt_val32);
++	if (status)
++		goto fdt_set_fail;
++
+ 	if (IS_ENABLED(CONFIG_RANDOMIZE_BASE)) {
+ 		efi_status_t efi_status;
+ 
+-- 
+2.17.1
+
