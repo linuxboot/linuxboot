@@ -67,7 +67,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	go run github.com/u-root/u-root  -o $@ -build=bb \
+	GO111MODULE=off u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
@@ -82,18 +82,23 @@ flashinitramfs.cpio: Makefile
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
-cpu.cpio.lzma: Makefile
-	go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
-		-defaultsh="" \
+cpu.cpio: Makefile
+	CGO_ENABLED=0 GO111MODULE=off u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+		minimal \
 		github.com/u-root/cpu/cmds/cpud
+
+cpu.cpio.lzma: cpu.cpio
 	lzma -f -k cpu.cpio
+
+cpu.cpio.xz: cpu.cpio
+	xz -9 -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
 # the intent is  to demonstrate the capability of http loading.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	go run github.com/u-root/u-root -o sshd.cpio -build=bb \
+	CGO_ENABLED=0 GO111MODULE=off u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
@@ -130,7 +135,8 @@ getrom:
 
 geturoot:
 	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	CGO_ENABLED=0 GO111MODULE=off go install github.com/u-root/u-root
+	CGO_ENABLED=0 GO111MODULE=off go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
