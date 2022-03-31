@@ -1,0 +1,6 @@
+[submodule "u-root"]
+	path = u-root
+	url = https://github.com/u-root/u-root
+[submodule "cpu"]
+	path = cpu
+	url = https://github.com/u-root/cpu
