@@ -10,6 +10,10 @@ make
 ```
 
 Put the netbootkernel and the .dtb somewhere for ftp.
+I use the centre tool, and my location for netboot is ~/centre, so:
+```
+cp netbootkernel fsl-lx2160a-cex7.dtb ~/centre
+```
 
 On the honeycomb:
 ```
@@ -33,15 +37,13 @@ The kernel will boot. You will need to get an IP address:
 dhclient -vv &
 ```
 
-This takes a few minutes for some reason.
-
 Then:
 ```
 cpud -init &
 ```
 And you can cpu to the board!
 
-Note: you will need an ssh public key, I used ~/.ssh/cpu_rsa.pub
+Note: you will need an ssh public key, in the build step, I used ~/.ssh/cpu_rsa.pub
 
 You can make getting to the board more convenient, e.g, in my .ssh/config I have this:
 ```
