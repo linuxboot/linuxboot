@@ -21,13 +21,22 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GOARCH=arm64 u-root -uinitcmd=systemboot -o $@ -build=bb core github.com/u-root/u-root/cmds/boot/{systemboot,localboot,fbnetboot} github.com/u-root/u-root/cmds/exp/acpicat github.com/u-root/u-root/cmds/exp/acpigrep github.com/u-root/u-root/cmds/exp/disk_unlock github.com/u-root/u-root/cmds/exp/dmidecode github.com/u-root/u-root/cmds/exp/ipmidump github.com/u-root/cpu/cmds/cpud
+	GO111MODULE=off GOARCH=arm64 u-root -uinitcmd=systemboot -o $@ core \
+		github.com/u-root/u-root/cmds/boot/systemboot \
+		github.com/u-root/u-root/cmds/boot/localboot \
+		github.com/u-root/u-root/cmds/boot/fbnetboot \
+		github.com/u-root/u-root/cmds/exp/acpicat \
+		github.com/u-root/u-root/cmds/exp/acpigrep \
+		github.com/u-root/u-root/cmds/exp/disk_unlock \
+		github.com/u-root/u-root/cmds/exp/dmidecode \
+		github.com/u-root/u-root/cmds/exp/ipmidump \
+		github.com/u-root/cpu/cmds/cpud
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	GOARCH=arm64 go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GO111MODULE=off GOARCH=arm64 go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
@@ -37,7 +46,7 @@ cpu.cpio.lzma: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	GOARCH=arm64 go run github.com/u-root/u-root -o sshd.cpio -build=bb \
+	GO111MODULE=off GOARCH=arm64 go run github.com/u-root/u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
