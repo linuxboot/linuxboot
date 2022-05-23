@@ -63,7 +63,7 @@ sshd.cpio.lzma:  Makefile
 flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 	cp $< linux/.config
 	(cd linux && git apply ../0001-efistub-Workaround-Linuxboot-for-Ubuntu-20.04.patch)
-	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make oldconfig && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j32)
+	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make olddefconfig && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j32)
 	cp linux/arch/arm64/boot/Image $@
 
 testflashkernel: flashkernel
