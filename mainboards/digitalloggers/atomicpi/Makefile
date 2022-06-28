@@ -174,6 +174,11 @@ cpukernel-5.10: cpu.cpio.lzma cpu.config-5.10
 	(cd linux-5.10 && make oldconfig && make -j32)
 	cp linux-5.10/arch/x86/boot/bzImage $@
 
+dutkernel-5.10: dut.cpio.lzma dut.config-5.10
+	cp dut.config-5.10 linux-5.10/.config
+	(cd linux-5.10 && make oldconfig && make -j32)
+	cp linux-5.10/arch/x86/boot/bzImage $@
+
 cpuflashkernel: cpu.cpio.lzma cpuflash.config
 	cp cpuflash.config linux/.config
 	(cd linux && make oldconfig && make -j32)
@@ -208,6 +213,12 @@ flashinitramfs.cpio: Makefile
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
 	u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+		-defaultsh="" \
+		github.com/u-root/cpu/cmds/cpud
+	lzma -f -k cpu.cpio
+
+dut.cpio.lzma: Makefile
+	u-root -o dut.cpio -build=bb -initcmd=dut -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
