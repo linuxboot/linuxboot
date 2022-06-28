@@ -217,7 +217,7 @@ cpu.cpio.lzma: cpu.cpio
 	lzma -f -k cpu.cpio
 
 cpu.cpio: Makefile
-	u-root -build=bb -o cpu.cpio \
+	GO111MODULE=off CGO_ENABLED=0 u-root -build=bb -o cpu.cpio \
 	-initcmd=cpud 	\
 	-files ~/.ssh/cpu_rsa.pub:key.pub \
 			github.com/u-root/cpu/cmds/cpud \

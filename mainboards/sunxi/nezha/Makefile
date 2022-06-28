@@ -17,9 +17,10 @@ cpukernel: cpu.cpio.xz cpu.config
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio: Makefile
-	GO111MODULE=off GOARCH=riscv64 CGO_ENABLED=0 u-root -o cpu.cpio -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GOARCH=riscv64 CGO_ENABLED=0 u-root -o cpu.cpio -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
+		    -uroot-source $(HOME)/go/src/github.com/u-root/u-root \
 		core \
-		github.com/u-root/cpu/cmds/cpud
+		$(HOME)/go/src/github.com/u-root/cpu/cmds/cpud
 
 cpu.cpio.xz: cpu.cpio
 	xz --check=crc32 -9 --lzma2=dict=1MiB --stdout cpu.cpio | dd conv=sync bs=512 of=cpu.cpio.xz
