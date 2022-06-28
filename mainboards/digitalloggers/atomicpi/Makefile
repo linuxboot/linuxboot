@@ -198,29 +198,29 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 flashinitramfs.cpio: Makefile
 		u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
-		github.com/u-root/u-root/cmds/boot/pxeboot \
-		github.com/u-root/u-root/cmds/core/cat \
-		github.com/u-root/u-root/cmds/core/elvish \
-		github.com/u-root/u-root/cmds/core/init \
-		github.com/u-root/u-root/cmds/core/ip \
-		github.com/u-root/u-root/cmds/core/ls \
-		github.com/u-root/u-root/cmds/core/kexec \
-		github.com/u-root/u-root/cmds/core/pci \
-		github.com/u-root/u-root/cmds/core/wget \
+		u-root/cmds/boot/pxeboot \
+		u-root/cmds/core/cat \
+		u-root/cmds/core/elvish \
+		u-root/cmds/core/init \
+		u-root/cmds/core/ip \
+		u-root/cmds/core/ls \
+		u-root/cmds/core/kexec \
+		u-root/cmds/core/pci \
+		u-root/cmds/core/wget \
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	u-root -o cpu.cpio -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+		../..//cpu/cmds/cpud
 	lzma -f -k cpu.cpio
 
 dut.cpio.lzma: Makefile
-	u-root -o dut.cpio -build=bb -initcmd=dut -files ~/.ssh/cpu_rsa.pub:key.pub \
+	u-root -o dut.cpio -initcmd=dut -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
-		github.com/u-root/cpu/cmds/cpud
+		../..//cpu/cmds/cpud
 	lzma -f -k cpu.cpio
 
 # this target builds an initramfs with all of u-root, AND all of /bin, /usr/bin, /sbin, /usr/sbin, /etc
@@ -279,10 +279,6 @@ getrom:
 	echo you can put a wget here
 	echo and unxip it
 	echo and cp it to image.bin
-geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
-
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
 	echo Consider Disabling any system services ...
@@ -299,3 +295,5 @@ cpu-pxeserver:
 
 ssh:
 	ssh -i class_key -p 2022 root@up
+
+include ../../Makefile.inc

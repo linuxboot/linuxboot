@@ -17,10 +17,10 @@ cpukernel: cpu.cpio.xz cpu.config
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio: Makefile
-	GOARCH=riscv64 CGO_ENABLED=0 u-root -o cpu.cpio -build=bb -files ~/.ssh/cpu_rsa.pub:key.pub \
-		    -uroot-source $(HOME)/go/src/github.com/u-root/u-root \
+	GOARCH=riscv64 CGO_ENABLED=0 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
+		    -uroot-source u-root \
 		core \
-		$(HOME)/go/src/github.com/u-root/cpu/cmds/cpud
+		cpu/cmds/cpud
 
 cpu.cpio.xz: cpu.cpio
 	xz --check=crc32 -9 --lzma2=dict=1MiB --stdout cpu.cpio | dd conv=sync bs=512 of=cpu.cpio.xz
@@ -31,10 +31,6 @@ fetch: getkernel geturoot
 getkernel:
 	rm -rf linux
 	git clone --depth=1 -b v5.15.5-openwrt --single-branch https://github.com/orangecms/linux
-
-geturoot:
-	GO111MODULE=off go get -u github.com/u-root/u-root
-	GO111MODULE=off go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
@@ -52,3 +48,6 @@ cpu-pxeserver:
 
 ssh:
 	ssh -i class_key -p 2022 root@up
+
+include ../../Makefile.inc
+
