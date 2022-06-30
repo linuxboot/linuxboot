@@ -18,6 +18,11 @@ flashinitramfs.cpio: flashkernel core.cpio
 core.cpio: flash.config Makefile
 	GO111MODULE=off u-root -o $@
 
+justkernel: flash.config
+	cp $< linux/.config
+	(cd linux && make olddefconfig && make -j32)
+	cp linux/arch/x86/boot/bzImage $@
+
 flashkernel: flash.config core.cpio
 	cp $< linux/.config
 	echo CONFIG_CMDLINE_BOOL=y >> linux/.config
