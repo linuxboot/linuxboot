@@ -9,8 +9,9 @@ default: cpukernel
 cpukernel: cpu.cpio.xz cpu.config
 	cp cpu.config linux/.config
 	(cd linux && CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv make oldconfig && CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv make -j32)
-	cp linux/arch/riscv/boot/Image cpukernel
-	cp linux/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dtb .
+	cp linux/arch/riscv/boot/Image .
+	compress
+	cp linux/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dtb cpukernel.dtb
 
 # this target builds an initramfs with cpud as init, and the core
 # set of u-root commands.
