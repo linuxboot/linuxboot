@@ -21,7 +21,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off GOARCH=arm64 u-root -uinitcmd=systemboot -o $@ core \
+	GO111MODULE=off GOARCH=arm64 u-root -uroot-source ${GOPATH}/src/github.com/u-root/u-root -uinitcmd=systemboot -o $@ core \
 		github.com/u-root/u-root/cmds/boot/systemboot \
 		github.com/u-root/u-root/cmds/boot/localboot \
 		github.com/u-root/u-root/cmds/boot/fbnetboot \
