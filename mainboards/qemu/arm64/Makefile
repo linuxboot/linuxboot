@@ -29,8 +29,7 @@ testflashkernel: flashkernel flashinitramfs.cpio
 		-nographic -machine virt -cpu cortex-a57 -m 512 -serial mon:stdio -serial null \
 		-initrd flashinitramfs.cpio \
 		-kernel flashkernel \
-		-append console=ttyAMA0,115200 \
-		-monitor $(MONITOR) $(EXTRA)
+		-append console=ttyAMA0,115200
 
 fetch: getkernel geturoot
 
