@@ -36,7 +36,7 @@ efikernel: flash.config
 	cp linux/arch/x86/boot/bzImage $@
 
 testflashkernel: flashkernel flashinitramfs.cpio
-	qemu-system-x86_64 -m 8192 -kernel flashkernel -nographic -serial stdio -initrd flashinitramfs.cpio -monitor $(MONITOR) $(EXTRA)
+	qemu-system-x86_64 -m 512 -kernel flashkernel -nographic -serial mon:stdio -initrd flashinitramfs.cpio
 
 testefikernel: efikernel flashinitramfs.cpio
 	qemu-system-x86_64 -bios $(OVMF_BIN) -nographic \
