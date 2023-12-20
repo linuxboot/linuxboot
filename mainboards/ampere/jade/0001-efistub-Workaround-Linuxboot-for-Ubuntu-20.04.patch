@@ -24,7 +24,7 @@ index 46cffac7a..738bd14a9 100644
 +	if (status)
 +		goto fdt_set_fail;
 +
- 	if (IS_ENABLED(CONFIG_RANDOMIZE_BASE)) {
+ 	if (IS_ENABLED(CONFIG_RANDOMIZE_BASE) && !efi_nokaslr) {
  		efi_status_t efi_status;
  
 -- 
