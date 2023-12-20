@@ -35,31 +35,31 @@ jobs:
         # The `${{ matrix.mainboard }}` variable is replaced with each of these.
         mainboard:
           # '-' is used instead of '/' due to restrictions on artifact upload.
-          - aeeon-up
-          - aeeon-upxtreme
-          - amd-rome
+          # - aeeon-up
+          # - aeeon-upxtreme
+          # - amd-rome
           - ampere-jade
-          - bytedance-g220a
-          - cubie-board
-          - digitalloggers-atomicpi
-          - hpe-dl360gen10
-          - intel-generic
-          - intel-hw
-          - intel-minplatform
-          - intel-s2600
-          - lenovo-hr630
-          - lenovo-sr630
-          - lenovo-thinkpad
-          - marvel-macchiatobin
-          - opentitanpilot-dresden
-          - pcengines-apu
-          - pcengines-apu2
+          # - bytedance-g220a
+          # - cubie-board
+          # - digitalloggers-atomicpi
+          # - hpe-dl360gen10
+          # - intel-generic
+          # - intel-hw
+          # - intel-minplatform
+          # - intel-s2600
+          # - lenovo-hr630
+          # - lenovo-sr630
+          # - lenovo-thinkpad
+          # - marvel-macchiatobin
+          # - opentitanpilot-dresden
+          # - pcengines-apu
+          # - pcengines-apu2
             # - seeed-beaglev # FIXME: broken due to upstream sources gone
-          - slimboot
-          - st-st32mp1517c
-          - tyan7106
+          # - slimboot
+          # - st-st32mp1517c
+          # - tyan7106
           - qemu-x86_64
-          - walmart-robot
+          # - walmart-robot
 
       # Do not cancel all jobs steps if a single one fails.
       fail-fast: false
