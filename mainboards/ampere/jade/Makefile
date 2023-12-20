@@ -79,8 +79,8 @@ getkernel:
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
 
 geturoot:
-	go install github.com/u-root/u-root@v0.9.0
-	go get -d github.com/u-root/cpu/...
+	GO111MODULE=off go get -u github.com/u-root/u-root
+	GO111MODULE=off go get -u github.com/u-root/cpu/...
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
