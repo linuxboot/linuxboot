@@ -74,7 +74,7 @@ fetch: getkernel geturoot
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.7 --single-branch https://github.com/torvalds/linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 	(cd linux && make mrproper)
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
 
