@@ -261,7 +261,7 @@ fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b working_hack --single-branch https://github.com/linuxboot/linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 
 getlinux-5.4:
 	rm -rf linux-5.4
