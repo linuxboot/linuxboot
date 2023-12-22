@@ -57,9 +57,7 @@ bzImage:
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
-	xzcat kernel.xz | tar x
-	mv linux-4.14.111 linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
