@@ -51,6 +51,14 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Kernel
+linux/
+
+# Build artifacts
+*.cpio
+bzImage
+flashkernel
+
 # Other things
 .*.swp
 *.xz
@@ -63,9 +71,9 @@ dkms.conf
 *.tgz
 *.img
 *.rom
-*.cpio
 typescript*
 config/*.old
+*.Log
 *.log
 *~
 crossgcc
@@ -84,7 +92,6 @@ blobs/*/volume*
 bin/create-ffs.utk
 bin/utk
 edk2
-bzImage
 boards/*/volume-*
 .config
 *.raw
