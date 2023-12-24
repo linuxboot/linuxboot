@@ -94,9 +94,9 @@ netbooturoot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
-	ls -l initramfs*
+	cp /tmp/flashinitramfs.linux_amd64.cpio .
+	lzma -k -f flashinitramfs.linux_amd64.cpio
+	ls -l flashinitramfs*
 	cp *lzma linux/
 
 uroot:
@@ -119,24 +119,23 @@ uroot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
-	ls -l initramfs*
-	cp *lzma linux
+	cp /tmp/initramfs.linux_amd64.cpio flashinitramfs.cpio
+	lzma -k -f flashinitramfs.cpio
+	ls -l flashinitramfs*
+	cp *lzma linux/
 
 injectkeys:
 	echo "FIXME: 'injectkeys' got lost; see Makefile.rej!"
 
 bzImage:
-	cp config-$(CONFIG) linux/.config
+	cp flashkernel.config linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v$(MAJOR).x/linux-$(STABLE).tar.xz
-	xzcat kernel.xz | tar x
-	mv linux-$(STABLE) linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
+
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
