@@ -65,9 +65,7 @@ bzImage:
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
-	xzcat kernel.xz | tar x
-	mv linux-4.14.111 linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 getrom:
 	echo you create the flashkernel
 	echo on the APU2: flashrom -r coreboot.bin -p internal
