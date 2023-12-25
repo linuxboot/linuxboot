@@ -71,21 +71,20 @@ netbooturoot:
 
 uroot:
 	u-root -build=bb github.com/u-root/u-root/cmds/core/init github.com/u-root/u-root/cmds/exp/rush github.com/u-root/u-root/cmds/core/ls github.com/u-root/u-root/cmds/core/ip   github.com/u-root/u-root/cmds/core/elvish    github.com/u-root/u-root/cmds/core/sshd    github.com/u-root/u-root/cmds/core/scp
-	cp /tmp/initramfs.linux_amd64.cpio .
-	lzma -k -f initramfs.linux_amd64.cpio
-	ls -l initramfs*
-	cp *lzma linux
+	cp /tmp/initramfs.linux_amd64.cpio flashinitramfs.cpio
+	lzma -k -f flashinitramfs.cpio
+	ls -l flashinitramfs*
+	cp *lzma linux/
 
 bzImage:
-	cp config-$(CONFIG) linux/.config
+	cp flashkernel.config linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v$(MAJOR).x/linux-$(STABLE).tar.xz
-	xzcat kernel.xz | tar x
-	mv linux-$(STABLE) linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
+
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
