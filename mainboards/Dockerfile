@@ -30,7 +30,8 @@ RUN apt-get install -y \
 	uuid-dev \
 	wget \
 	git \
-	ssh
+	ssh \
+	zip
 
 # install golang
 RUN wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz

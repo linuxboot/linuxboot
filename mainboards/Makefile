@@ -82,5 +82,8 @@ docker-run-slimboot: docker-build
 docker-run-st-st32mp1517c: docker-build
 	docker run --rm -v "$(shell pwd)/st/st32mp1517c":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-tyan7106: docker-build
+	docker run --rm -v "$(shell pwd)/tyan7106":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-qemu-x86-64: docker-build
 	docker run --rm -v "$(shell pwd)/qemu/x86_64":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
