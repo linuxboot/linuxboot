@@ -85,5 +85,8 @@ docker-run-st-st32mp1517c: docker-build
 docker-run-tyan7106: docker-build
 	docker run --rm -v "$(shell pwd)/tyan7106":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-walmart-robot: docker-build
+	docker run --rm -v "$(shell pwd)/walmart/robot":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-qemu-x86-64: docker-build
 	docker run --rm -v "$(shell pwd)/qemu/x86_64":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
