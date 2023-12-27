@@ -1,5 +1,5 @@
 MAJOR ?= 5
-STABLE = $(MAJOR).4
+STABLE = $(MAJOR).15
 CONFIG ?= $(MAJOR).4.0
 KEYPATH ?= ""
 
@@ -94,10 +94,9 @@ netbooturoot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/flashinitramfs.linux_amd64.cpio .
-	lzma -k -f flashinitramfs.linux_amd64.cpio
-	ls -l flashinitramfs*
-	cp *lzma linux/
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
 
 uroot:
 	u-root -build=bb -uinitcmd="hostname dl360Gen10" \
@@ -119,23 +118,23 @@ uroot:
 		github.com/u-root/u-root/cmds/core/dhclient \
 		github.com/u-root/u-root/cmds/core/rsdp \
 		github.com/u-root/u-root/cmds/boot/*
-	cp /tmp/initramfs.linux_amd64.cpio flashinitramfs.cpio
-	lzma -k -f flashinitramfs.cpio
-	ls -l flashinitramfs*
-	cp *lzma linux/
-
+	cp /tmp/initramfs.linux_amd64.cpio .
+	lzma -k -f initramfs.linux_amd64.cpio
+	ls -l initramfs*
+	cp *lzma linux
 injectkeys:
 	echo "FIXME: 'injectkeys' got lost; see Makefile.rej!"
 
 bzImage:
-	cp flashkernel.config linux/.config
+	cp config-$(CONFIG) linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
-
+	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v$(MAJOR).x/linux-$(STABLE).tar.xz
+	xzcat kernel.xz | tar x
+	mv linux-$(STABLE) linux
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk
@@ -149,5 +148,5 @@ getrom:
 	@echo and run that kernel via qemu
 
 geturoot:
-	go get -v -u github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 
