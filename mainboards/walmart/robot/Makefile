@@ -103,10 +103,7 @@ flashkernel: Makefile
 	mkimage -C none -A arm -n 'walmart robot' -d linux/arch/arm/boot/zImage -T kernel -a 0xc1000000 -e 0xc1000000 flashkernel
 	cp linux/arch/arm/boot/zImage kernel
 
-fetch: getkernel geturoot getfiano getrom getpackages
-
-getpackages:
-	apt install gcc-9-arm-linux-gnueabihf -y
+fetch: getkernel geturoot getfiano getrom
 
 getkernel:
 	rm -rf linux
