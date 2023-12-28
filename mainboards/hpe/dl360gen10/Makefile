@@ -1,6 +1,6 @@
 MAJOR ?= 5
-STABLE = $(MAJOR).4
-CONFIG ?= $(MAJOR).4.0
+STABLE = $(MAJOR).15
+CONFIG ?= $(MAJOR).15.0
 KEYPATH ?= ""
 
 default: build
@@ -150,5 +150,5 @@ getrom:
 	@echo and run that kernel via qemu
 
 geturoot:
-	go get -v -u github.com/u-root/u-root
+	go get -u github.com/u-root/u-root
 
