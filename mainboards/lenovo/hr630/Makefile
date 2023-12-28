@@ -51,15 +51,15 @@ uroot:
 	cp *lzma linux
 
 bzImage:
-	cp config-4.14.111 linux/.config
+	cp config-5.15.0 linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
 getkernel:
 	rm -rf linux
-	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.111.tar.xz
+	wget -O kernel.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.tar.xz
 	xzcat kernel.xz | tar x
-	mv linux-4.14.111 linux
+	mv linux-5.15 linux
 getfiano:
 	go get -u github.com/linuxboot/fiano/cmds/utk
 	go install github.com/linuxboot/fiano/cmds/utk

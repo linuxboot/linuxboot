@@ -51,7 +51,7 @@ uroot:
 	cp *lzma linux
 
 bzImage:
-	cp config-4.14.111 linux/.config
+	cp config-5.15.0 linux/.config
 	(cd linux && make oldconfig && make -j32)
 
 fetch: getkernel geturoot getfiano getrom
