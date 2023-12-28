@@ -31,6 +31,9 @@ docker-run-bytedance-g220a: docker-build
 docker-run-digitallogger-atomicpi: docker-build
 	docker run --rm -v "$(shell pwd)/digitalloggers/atomicpi":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-hpe-dl360gen10: docker-build
+	docker run --rm -v "$(shell pwd)/hpe/dl360gen10":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-amd-rome: docker-build
 	docker run --rm -v "$(shell pwd)/amd/rome":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
@@ -43,11 +46,23 @@ docker-run-cubie-board: docker-build
 docker-run-intel-hw: docker-build
 	docker run --rm -v "$(shell pwd)/intel/hw":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-intel-generic: docker-build
+	docker run --rm -v "$(shell pwd)/intel/generic":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-intel-minplatform: docker-build
+	docker run --rm -v "$(shell pwd)/intel/minplatform":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-intel-s2600: docker-build
 	docker run --rm -v "$(shell pwd)/intel/s2600":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-lenovo-hr630: docker-build
+	docker run --rm -v "$(shell pwd)/lenovo/hr630":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-lenovo-sr630: docker-build
 	docker run --rm -v "$(shell pwd)/lenovo/sr630":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-lenovo-thinkpad: docker-build
+	docker run --rm -v "$(shell pwd)/lenovo/thinkpad":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
 docker-run-marvel-macchiatobin: docker-build
 	docker run --rm -v "$(shell pwd)/marvel/macchiatobin":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
@@ -55,8 +70,23 @@ docker-run-marvel-macchiatobin: docker-build
 docker-run-opentitanpilot-dresden: docker-build
 	docker run --rm -v "$(shell pwd)/opentitanpilot/dresden":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
+docker-run-pcengines-apu: docker-build
+	docker run --rm -v "$(shell pwd)/pcengines/apu":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
 docker-run-pcengines-apu2: docker-build
 	docker run --rm -v "$(shell pwd)/pcengines/apu2":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-slimboot: docker-build
+	docker run --rm -v "$(shell pwd)/slimboot":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-st-st32mp1517c: docker-build
+	docker run --rm -v "$(shell pwd)/st/st32mp1517c":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-tyan7106: docker-build
+	docker run --rm -v "$(shell pwd)/tyan7106":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
+
+docker-run-walmart-robot: docker-build
+	docker run --rm -v "$(shell pwd)/walmart/robot":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
 
 docker-run-qemu-x86-64: docker-build
 	docker run --rm -v "$(shell pwd)/qemu/x86_64":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
