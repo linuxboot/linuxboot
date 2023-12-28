@@ -1,6 +1,6 @@
 MAJOR ?= 5
-STABLE = $(MAJOR).4
-CONFIG ?= $(MAJOR).4.0
+STABLE = $(MAJOR).15
+CONFIG ?= $(MAJOR).15.0
 default: build
 
 build:
