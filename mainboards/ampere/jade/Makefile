@@ -21,7 +21,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off GOARCH=arm64 u-root -uroot-source ${GOPATH}/src/github.com/u-root/u-root -uinitcmd=systemboot -o $@ core \
+	GOARCH=arm64 u-root -uroot-source ${GOPATH}/src/github.com/u-root/u-root -uinitcmd=systemboot -o $@ core \
 		github.com/u-root/u-root/cmds/boot/systemboot \
 		github.com/u-root/u-root/cmds/boot/localboot \
 		github.com/u-root/u-root/cmds/boot/fbnetboot \
@@ -36,7 +36,7 @@ flashinitramfs.cpio: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio.lzma: Makefile
-	GO111MODULE=off GOARCH=arm64 go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GOARCH=arm64 go run github.com/u-root/u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		-defaultsh="" \
 		github.com/u-root/cpu/cmds/cpud
 	lzma -f -k cpu.cpio
@@ -46,7 +46,7 @@ cpu.cpio.lzma: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	GO111MODULE=off GOARCH=arm64 go run github.com/u-root/u-root -o sshd.cpio -build=bb \
+	GOARCH=arm64 go run github.com/u-root/u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
@@ -79,8 +79,8 @@ getkernel:
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
 
 geturoot:
-	GO111MODULE=off go get -u github.com/u-root/u-root
-	GO111MODULE=off go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

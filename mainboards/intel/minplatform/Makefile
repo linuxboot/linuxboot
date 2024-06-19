@@ -36,13 +36,12 @@ getkernel:
 	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/guid2english
+	go install github.com/linuxboot/fiano/cmds/utk@latest
+	go install github.com/linuxboot/fiano/cmds/guid2english@latest
 
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 testflashkernel: flashkernel
 	echo ^C will exit qemu! be careful!

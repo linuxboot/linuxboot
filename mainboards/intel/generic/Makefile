@@ -87,8 +87,7 @@ getkernel:
 	xzcat kernel.xz | tar x
 	mv linux-$(STABLE) linux
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/utk@latest
 getrom:
 	@echo If you plan to flash to hardware,
 	@echo you will need to get a rom image
@@ -99,5 +98,5 @@ getrom:
 	@echo and run that kernel via qemu
 
 geturoot:
-	go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest
 

@@ -9,8 +9,8 @@ debian-packages:
 	sudo apt-get install qemu-system-x86  
 
 getmecleaner:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 	git clone https://github.com/corna/me_cleaner
 	@echo Now add $(PWD)/me_cleaner to PATH
 
@@ -20,7 +20,6 @@ docker-build: Dockerfile
 
 docker-run-aeeon-up: docker-build
 	docker run --rm -v "$(shell pwd)/aeeon/up":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'
-
 
 docker-run-aeeon-upxtreme: docker-build
 	docker run --rm -v "$(shell pwd)/aeeon/upxtreme":/$(CONTAINER_NAME) $(CONTAINER_NAME) 'make fetch flashkernel'

@@ -41,7 +41,7 @@ getkernel:
 	(cd linux && make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- sunxi_defconfig)
 
 geturoot:
-	go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest
 
 packages:
 	sudo apt install gcc-arm-linux-gnueabihf

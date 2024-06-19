@@ -61,7 +61,7 @@ There is an example project that will build LinuxBoot with 9P enabled and system
 
     Install the u-root/cpu package.
 
-    `go get -u github.com/u-root/cpu/...`
+    `go install github.com/u-root/cpu/...@latest`
 
 - SSH client private key (.ssh/identity)
 

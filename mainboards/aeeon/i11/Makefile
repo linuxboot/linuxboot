@@ -217,7 +217,7 @@ cpu.cpio.lzma: cpu.cpio
 	lzma -f -k cpu.cpio
 
 cpu.cpio: Makefile
-	GO111MODULE=off CGO_ENABLED=0 u-root -build=bb -o cpu.cpio \
+	CGO_ENABLED=0 u-root -build=bb -o cpu.cpio \
 	-initcmd=cpud 	\
 	-files ~/.ssh/cpu_rsa.pub:key.pub \
 			github.com/u-root/cpu/cmds/cpud \
@@ -270,16 +270,15 @@ getkernel-5.4.65:
 	git clone --depth=1 -b hwe-5.4-upboard --single-branch git@github.com:AaeonCM/ubuntu-bionic-up linux-5.4.65
 
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/guid2english
+	go install github.com/linuxboot/fiano/cmds/utk@latest
+	go install github.com/linuxboot/fiano/cmds/guid2english@latest
 getrom:
 	echo you can put a wget here
 	echo and unxip it
 	echo and cp it to image.bin
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

@@ -117,7 +117,6 @@ getrom:
 	echo copy that file here and for safety:
 	echo chmod a-w coreboot.bin
 geturoot:
-	go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/utk@latest

@@ -86,12 +86,12 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	echo NO  GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
+	echo NO  GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
 		    -defaultsh="" \
 	       -uinitcmd /bbin/cpud \
 		github.com/u-root/u-root/cmds/core/init \
 		github.com/u-root/cpu/cmds/cpud
-	GO111MODULE=off GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GOARCH=riscv64 u-root -o $@ -files ~/.ssh/cpu_rsa.pub:key.pub \
 	       -uinitcmd /bbin/cpud \
 		github.com/u-root/u-root/cmds/core/init \
 		github.com/u-root/u-root/cmds/core/elvish \
@@ -103,7 +103,7 @@ cpu.cpio.gz: cpu.cpio Makefile
 	gzip -f -k cpu.cpio
 
 cpu.cpio:
-	GO111MODULE=off GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
+	GOARCH=riscv64 u-root -o cpu.cpio -files ~/.ssh/cpu_rsa.pub:key.pub \
 		all \
 		github.com/u-root/cpu/cmds/cpud
 
@@ -153,8 +153,8 @@ getrom:
 	echo you can use flashrom to read the beaglev image.
 
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 getuboot:
 	git clone https://github.com/starfive-tech/beagle_uboot-opensbi uboot

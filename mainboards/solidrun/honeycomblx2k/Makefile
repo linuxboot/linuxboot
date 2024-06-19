@@ -9,7 +9,7 @@ default: netbootkernel
 	echo the latter causes a trap on boot. ARM is so great
 
 u-root:
-	GO111MODULE=off go install github.com/u-root/u-root
+	go install github.com/u-root/u-root
 	@echo Make sure $(GOPATH)/bin is in your PATH
 	@echo if GOPATH is empty, then put ~/go/bin in your PATH
 
@@ -35,7 +35,7 @@ kernel-5.4: config-5.4.47 flashinitramfs.cpio
 	cp linux/arch/arm64/boot/Image $@
 
 kexecinitramfs.cpio: u-root Makefile kernel-5.4 kernel-5.10
-	GO111MODULE=off GOARCH=arm64 u-root -o $@ -build=bb \
+	GOARCH=arm64 u-root -o $@ -build=bb \
 		-files ~/.ssh/cpu_rsa.pub:key.pub \
 		-files kernel-5.4 -files kernel-5.10 \
 		github.com/u-root/cpu/cmds/cpud \
@@ -43,7 +43,7 @@ kexecinitramfs.cpio: u-root Makefile kernel-5.4 kernel-5.10
 		core \
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off GOARCH=arm64 u-root -o $@ -build=bb \
+	GOARCH=arm64 u-root -o $@ -build=bb \
 		-files ~/.ssh/cpu_rsa.pub:key.pub \
 		github.com/u-root/cpu/cmds/cpud \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
@@ -83,8 +83,8 @@ getkernel-5.17:
 	git clone --depth=1 -b v5.17 --single-branch https://github.com/torvalds/linux linux-5.17
 
 geturoot:
-	GO111MODULE=off go get -u github.com/u-root/u-root
-	GO111MODULE=off go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 apt:
 	sudo apt install gcc-aarch64-linux-gnu

@@ -272,16 +272,15 @@ getlinux-5.10:
 	git clone --depth=1 -b v5.10 --single-branch https://github.com/torvalds/linux linux-5.10
 
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/guid2english
+	go install github.com/linuxboot/fiano/cmds/utk@latest
+	go install github.com/linuxboot/fiano/cmds/guid2english@latest
 getrom:
 	echo you can put a wget here
 	echo and unxip it
 	echo and cp it to image.bin
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

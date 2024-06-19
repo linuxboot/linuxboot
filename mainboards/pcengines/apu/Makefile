@@ -55,10 +55,9 @@ getrom:
 	echo copy that file here and for safety:
 	echo chmod a-w apu.bin
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/guid2english
+	go install github.com/linuxboot/fiano/cmds/utk@latest
+	go install github.com/linuxboot/fiano/cmds/guid2english@latest
 

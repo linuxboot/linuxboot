@@ -27,5 +27,5 @@ getkernel:
 	xzcat kernel.xz | tar x
 	mv linux-5.15 linux
 geturoot:
-	go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest
 

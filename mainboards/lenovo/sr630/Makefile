@@ -59,14 +59,13 @@ getkernel:
 	rm -rf linux
 	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 getfiano:
-	go get -u github.com/linuxboot/fiano/cmds/utk
-	go install github.com/linuxboot/fiano/cmds/utk
+	go install github.com/linuxboot/fiano/cmds/utk@latest
 getrom:
 	echo you can put a wget here
 	echo and unxip it 
 	echo and cp it to sr630.bin
 geturoot:
-	go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest
 
 # everything from here below was part of an experiment and can be ignored.
 experiment:

@@ -67,7 +67,7 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off u-root  -o $@ -build=bb \
+	u-root  -o $@ -build=bb \
 		-uinitcmd=/bbin/pxeboot \
 		github.com/u-root/u-root/cmds/boot/pxeboot \
 		github.com/u-root/u-root/cmds/core/cat \
@@ -83,7 +83,7 @@ flashinitramfs.cpio: Makefile
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 cpu.cpio: Makefile
-	CGO_ENABLED=0 GO111MODULE=off u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
+	CGO_ENABLED=0 u-root -o cpu.cpio -build=bb -initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub \
 		minimal \
 		github.com/u-root/cpu/cmds/cpud
 
@@ -98,7 +98,7 @@ cpu.cpio.xz: cpu.cpio
 # It depends on the kernel setting the IP address.
 # You need ip=dhcp OR ip=fixed.ip.address.here in the command line
 sshd.cpio.lzma:  Makefile
-	CGO_ENABLED=0 GO111MODULE=off u-root -o sshd.cpio -build=bb \
+	CGO_ENABLED=0 u-root -o sshd.cpio -build=bb \
 		-uinitcmd=/bbin/sshd \
 		-files class_key.pub:authorized_keys \
 		-files classhostkey:id_rsa \
@@ -134,9 +134,9 @@ getrom:
 	echo you can use flashrom to read the apu2 image.
 
 geturoot:
-	go get -u github.com/u-root/u-root
-	CGO_ENABLED=0 GO111MODULE=off go install github.com/u-root/u-root
-	CGO_ENABLED=0 GO111MODULE=off go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	CGO_ENABLED=0 go install github.com/u-root/u-root
+	CGO_ENABLED=0 go install github.com/u-root/cpu/...@latest
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:

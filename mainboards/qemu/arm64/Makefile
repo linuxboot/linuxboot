@@ -1,5 +1,5 @@
 flashinitramfs.cpio: flashkernel core.cpio
-	GO111MODULE=off GOARCH=arm64 u-root -o $@ \
+	GOARCH=arm64 u-root -o $@ \
 		    -files flashkernel \
 		    -files core.cpio \
 		    -files /usr/bin/gzip \
@@ -14,7 +14,7 @@ flashinitramfs.cpio: flashkernel core.cpio
 	github.com/u-root/u-root/cmds/core/wget
 
 core.cpio: flash.config Makefile
-	GO111MODULE=off GOARCH=arm64 u-root -o $@
+	GOARCH=arm64 u-root -o $@
 
 flashkernel: flash.config core.cpio
 	cp $< linux/.config
@@ -41,4 +41,4 @@ getkernel:
 	git clone --depth=1 -b v5.11 https://github.com/torvalds/linux
 
 geturoot:
-	GO111MODULE=off go get -u github.com/u-root/u-root
+	go install github.com/u-root/u-root@latest

@@ -33,8 +33,8 @@ getkernel:
 	git clone --depth=1 -b v5.15.5-openwrt --single-branch https://github.com/orangecms/linux
 
 geturoot:
-	GO111MODULE=off go get -u github.com/u-root/u-root
-	GO111MODULE=off go get -u github.com/u-root/cpu/...
+	go install github.com/u-root/u-root@latest
+	go install github.com/u-root/cpu/...@latest
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
