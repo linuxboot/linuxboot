@@ -26,8 +26,6 @@ jobs:
     env:
       # Setup $GOPATH
       GOPATH: ${{ github.workspace }}/go
-      # Turn off modules because they are broken.
-      GO111MODULE: off
 
     # Run the build for each one of these configurations in parallel.
     strategy:
