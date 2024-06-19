@@ -42,10 +42,10 @@ func main() {
 		log.Fatalf("Size of %q (%d) > allowed size (%d)", initramfs, len(ramfs), sz)
 	}
 	if off > uint64(len(img)) {
-		log.Fatal("Off (%d) is > image size (%d)", off, len(img))
+		log.Fatalf("Off (%d) is > image size (%d)", off, len(img))
 	}
 	if off+sz > uint64(len(img)) {
-		log.Fatal("Off (%d) is > image size (%d)", off, len(img))
+		log.Fatalf("Off (%d) is > image size (%d)", off, len(img))
 	}
 
 	copy(img[off:], ramfs[:])
