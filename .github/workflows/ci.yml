@@ -26,8 +26,6 @@ jobs:
     env:
       # Setup $GOPATH
       GOPATH: ${{ github.workspace }}/go
-      # Turn off modules because they are broken.
-      GO111MODULE: off
 
     # Run the build for each one of these configurations in parallel.
     strategy:
@@ -69,12 +67,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
       # access it.
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # We need this newer version of Go.
       - name: Go version
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
-          go-version: '^1.17.6'
+          go-version: '1.21'
       - name: Install dependent packages
         run: |
           set -ex
@@ -90,13 +88,14 @@ jobs:
       - name: Make ${{ matrix.mainboard }} kernel
         run: |
           set -ex
+          go version
           cd mainboards
           PATH=$GOPATH/bin:/usr/local/go/bin:$PATH
           cd $(echo ${{ matrix.mainboard }} | tr '-' '/')
           make fetch
           make flashkernel
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.mainboard }}
           path: |
