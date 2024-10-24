@@ -32,11 +32,11 @@ jobs:
       matrix:
         # The `${{ matrix.mainboard }}` variable is replaced with each of these.
         mainboard:
-          - ampere-jade
           # '-' is used instead of '/' due to restrictions on artifact upload.
+          - ampere-jade
           # - aeeon-i11
           - aeeon-up
-          # - qemu-x86_64
+          - qemu-x86_64
 
       # Do not cancel all jobs steps if a single one fails.
       fail-fast: false
