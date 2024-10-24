@@ -1,9 +1,0 @@
-#!/bin/bash
-# this is the reset script for the BMC so we don't have to deal with awful
-# curl scripts.
-sleep 1
-echo 0 > /sys/class/gpio/gpio315/value
-sleep 1
-echo 1 > /sys/class/gpio/gpio315/value
-sleep 5
-echo 0 > /sys/class/gpio/gpio315/value
