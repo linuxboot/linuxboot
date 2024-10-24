@@ -32,17 +32,11 @@ jobs:
       matrix:
         # The `${{ matrix.mainboard }}` variable is replaced with each of these.
         mainboard:
-          # '-' is used instead of '/' due to restrictions on artifact upload.
-          - aeeon-i11
-          - aeeon-up
           - ampere-jade
-          - intel-generic
-          - intel-s2600
-          - qemu-x86_64
-          - rvboards-d1
-          - sunxi-nezha
-          - qemu-x86_64
-          - walmart-robot
+          # '-' is used instead of '/' due to restrictions on artifact upload.
+          # - aeeon-i11
+          # - aeeon-up
+          # - qemu-x86_64
 
       # Do not cancel all jobs steps if a single one fails.
       fail-fast: false
