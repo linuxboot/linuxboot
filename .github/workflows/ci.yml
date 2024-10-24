@@ -34,7 +34,6 @@ jobs:
         mainboard:
           # '-' is used instead of '/' due to restrictions on artifact upload.
           - ampere-jade
-          # - aeeon-i11
           - aeeon-up
           - qemu-x86_64
 
