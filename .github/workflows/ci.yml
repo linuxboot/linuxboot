@@ -33,29 +33,14 @@ jobs:
         # The `${{ matrix.mainboard }}` variable is replaced with each of these.
         mainboard:
           # '-' is used instead of '/' due to restrictions on artifact upload.
+          - aeeon-i11
           - aeeon-up
-          - aeeon-upxtreme
-          - amd-rome
           - ampere-jade
-          - bytedance-g220a
-          - cubie-board
-          - digitalloggers-atomicpi
-          - hpe-dl360gen10
           - intel-generic
-          - intel-hw
-          - intel-minplatform
           - intel-s2600
-          - lenovo-hr630
-          - lenovo-sr630
-          - lenovo-thinkpad
-          - marvel-macchiatobin
-          - opentitanpilot-dresden
-          - pcengines-apu
-          - pcengines-apu2
-            # - seeed-beaglev # FIXME: broken due to upstream sources gone
-          - slimboot
-          - st-st32mp1517c
-          - tyan7106
+          - qemu-x86_64
+          - rvboards-d1
+          - sunxi-nezha
           - qemu-x86_64
           - walmart-robot
 
@@ -78,12 +63,6 @@ jobs:
           set -ex
           sudo apt-get update
           sudo apt-get install gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi{,hf} gcc-riscv64-linux-gnu libelf-dev u-boot-tools
-      # TODO: This is a temporary workaround, need to streamline key handling
-      - name: Fake SSH keys to pass builds
-        run: |
-          mkdir ~/.ssh && touch ~/.ssh/cpu_rsa.pub
-          touch mainboards/tyan7106/key.pub
-          touch mainboards/tyan7106/ssh_host_rsa_key
       # Runs a set of commands using the runners shell
       - name: Make ${{ matrix.mainboard }} kernel
         run: |
