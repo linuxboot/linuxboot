@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo kea-dhcp6 -d -d -d -c kea6.conf 
