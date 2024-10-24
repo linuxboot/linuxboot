@@ -41,7 +41,6 @@ getfiano:
 
 alluroot:
 	cd u-root && go run . -o $(INITRAMFS) \
-		-initcmd=cpud -files ~/.ssh/cpu_rsa.pub:key.pub ../cpu/cmds/cpud \
 		all
 
 cpuuroot:
@@ -78,7 +77,7 @@ stablebzImage:
 	cp ts.config.txt linux/.config
 	(cd linux && make oldconfig && make -j32)
 
-flashkernel: cpuuroot uroot.lzma bzImage
+flashkernel: alluroot uroot.lzma bzImage
 	cp linux/arch/x86/boot/bzImage flashkernel
 
 netboot: neturoot uroot.lzma bzImage

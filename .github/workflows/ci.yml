@@ -35,7 +35,7 @@ jobs:
           - ampere-jade
           # '-' is used instead of '/' due to restrictions on artifact upload.
           # - aeeon-i11
-          # - aeeon-up
+          - aeeon-up
           # - qemu-x86_64
 
       # Do not cancel all jobs steps if a single one fails.
