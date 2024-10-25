@@ -1,9 +1,0 @@
-image.bin
-initramfs.linux_amd64.cpio
-initramfs.linux_amd64.cpio.lzma
-kernel
-kernel.xz
-linux
-*kernel
-*cpio
-sr630.bin

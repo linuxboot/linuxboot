@@ -1,6 +1,0 @@
-*.cpio
-linux
-*.gz
-*kernel
-pxelinux.cfg
-

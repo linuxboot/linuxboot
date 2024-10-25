@@ -81,6 +81,13 @@ to set the following variables:
 * `linuxboot-size`: the final size of the ROM image in bytes (we should verify this against the real ROM instead)
 
 
+Previous Implementations
+===
+
+For reference, [earlier approaches are documented](graveyard.md).
+Have a look at those in case you want to add a board that was already supported.
+There is knowledge in terms of what had to be done in order to deploy LinuxBoot.
+
 More info
 ===
 * https://www.linuxboot.org/

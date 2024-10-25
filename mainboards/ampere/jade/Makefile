@@ -21,16 +21,20 @@ flashinitramfs.cpio.lzma: flashinitramfs.cpio
 	lzma -f -k $<
 
 flashinitramfs.cpio: Makefile
-	GO111MODULE=off GOARCH=arm64 u-root -uinitcmd=systemboot -o $@ core \
-		github.com/u-root/u-root/cmds/boot/systemboot \
-		github.com/u-root/u-root/cmds/boot/localboot \
-		github.com/u-root/u-root/cmds/boot/fbnetboot \
-		github.com/u-root/u-root/cmds/exp/acpicat \
-		github.com/u-root/u-root/cmds/exp/acpigrep \
-		github.com/u-root/u-root/cmds/exp/disk_unlock \
-		github.com/u-root/u-root/cmds/exp/dmidecode \
-		github.com/u-root/u-root/cmds/exp/ipmidump \
-		github.com/u-root/cpu/cmds/cpud
+	cd u-root && go build . && GOARCH=arm64 ./u-root -uinitcmd="boot" -o $@ \
+		./cmds/core/* \
+		./cmds/boot/* \
+		./cmds/exp/systemboot \
+		./cmds/exp/localboot \
+		./cmds/exp/fbnetboot \
+		./cmds/exp/dmidecode \
+		./cmds/exp/acpicat \
+		./cmds/exp/acpigrep \
+		./cmds/exp/disk_unlock \
+		./cmds/exp/dmidecode \
+		./cmds/exp/ipmidump \
+		../cpu/cmds/cpud
+	cp u-root/flashinitramfs.cpio .
 
 # this target builds an initramfs with only one program, the cpu server.
 # It depends on the kernel setting the IP address.
@@ -74,13 +78,17 @@ fetch: getkernel geturoot
 
 getkernel:
 	rm -rf linux
-	git clone --depth=1 -b v5.7 --single-branch https://github.com/torvalds/linux
+	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
 	(cd linux && make mrproper)
 	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
 
 geturoot:
-	go get -u github.com/u-root/u-root
-	go get -u github.com/u-root/cpu/...
+	rm -rf u-root cpu
+	git clone --depth 1 https://github.com/u-root/u-root
+	git clone --depth 1 https://github.com/u-root/cpu
+	rm -f go.*
+	go work init ./u-root
+	go work use ./cpu
 
 # Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
 sshd-pxeserver:
