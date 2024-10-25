@@ -1,3 +1,8 @@
+ARCH=arm64
+CROSS_COMPILE=aarch64-linux-gnu-
+LINUXVERSION=v5.15
+
+include ../../Makefile.inc
 # Makefile for Ampere Jade.
 # This is only partially done. It is derived from other ARM
 # systems. 
@@ -73,36 +78,3 @@ flashkernel: flash.config flashinitramfs.cpio.lzma Makefile
 testflashkernel: flashkernel
 	qemu-system-aarch64 -machine virt -cpu cortex-a57 -kernel flashkernel -nographic -initrd flashinitramfs.cpio.lzma -append "console=ttyAMA0,115200 keep_bootcon"
 
-# These stanzas fetch code.
-fetch: getkernel geturoot 
-
-getkernel:
-	rm -rf linux
-	git clone --depth=1 -b v5.15 --single-branch https://github.com/torvalds/linux
-	(cd linux && make mrproper)
-	(cd linux && ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make tinyconfig)
-
-geturoot:
-	rm -rf u-root cpu
-	git clone --depth 1 https://github.com/u-root/u-root
-	git clone --depth 1 https://github.com/u-root/cpu
-	rm -f go.*
-	go work init ./u-root
-	go work use ./cpu
-
-# Serve the combined sshd-kernel and sshd-initramfs image. This includes flashrom
-sshd-pxeserver:
-	echo Consider Disabling any system services ...
-	echo e.g. sudo systemctl  stop tftpd-hpa.service
-	echo e.g. sudo systemctl stop isc-dhcp-server
-	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename sshdkernel  -http-dir . -interface $(NETWORK)
-
-# Serve the combined cpu-kernel and cpu-initramfs image.
-cpu-pxeserver:
-	echo Consider Disabling any system services ...
-	echo e.g. sudo systemctl  stop tftpd-hpa.service
-	echo e.g. sudo systemctl stop isc-dhcp-server
-	sudo `go env GOPATH`/bin/pxeserver  -tftp-dir . -bootfilename cpukernel  -http-dir . -interface $(NETWORK)
-
-ssh:
-	ssh -i class_key -p 2022 root@up
