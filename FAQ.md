@@ -40,7 +40,7 @@ Where can I learn more about LinuxBoot?
 * [LinuxBoot.org](https://linuxboot.org)
 * [Ron Minnich's Open Source Summit presentation](https://www.youtube.com/watch?v=iffTJ1vPCSo)
 * [Trammell Hudson's 34C3 presentation](https://trmm.net/LinuxBoot_34c3)
-* [Install instructions for the R630](https://trmm.net/NERF)
+* [Install instructions for the R630](https://trmm.net/NERF/#installing-on-a-dell-r630)
 
 
 What's wrong with UEFI Secure Boot?
