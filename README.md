@@ -5,7 +5,7 @@ Supported server mainboards
 ===
 * qemu emulated Q35 systems
 * [Intel S2600WF](https://trmm.net/S2600wf)
-* [Dell R630](https://trmm.net/NERF)
+* [Dell R630](https://trmm.net/NERF/#installing-on-a-dell-r630)
 * Winterfell Open Compute node (works well)
 * Leopard Open Compute node (works well)
 * Tioga Pass Open Compute node (works well)
